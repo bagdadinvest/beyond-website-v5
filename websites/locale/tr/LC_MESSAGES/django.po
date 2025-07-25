@@ -1,0 +1,692 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-04 14:04+0300\n"
+"PO-Revision-Date: 2024-08-24 20:00+0000\n"
+"Last-Translator: lotfi kanouni <lofa@bc.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\site_templates\home\about.html:7 .\site_templates\home\home.html:5
+msgid "BEYONDCLINIC"
+msgstr "BEYONDCLINIC"
+
+#: .\site_templates\home\about.html:17 .\site_templates\home\about.html:232
+#: .\site_templates\home\blog.html:239 .\site_templates\home\home.html:216
+#: .\site_templates\home\single-post.html:208
+msgid "About Us"
+msgstr "Hakkımızda"
+
+#: .\site_templates\home\about.html:31 .\site_templates\home\blog.html:24
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:91
+#: .\site_templates\home\blog.html:101 .\site_templates\home\blog.html:112
+#: .\site_templates\home\single-post.html:29
+#: .\site_templates\home\single-post.html:32
+msgid "Dental Implants"
+msgstr "Diş İmplantları"
+
+#: .\site_templates\home\about.html:32
+msgid ""
+"Restore your smile with our state-of-the-art dental implants. we ensure a "
+"seamless and comfortable procedure."
+msgstr ""
+"Son teknoloji diş implantlarımızla gülüşünüzü geri kazanın. Sorunsuz ve "
+"konforlu bir prosedür sağlıyoruz."
+
+#: .\site_templates\home\about.html:42
+msgid "Teeth Whitening"
+msgstr "Diş Beyazlatma"
+
+#: .\site_templates\home\about.html:43
+msgid ""
+"Achieve a brighter smile with our professional teeth whitening services. "
+"Safe, effective, and long-lasting results."
+msgstr ""
+"Profesyonel diş beyazlatma hizmetlerimizle daha parlak bir gülüş elde edin. "
+"Güvenli, etkili ve uzun ömürlü sonuçlar."
+
+#: .\site_templates\home\about.html:53
+msgid "Orthodontics"
+msgstr "Ortodonti"
+
+#: .\site_templates\home\about.html:54
+msgid ""
+"Straighten your teeth with our advanced orthodontic treatments, including "
+"braces and Invisalign."
+msgstr ""
+"Diş telleri ve Invisalign dahil olmak üzere gelişmiş ortodontik "
+"tedavilerimizle dişlerinizi düzeltin."
+
+#: .\site_templates\home\about.html:64
+msgid "Cosmetic Dentistry"
+msgstr "Estetik Diş Hekimliği"
+
+#: .\site_templates\home\about.html:65
+msgid ""
+"Enhance the appearance of your teeth with our range of cosmetic dentistry "
+"services, including veneers and bonding."
+msgstr ""
+"Kaplamalar ve yapıştırma dahil olmak üzere kozmetik diş hekimliği "
+"hizmetlerimizle dişlerinizin görünümünü iyileştirin."
+
+#: .\site_templates\home\about.html:75
+#, fuzzy
+#| msgid "Dental Care"
+msgid "Preventive Care"
+msgstr "Diş Bakımı"
+
+#: .\site_templates\home\about.html:76
+msgid ""
+"Maintain your oral health with regular check-ups, cleanings, and "
+"personalized care plans from our skilled team."
+msgstr ""
+"Yetenekli ekibimizin düzenli kontrolleri, temizlikleri ve kişiselleştirilmiş "
+"bakım planları ile ağız sağlığınızı koruyun."
+
+#: .\site_templates\home\about.html:86
+msgid "Emergency Dental Services"
+msgstr "Acil Diş Hizmetleri"
+
+#: .\site_templates\home\about.html:87
+msgid ""
+"Receive prompt and efficient care for dental emergencies, including "
+"toothaches, broken teeth, and more."
+msgstr ""
+"Diş ağrıları, kırık dişler ve daha fazlası dahil olmak üzere diş acil "
+"durumları için hızlı ve verimli bakım alın."
+
+#: .\site_templates\home\about.html:99 .\site_templates\home\about.html:101
+#: .\site_templates\home\about.html:103
+msgid "John"
+msgstr "Emre"
+
+#: .\site_templates\home\about.html:99
+msgid "'s Journey to a New Smile"
+msgstr "'ın Yeni Bir Gülüşe Yolculuğu"
+
+#: .\site_templates\home\about.html:100
+msgid "A Life-Changing Dental Experience"
+msgstr "Hayat Değiştiren Bir Diş Hekimliği Deneyimi"
+
+#: .\site_templates\home\about.html:102
+msgid "from"
+msgstr "Ankara'dan "
+
+#: .\site_templates\home\about.html:103
+msgid "UK"
+msgstr "geldi"
+
+#: .\site_templates\home\about.html:103
+msgid ""
+"visited us last month with severe dental issues that had been affecting "
+"their confidence and quality of life. After a comprehensive treatment plan, "
+"including dental implants and restorative procedures,"
+msgstr ""
+"Geçen ay, güvenlerini ve yaşam kalitelerini etkileyen ciddi diş sorunları "
+"ile bizi ziyaret etti. Diş implantları ve restoratif prosedürler dahil olmak "
+"üzere kapsamlı bir tedavi planından sonra,"
+
+#: .\site_templates\home\about.html:103
+msgid " now smiles with confidence and enjoys a pain-free life."
+msgstr " Şimdi güvenle gülümsüyor ve ağrısız bir hayatın tadını çıkarıyor."
+
+#: .\site_templates\home\about.html:106
+#, fuzzy
+#| msgid "Patient Stories"
+msgid "Read More Patient Stories"
+msgstr "Hasta Hikayeleri"
+
+#: .\site_templates\home\about.html:117
+msgid "$250/Procedure"
+msgstr "tl 250 /Prosedür"
+
+#: .\site_templates\home\about.html:118
+msgid "Single Tooth Implant"
+msgstr "Tek Diş İmplantı"
+
+#: .\site_templates\home\about.html:120 .\site_templates\home\about.html:134
+msgid "Initial Consultation"
+msgstr "İlk Danışma"
+
+#: .\site_templates\home\about.html:121
+msgid "Implantation Procedure"
+msgstr "İmplantasyon Prosedürü"
+
+#: .\site_templates\home\about.html:122
+msgid "Follow-Up Care"
+msgstr "Takip Bakımı"
+
+#: .\site_templates\home\about.html:125 .\site_templates\home\about.html:139
+#: .\site_templates\home\about.html:153
+msgid "Details"
+msgstr "Şey"
+
+#: .\site_templates\home\about.html:131
+msgid "$420/Procedure"
+msgstr "tl 4200/Prosedür"
+
+#: .\site_templates\home\about.html:132
+msgid "Multiple Tooth Implant"
+msgstr "Çoklu Diş İmplantı"
+
+#: .\site_templates\home\about.html:135
+msgid "Multiple Implantation Procedures"
+msgstr "Çoklu İmplantasyon İşlemleri"
+
+#: .\site_templates\home\about.html:136
+msgid "Comprehensive Follow-Up Care"
+msgstr "Kapsamlı takip bakımı"
+
+#: .\site_templates\home\about.html:145
+msgid "$750/Procedure"
+msgstr "tl 7500/Prosedür"
+
+#: .\site_templates\home\about.html:146
+msgid "Full Mouth Restoration"
+msgstr "Tam Ağız Restorasyonu"
+
+#: .\site_templates\home\about.html:148
+msgid "Comprehensive Consultation"
+msgstr "Kapsamlı Danışmanlık"
+
+#: .\site_templates\home\about.html:149
+msgid "Full Dental Restoration"
+msgstr "Tam Diş Restorasyonu"
+
+#: .\site_templates\home\about.html:150
+msgid "Dedicated Follow-Up Support"
+msgstr "Özel takip desteği"
+
+#: .\site_templates\home\about.html:180
+#, fuzzy
+#| msgid "Say hello to Beyond!"
+msgid "Say hello to Highway"
+msgstr "Beyond'a merhaba deyin!"
+
+#: .\site_templates\home\about.html:205 .\site_templates\home\blog.html:224
+#: .\site_templates\home\home.html:201
+#: .\site_templates\home\single-post.html:187
+msgid "Send Message Now"
+msgstr "Şimdi Mesaj Gönder"
+
+#: .\site_templates\home\about.html:223
+msgid "Home - Full-width"
+msgstr "Ana Sayfa - Tam genişlik"
+
+#: .\site_templates\home\about.html:226
+msgid "Home - Masonry"
+msgstr "Ana Sayfa - Duvarcılık"
+
+#: .\site_templates\home\about.html:229
+msgid "Home - Small-width"
+msgstr "Ev - Küçük genişlik"
+
+#: .\site_templates\home\about.html:235
+msgid "Blog Entries"
+msgstr "Blog Yazıları"
+
+#: .\site_templates\home\about.html:238
+msgid "Single Post"
+msgstr "Tek Gönderi"
+
+#: .\site_templates\home\about.html:241
+msgid "We create awesome templates for you"
+msgstr "Sizin için harika şablonlar oluşturuyoruz"
+
+#: .\site_templates\home\blog.html:5 .\site_templates\home\blog.html:197
+#: .\site_templates\home\single-post.html:6
+msgid "MedTour Dental"
+msgstr "MedTour Diş"
+
+#: .\site_templates\home\blog.html:13
+msgid "Our Blog"
+msgstr "Bizim Blog"
+
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:36
+#: .\site_templates\home\blog.html:47
+#: .\site_templates\home\single-post.html:32
+msgid "Admin"
+msgstr "Admin"
+
+#: .\site_templates\home\blog.html:25
+msgid "August 24, 2024"
+msgstr "Ağustos 24, 2024"
+
+#: .\site_templates\home\blog.html:26
+msgid "Why Choose Dental Implants Abroad?"
+msgstr "Neden Yurtdışında Diş İmplantlarını Seçmelisiniz?"
+
+#: .\site_templates\home\blog.html:27
+#, python-format
+msgid ""
+"Dental implants have become a popular solution for those seeking to restore "
+"their smile, but the high costs in some countries can be prohibitive. This "
+"is where medical tourism comes into play. By choosing to get your dental "
+"implants abroad, you can save up to 70%% on costs while receiving top-notch "
+"care in state-of-the-art facilities."
+msgstr ""
+"Diş implantları, gülümsemelerini geri kazanmak isteyenler için popüler bir "
+"çözüm haline geldi, ancak bazı ülkelerdeki yüksek maliyetler engelleyici "
+"olabilir. İşte bu noktada medikal turizm devreye giriyor. Diş "
+"implantlarınızı yurt dışına çıkarmayı seçerek, son teknoloji tesislerde "
+"birinci sınıf bakım alırken maliyetlerde p'e varan tasarruf "
+"sağlayabilirsiniz."
+
+#: .\site_templates\home\blog.html:28 .\site_templates\home\blog.html:39
+#: .\site_templates\home\blog.html:50
+msgid "Continue reading"
+msgstr "Okumaya devam et"
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:101
+msgid "August 10, 2024"
+msgstr "Ağustos 10, 2024"
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:115
+msgid "Cost Savings"
+msgstr "Maliyet tasarrufu"
+
+#: .\site_templates\home\blog.html:37
+msgid "Cost Savings: A Guide to Dental Implants in Medical Tourism"
+msgstr "Maliyet tasarrufu: Medikal Turizmde Dental İmplantlar Rehberi"
+
+#: .\site_templates\home\blog.html:38
+msgid ""
+"Medical tourism for dental implants not only offers cost savings but also "
+"gives patients access to world-renowned specialists. Learn how to plan your "
+"dental trip abroad and what to expect during your journey to a healthier, "
+"more confident smile."
+msgstr ""
+"Dental implantlar için medikal turizm sadece maliyet tasarrufu sağlamakla "
+"kalmaz, aynı zamanda hastalara dünyaca ünlü uzmanlara erişim sağlar. "
+"Yurtdışındaki diş hekimliği seyahatinizi nasıl planlayacağınızı ve daha "
+"sağlıklı, daha kendinden emin bir gülümseme yolculuğunuz sırasında neler "
+"bekleyeceğinizi öğrenin."
+
+#: .\site_templates\home\blog.html:47
+msgid "July 15, 2024"
+msgstr "Temmuz 15, 2024"
+
+#: .\site_templates\home\blog.html:47 .\site_templates\home\blog.html:114
+msgid "Patient Stories"
+msgstr "Hasta Hikayeleri"
+
+#: .\site_templates\home\blog.html:48
+msgid "Success Stories: Patients Who Found Their Perfect Smile Abroad"
+msgstr "Başarı Hikayeleri: Mükemmel Gülüşünü Yurt Dışında Bulan Hastalar"
+
+#: .\site_templates\home\blog.html:49
+msgid ""
+"From initial consultations to final results, follow the journeys of patients "
+"who traveled abroad for dental implants. Discover how they overcame their "
+"dental issues and regained their confidence through affordable, high-quality "
+"care."
+msgstr ""
+"İlk konsültasyonlardan nihai sonuçlara kadar, diş implantları için "
+"yurtdışına seyahat eden hastaların yolculuklarını takip edin. Uygun fiyatlı, "
+"yüksek kaliteli bakım sayesinde diş sorunlarının üstesinden nasıl "
+"geldiklerini ve güvenlerini nasıl yeniden kazandıklarını keşfedin."
+
+#: .\site_templates\home\blog.html:75
+#: .\site_templates\home\single-post.html:69
+msgid "Archives"
+msgstr "Arşiv"
+
+#: .\site_templates\home\blog.html:78
+#: .\site_templates\home\single-post.html:72
+msgid "> August 2024 (4)"
+msgstr "> Ağustos 2024 (4)"
+
+#: .\site_templates\home\blog.html:79
+#: .\site_templates\home\single-post.html:73
+msgid "> July 2024 (16)"
+msgstr "> Temmuz 2024 (16)"
+
+#: .\site_templates\home\blog.html:80
+#: .\site_templates\home\single-post.html:74
+msgid "> June 2024 (5)"
+msgstr "> Haziran 2024 (5)"
+
+#: .\site_templates\home\blog.html:81
+#: .\site_templates\home\single-post.html:75
+msgid "> May 2024 (3)"
+msgstr "> Mayıs 2024 (3)"
+
+#: .\site_templates\home\blog.html:82
+#: .\site_templates\home\single-post.html:76
+msgid "> April 2024 (27)"
+msgstr "> Nisan 2024 (27)"
+
+#: .\site_templates\home\blog.html:87
+#: .\site_templates\home\single-post.html:81
+msgid "Recent Posts"
+msgstr "Son Yazılar"
+
+#: .\site_templates\home\blog.html:91
+msgid "August 20, 2024"
+msgstr "Ağustos 20, 2024"
+
+#: .\site_templates\home\blog.html:96
+msgid "How to Choose the Right Clinic Abroad"
+msgstr "Yurtdışında Doğru Klinik Nasıl Seçilir"
+
+#: .\site_templates\home\blog.html:96
+msgid "August 15, 2024"
+msgstr "Ağustos 15, 2024"
+
+#: .\site_templates\home\blog.html:109
+#: .\site_templates\home\single-post.html:109
+msgid "Categories"
+msgstr "Kategori"
+
+#: .\site_templates\home\blog.html:113
+#: .\site_templates\home\single-post.html:113
+msgid "> Medical Tourism (9)"
+msgstr "> Sağlık Turizmi (9)"
+
+#: .\site_templates\home\blog.html:116
+#: .\site_templates\home\single-post.html:116
+msgid "> Clinics (5)"
+msgstr "> Klinikleri (5)"
+
+#: .\site_templates\home\blog.html:121
+#: .\site_templates\home\single-post.html:121
+msgid "Latest Gallery"
+msgstr "Son Galeri"
+
+#: .\site_templates\home\blog.html:238 .\site_templates\home\home.html:215
+#: .\site_templates\home\single-post.html:205
+msgid "Home"
+msgstr "Ev"
+
+#: .\site_templates\home\blog.html:240 .\site_templates\home\home.html:217
+#: .\site_templates\home\single-post.html:211
+msgid "Blog"
+msgstr "Bloglar"
+
+#: .\site_templates\home\blog.html:242 .\site_templates\home\home.html:221
+#: .\site_templates\home\single-post.html:216
+msgid "Your smile, our priority. Affordable dental care abroad."
+msgstr "Gülüşünüz, önceliğimiz. Yurtdışında uygun fiyatlı diş bakımı."
+
+#: .\site_templates\home\home.html:15
+msgid "MEDICAL TOURISM SERVICES PROVIDER"
+msgstr "SAĞLIK TURIZMI HIZMETLERI SAĞLAYICISI"
+
+#: .\site_templates\home\home.html:16
+msgid "xxx"
+msgstr "Xxx"
+
+#: .\site_templates\home\home.html:31
+msgid "INNOVATIVE SOLUTIONS"
+msgstr "YENİLİKÇİ ÇÖZÜMLER"
+
+#: .\site_templates\home\home.html:46
+msgid "Beyond the Bazaar"
+msgstr "Çarşının Ötesinde"
+
+#: .\site_templates\home\home.html:59
+msgid "Why BEYOND CLINIC"
+msgstr "Neden BEYOND CLINIC"
+
+#: .\site_templates\home\home.html:60
+msgid "HERE IS WHAT SETS US APART"
+msgstr "İŞTE BIZI FARKLI KILAN ŞEY"
+
+#: .\site_templates\home\home.html:74
+msgid "ALL YOU NEED TO KNOW IS THIS"
+msgstr "BILMEN GEREKEN TEK ŞEY BU"
+
+#: .\site_templates\home\home.html:88
+msgid "Beyond Baldness"
+msgstr "Kelliğin Ötesinde"
+
+#: .\site_templates\home\home.html:101
+msgid "AESTHETIC SURGERIES"
+msgstr "ESTETİK AMELİYATLAR"
+
+#: .\site_templates\home\home.html:102
+msgid "SCULPT YOUR DREAM"
+msgstr "HAYALİNİZİ ŞEKİLLENDİRİN"
+
+#: .\site_templates\home\home.html:115 .\site_templates\home\home.html:218
+msgid "DASHBOARD LOGIN"
+msgstr "DASHBOARD GİRİŞİ"
+
+#: .\site_templates\home\home.html:116
+msgid "CHECK IT FOR YOURSELF"
+msgstr "KENDİNİZ KONTROL EDİN"
+
+#: .\site_templates\home\home.html:144
+msgid "IF YOU WANT FURHTHER RESOURCES"
+msgstr "DAHA FAZLA KAYNAK İSTİYORSANIZ"
+
+#: .\site_templates\home\home.html:174
+msgid "Say hello to Beyond!"
+msgstr "Beyond'a merhaba deyin!"
+
+#: .\site_templates\home\lang.html:9
+msgid "language"
+msgstr "Dil"
+
+#: .\site_templates\home\single-post.html:16
+msgid "Dental Implants: A New Smile Abroad"
+msgstr "Dental İmplantlar: Yurt Dışında Yeni Bir Gülümseme"
+
+#: .\site_templates\home\single-post.html:31
+msgid "Why Get Dental Implants Abroad?"
+msgstr "Neden Yurtdışında Diş İmplantları Yaptırmalısınız?"
+
+#: .\site_templates\home\single-post.html:32
+msgid "/"
+msgstr "/"
+
+#: .\site_templates\home\single-post.html:32
+msgid "24 August 2024"
+msgstr "24 Ağustos 2024"
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Dental implants are a life-changing solution for those with missing or "
+"damaged teeth, but the cost can be a barrier. By choosing to get your "
+"implants through medical tourism, you can access world-class dental care at "
+"a fraction of the price. Countries like Turkey, Mexico, and Thailand offer "
+"highly qualified dentists and state-of-the-art facilities."
+msgstr ""
+"Diş implantları, eksik veya hasarlı dişleri olanlar için hayat değiştiren "
+"bir çözümdür, ancak maliyeti bir engel olabilir. İmplantlarınızı medikal "
+"turizm yoluyla almayı seçerek, birinci sınıf diş bakımına çok daha ucuza "
+"erişebilirsiniz. Türkiye, Meksika ve Tayland gibi ülkeler yüksek nitelikli "
+"diş hekimleri ve son teknoloji tesisler sunmaktadır."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"This post explores the benefits of traveling abroad for dental implants, "
+"including cost savings, quality of care, and the added bonus of exploring a "
+"new country while improving your smile."
+msgstr ""
+"Bu gönderi, maliyet tasarrufu, bakım kalitesi ve gülümsemenizi geliştirirken "
+"yeni bir ülkeyi keşfetmenin ek bonusu dahil olmak üzere diş implantları için "
+"yurtdışına seyahat etmenin faydalarını araştırıyor."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Learn about patient experiences, the steps involved in the process, and tips "
+"for choosing the right clinic and destination for your dental needs."
+msgstr ""
+"Hasta deneyimleri, sürece dahil olan adımlar ve diş hekimliği ihtiyaçlarınız "
+"için doğru kliniği ve destinasyonu seçmeye yönelik ipuçları hakkında bilgi "
+"edinin."
+
+#: .\site_templates\home\single-post.html:33
+msgid "Back to Blog"
+msgstr "Bloga Geri Dön"
+
+#: .\site_templates\home\single-post.html:38
+msgid "Tags:"
+msgstr "Etiketler:"
+
+#: .\site_templates\home\single-post.html:39
+msgid "Dental Care"
+msgstr "Diş Bakımı"
+
+#: .\site_templates\home\single-post.html:39
+#: .\site_templates\home\single-post.html:40
+#: .\site_templates\home\single-post.html:47
+#: .\site_templates\home\single-post.html:48
+msgid ","
+msgstr ","
+
+#: .\site_templates\home\single-post.html:40
+msgid "Medical Tourism"
+msgstr "Sağlık Turizmi"
+
+#: .\site_templates\home\single-post.html:41
+msgid "Affordable Implants"
+msgstr "Uygun Fiyatlı İmplantlar"
+
+#: .\site_templates\home\single-post.html:46
+msgid "Share:"
+msgstr "Paylaş:"
+
+#: .\site_templates\home\single-post.html:47
+msgid "facebook"
+msgstr "Bizi Arayın"
+
+#: .\site_templates\home\single-post.html:48
+msgid "twitter"
+msgstr "heyecan"
+
+#: .\site_templates\home\single-post.html:49
+msgid "linkedin"
+msgstr "Linkedin (Linkedin)"
+
+#: .\site_templates\home\single-post.html:64
+msgid "Search..."
+msgstr "Aramak..."
+
+#: .\site_templates\home\single-post.html:85
+msgid "Recent Post 1"
+msgstr "Son Yazılar 1"
+
+#: .\site_templates\home\single-post.html:87
+msgid "Top Destinations for Dental Implants"
+msgstr "Dental İmplantlar için En İyi Destinasyonlar"
+
+#: .\site_templates\home\single-post.html:88
+msgid "20 August 2024"
+msgstr "20 Ağustos 2024"
+
+#: .\site_templates\home\single-post.html:92
+msgid "Recent Post 2"
+msgstr "Son Yazılar 2"
+
+#: .\site_templates\home\single-post.html:94
+msgid "Choosing the Right Clinic Abroad"
+msgstr "Yurt Dışında Doğru Kliniği Seçmek"
+
+#: .\site_templates\home\single-post.html:95
+msgid "15 August 2024"
+msgstr "15 Ağustos 2024"
+
+#: .\site_templates\home\single-post.html:99
+msgid "Recent Post 3"
+msgstr "Son Yazılar 3"
+
+#: .\site_templates\home\single-post.html:101
+msgid "Benefits of Dental Implants"
+msgstr "Dental İmplantların Faydaları"
+
+#: .\site_templates\home\single-post.html:102
+msgid "10 August 2024"
+msgstr "10 Ağustos 2024"
+
+#: .\site_templates\home\single-post.html:112
+msgid "> Dental Implants (7)"
+msgstr "> Diş İmplantları (7)"
+
+#: .\site_templates\home\single-post.html:114
+msgid "> Patient Stories (14)"
+msgstr "> Hasta Hikayeleri (14)"
+
+#: .\site_templates\home\single-post.html:115
+msgid "> Cost Savings (6)"
+msgstr "> Maliyet Tasarrufu (6)"
+
+#: .\site_templates\home\single-post.html:124
+msgid "Dental Implants Gallery 1"
+msgstr "Dental İmplantlar Galerisi 1"
+
+#: .\site_templates\home\single-post.html:125
+msgid "Dental Implants Gallery 2"
+msgstr "Dental İmplantlar Galerisi 2"
+
+#: .\site_templates\home\single-post.html:126
+msgid "Dental Implants Gallery 3"
+msgstr "Dental İmplantlar Galerisi 3"
+
+#: .\site_templates\home\single-post.html:127
+msgid "Dental Implants Gallery 4"
+msgstr "Dental İmplantlar Galerisi 4"
+
+#: .\site_templates\home\single-post.html:128
+msgid "Dental Implants Gallery 5"
+msgstr "Dental İmplantlar Galerisi 5"
+
+#: .\site_templates\home\single-post.html:129
+msgid "Dental Implants Gallery 6"
+msgstr "Dental İmplantlar Galerisi 6"
+
+#: .\site_templates\home\single-post.html:130
+msgid "Dental Implants Gallery 7"
+msgstr "Dental İmplantlar Galerisi 7"
+
+#: .\site_templates\home\single-post.html:131
+msgid "Dental Implants Gallery 8"
+msgstr "Dental İmplantlar Galerisi 8"
+
+#: .\site_templates\home\single-post.html:143
+msgid "Copyright &copy; 2024 MedTour Dental"
+msgstr "Telif hakkı ve kopya; 2024 MedTour Diş"
+
+#: .\site_templates\home\single-post.html:145
+msgid "Designed by TemplateMo"
+msgstr "TemplateMo tarafından tasarlandı"
+
+#: .\site_templates\home\single-post.html:153
+msgid "Contact Icon"
+msgstr "İletişim Simgesi"
+
+#: .\site_templates\home\single-post.html:162
+msgid "Contact MedTour Dental"
+msgstr "MedTour Dental ile İletişime Geçin"
+
+#: .\site_templates\home\single-post.html:163
+msgid "Close"
+msgstr "Kapatmak"
+
+#: .\site_templates\home\single-post.html:172
+msgid "Your name..."
+msgstr "Adınız..."
+
+#: .\site_templates\home\single-post.html:177
+msgid "Your email..."
+msgstr "E-posta adresiniz..."
+
+#: .\site_templates\home\single-post.html:182
+msgid "Your message..."
+msgstr "Mesajınız..."
+
+#: .\site_templates\home\sitebase.html:6
+msgid "BEYONDCLINIC - Home Page"
+msgstr "BEYONDCLINIC - Ana Sayfa"

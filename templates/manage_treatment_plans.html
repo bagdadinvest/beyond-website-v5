@@ -1,0 +1,131 @@
+{% block content %}
+<h1>Treatment Plans for {{ patient.get_full_name }}</h1>
+
+{% if treatment_plans %}
+    <h2>Existing Treatment Plans</h2>
+    <ul>
+        {% for plan in treatment_plans %}
+            <li>
+                <strong>Plan ID:</strong> {{ plan.id }} | 
+                <strong>Created At:</strong> {{ plan.created_at }} | 
+                <strong>Total Price:</strong> ${{ plan.total_price }}
+                <ul>
+                    {% for item in plan.treatmentplanitem_set.all %}
+                        <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.product.price }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'app:edit_treatment_plan' plan.id %}">Edit Plan</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No treatment plans found for this patient.</p>
+{% endif %}
+
+<h2>Create/Edit Treatment Plan</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <h3>Treatment Plan Items</h3>
+    {{ formset.management_form }}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="product-list">
+          {% for form in formset %}
+              <tr class="product-row">
+                  <td>{{ form.product }}</td>
+                  <td>{{ form.quantity }}</td>
+                  <td class="text-center">
+                      {% if form.instance.product %}
+                          <input type="text" value="{{ form.instance.product.price|floatformat:2 }}" class="form-control rate">
+                      {% else %}
+                          <input type="text" value="0.00" class="form-control rate">
+                      {% endif %}
+                  </td>
+                  <td class="text-center amount">
+                      {% if form.instance.product %}
+                          {{ form.instance.product.price|floatformat:2 }}
+                      {% else %}
+                          0.00
+                      {% endif %}
+                  </td>
+                  <td><button type="button" class="btn btn-danger remove-product-row">&times;</button></td>
+              </tr>
+          {% endfor %}
+      </tbody>
+          </table>
+    <button type="button" class="btn btn-secondary" id="add-product-row">Add Product</button>
+    <button type="button" class="btn btn-primary" id="calculate-total">Calculate Total</button>
+    <button type="submit">Save Treatment Plan</button>
+
+    <div class="mt-3">
+        <strong>Total Amount: $<span id="total-amount">0.00</span></strong>
+    </div>
+</form>
+
+<a href="{% url 'app:list_patients' %}">Back to Patient List</a>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // Function to calculate the total amount
+    function calculateTotal() {
+        let total = 0;
+        document.querySelectorAll('.product-row').forEach(function(row) {
+            let qty = parseFloat(row.querySelector('input[name$="-quantity"]').value || 0);
+            let rate = parseFloat(row.querySelector('.rate').value || 0);
+            let amount = qty * rate;
+            row.querySelector('.amount').innerText = amount.toFixed(2);
+            total += amount;
+        });
+
+        document.getElementById('total-amount').innerText = total.toFixed(2);
+    }
+
+    // Function to bind row events for dynamic rows
+    function bindRowEvents(row) {
+        row.querySelector('.remove-product-row').addEventListener('click', function() {
+            row.remove();
+            calculateTotal();  // Recalculate total after removing the row
+        });
+    }
+
+    // Initial binding for existing rows
+    document.querySelectorAll('.product-row').forEach(function(row) {
+        bindRowEvents(row);
+    });
+
+    // Add logic for adding new product rows
+    document.getElementById('add-product-row').addEventListener('click', function() {
+        let productList = document.getElementById('product-list');
+        let firstRow = productList.querySelector('.product-row');
+        let newRow = firstRow.cloneNode(true);
+
+        // Reset values in the new row
+        newRow.querySelector('input[name$="-quantity"]').value = '';
+        newRow.querySelector('.rate').value = firstRow.querySelector('.rate').value;
+        newRow.querySelector('.amount').innerText = '0.00';
+
+        // Append the new row to the table
+        productList.appendChild(newRow);
+
+        // Re-bind the calculateTotal function to the new row's inputs
+        bindRowEvents(newRow);
+    });
+
+    // Bind the calculateTotal function to the Calculate Total button
+    document.getElementById('calculate-total').addEventListener('click', calculateTotal);
+  });
+</script>
+{% endblock extra_js %}

@@ -1,0 +1,148 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block page %}book_flight{% endblock %}
+{% block title %}{% trans "Your booking confirmation" %}{% endblock %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="text-danger">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <div class="col-md-7 col-sm-10 mx-auto">
+        {% if response %}
+        {% for r in response %}
+        <form class="my-form" action="index.html" method="post">
+            <div class="card my-sm-5 my-lg-0">
+                <div class="card-header text-center">
+                    <header>
+                        <h2>{% trans "Your Booking is Confirmed!" %}</h2>
+                    </header>
+                    <div class="row justify-content-between">
+                        <div class="col-md-4 text-start">
+                            <img class="mb-2 w-25 p-2" src="{% static 'assets/img/logo-ct-dark.png' %}" alt="Logo">
+                            <h4>{% trans "Delil Clinic" %}</h4>
+                            <h6>{% trans "Flight Reservation Systems&reg;" %}</h6>
+                            <p class="d-block text-secondary">{% trans "tel: +90 538 0546393" %}</p>
+                        </div>
+                        <div class="col-lg-5 col-md-7 text-md-end text-start mt-5">
+                            <h6 class="d-block mt-2 mb-0">Billed to: {{ user.get_full_name }}</h6>
+                            <p class="text-secondary">{{ user.phone.number }}</p>
+                            <p class="text-secondary">{{ user.email }}</p>
+                        </div>
+                    </div>
+                    <div class="card-text"> 
+                        <p>Departure at {{ r.0departureDate }}</p>
+                        <h4><img src="{{ r.0firstFlightAirlineLogo }}" alt="{{ r.0firstFlightAirline }}"> {{ r.0firstFlightDepartureDate }} {{ r.0firstFlightDepartureAirport }}
+                            ⟶ {{ r.0firstFlightArrivalAirport }} {{ r.0firstFlightArrivalDate }}</h4> 
+                        {% if r.0secondFlightDepartureAirport %}
+                        <h4><img src="{{ r.0secondFlightAirlineLogo }}" alt="{{ r.0secondFlightAirline }}"> {{ r.0secondFlightDepartureDate }} {{ r.0secondFlightDepartureAirport }}
+                            ⟶ {{ r.0secondFlightArrivalAirport }} {{ r.0secondFlightArrivalDate }}</h4> 
+                        {% endif %}
+                        {% if r.1firstFlightDepartureAirport %}
+                        <hr class="newstyle"> 
+                        <p>Return at {{ r.1departureDate }}</p>
+                        <h4><img src="{{ r.1firstFlightAirlineLogo }}" alt="{{ r.1firstFlightAirline }}"> {{ r.1firstFlightDepartureDate }} {{ r.1firstFlightDepartureAirport }}
+                            ⟶ {{ r.1firstFlightArrivalAirport }} {{ r.1firstFlightArrivalDate }}</h4> 
+                        {% if r.1secondFlightDepartureAirport %}
+                        <h4><img src="{{ r.1secondFlightAirlineLogo }}" alt="{{ r.1secondFlightAirline }}"> {{ r.1secondFlightDepartureDate }} {{ r.1secondFlightDepartureAirport }}
+                            ⟶ {{ r.1secondFlightArrivalAirport }} {{ r.1secondFlightArrivalDate }}</h4> 
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div class="row justify-content-md-between">
+                        <div class="col-md-4 mt-auto">
+                            <h6 class="mb-0 text-start text-secondary">{% trans "Date:" %}</h6>
+                            <h5 class="text-start mb-0">{{ r.created }}</h5>
+                        </div>
+                        <div class="col-lg-5 col-md-7 mt-auto">
+                            <div class="row mt-md-5 mt-4 text-md-end text-start">
+                                <div class="col-md-6">
+                                    <h6 class="text-secondary mb-0">{% trans "Status:" %}</h6>
+                                </div>
+                                <div class="col-md-6"><span class="text-danger">{{ r.confirmed }}</span></div>
+                            </div>
+                            <div class="row text-md-end text-start">
+                                <div class="col-md-6">
+                                    <h6 class="text-secondary mb-0">{% trans "Reference:" %}</h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-dark mb-0"><span class="text-danger">{{ r.reference }}</span></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive border-radius-lg">
+                                <table class="table text-right">
+                                    <thead class="bg-default">
+                                        <tr>
+                                            <th scope="col" class="pe-2 text-start ps-2 text-white">{% trans "Item" %}</th>
+                                            <th scope="col" class="pe-2 text-white">{% trans "Qty" %}</th>
+                                            <th scope="col" class="pe-2 text-white">{% trans "Currency" %}</th>
+                                            <th scope="col" class="pe-2 text-center text-white" colspan="2">{% trans "Amount" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start">{% trans "Base price" %}</td>
+                                            <td class="ps-4">1</td>
+                                            <td class="ps-4">{{ r.currency }}&nbsp;</td>
+                                            <td class="text-center">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">{% trans "Fees" %}</td>
+                                            <td class="ps-4">3</td>
+                                            <td class="ps-4">{{ r.currency }}&nbsp;</td>
+                                            <td class="text-center">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">{% trans "Grand Total" %}</td>
+                                            <td class="ps-4">1</td>
+                                            <td class="ps-4">{{ r.currency }}&nbsp;</td>
+                                            <td class="text-center">-</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th class="h5 ps-4" colspan="1">{{ r.currency }}</th>
+                                            <th colspan="1" class="text-center h5 ps-4">{{ r.price }}</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer mt-md-5 mt-4">
+                    <div class="row">
+                        <div class="col-lg-5 text-left">
+                            <h5>{% trans "Thank you!" %}</h5>
+                            <p class="text-secondary text-sm">{% trans "If you encounter any issues related to the invoice you can contact us at:" %}</p>
+                            <h6 class="text-secondary mb-0">{% trans "Email:" %} <span class="text-dark">{% trans "support@Delil Clinic.com" %}</span></h6>
+                        </div>
+                        <div class="col-lg-7 text-md-end mt-md-0 mt-3">
+                            <button class="btn btn-primary mt-lg-7 mb-0" onclick="window.print()" type="button" name="button">{% trans "Print" %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}

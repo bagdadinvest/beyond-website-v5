@@ -1,0 +1,154 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Medical Files Preview Example" %}{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/patient-detail-modules.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2>{% trans "Medical Files Component Example" %}</h2>
+            <p class="text-muted">{% trans "This demonstrates how to use the medical files card component independently." %}</p>
+            
+            <!-- Medical Files Card Component -->
+            {% include 'includes/patient/medical_files_card.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script>
+// File Preview Functionality
+// Image Preview
+document.querySelectorAll('.view-image-btn').forEach(function(img) {
+    img.addEventListener('click', function() {
+        const fileUrl = this.getAttribute('data-file-url');
+        const fileName = this.getAttribute('data-file-name');
+        
+        document.getElementById('modalImage').src = fileUrl;
+        document.getElementById('modalImage').alt = fileName;
+        document.getElementById('imageModalLabel').textContent = fileName;
+        document.getElementById('downloadImageBtn').href = fileUrl;
+        document.getElementById('downloadImageBtn').download = fileName;
+        
+        const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+    });
+});
+
+// PDF Preview
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
+let scale = 1;
+const canvas = document.getElementById('pdfCanvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+
+document.querySelectorAll('.view-pdf-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        const fileUrl = this.getAttribute('data-file-url');
+        const fileName = this.getAttribute('data-file-name');
+        
+        document.getElementById('pdfModalLabel').textContent = fileName;
+        document.getElementById('downloadPdfBtn').href = fileUrl;
+        
+        // Load PDF
+        pdfjsLib.getDocument(fileUrl).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            pageNum = 1;
+            scale = 1;
+            renderPage(pageNum);
+            updatePageInfo();
+        });
+        
+        const modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+        modal.show();
+    });
+});
+
+function renderPage(num) {
+    if (!ctx || !pdfDoc) return;
+    
+    pageRendering = true;
+    pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({scale: scale});
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+        
+        const renderTask = page.render(renderContext);
+        renderTask.promise.then(function() {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+    });
+}
+
+function queueRenderPage(num) {
+    if (pageRendering) {
+        pageNumPending = num;
+    } else {
+        renderPage(num);
+    }
+}
+
+function updatePageInfo() {
+    if (pdfDoc) {
+        document.getElementById('pageInfo').textContent = `${pageNum} / ${pdfDoc.numPages}`;
+        document.getElementById('zoomLevel').textContent = `${Math.round(scale * 100)}%`;
+    }
+}
+
+// PDF Controls
+if (document.getElementById('prevPage')) {
+    document.getElementById('prevPage').addEventListener('click', function() {
+        if (pageNum <= 1) return;
+        pageNum--;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+}
+
+if (document.getElementById('nextPage')) {
+    document.getElementById('nextPage').addEventListener('click', function() {
+        if (!pdfDoc || pageNum >= pdfDoc.numPages) return;
+        pageNum++;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+}
+
+if (document.getElementById('zoomIn')) {
+    document.getElementById('zoomIn').addEventListener('click', function() {
+        scale += 0.25;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+}
+
+if (document.getElementById('zoomOut')) {
+    document.getElementById('zoomOut').addEventListener('click', function() {
+        if (scale <= 0.5) return;
+        scale -= 0.25;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+}
+</script>
+{% endblock %}

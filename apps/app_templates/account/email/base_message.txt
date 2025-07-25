@@ -1,0 +1,12 @@
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans with site_name="BeyondBoard by Beyond Clinic" %}
+Hello from {{ site_name }}!
+{% endblocktrans %}
+
+{% block content %}
+{% endblock content %}
+
+{% endautoescape off %}
+
+

@@ -1,0 +1,13 @@
+
+{
+  "header.title": "Amadeus Uçuş Rezervasyonu",
+  "results.available_flights": "Mevcut Uçuşlar",
+  "results.departure": "Kalkış",
+  "results.flight_number": "Uçuş Numarası",
+  "results.arrival": "Varış",
+  "results.price": "Fiyat",
+  "results.book": "Rezervasyon Yap",
+  "results.book_flight": "Uçuş Rezervasyonu Yap",
+  "results.no_flights": "Bu güzergah için uçuş bulunamadı",
+  "results.connection_duration": "Bağlantı süresi"
+}

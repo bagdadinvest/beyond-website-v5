@@ -1,0 +1,98 @@
+&{% load static i18n %}
+{% block title %}
+  {% if view == 'list_patients' %}
+    List of Patients
+  {% elif view == 'patient_treatment_plans' %}
+    Manage Treatment Plans for {{ patient.get_full_name }}
+  {% endif %}
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid my-5 py-2">
+  <div class="row">
+    <div class="col-md-8 col-sm-10 mx-auto">
+      {% if view == 'list_patients' %}
+        <h2>{% trans "Select a Patient" %}</h2>
+        <ul class="list-group">
+          {% for patient in patients %}
+            <li class="list-group-item">
+              <a href="{% url 'app:manage_treatment_plans' patient.id %}">{{ patient.get_full_name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% elif view == 'patient_treatment_plans' %}
+        <h2>{% trans "Manage Treatment Plans for" %} {{ patient.get_full_name }}</h2>
+
+        <form id="treatment-plan-form" method="post" accept-charset="utf-8" class="form" role="form">
+          {% csrf_token %}
+          <div class="card my-sm-5 my-lg-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive border-radius-lg">
+                    <table class="table text-right">
+                      <thead class="bg-default">
+                        <tr>
+                          <th scope="col" class="pe-2 text-start ps-2 text-white">{% trans "Product" %}</th>
+                          <th scope="col" class="pe-2 text-white">{% trans "Qty" %}</th>
+                          <th scope="col" class="pe-2 text-white">{% trans "Rate" %}</th>
+                          <th scope="col" class="pe-2 text-white">{% trans "Amount" %}</th>
+                          <th scope="col" class="pe-2 text-white">{% trans "Actions" %}</th>
+                        </tr>
+                      </thead>
+                      <tbody id="product-list">
+                        {% for form in formset %}
+                          <tr class="product-row">
+                            <td class="text-start">{{ form.product }}</td>
+                            <td>{{ form.quantity }}</td>
+                            <td>{{ form.rate }}</td>
+                            <td class="amount">0.00</td>
+                            <td>
+                              <button type="button" class="btn btn-danger remove-product-row">&times;</button>
+                            </td>
+                          </tr>
+                        {% empty %}
+                          <!-- JavaScript will dynamically add rows here -->
+                        {% endfor %}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th class="h5 ps-4">{% trans "Total" %}</th>
+                          <th colspan="2" class="text-right h5 ps-4" id="total-amount">0.00</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                  <button type="button" class="btn btn-secondary" id="add-product-row">{% trans "Add Product" %}</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer mt-md-5 mt-4">
+              <div class="row">
+                <div class="col-lg-7 text-md-end mt-md-0 mt-3">
+                  <button class="btn btn-primary mt-lg-7 mb-0" type="submit">{% trans "Submit Treatment Plan" %}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <h3>{% trans "Existing Treatment Plans" %}</h3>
+        <ul class="list-group mt-4">
+          {% for plan in treatment_plans %}
+            <li class="list-group-item">
+              {{ plan }} - {{ plan.total_price|floatformat:2 }}
+              <!-- Add links for view/edit if needed -->
+            </li>
+          {% empty %}
+            <li class="list-group-item">{% trans "No treatment plans found." %}</li>
+          {% endfor %}
+        </ul>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

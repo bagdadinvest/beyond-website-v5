@@ -1,0 +1,26 @@
+{% block content %}
+<h1>Treatment Products</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.get_category_display }}</td>
+            <td>${{ product.price|floatformat:2 }}</td>
+            <td>{{ product.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'app:create_treatment_product' %}">Add New Product</a>
+{% endblock %}

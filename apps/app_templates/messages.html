@@ -1,0 +1,261 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+
+{% block extra %}
+    <link rel="stylesheet" href="{% static 'assets/css/messages.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/multiselect.css' %}">
+    <script src="{% static 'assets/js/multiselect.js' %}"></script>
+{% endblock %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-md-4">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#exampleModalMessage">{% trans "New Message" %}</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalMessageTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{% trans "New message" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'app:add_group' %}" method="post" accept-charset="utf-8" class="form" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name" class="col-form-label">{% trans "Conversation Name:" %}</label>
+              <input id="name" type="text" class="form-control" name="name" placeholder="{% trans 'Discussion about Test Results' %}" required>
+            </div>
+            <div class="form-group">
+              <label for="recipient" class="col-form-label">{% trans "Recipient:" %}</label>
+              <select multiple="multiple" id="recipient" name="recipient" class='form-control' required>
+                {% for recipient in recipients %}
+                  <option name="recipient" value="{{ recipient.pk }}">{{ recipient.get_full_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message" class="col-form-label">{% trans "Message:" %}</label>
+              <textarea class="form-control" name="message" placeholder="{% trans 'Dear Doctor, I have a question...' %}" required></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+              <button type="submit" class="btn bg-gradient-primary">{% trans "Send message" %}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% if error_message %}
+  <div class="alert alert-danger" role="alert">
+    {{ error_message }}
+  </div>
+{% endif %}
+
+<hr />
+<div class="list-group">
+  {% if groups %}
+      {% for group in groups %}
+          <a href="{% url 'app:conversation' group.pk %}" class="list-group-item">
+              <div class="indent">
+                  {% if group.latest_message %}
+                      <span class="badge date-badge">{{ group.latest_message.date|date:"M d, H:i" }}</span>
+                  {% endif %}
+                  {% if group.has_unread %}<strong>{% endif %}
+                  <span class="name">
+                      {{ group.combined_names }}
+                  </span> - <em>{{ group.name }}</em>
+                  {% if group.has_unread %}</strong>{% endif %}
+              </div>
+              <div class="indent">
+                  {% if group.latest_message %}
+                      <span class="text-preview">
+                        <em>
+                          {% if group.latest_message.sender == user %}
+                            {% trans "You:" %} 
+                          {% else %}
+                            {{ group.latest_message.sender.first_name }}: 
+                          {% endif %}
+                          {{ group.latest_message.preview_text }}
+                        </em>
+                      </span>
+                  {% else %}
+                      <span class="text-preview"><em>{% trans "No Messages" %}</em></span>
+                  {% endif %}
+              </div>
+          </a>
+      {% endfor %}
+  {% else %}
+      <h2 style="text-align: center">{% trans "No messages." %}</h2>
+  {% endif %}
+</div>
+
+<hr />
+
+<script>
+    $('#recipient').multiselect();
+
+    function close_modal() {
+        $('#exampleModalMessage').modal('hide');
+    }
+</script>
+
+<div class="row">
+  <div class="col-lg-4 col-md-5 col-12">
+    <div class="card blur shadow-blur max-height-vh-70 overflow-auto overflow-x-hidden mb-5 mb-lg-0">
+      <div class="card-header p-3">
+        <h6>{% trans "Available Contacts" %}</h6>
+        <input type="email" class="form-control" placeholder="{% trans 'Search Contact' %}" aria-label="Search" onfocus="focused(this)" onfocusout="defocused(this)">
+      </div>
+      <div class="card-body p-2">
+        {% for recipient in recipients %}
+          <a href="javascript:;" class="d-block p-2 {% if forloop.first %}border-radius-lg bg-gradient-primary{% endif %}">
+            <div class="d-flex p-2">
+              {% if recipient.thumbnail %}
+                <img alt="Profile Image" src="{{ recipient.thumbnail.url }}" class="avatar shadow">
+              {% else %}
+                <img alt="Default Image" src="{% static 'assets/img/team-2.jpg' %}" class="avatar shadow">
+              {% endif %}
+              <div class="ms-3">
+                <div class="justify-content-between align-items-center">
+                  <h6 class="{% if forloop.first %}text-white{% endif %} mb-0">
+                    {{ recipient.get_full_name }}
+                    {% if recipient.is_online %}
+                      <span class="badge badge-success"></span>
+                    {% endif %}
+                  </h6>
+                  {% if recipient.last_login_time %}
+                    <p class="{% if forloop.first %}text-white{% else %}text-muted{% endif %} mb-0 text-sm">
+                      {% if recipient.is_online %}
+                        {% trans "Online" %}
+                      {% else %}
+                        {% blocktrans with time=recipient.last_login_time|timesince %}Last seen {{ time }} ago{% endblocktrans %}
+                      {% endif %}
+                    </p>
+                  {% endif %}
+                </div>
+                <span class="{% if forloop.first %}text-white{% else %}text-muted{% endif %} text-sm col-11 p-0 text-truncate d-block">
+                  {% if recipient.groups.first %}
+                    {{ recipient.groups.first.name }}
+                  {% endif %}
+                </span>
+              </div>
+            </div>
+          </a>
+        {% empty %}
+          <p class="text-center text-muted">{% trans "No contacts available" %}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-md-7 col-12">
+    {% if groups %}
+      {% with first_group=groups.0 %}
+        <div class="card blur shadow-blur max-height-vh-70">
+          <div class="card-header shadow-lg">
+            <div class="row">
+              <div class="col-lg-10 col-8">
+                <div class="d-flex align-items-center">
+                  {% with first_member=first_group.members.all|first %}
+                    {% if first_member.thumbnail %}
+                      <img alt="Profile Image" src="{{ first_member.thumbnail.url }}" class="avatar">
+                    {% else %}
+                      <img alt="Default Image" src="{% static 'assets/img/team-2.jpg' %}" class="avatar">
+                    {% endif %}
+                  {% endwith %}
+                  <div class="ms-3">
+                    <h6 class="mb-0 d-block">{{ first_group.combined_names }}</h6>
+                    <span class="text-sm text-dark opacity-8">
+                      {% if first_group.latest_message %}
+                        {% blocktrans with time=first_group.latest_message.date|timesince %}Last message {{ time }} ago{% endblocktrans %}
+                      {% else %}
+                        {% trans "No messages yet" %}
+                      {% endif %}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-1 col-2 my-auto pe-0">
+                <button class="btn btn-icon-only shadow-none text-dark mb-0 me-3 me-sm-0" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="{% trans 'Video call' %}">
+                  <i class="ni ni-camera-compact"></i>
+                </button>
+              </div>
+              <div class="col-lg-1 col-2 my-auto ps-0">
+                <div class="dropdown">
+                  <button class="btn btn-icon-only shadow-none text-dark mb-0" type="button" data-bs-toggle="dropdown">
+                    <i class="ni ni-settings"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end me-sm-n2 p-2" aria-labelledby="chatmsg">
+                    <li>
+                      <a class="dropdown-item border-radius-md" href="{% url 'app:conversation' first_group.pk %}">{% trans "Open Conversation" %}</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item border-radius-md" href="javascript:;">{% trans "Mute conversation" %}</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item border-radius-md text-danger" href="javascript:;">{% trans "Leave chat" %}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body overflow-auto overflow-x-hidden">
+            {% for message in first_group.messages.all|slice:":5" %}
+              <div class="row {% if message.sender == user %}justify-content-end text-right{% else %}justify-content-start{% endif %} mb-4">
+                <div class="col-auto">
+                  <div class="card {% if message.sender == user %}bg-gray-200{% endif %}">
+                    <div class="card-body py-2 px-3">
+                      <p class="mb-1">{{ message.body|linebreaks }}</p>
+                      <div class="d-flex align-items-center {% if message.sender == user %}justify-content-end{% endif %} text-sm opacity-6">
+                        <i class="ni ni-check-bold text-sm me-1"></i>
+                        <small>{{ message.date|date:"H:i" }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <div class="text-center text-muted">
+                <p>{% trans "No messages in this conversation yet." %}</p>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="card-footer d-block">
+            <div class="align-items-center">
+              <div class="d-flex">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="{% trans 'Click to open full conversation...' %}" aria-label="Message preview" readonly onclick="window.location.href='{% url 'app:conversation' first_group.pk %}'">
+                </div>
+                <a href="{% url 'app:conversation' first_group.pk %}" class="btn bg-gradient-primary mb-0 ms-2">
+                  <i class="ni ni-send"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endwith %}
+    {% else %}
+      <div class="card blur shadow-blur max-height-vh-70">
+        <div class="card-body d-flex align-items-center justify-content-center">
+          <div class="text-center">
+            <h5>{% trans "No conversations yet" %}</h5>
+            <p class="text-muted">{% trans "Start a new conversation by clicking the 'New Message' button above." %}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

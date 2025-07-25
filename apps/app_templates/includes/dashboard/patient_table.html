@@ -1,0 +1,303 @@
+{% load static i18n %}
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
+
+<!-- Custom CSS for compact table -->
+<style>
+#patients-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#patients-table th:nth-child(1) { width: 220px; max-width: 220px; } /* Patient Name */
+#patients-table th:nth-child(2) { width: 100px; } /* User ID */
+#patients-table th:nth-child(3) { width: 120px; } /* Nationality */
+#patients-table th:nth-child(4) { width: 140px; } /* Hospital */
+#patients-table th:nth-child(5) { width: 120px; } /* Date of Birth */
+#patients-table th:nth-child(6) { width: 80px; } /* Gender */
+#patients-table th:nth-child(7) { width: 100px; } /* Medical Files */
+#patients-table th:nth-child(8) { width: 80px; } /* Actions */
+
+.patient-name-col {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.patient-name-col .patient-name {
+    display: block;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.patient-name-col .patient-email {
+    display: block;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Sticky header */
+.table-container {
+    position: relative;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(87deg, #f8f9fe 0, #f1f3ff 100%);
+    border-bottom: 2px solid #e3e6f0;
+}
+
+/* Compact DataTables controls */
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.375rem;
+    border: 1px solid #e3e6f0;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    width: 200px;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    margin: 0.5rem 0;
+}
+
+/* Custom toolbar styling */
+.table-toolbar {
+    background: #f8f9fe;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e3e6f0;
+}
+
+.table-toolbar .btn {
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+    .table-toolbar {
+        text-align: center;
+    }
+    
+    .table-toolbar .btn {
+        margin: 0.25rem;
+    }
+    
+    .dataTables_wrapper .dataTables_filter input {
+        width: 150px;
+    }
+}
+</style>
+
+<div class="row my-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header pb-0">
+                <div class="d-lg-flex">
+                    <div>
+                        <h5 class="mb-0">{% trans "Patient Management" %}</h5>
+                        <p class="text-sm mb-0">
+                            {% trans "Manage and view patient information" %}
+                        </p>
+                    </div>
+                    <div class="ms-auto my-auto mt-lg-0 mt-4">
+                        <div class="ms-auto my-auto">
+                            <button class="btn btn-outline-primary btn-sm mb-0" id="refresh-btn" onclick="refreshTable()">
+                                <i class="fas fa-sync me-1"></i>{% trans "Refresh" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-0">
+                <!-- Compact Table Toolbar -->
+                <div class="container">
+                    <div class="table-toolbar d-flex flex-wrap align-items-center justify-content-between">
+                        <div class="d-flex flex-wrap align-items-center">
+                            <div class="me-3 mb-2 mb-lg-0">
+                                <label class="form-label text-xs mb-1">{% trans "Show" %}</label>
+                                <select id="table-length" class="form-select form-select-sm" style="width: auto;">
+                                    <option value="10">10</option>
+                                    <option value="25" selected>25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            <div class="me-3 mb-2 mb-lg-0">
+                                <label class="form-label text-xs mb-1">{% trans "Filter" %}</label>
+                                <div class="d-flex">
+                                    <select id="nationality-filter" class="form-select form-select-sm me-2" style="width: 120px;">
+                                        <option value="">{% trans "All Nationalities" %}</option>
+                                    </select>
+                                    <select id="hospital-filter" class="form-select form-select-sm me-2" style="width: 140px;">
+                                        <option value="">{% trans "All Hospitals" %}</option>
+                                    </select>
+                                    <select id="files-filter" class="form-select form-select-sm" style="width: 120px;">
+                                        <option value="">{% trans "All Files" %}</option>
+                                        <option value="Yes">{% trans "With Files" %}</option>
+                                        <option value="No">{% trans "Without Files" %}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap align-items-center">
+                            <div class="me-3 mb-2 mb-lg-0">
+                                <label class="form-label text-xs mb-1">{% trans "Search" %}</label>
+                                <input type="text" id="global-search" class="form-control form-control-sm" placeholder="{% trans 'Search patients...' %}" style="width: 200px;">
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-download me-1"></i>{% trans "Export" %}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="exportDropdown" id="export-buttons-container">
+                                    <!-- Export buttons will be inserted here by DataTables -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="table-responsive table-container">
+                        <table id="patients-table" class="table table-sm align-items-center mb-0 table-striped table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {% trans "Patient" %}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        {% trans "User ID" %}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        {% trans "Nationality" %}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {% trans "Hospital" %}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {% trans "Date of Birth" %}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {% trans "Gender" %}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {% trans "Medical Files" %}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {% trans "Actions" %}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for patient in patients %}
+                                <tr>
+                                    <td class="patient-name-col">
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="flex-shrink-0">
+                                                {% if patient.thumbnail %}
+                                                    <img src="{{ patient.thumbnail }}" class="avatar avatar-xs me-2" alt="{% trans 'avatar image' %}" style="border-radius: 50%; width: 32px; height: 32px;">
+                                                {% else %}
+                                                    <div class="avatar avatar-xs me-2 bg-gradient-secondary d-flex align-items-center justify-content-center" style="border-radius: 50%; width: 32px; height: 32px;">
+                                                        <i class="fas fa-user text-white" style="font-size: 0.75rem;"></i>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center flex-grow-1 min-width-0">
+                                                <span class="patient-name text-sm fw-bold mb-0">
+                                                    <a href="{% url 'app:patient_detail' patient.user_id %}" class="text-dark" title="{{ patient.name|default:'N/A' }}">{{ patient.name|default:"N/A" }}</a>
+                                                </span>
+                                                {% if patient.email %}
+                                                <span class="patient-email text-xs text-secondary mb-0" title="{{ patient.email }}">{{ patient.email }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </td>                                            
+                                    <td>
+                                        <span class="badge badge-sm bg-gradient-secondary">{{ patient.user_id }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-secondary text-xs font-weight-bold" title="{{ patient.nationality|default:'N/A' }}">{{ patient.nationality|default:"N/A" }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-secondary text-xs font-weight-bold" title="{{ patient.hospital|default:'N/A' }}">{{ patient.hospital|default:"N/A" }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-secondary text-xs font-weight-bold">
+                                            {% if patient.date_of_birth %}
+                                                {{ patient.date_of_birth|date:"M d, Y" }}
+                                            {% else %}
+                                                N/A
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-secondary text-xs font-weight-bold">{{ patient.sex|default:"N/A" }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-sm {% if patient.has_medical_files %}bg-gradient-success{% else %}bg-gradient-warning{% endif %}">
+                                            {% if patient.has_medical_files %}
+                                                <i class="fas fa-check me-1"></i>{% trans "Yes" %}
+                                            {% else %}
+                                                <i class="fas fa-times me-1"></i>{% trans "No" %}
+                                            {% endif %}
+                                        </span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-link text-secondary mb-0 p-1" type="button" id="dropdownMenuButton{{ patient.user_id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v text-xs"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton{{ patient.user_id }}">
+                                                <li><a class="dropdown-item" href="{% url 'app:patient_detail' patient.user_id %}">
+                                                    <i class="fas fa-eye me-2"></i>{% trans "View Details" %}
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#">
+                                                    <i class="fas fa-edit me-2"></i>{% trans "Edit" %}
+                                                </a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item text-danger" href="#" onclick="confirmDelete('{{ patient.user_id }}', '{{ patient.name }}')">
+                                                    <i class="fas fa-trash me-2"></i>{% trans "Delete" %}
+                                                </a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="8" class="text-center py-4">
+                                        <div class="text-center">
+                                            <i class="fas fa-users text-muted" style="font-size: 2rem;"></i>
+                                            <h6 class="text-muted mt-3">{% trans "No patients found" %}</h6>
+                                            <p class="text-muted text-sm">{% trans "Try adjusting your search criteria" %}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

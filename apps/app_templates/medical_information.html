@@ -1,0 +1,105 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ requested_user.get_full_name }}'s Medical Information{% endblock %}
+
+{% block content %}
+{% if user.is_superuser or requested_user.is_patient %}
+
+<div class="modal fade" id="privacy" tabindex="-1" role="dialog" aria-labelledby="privacy" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">{% trans "Warning" %}</div>
+            <div class="modal-body">
+                {% trans "This information is potentially sensitive, and ED" %}
+                <strong>{% trans "&P" %}</strong>
+                {% trans "assumes no liability for privacy breaches resulting from misuse of this exported data." %}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default close-modal">{% trans "Cancel" %}</button>
+                <a class="btn btn-primary close-modal" href="{% url 'app:export' requested_user.pk %}">{% trans "Okay" %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Close the modal on click for any button with class close-modal
+    $('.close-modal').click(function () {
+        $($(this).closest('.modal')).modal('hide');
+    });
+</script>
+{% endif %}
+
+<div class="row mb-5">
+  <div class="col-lg-3">
+    <div class="card position-sticky top-1">
+      <ul class="nav flex-column bg-white border-radius-lg p-3">
+        <li class="nav-item pt-2">
+          <a class="nav-link text-body d-flex align-items-center" data-scroll="" href="#basic-info">
+            <i class="ni ni-books me-2 text-dark opacity-6"></i>
+            <span class="text-sm">{% trans "Basic Info" %}</span>
+          </a>
+        </li>
+        <li class="nav-item pt-2">
+          <a class="nav-link text-body d-flex align-items-center" data-scroll="" href="#uploadForm">
+            <i class="ni ni-atom me-2 text-dark opacity-6"></i>
+            <span class="text-sm">{% trans "Upload Form" %}</span>
+          </a>
+        </li>
+        <!-- Other navigation items -->
+      </ul>
+    </div>
+  </div>
+  
+  <div class="col-lg-9 mt-lg-0 mt-4">
+    <div class="card card-body" id="profile">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-auto col-4">
+          <div class="avatar avatar-xl position-relative">
+            <img src="{{ user.thumbnail.url }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+          </div>
+        </div>
+        <div class="col-sm-auto col-8 my-auto">
+          <div class="h-100">
+            <h5 class="mb-1 font-weight-bolder">
+              {{ requested_user }} {{ requested_user.last_name }}
+            </h5>
+            <p class="mb-0 font-weight-bold text-sm">{{ requested_user.date_joined|date:"F j, Y" }}</p>
+          </div>
+        </div>
+        <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
+          <label class="form-check-label mb-0">
+            <small id="profileVisibility">{% trans "Switch to invisible" %}</small>
+          </label>
+          <div class="form-check form-switch ms-2">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault23" checked="" onchange="visible()">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card mt-4 border-radius-lg p-3">
+      {% include 'uploadForm.html' %}
+    </div>
+
+    <!-- Section to display previously uploaded files -->
+    <div class="container mt-4">
+        <h5>{% trans "Previously Uploaded Files" %}</h5>
+        {% if uploaded_files %}
+            <ul class="list-group">
+                {% for file in uploaded_files %}
+                    <li class="list-group-item">
+                        <a href="{{ file.file.url }}" target="_blank">{{ file.file.name|slice:"9:" }}</a>
+                        <!-- The slice filter removes 'docs/users/' from the filename for cleaner display -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% trans "No files have been uploaded yet." %}</p>
+        {% endif %}
+    </div>
+    
+  </div>
+</div>
+
+{% endblock %}

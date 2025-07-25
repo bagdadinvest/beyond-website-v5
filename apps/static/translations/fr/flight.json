@@ -1,0 +1,11 @@
+{
+  "header.title": "Tableau de bord",
+  "form.flight_reservation": "RÉSERVATION DE VOL",
+  "form.get_best_offers": "OBTENEZ LES MEILLEURES OFFRES MAINTENANT",
+  "form.from": "De",
+  "form.to": "À",
+  "form.departure_date": "Date de départ",
+  "form.return_date": "Date de retour",
+  "form.search_flight": "Rechercher un vol",
+  "footer.copyright": "© 2024 Votre entreprise"
+}

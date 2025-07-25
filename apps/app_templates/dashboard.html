@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+<!-- Shepherd.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js/dist/css/shepherd.css">
+{% endblock stylesheets %}
+
+{% block content %}
+<!-- Main Content -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js/dist/css/shepherd.css">
+
+<div class="container-fluid py-4">
+  <div class="row">
+    <!-- Dashboard Cards -->
+    {% include "includes/dashboard/messages_card.html" %}
+    {% include "includes/dashboard/appointments_card.html" %}
+    {% include "includes/dashboard/prescriptions_card.html" %}
+    {% include "includes/dashboard/balance_referral_card.html" %}
+  </div>
+  
+  <!-- Referral Modal -->
+  {% include "includes/dashboard/referral_modal.html" %}
+  
+  <!-- Additional Dashboard Cards Row -->
+  <div class="row">
+    {% include "includes/dashboard/accommodations_card.html" %}
+    {% include "includes/dashboard/flight_reservations_card.html" %}
+    {% include "includes/dashboard/schedules_card.html" %}
+  </div>
+</div>
+
+{% block javascripts %}
+<!-- Dashboard JavaScript Components -->
+{% include "includes/dashboard/shepherd_tour.html" %}
+{% include "includes/dashboard/referral_link_js.html" %}
+{% endblock javascripts %}
+{% endblock content %}

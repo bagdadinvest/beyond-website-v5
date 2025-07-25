@@ -1,0 +1,229 @@
+{% extends 'topblogs/blogbase.html' %}
+{% load static i18n %}
+{% block title %} {% trans "Login" %} {% endblock title %}
+{% block content %}
+    <body class="demo-1">
+        <div id="container" class="container intro-effect-push">
+            <!-- Top Navigation -->
+            {% include "topblogs/topnav.html" %}
+            <header class="header">
+                <div class="bg-img">
+                    <img src="{% static 'topblogstatic/blogs/img/7.jpg' %}" alt="{% trans 'Background Image' %}"/>
+                </div>
+                <div class="title">
+                    <nav class="codrops-demos">
+                        <a href="{% url 'topblogs:whyturkey' %}">{% trans "why turkey" %}</a>
+                        <a href="{% url 'topblogs:whybeyond' %}">{% trans "WHY DENT I DELIL " %}</a>
+                        <a href="{% url 'topblogs:ht' %}">{% trans "HAIR TRANSPLANT" %}</a>
+                        <a href="{% url 'topblogs:estetik' %}">{% trans "AESTHETIC SURGERIES" %}</a>
+                        <a class="current-demo" href="{% url 'topblogs:dashboard' %}">{% trans "DASHBOARD" %}</a>
+                        <a href="{% url 'topblogs:tbindex' %}">{% trans "XX" %}</a>
+                        <a href="{% url 'topblogs:internal_surgeries' %}">{% trans "Internal Surgeries" %}</a>
+                    </nav>
+                    <h1> {% trans "Introducing: Dent i Delil Board" %} </h1>
+                </div>
+            </header>
+            <button class="trigger" data-info="x">
+                <span>{% trans "Trigger" %}</span>
+            </button>
+            <div class="title">
+                <nav class="codrops-demos">
+                    <a href="{% url 'topblogs:whyturkey' %}">{% trans "why turkey" %}</a>
+                    <a href="{% url 'topblogs:whybeyond' %}">{% trans "WHY DENT I DELIL " %}</a>
+                    <a href="{% url 'topblogs:ht' %}">{% trans "HAIR TRANSPLANT" %}</a>
+                    <a href="{% url 'topblogs:estetik' %}">{% trans "AESTHETIC SURGERIES" %}</a>
+                    <a class="current-demo" href="{% url 'topblogs:dashboard' %}">{% trans "DASHBOARD" %}</a>
+                    <a href="{% url 'topblogs:tbindex' %}">{% trans "XX" %}</a>
+                    <a href="{% url 'topblogs:internal_surgeries' %}">{% trans "Internal Surgeries" %}</a>
+                </nav>
+                <p class="subline" style="color: white;">{% trans "BECAUSE YOU HAVE THE RIGHT" %}</p>
+                <h1>{% trans "TO BE IN CONTROL" %}</h1>
+                <p style="color: white;">{% trans "by" %} <strong>{% trans "Dent i Delil  Blog Team" %}</strong> &#8212; {% trans "Posted in" %} <strong>{% trans "Inspiration" %}</strong> {% trans "on" %} <strong>May 21, 2024</strong></p>
+            </div>
+            <article class="content">
+                <div>
+                    <h3 style="color: #108576;">{% trans "Profile Management" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Personal Information:" %}</strong> {% trans "Patients can view and update their personal details such as name, contact information, and medical history." %}</p>
+                    <p style="color: white;"><strong>{% trans "Medical Records:" %}</strong> {% trans "Secure upload and storage of medical records which can be shared with medical advisors." %}</p>
+                    <h3 style="color: #108576;">{% trans "Flight Reservations" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Flight Search and Booking:" %}</strong> {% trans "Integration with flight booking systems similar to Google Flights, allowing patients to search for and book flights." %}</p>
+                    <p style="color: white;"><strong>{% trans "Flight Ticket Upload:" %}</strong> {% trans "Patients can upload flight tickets, which are scanned and extracted for relevant information (e.g., flight date, arrival hour)." %}</p>
+                    <h3 style="color: #108576;">{% trans "Hotel Reservations" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Interactive Map:" %}</strong> {% trans "Integration with Google Maps API to display pre-selected nearby hotels with pictures and details, similar to Google Hotels." %}</p>
+                    <p style="color: white;"><strong>{% trans "Hotel Booking:" %}</strong> {% trans "Option to reserve hotel rooms directly through the dashboard." %}</p>
+                    <h3 style="color: #108576;">{% trans "Medical Appointments" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Appointment Scheduling:" %}</strong> {% trans "Patients can schedule appointments with medical professionals." %}</p>
+                    <p style="color: white;"><strong>{% trans "Appointment History:" %}</strong> {% trans "View past and upcoming appointments with details." %}</p>
+                    <h3 style="color: #108576;">{% trans "Transfer Requests" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Request Transfers:" %}</strong> {% trans "Patients can request transportation services (e.g., airport pickup) through a chatbot." %}</p>
+                    <p style="color: white;"><strong>{% trans "Real-Time Updates:" %}</strong> {% trans "Live updates on transfer status once a driver is assigned." %}</p>
+                    <h3 style="color: #108576;">{% trans "Live Chat Assistance" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Chatbot Support:" %}</strong> {% trans "A chatbot providing assistance with flight tickets, hotel reservations, and general inquiries." %}</p>
+                    <p style="color: white;"><strong>{% trans "Live Agent Chat:" %}</strong> {% trans "Option to chat with a live support agent for more complex issues." %}</p>
+                    <h3 style="color: #108576;">{% trans "Dashboard Overview" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Reservation Summary:" %}</strong> {% trans "Overview of all current reservations (flights, hotels, transfers)." %}</p>
+                    <p style="color: white;"><strong>{% trans "Notifications:" %}</strong> {% trans "Alerts and notifications for upcoming appointments, flight reminders, and other important updates." %}</p>
+                    <h3 style="color: #108576;">{% trans "Document Management" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Upload Documents:" %}</strong> {% trans "Patients can upload various documents (e.g., ID, insurance)." %}</p>
+                    <p style="color: white;"><strong>{% trans "Document Links:" %}</strong> {% trans "Links to uploaded documents stored securely." %}</p>
+                    <h3 style="color: #108576;">{% trans "Billing and Payments" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Invoice Management:" %}</strong> {% trans "View and manage invoices for medical services, hotel stays, and other expenses." %}</p>
+                    <p style="color: white;"><strong>{% trans "Payment Processing:" %}</strong> {% trans "Secure payment gateways for handling transactions." %}</p>
+                    <h3 style="color: #108576;">{% trans "User Interface and Experience" %}</h3>
+                    <p style="color: white;"><strong>{% trans "Customizable Interface:" %}</strong> {% trans "Options to customize the dashboard layout and appearance." %}</p>
+                    <p style="color: white;"><strong>{% trans "User-Friendly Navigation:" %}</strong> {% trans "Intuitive design ensuring ease of use." %}</p>
+                </div>
+                <section class="related">
+                    <div><a class="codrops-icon codrops-icon-prev" href="{% url 'topblogs:tbindex' %}"><span>{% trans "BACK TO BLOGS INDEX" %}</span></a></div>
+                </section>
+            </article>
+        </div>
+        {% endblock content %}
+    {% block javascript %}
+
+        <!-- /container -->
+        <script src="{% static 'topblogstatic/blogs/js/singleclassie.js' %}"></script>
+        <!-- /container -->
+        <script src="{% static 'topblogstatic/blogs/js/singleclassie.js' %}"></script>
+        <script>
+            (function() {
+                // detect if IE : from http://stackoverflow.com/a/16657946
+                var ie = (function(){
+                    var undef,rv = -1; // Return value assumes failure.
+                    var ua = window.navigator.userAgent;
+                    var msie = ua.indexOf('MSIE ');
+                    var trident = ua.indexOf('Trident/');
+
+                    if (msie > 0) {
+                        // IE 10 or older => return version number
+                        rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+                    } else if (trident > 0) {
+                        // IE 11 (or newer) => return version number
+                        var rvNum = ua.indexOf('rv:');
+                        rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
+                    }
+
+                    return ((rv > -1) ? rv : undef);
+                }());
+
+                // disable/enable scroll (mousewheel and keys) from http://stackoverflow.com/a/4770179
+                // left: 37, up: 38, right: 39, down: 40,
+                // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+                var keys = [32, 37, 38, 39, 40], wheelIter = 0;
+
+                function preventDefault(e) {
+                    e = e || window.event;
+                    if (e.preventDefault)
+                        e.preventDefault();
+                    e.returnValue = false;
+                }
+
+                function keydown(e) {
+                    for (var i = keys.length; i--;) {
+                        if (e.keyCode === keys[i]) {
+                            preventDefault(e);
+                            return;
+                        }
+                    }
+                }
+
+                function touchmove(e) {
+                    preventDefault(e);
+                }
+
+                function wheel(e) {
+                    // for IE
+                    //if( ie ) {
+                    //preventDefault(e);
+                    //}
+                }
+
+                function disable_scroll() {
+                    window.onmousewheel = document.onmousewheel = wheel;
+                    document.onkeydown = keydown;
+                    document.body.ontouchmove = touchmove;
+                }
+
+                function enable_scroll() {
+                    window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;
+                }
+
+                var docElem = window.document.documentElement,
+                    scrollVal,
+                    isRevealed,
+                    noscroll,
+                    isAnimating,
+                    container = document.getElementById( 'container' ),
+                    trigger = container.querySelector( 'button.trigger' );
+
+                function scrollY() {
+                    return window.pageYOffset || docElem.scrollTop;
+                }
+
+                function scrollPage() {
+                    scrollVal = scrollY();
+
+                    if( noscroll && !ie ) {
+                        if( scrollVal < 0 ) return false;
+                        // keep it that way
+                        window.scrollTo( 0, 0 );
+                    }
+
+                    if( classie.has( container, 'notrans' ) ) {
+                        classie.remove( container, 'notrans' );
+                        return false;
+                    }
+
+                    if( isAnimating ) {
+                        return false;
+                    }
+
+                    if( scrollVal <= 0 && isRevealed ) {
+                        toggle(0);
+                    }
+                    else if( scrollVal > 0 && !isRevealed ){
+                        toggle(1);
+                    }
+                }
+
+                function toggle( reveal ) {
+                    isAnimating = true;
+
+                    if( reveal ) {
+                        classie.add( container, 'modify' );
+                    }
+                    else {
+                        noscroll = true;
+                        disable_scroll();
+                        classie.remove( container, 'modify' );
+                    }
+
+                    // simulating the end of the transition:
+                    setTimeout( function() {
+                        isRevealed = !isRevealed;
+                        isAnimating = false;
+                        if( reveal ) {
+                            noscroll = false;
+                            enable_scroll();
+                        }
+                    }, 1200 );
+                }
+
+                // refreshing the page...
+                var pageScroll = scrollY();
+                noscroll = pageScroll === 0;
+
+                disable_scroll();
+
+                if( pageScroll ) {
+                    isRevealed = true;
+                    classie.add( container, 'notrans' );
+                    classie.add( container, 'modify' );
+                }
+
+                window.addEventListener( 'scroll', scrollPage );
+                trigger.addEventListener( 'click', function() { toggle( 'reveal' ); } );
+            })();
+        </script>
+
+        {% endblock javascript %}

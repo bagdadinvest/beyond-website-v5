@@ -1,0 +1,46 @@
+{% load static %}
+<!-- Chatwoot Chat Widget -->
+<script>
+  (function(d,t) {
+    var BASE_URL="https://chat.Delil-international.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: '8a4FKeM2rk3JLqLVvNzPVzBp',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const gifPath = "{% static 'bot/bot.gif' %}";
+
+    // Use MutationObserver to detect when the chat widget is added
+    const observer = new MutationObserver(() => {
+      const bubble = document.querySelector('#cw-bubble-holder .woot-widget-bubble');
+      if (bubble) {
+        // Apply the custom styles
+        bubble.style.backgroundImage = `url('${gifPath}')`;
+        bubble.style.backgroundRepeat = 'no-repeat';
+        bubble.style.backgroundSize = 'contain';
+
+        const svg = bubble.querySelector('svg');
+        if (svg) {
+          svg.style.display = 'none'; // Hide the SVG icon
+        }
+
+        // Disconnect the observer once the changes are made
+        observer.disconnect();
+      }
+    });
+
+    // Start observing the DOM for changes
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+</script>

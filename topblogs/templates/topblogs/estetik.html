@@ -1,0 +1,169 @@
+{% extends 'topblogs/blogbase.html' %}
+{% load static i18n %}
+{% block title %} {% trans "Beyond Beauty" %} {% endblock title %}
+{% block content %}
+    <body class="demo-3">
+        <div id="container" class="container intro-effect-sliced">
+            <!-- Top Navigation -->
+            {% include "topblogs/topnav.html" %}
+            <header class="header">
+                <div class="bg-img">
+                    <img src="{% static 'topblogstatic/blogs/img/3.jpg' %}" alt="{% trans 'Background Image' %}"/>
+                </div>
+                <div class="title">
+                    <nav class="codrops-demos">
+                        <a href="{% url 'topblogs:whyturkey' %}">{% trans "why turkey" %}</a>
+                        <a href="{% url 'topblogs:whybeyond' %}">{% trans "WHY BEYOND" %}</a>
+                        <a href="{% url 'topblogs:ht' %}">{% trans "HAIR TRANSPLANT" %}</a>
+                        <a class="current-demo" href="{% url 'topblogs:estetik' %}">{% trans "AESTHETIC SURGERIES" %}</a>
+                        <a href="{% url 'topblogs:dashboard' %}">{% trans "DASHBOARD" %}</a>
+                        <a href="{% url 'topblogs:tbindex' %}">{% trans "XX" %}</a>
+                        <a href="{% url 'topblogs:internal_surgeries' %}">{% trans "Internal Surgeries" %}</a>
+                    </nav>
+                    <h1>{% trans "Aesthetic Procedures in Turkey" %}</h1>
+                    <p class="subline">{% trans "get a glimpse of the current view" %}</p>
+                    <p>{% trans "by" %} Kanouni LOTFI &mdash; {% trans "Posted in BeyondClinic on" %} May 18, 2024</p>
+                </div>
+                <div class="bg-img">
+                    <img src="{% static 'topblogstatic/blogs/img/3.jpg' %}" alt="{% trans 'Background Image' %}"/>
+                </div>
+            </header>
+            <button class="trigger" data-info="{% trans 'Click to see the header effect' %}">
+                <span>{% trans "Trigger" %}</span>
+            </button>
+            <article class="content">
+                <div>
+                    <section>
+                        <h2>{% trans "High-Quality Medical Services" %}</h2>
+                        <p>{% trans "Turkey has become a leading destination for aesthetic procedures, attracting patients from all over the world. The country offers high-quality medical services, experienced surgeons, and state-of-the-art facilities at competitive prices." %}</p>
+                    </section>
+                    <section>
+                        <h2>{% trans "Cost-Effective Treatments" %}</h2>
+                        <p>{% trans "One of the main advantages of undergoing aesthetic procedures in Turkey is the cost. Patients can save up to 70% on treatments compared to prices in the US and Europe, without compromising on quality." %}</p>
+                    </section>
+                    <section>
+                        <h2>{% trans "Experienced Surgeons" %}</h2>
+                        <p>{% trans "Another significant benefit is the expertise of Turkish surgeons. Many of them have trained and practiced internationally, bringing a wealth of experience and knowledge to their practice." %}</p>
+                    </section>
+                    <section>
+                        <h2>{% trans "Advanced Medical Facilities" %}</h2>
+                        <p>{% trans "Turkey is also renowned for its advanced medical facilities. Clinics and hospitals are equipped with the latest technology and adhere to stringent international standards." %}</p>
+                    </section>
+                    <section>
+                        <h2>{% trans "Combining Healthcare with Tourism" %}</h2>
+                        <p>{% trans "In addition to the medical advantages, Turkey offers a unique opportunity to combine healthcare with a vacation." %}</p>
+                    </section>
+                    <section>
+                        <h2>{% trans "Convenient Arrangement Process" %}</h2>
+                        <p>{% trans "The process of arranging aesthetic procedures in Turkey is straightforward. Many clinics offer comprehensive packages that include accommodation, airport transfers, and post-operative care." %}</p>
+                    </section>
+                    <section>
+                        <h2>{% trans "Conclusion" %}</h2>
+                        <p>{% trans "In conclusion, Turkey offers numerous advantages for those considering aesthetic procedures." %}</p>
+                    </section>
+                    <p></p>
+                </div>
+                <section class="related">
+                    <div><a class="codrops-icon codrops-icon-prev" href="{% url 'topblogs:tbindex' %}"><span>{% trans "BACK TO BLOGS INDEX" %}</span></a></div>
+                </section>
+            </article>
+            <!-- /container -->
+            <script src="{% static 'topblogstatic/blogs/js/singleclassie.js' %}"></script>
+            {% block javascript %}
+            <script>
+			(function() {
+				var ie = (function(){
+					var undef, rv = -1;
+					var ua = window.navigator.userAgent;
+					var msie = ua.indexOf('MSIE ');
+					var trident = ua.indexOf('Trident/');
+					if (msie > 0) {
+						rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+					} else if (trident > 0) {
+						var rvNum = ua.indexOf('rv:');
+						rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
+					}
+					return ((rv > -1) ? rv : undef);
+				}());
+				var keys = [32, 37, 38, 39, 40], wheelIter = 0;
+				function preventDefault(e) {
+					e = e || window.event;
+					if (e.preventDefault) e.preventDefault();
+					e.returnValue = false;
+				}
+				function keydown(e) {
+					for (var i = keys.length; i--;) {
+						if (e.keyCode === keys[i]) {
+							preventDefault(e);
+							return;
+						}
+					}
+				}
+				function touchmove(e) {
+					preventDefault(e);
+				}
+				function wheel(e) {}
+				function disable_scroll() {
+					window.onmousewheel = document.onmousewheel = wheel;
+					document.onkeydown = keydown;
+					document.body.ontouchmove = touchmove;
+				}
+				function enable_scroll() {
+					window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;
+				}
+				var docElem = window.document.documentElement,
+					scrollVal, isRevealed, noscroll, isAnimating,
+					container = document.getElementById('container'),
+					trigger = container.querySelector('button.trigger');
+				function scrollY() {
+					return window.pageYOffset || docElem.scrollTop;
+				}
+				function scrollPage() {
+					scrollVal = scrollY();
+					if (noscroll && !ie) {
+						if (scrollVal < 0) return false;
+						window.scrollTo(0, 0);
+					}
+					if (classie.has(container, 'notrans')) {
+						classie.remove(container, 'notrans');
+						return false;
+					}
+					if (isAnimating) return false;
+					if (scrollVal <= 0 && isRevealed) {
+						toggle(0);
+					} else if (scrollVal > 0 && !isRevealed) {
+						toggle(1);
+					}
+				}
+				function toggle(reveal) {
+					isAnimating = true;
+					if (reveal) {
+						classie.add(container, 'modify');
+					} else {
+						noscroll = true;
+						disable_scroll();
+						classie.remove(container, 'modify');
+					}
+					setTimeout(function() {
+						isRevealed = !isRevealed;
+						isAnimating = false;
+						if (reveal) {
+							noscroll = false;
+							enable_scroll();
+						}
+					}, 600);
+				}
+				var pageScroll = scrollY();
+				noscroll = pageScroll === 0;
+				disable_scroll();
+				if (pageScroll) {
+					isRevealed = true;
+					classie.add(container, 'notrans');
+					classie.add(container, 'modify');
+				}
+				window.addEventListener('scroll', scrollPage);
+				trigger.addEventListener('click', function() { toggle('reveal'); });
+			})();
+		</script>
+        {% endblock javascript %}
+        {% endblock content %}

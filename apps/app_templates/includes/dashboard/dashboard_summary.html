@@ -1,0 +1,99 @@
+{% load static i18n %}
+
+<div class="row mb-4">
+    <!-- Users Active -->
+    <div class="col-lg-3 col-md-6 col-12">
+        <div class="card overflow-hidden shadow-sm" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);">
+            <div class="card-body p-3 position-relative">
+                <div class="row">
+                    <div class="col-8 text-start">
+                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
+                            <i class="ni ni-circle-08 text-dark text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                        <h5 class="text-white font-weight-bolder mb-0 mt-3">
+                            {{ active_users_count|default:0 }}
+                        </h5>
+                        <span class="text-white text-sm">{% trans "Active Users" %}</span>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">
+                            {% if active_users_growth %}+{{ active_users_growth }}%{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Patients -->
+    <div class="col-lg-3 col-md-6 col-12 mt-4 mt-md-0">
+        <div class="card overflow-hidden shadow-sm" style="background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);">
+            <div class="card-body p-3 position-relative">
+                <div class="row">
+                    <div class="col-8 text-start">
+                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
+                            <i class="fas fa-users text-dark text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                        <h5 class="text-white font-weight-bolder mb-0 mt-3">
+                            {{ patients.count|default:0 }}
+                        </h5>
+                        <span class="text-white text-sm">{% trans "Total Patients" %}</span>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">
+                            {% if patient_growth %}+{{ patient_growth }}%{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointments -->
+    <div class="col-lg-3 col-md-6 col-12 mt-4 mt-lg-0">
+        <div class="card overflow-hidden shadow-sm" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="card-body p-3 position-relative">
+                <div class="row">
+                    <div class="col-8 text-start">
+                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
+                            <i class="ni ni-active-40 text-dark text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                        <h5 class="text-white font-weight-bolder mb-0 mt-3">
+                            {{ total_appointments|default:0 }}
+                        </h5>
+                        <span class="text-white text-sm">{% trans "Appointments" %}</span>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">
+                            {% if appointment_growth %}+{{ appointment_growth }}%{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medical Files -->
+    <div class="col-lg-3 col-md-6 col-12 mt-4 mt-lg-0">
+        <div class="card overflow-hidden shadow-sm" style="background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);">
+            <div class="card-body p-3 position-relative">
+                <div class="row">
+                    <div class="col-8 text-start">
+                        <div class="icon icon-shape bg-white shadow text-center border-radius-md">
+                            <i class="fas fa-file-medical text-dark text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                        <h5 class="text-white font-weight-bolder mb-0 mt-3">
+                            {{ patients_with_files|default:0 }}
+                        </h5>
+                        <span class="text-white text-sm">{% trans "With Medical Files" %}</span>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">
+                            {% if medical_files_percentage %}{{ medical_files_percentage }}%{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

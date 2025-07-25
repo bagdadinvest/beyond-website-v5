@@ -1,0 +1,27 @@
+{% extends 'admin/base_site.html' %}
+
+{% block title %}Activity Log{% endblock %}
+
+{% block content %}
+<h1>Recent Activity Log</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>User</th>
+            <th>Action</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for action in actions %}
+        <tr>
+            <td>{{ action.timestamp }}</td>
+            <td>{{ action.actor }}</td>
+            <td>{{ action.verb }}</td>
+            <td>{{ action.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

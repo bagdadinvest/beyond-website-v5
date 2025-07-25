@@ -1,0 +1,50 @@
+{% block content %}
+<h1>{{ form.instance.pk|yesno:"Edit,Create" }} Treatment Plan</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h3>Treatment Plan Items</h3>
+    {{ formset.management_form }}
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in formset %}
+                <tr>
+                    <td>{{ form.product }}</td>
+                    <td>{{ form.quantity }}</td>
+                </tr>
+            {% endfor %}
+            {% if not formset.forms %}
+                <!-- Render at least one empty form for adding a new product -->
+                <tr>
+                    <td>{{ formset.empty_form.product }}</td>
+                    <td>{{ formset.empty_form.quantity }}</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <button type="button" id="add-item">Add Another Product</button>
+    <button type="submit">Save Treatment Plan</button>
+</form>
+
+<a href="{% url 'app:list_patients' %}">Back to Patient Page</a>
+
+<script>
+    document.getElementById('add-item').addEventListener('click', function() {
+        var formsetBody = document.querySelector('tbody');
+        var newForm = '{{ formset.empty_form|escapejs }}'.replace(/__prefix__/g, formsetBody.children.length);
+        var newRow = document.createElement('tr');
+        newRow.innerHTML = newForm;
+        formsetBody.appendChild(newRow);
+    });
+</script>
+
+{% endblock %}

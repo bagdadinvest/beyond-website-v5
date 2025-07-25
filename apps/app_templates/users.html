@@ -1,0 +1,31 @@
+{% extends 'layouts\base.html' %}
+{% load static i18n %}
+{% block title %}Users in {{ user.hospital.name }}{% endblock %}
+{% block content %}
+    <h2 class="text-center">Users in {{ user.hospital.name }}</h2>
+    <a href="{% url 'app:signup' %}" class="btn btn-primary"><i class="fa fa-user-plus"></i>{% trans "&nbsp;Add User" %}</a>
+    <h4>{% trans "Doctors" %}</h4>
+<ul class="list-group">
+    {% for user in doctors %}
+        <a href="{% url 'app:medical_information' user.pk %}"  class="list-group-item">
+            {{ user.get_full_name }}<br />
+        </a>
+    {% endfor %}
+</ul>
+    <h4>{% trans "Nurses" %}</h4>
+<ul class="list-group">
+    {% for user in nurses %}
+        <a href="{% url 'app:medical_information' user.pk %}"  class="list-group-item">
+            {{ user.get_full_name }}
+        </a>
+    {% endfor %}
+</ul>
+    <h4>{% trans "Patients" %}</h4>
+<ul class="list-group">
+    {% for user in patients %}
+        <a href="{% url 'app:medical_information' user.pk %}"  class="list-group-item">
+            {{ user.get_full_name }}
+        </a>
+    {% endfor %}
+</ul>
+{% endblock %}

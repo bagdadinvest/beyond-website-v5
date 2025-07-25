@@ -1,0 +1,12 @@
+{
+  "header.title": "Amadeus Flight Booking",
+  "results.available_flights": "Available Flights",
+  "results.departure": "Departure",
+  "results.flight_number": "Flight Number",
+  "results.arrival": "Arrival",
+  "results.price": "Price",
+  "results.book": "Book",
+  "results.book_flight": "Book Flight",
+  "results.no_flights": "No flights found for this itinerary",
+  "results.connection_duration": "Connection duration is"
+}

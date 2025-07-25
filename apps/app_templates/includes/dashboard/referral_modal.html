@@ -1,0 +1,20 @@
+{% load i18n %}
+<!-- Notification Modal -->
+<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-title-notification">{% trans "Your Referral Link:" %}</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="referral-link-modal"> <a id="modal-referral-link" href="#" target="_blank"></a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" id="copy-link-btn">Copy Link</button>
+      </div>
+    </div>
+  </div>
+</div>

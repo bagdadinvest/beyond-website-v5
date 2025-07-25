@@ -1,0 +1,33 @@
+{% load i18n %}
+<script>
+  document.getElementById('generate-referral-link-btn').addEventListener('click', function() {
+    fetch("{% url 'app:generate_referral_code_view' %}", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.referral_code) {
+        const referralLink = window.location.origin + '{% url "app:signup" %}?referral_code=' + data.referral_code;
+        document.getElementById('referral-link').href = referralLink;
+        document.getElementById('referral-link').textContent = referralLink;
+        document.getElementById('modal-referral-link').href = referralLink;
+        document.getElementById('modal-referral-link').textContent = referralLink;
+        document.getElementById('referral-link-container').style.display = 'block';
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  });
+
+  document.getElementById('copy-link-btn').addEventListener('click', function() {
+    const referralLink = document.getElementById('modal-referral-link').href;
+    navigator.clipboard.writeText(referralLink).then(function() {
+      alert('Referral link copied to clipboard!');
+    }, function(err) {
+      console.error('Could not copy text: ', err);
+    });
+  });
+</script>

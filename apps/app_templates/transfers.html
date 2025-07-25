@@ -1,0 +1,338 @@
+ b{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}Driver Location Tracking{% endblock %}
+{% block content %}
+
+{% block stylesheets %}
+<!-- Shepherd.js CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+{% endblock stylesheets %}
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<div class="container-fluid py-4">
+    <div class="row mt-4" data-step="1">
+        <div class="col-12">
+            <!-- Mobile Only Card -->
+            <div class="card bg-transparent shadow-lg d-block d-md-none mb-3">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                          <li data-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                          <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="{% static 'assets/img/vito.png' %}" alt="First slide">
+                              </div>
+                              <div class="carousel-item">
+                                <img class="d-block w-100" src="{% static 'assets/img/vito1.png' %}" alt="Second slide">
+                              </div>
+                              <div class="carousel-item">
+                                <img class="d-block w-100" src="{% static 'assets/img/vito2.png' %}" alt="Third slide">
+                              </div>
+                              <div class="carousel-item">
+                                <img class="d-block w-100" src="{% static 'assets/img/vito3.png' %}" alt="Fourth slide">
+                              </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">{% trans "Previous" %}<span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">{% trans "Next" %}</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card shadow-lg" data-step="2">
+                <img src="{% static 'assets/img/shapes/pattern-left.png' %}" alt="pattern-lines" class="position-absolute overflow-hidden opacity-4 start-0 top-0 h-100 border-radius-xl">
+                <img src="{% static 'assets/img/shapes/pattern-right.png' %}" alt="pattern-lines" class="position-absolute overflow-hidden opacity-4 end-0 top-0 h-100 border-radius-xl">
+                <div class="card-body px-5 z-index-1 bg-cover">
+                    <div class="row">
+                        <div class="col-lg-3 col-12 my-auto">
+                            <h4 class="text-body opacity-9">{% trans "Nearest Driver: Mehmet A." %}</h4>
+                            <hr class="horizontal light mt-1 mb-3">
+                            <div class="d-flex justify-content-center">
+                                <div>
+                                    <h6 class="mb-0 text-body opacity-7">{% trans "Today's Trips" %}</h6>
+                                    <h3 class="text-body">{% trans "145" %}<small class="text-sm align-top">{% trans "Km" %}</small></h3>
+                                </div>
+                                <div class="ms-lg-6 ms-4 text-center">
+                                    <h6 class="mb-0 text-body opacity-7">{% trans "Average Daily" %}</h6>
+                                    <h3 class="text-body">{% trans "300" %}<small class="text-sm align-top">{% trans "Km" %}</small></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12 text-center">
+                            <div class="w-75 w-lg-100 mt-n7 mt-lg-n8 d-none d-md-block">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="{% static 'assets/img/vito.png' %}" alt="First slide">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img class="d-block w-100" src="{% static 'assets/img/vito1.png' %}" alt="Second slide">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img class="d-block w-100" src="{% static 'assets/img/vito2.png' %}" alt="Third slide">
+                                        </div>
+                                        <div class="carousel-item">
+                                        <img class="d-block w-100" src="{% static 'assets/img/vito3.png' %}" alt="Fourth slide">
+                                        </div>
+
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">{% trans "Previous" %}</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">{% trans "Next" %}</span>
+                                </a>
+                                </div>
+                             </div>
+                            <div class="d-flex align-items-center">
+                                <h4 class="text-body opacity-7 ms-0 ms-md-auto ">{% trans "Available:" %}</h4>
+                                <h2 class="text-body ms-2 me-auto">{% trans "47" %}<small class="text-sm">{% trans "minutes" %}</small></h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12 my-auto">
+                            <h5 class="text-body opacity-9">{% trans "Current Location:" %}</h5>
+                            <hr class="horizontal light mt-1 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h6 class="mb-0 text-body">{% trans "Fatih, DW" %}</h6>
+                                    <h6 class="mb-0 text-body">{% trans "12, Aksary Cd" %}</h6>
+                                </div>
+                                <div class="ms-lg-6 ms-4">
+                                    <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 py-0">
+                                        <i class="ni ni-map-big" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4" data-step="3">
+        <div class="col-12">
+            <div class="card shadow-lg">
+                <div class="card-header bg-transparent">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text text-body bg-transparent border-0">
+                                    <i class="ni ni-zoom-split-in text-lg" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" class="form-control bg-transparent border-0" placeholder="Search anything..." onfocus="focused(this)" onfocusout="defocused(this)">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 my-auto ms-auto">
+                            <div class="d-flex align-items-center">
+                                <i class="ni ni-headphones text-lg text-body ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Headphones connected"></i>
+                                <i class="ni ni-button-play text-lg text-body ms-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Music is playing"></i>
+                                <i class="ni ni-button-power text-lg text-body ms-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Start radio"></i>
+                                <i class="ni ni-watch-time text-lg text-body ms-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Time tracker"></i>
+                                <h4 class="text-body mb-1 ms-4">{% trans "10:45" %}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="horizontal light">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="d-flex align-items-center position-relative">
+                                <h3 class="text-body mb-1">{% trans "11:32" %}</h3>
+                                <p class="text-body opacity-8 mb-1 ms-3">{% trans "Estimated arrival time" %}</p>
+                                <hr class="vertical light mt-0">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="d-flex align-items-center position-relative">
+                                <h3 class="text-body mb-1 ms-md-auto">{% trans "2.4" %}<small class="align-top text-sm">{% trans "Km" %}</small></h3>
+                                <p class="text-body opacity-8 mb-1 ms-3 me-auto">{% trans "Distance from your location" %}</p>
+                                <hr class="vertical light mt-0">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 ms-lg-auto">
+                            <div class="d-flex align-items-center">
+                                <h3 class="text-body mb-1 ms-lg-auto">{% trans "6.3" %}<small class="align-top text-sm">{% trans "Km" %}</small></h3>
+                                <p class="text-body opacity-8 mb-1 ms-3">{% trans "Distance to the clinic" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body px-0 py-0">
+                    <div id="map" style="height: 500px;" data-step="4"></div>
+                    <script>
+                        function initMap() {
+                            var map = L.map('map').setView([41.0082, 28.9784], 13);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">{% trans "OpenStreetMap" %}</a>'
+                            }).addTo(map);
+
+                            // Example driver locations
+                            var driverLocations = [
+                                {lat: 41.0151, lng: 28.9795, name: "Driver 1"},
+                                {lat: 41.0123, lng: 28.9750, name: "Driver 2"},
+                                {lat: 41.0072, lng: 28.9821, name: "Driver 3"}
+                            ];
+
+                            driverLocations.forEach(function(driver) {
+                                L.marker([driver.lat, driver.lng])
+                                    .addTo(map)
+                                    .bindPopup(`<b>${driver.name}</b><br>Location: [${driver.lat}, ${driver.lng}]`)
+                                    .openPopup();
+                            });
+                        }
+
+                        window.onload = initMap;
+                    </script>
+                </div>
+                <div class="card-footer" data-step="5">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="d-flex align-items-center">
+                                <div class="position-relative">
+                                    <div class="avatar avatar-lg">
+                                        <img src="{% static 'assets/img/bruce-mars.png' %}" alt="kal" class="border-radius-xl rounded-circle shadow">
+                                    </div>
+                                    <img class="position-absolute w-60 end-0 bottom-0 me-n3 mb-0" src="{% static 'assets/img/small-logos/logo-spotify.svg' %}" alt="spotify logo">
+                                </div>
+                                <div class="px-3">
+                                    <p class="text-body text-sm font-weight-bold mb-0">{% trans "Delalim (feat Aylin  Demir)" %}</p>
+                                    <p class="text-body text-xs mb-2 opacity-8">{% trans "Turkish Pop - Classics" %}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 my-auto text-center mt-3 mt-lg-0">
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-lg btn-icon-only btn-rounded btn-outline-dark mb-0 ms-auto">
+                                    <i class="ni ni-button-play top-0 rotate-180" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-lg btn-icon-only btn-rounded btn-outline-dark mb-0 ms-4">
+                                    <i class="ni ni-button-pause top-0" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-lg btn-icon-only btn-rounded btn-outline-dark mb-0 ms-4 me-auto">
+                                    <i class="ni ni-button-play top-0" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-8 my-auto">
+                            <p class="text-body mb-2">{% trans "Volume" %}</p>
+                            <div id="sliderRegular"></div>
+                        </div>
+                        <div class="col-lg-1 col-md-6 col-4 my-auto ms-auto">
+                            <i class="ni ni-bullet-list-67 text-body mt-3 ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Hide menu"></i>
+                            <i class="ni ni-chat-round text-body ms-3 mt-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Track messages"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@9.1.1/dist/js/shepherd.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  console.log("Initializing dashboard tutorial...");
+
+  if (typeof Shepherd === 'undefined') {
+    console.error("Shepherd.js is not loaded.");
+    return;
+  }
+
+  const tour = new Shepherd.Tour({
+    useModalOverlay: true,
+    defaultStepOptions: {
+      cancelIcon: { enabled: true },
+      classes: 'shadow-md bg-purple-dark',
+      scrollTo: { behavior: 'smooth', block: 'center' },
+    },
+  });
+
+  // Step 1: Highlight the Mobile Carousel
+  tour.addStep({
+    id: 'step-1',
+    text: `{% trans "This carousel provides a quick overview of key features and services available on this platform." %}`,
+    attachTo: { element: '[data-step="1"]', on: 'bottom' },
+    buttons: [
+      { text: '{% trans "Next" %}', action: tour.next },
+    ],
+  });
+
+  // Step 2: Highlight Nearest Driver Section
+  tour.addStep({
+    id: 'step-2',
+    text: `{% trans "Here, you can view the nearest driver, including trip statistics and availability." %}`,
+    attachTo: { element: '[data-step="2"]', on: 'bottom' },
+    buttons: [
+      { text: '{% trans "Back" %}', action: tour.back },
+      { text: '{% trans "Next" %}', action: tour.next },
+    ],
+  });
+
+  // Step 3: Highlight Search Bar Section
+  tour.addStep({
+    id: 'step-3',
+    text: `{% trans "Use this search bar to quickly find specific content or services." %}`,
+    attachTo: { element: '[data-step="3"]', on: 'bottom' },
+    buttons: [
+      { text: '{% trans "Back" %}', action: tour.back },
+      { text: '{% trans "Next" %}', action: tour.next },
+    ],
+  });
+
+  // Step 4: Highlight the Interactive Map
+  tour.addStep({
+    id: 'step-4',
+    text: `{% trans "This map displays driver locations in real-time. You can click on markers for more details." %}`,
+    attachTo: { element: '[data-step="4"]', on: 'top' },
+    buttons: [
+      { text: '{% trans "Back" %}', action: tour.back },
+      { text: '{% trans "Next" %}', action: tour.next },
+    ],
+  });
+
+  // Step 5: Highlight the Music Player Section
+  tour.addStep({
+    id: 'step-5',
+    text: `{% trans "This section allows you to control your music and adjust volume levels." %}`,
+    attachTo: { element: '[data-step="5"]', on: 'bottom' },
+    buttons: [
+      { text: '{% trans "Back" %}', action: tour.back },
+      { text: '{% trans "Done" %}', action: tour.complete },
+    ],
+  });
+
+  // Attach the Shepherd tour to the universal tutorial button
+  const universalButton = document.getElementById('universal-tutorial-btn');
+  if (universalButton) {
+    universalButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log("Starting dashboard tutorial...");
+      tour.start();
+    });
+  } else {
+    console.error("Universal tutorial button (#universal-tutorial-btn) not found!");
+  }
+});
+</script>
+
+{% endblock javascripts %}
+{% endblock %}

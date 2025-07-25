@@ -1,0 +1,39 @@
+{% load static i18n %}
+<!-- Menu Overlay and Language Switcher -->
+<div class="menu-overlay"></div>
+
+<div class="menu">
+    <div class="hamburger-menu-wrapper">
+        <button class="hamburger-menu" id="hamburger-menu-button">
+            <img src="{% static 'flags/' %}{{ LANGUAGE_CODE }}.svg"
+                 class="flag-icon" width="48" alt="{{ LANGUAGE_CODE }}"
+                 id="current-language-flag">
+            <span>toggle menu</span>
+        </button>
+    </div>
+    <div class="menu-list" style="display:none;">
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            {% for code, name in LANGUAGES %}
+            <button type="submit" class="flag-button" name="language" value="{{ code }}">
+                <img src="{% static 'flags/' %}{{ code }}.svg"
+                     width="58" alt="{{ name }}">
+            </button>
+            <br>
+            {% endfor %}
+        </form>
+    </div>
+</div>
+
+<style>
+.menu {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    min-width: 220px;
+    text-align: center;
+}
+</style>

@@ -1,0 +1,172 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% load countries %}
+
+{% block title %}Leads Dashboard - Enhanced{% endblock %}
+
+{% block content %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* Custom styles for FullCalendar */
+        .fc-event {
+            background-color: #007bff;
+            color: #fff; /* Ensure text is white for visibility */
+            border: none;
+        }
+
+        .fc-daygrid-day-number {
+            color: black; /* Make the day numbers black */
+        }
+
+        /* Popup window styles */
+        .fc-popover {
+            background-color: white;
+            color: black;
+        }
+
+        .fc-toolbar-title {
+            color: #007bff; /* Title color */
+        }
+    </style>
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Enhanced Leads Dashboard</h2>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div id="calendar-container" class="card card-calendar">
+                <div class="card-body p-3">
+                    <h3 class="text-center mb-4">Lead Lifecycle Calendar</h3>
+                    <div id="calendar" style="color: black;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="table-responsive">
+    <table id="leadsTable" class="table table-striped text-center">
+        <thead>
+            <tr>
+                <th>Lead Info</th>
+                <th>Status</th>
+                <th>Actions</th>
+                <th style="min-width: 500px;">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lead in leads %}
+            <tr>
+                <!-- Lead Info -->
+                <td>
+                    <strong>{{ lead.name }}</strong><br>
+                    <div>
+                        <i class="bi bi-envelope-fill" style="color: #007bff;"></i>
+                        <span>{{ lead.email }}</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-telephone-fill" style="color: #28a745;"></i>
+                        <span>  {% if lead.country %}
+                            <img src="{% static 'flags/'|add:lead.country.code|lower|add:'.svg' %}" alt="{{ lead.country.name }} flag" style="width:20px; height:auto;">
+                        {% endif %} {{ lead.phone }}</span>
+                    </div>
+
+                    {% if lead.source %}
+                        Source:
+                        {% with lead.source|lower as source %}
+                            {% if source == 'facebook' or source == 'fb' %}
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" style="width:20px; height:20px;">
+                            {% elif source == 'instagram' or source == 'ig' %}
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width:20px; height:20px;">
+                            {% else %}
+                                {{ lead.source }}
+                            {% endif %}
+                        {% endwith %}
+                    {% endif %}
+                    <br>
+                </td>
+
+                <!-- Status -->
+                <td>
+                    {% if lead.status == 'new' %}
+                        <span class="badge bg-success">{{ lead.status }}</span>
+                    {% elif lead.status == 'contacted' %}
+                        <span class="badge bg-info text-dark">{{ lead.status }}</span>
+                    {% elif lead.status == 'qualified' %}
+                        <span class="badge bg-success">{{ lead.status }}</span>
+                    {% elif lead.status == 'lost' %}
+                        <span class="badge bg-danger">{{ lead.status }}</span>
+                    {% elif lead.status == 'converted' %}
+                        <span class="badge bg-secondary">{{ lead.status }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ lead.status }}</span>
+                    {% endif %}
+                </td>
+
+                <!-- Actions -->
+                <td>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="https://wa.me/{{ lead.phone|urlencode }}?text=Hello%20{{ lead.name|urlencode }}" target="_blank" class="btn btn-sm btn-success">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:20px;"> WhatsApp
+                        </a>
+                        <a href="{% url 'leads:send_email' lead.id %}" class="btn btn-sm btn-warning">Send Email</a>
+                        <a href="{% url 'leads:edit_lead' lead.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    </div>
+                </td>
+
+                <!-- Notes -->
+                <td>
+                    <ul id="notes-list-{{ lead.id }}">
+                        {% for note in lead.notes.all %}
+                        <li><strong>({{ note.created_at|date:"d M Y H:i" }})</strong>: {{ note.content }}</li>
+                        {% empty %}
+                        <li>No notes yet.</li>
+                        {% endfor %}
+                    </ul>
+                    <form method="post" action="{% url 'leads:add_note' lead.id %}" class="add-note-form">
+                        {% csrf_token %}
+                        <textarea name="content" placeholder="Add a note..." class="form-control" required></textarea>
+                        <button type="submit" class="btn btn-sm btn-primary mt-1">Add Note</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#leadsTable').DataTable({
+        "order": [[0, "desc"]],
+        "paging": true,
+        "searching": true,
+        "info": true
+    });
+
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: '/leads/calendar-events/',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        height: 'auto',
+        eventClick: function(info) {
+            const event = info.event;
+            alert('Event: ' + event.title + '\nDate: ' + event.start.toLocaleString());
+        }
+    });
+    calendar.render();
+});
+</script>
+{% endblock %}

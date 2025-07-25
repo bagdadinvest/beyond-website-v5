@@ -1,0 +1,11 @@
+{% extends 'layouts\base.html' %}
+{% load static i18n %}
+{% block title %}System Logs{% endblock %}
+{% block content %}
+
+<body>
+    <h1>Static Appointments Chart</h1>
+    <div>
+        {{ chart|safe }}
+    </div>
+    {% endblock content %}

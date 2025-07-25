@@ -1,0 +1,218 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% load static i18n %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block stylesheets %}
+<!-- Include Google Fonts for styling -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agu+Display&display=swap" rel="stylesheet">
+
+<style>
+  /* Video styling */
+  #welcome-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Fade-in effect for content */
+  .welcome-content {
+    opacity: 0;
+    transition: opacity 2s ease-in;
+  }
+  .show-content .welcome-content {
+    opacity: 1;
+  }
+
+  /* Container styling */
+  .content-container {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+  }
+
+  /* Username styling */
+  .username {
+    font-family: "Agu Display", serif;
+    font-size: 60px;
+    font-weight: 400;
+    color: #ffd700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Counter effect styling */
+  .counter {
+    font-size: 60px;
+    font-weight: bold;
+    color: #ffb300;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Skip Button Styling */
+  #skip-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #skip-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  #skip-btn-icon {
+    margin-right: 10px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<main class="main-content main-content-bg mt-0">
+    <!-- Fullscreen Video -->
+    <video id="welcome-video" width="100%" autoplay muted>
+        <source src="{% static 'assets/img/welcome.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Content that fades in after video -->
+    <div class="container content-container welcome-content">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center py-5">
+                <h1 class="username mb-2 mt-5">
+                    {% trans "Hello" %}, {{ user.get_full_name }} !
+                </h1>
+                <h4 class="mb-4 text-white">
+                    {% trans "You are our" %} <span class="counter">{{ user_count }}</span> {% trans "user who signed up. This makes you eligible to participate in our lottery for a free trip + treatment to Turkey." %}</h4>
+                <a href="{% url 'app:my_medical_information' %}" class="btn btn-primary">
+                    {% trans "Proceed to Submit Medical Files" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skip Button -->
+    <button id="skip-btn" onclick="skipVideo()">
+        <span id="skip-btn-icon">⏭</span> Skip
+    </button>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+<!-- Add the confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded and parsed');
+
+    var video = document.getElementById('welcome-video');
+    var body = document.body;
+    var counterElement = document.querySelector('.counter');
+    var userCount = parseInt(counterElement.textContent, 10);
+
+    console.log('Video element found:', video);
+    console.log('User count:', userCount);
+
+    // Create a confetti instance and set a higher z-index for the canvas
+    var myConfetti = confetti.create(null, { resize: true });
+    var canvas = document.querySelector('canvas');
+
+    if (canvas) {
+      canvas.style.zIndex = '10000';
+      console.log('Confetti canvas z-index set to 10000');
+    }
+
+    // Fade in content and trigger confetti on video end
+    video.addEventListener('ended', function() {
+      console.log('Video ended');
+      body.classList.add('show-content');
+      triggerConfetti();
+      animateCounter();
+    });
+
+    // Skip video to show content immediately
+    window.skipVideo = function() {
+      console.log('Skip button clicked');
+      video.pause();
+      body.classList.add('show-content');
+      document.getElementById('skip-btn').style.display = 'none';
+      triggerConfetti();
+      animateCounter();
+    };
+
+    // Counter animation
+    let currentCount = 0;
+    let incrementSpeed = 50;
+
+    function animateCounter() {
+      console.log('Starting counter animation');
+      if (currentCount < userCount) {
+        currentCount++;
+        counterElement.textContent = currentCount.toLocaleString();
+        setTimeout(animateCounter, incrementSpeed);
+      }
+    }
+
+    // Function to trigger confetti
+    function triggerConfetti() {
+      console.log('Triggering confetti');
+      myConfetti({
+        particleCount: 100,
+        spread: 160,
+        origin: { y: 0.6 }
+      });
+
+      var duration = 5 * 1000;
+      var end = Date.now() + duration;
+
+      (function frame() {
+        myConfetti({
+          particleCount: 2,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        myConfetti({
+          particleCount: 2,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        } else {
+          console.log('Confetti animation completed');
+        }
+      }());
+    }
+  });
+</script>
+
+<script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+{% endblock %}

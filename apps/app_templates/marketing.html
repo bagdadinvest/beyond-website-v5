@@ -1,0 +1,197 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}Delil Clinic Schedule{% endblock %}
+
+{% block content %}
+    <div class="row mb-lg-7">
+        <div class="col-12 ms-auto" data-step="1" data-step-text="{% trans 'This is where you can see your team members.' %}">
+            <div class="d-flex mb-4">
+                <div class="pe-4 mt-1 position-relative ms-auto">
+                    <p class="text-white text-xs font-weight-bold mb-2">{% trans "Team members:" %}</p>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="avatar-group">
+                            <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" title="{% trans "Dr. Jessica Rowland" %}">
+                                <img alt="Image placeholder" src="{% static 'assets/img/team-1.jpg' %}" class>
+                            </a>
+                            <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" title="{% trans "Dr. Audrey Love" %}">
+                                <img alt="Image placeholder" src="{% static 'assets/img/team-2.jpg' %}" class="rounded-circle">
+                            </a>
+                            <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" title="{% trans "Dr. Michael Lewis" %}">
+                                <img alt="Image placeholder" src="{% static 'assets/img/team-3.jpg' %}" class="rounded-circle">
+                            </a>
+                            <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" title="{% trans "Dr. Lucia Linda" %}">
+                                <img alt="Image placeholder" src="{% static 'assets/img/team-4.jpg' %}" class="rounded-circle">
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="vertical light mt-0">
+                </div>
+                <div class="ps-4" data-step="2" data-step-text="{% trans 'Use this button to add a new board.' %}">
+                    <button class="btn btn-outline-white btn-icon-only mb-0 mt-3 py-0" data-bs-toggle="modal" data-bs-target="#new-board-modal">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9" data-step="3" data-step-text="{% trans 'This calendar shows your current schedule.' %}">
+            <div class="card card-calendar">
+                <div class="card-body p-3">
+                    <div class="calendar fc fc-media-screen fc-direction-ltr fc-theme-standard" data-bs-toggle="calendar" id="calendar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="row">
+                <div class="col-xl-12 col-md-6 mt-xl-0 mt-4" data-step="4" data-step-text="{% trans 'See the next events here.' %}">
+                    <div class="card">
+                        <div class="card-header p-3 pb-0">
+                            <h6 class="mb-0">{% trans "Next events" %}</h6>
+                        </div>
+                        <div class="card-body border-radius-lg p-3">
+                            <a class="btn bg-gradient-dark mb-0" href="{% url 'app:serp' %}";"><i class="fas fa-search" aria-hidden="true"></i>&nbsp;&nbsp;Go to SERP</a>
+
+                              <iframe src="https://www.yeschat.ai/i/gpts-2OToA3S5Cf-VideoGPT-by-VEED" width="800" height="500" style="max-width: 100%;"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-6 mt-4" data-step="5" data-step-text="{% trans 'This card shows your productivity metrics.' %}">
+                    <div class="card bg-gradient-dark">
+                        <div class="card-header bg-transparent p-3 pb-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h6 class="text-white mb-0">{% trans "Productivity" %}</h6>
+                                    <p class="text-sm text-white">
+                                        <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
+                                        <span class="font-weight-bold">4% more</span> {% trans "in 2024" %}
+                                    </p>
+                                </div>
+                                <div class="col-5 text-end">
+                                    <div class="dropdown me-3">
+                                        <a class="cursor-pointer" href="javascript:;" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                                            <i class="fa fa-ellipsis-h text-white" aria-hidden="true"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end ms-n5 px-2 py-3" aria-labelledby="dropdownTable" data-popper-placement="bottom-start">
+                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">{% trans "Action" %}</a></li>
+                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">{% trans "Another action" %}</a></li>
+                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">{% trans "Something else here" %}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="chart">
+                                <canvas id="chart-line-1" class="chart-canvas" height="100"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <div class="col-12 text-center mt-4" data-step="6" data-step-text="{% trans 'Click here to start the tour.' %}">
+        <button id="start-tour-btn" class="btn btn-primary">Start Tour</button>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- FullCalendar -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        .card-calendar {
+            overflow: hidden;
+        }
+        .fc {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                height: 'auto',
+                events: [
+                    {
+                        title: '{% trans "Marketing, Phase 1: Data Mining" %}',
+                        start: '2024-08-01',
+                        end: '2024-08-08',
+                        className: 'bg-gradient-info'
+                    }
+                ]
+            });
+            calendar.render();
+
+            var ctx1 = document.getElementById("chart-line-1").getContext("2d");
+            var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+            gradientStroke1.addColorStop(1, 'rgba(255,255,255,0.3)');
+            gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+            gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+            new Chart(ctx1, {
+                type: "line",
+                data: {
+                    labels: ["{% trans "Apr" %}", "{% trans "May" %}", "{% trans "Jun" %}", "{% trans "Jul" %}", "{% trans "Aug" %}", "{% trans "Sep" %}", "{% trans "Oct" %}", "{% trans "Nov" %}", "{% trans "Dec" %}"],
+                    datasets: [{
+                        label: "{% trans "Visitors" %}",
+                        tension: 0.5,
+                        borderWidth: 0,
+                        pointRadius: 0,
+                        borderColor: "#fff",
+                        borderWidth: 2,
+                        backgroundColor: gradientStroke1,
+                        data: [50, 45, 60, 60, 80, 65, 90, 80, 100],
+                        maxBarThickness: 6,
+                        fill: true
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        },
+                    },
+                },
+            });
+        });
+    </script>
+{% endblock javascripts %}
+

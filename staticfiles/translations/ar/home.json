@@ -1,0 +1,11 @@
+{
+  "header.title": "لوحة القيادة",
+  "form.flight_reservation": "حجز الرحلة",
+  "form.get_best_offers": "احصل على أفضل العروض الآن",
+  "form.from": "من",
+  "form.to": "إلى",
+  "form.departure_date": "تاريخ المغادرة",
+  "form.return_date": "تاريخ العودة",
+  "form.search_flight": "ابحث عن رحلة",
+  "footer.copyright": "© 2024 شركتك"
+}

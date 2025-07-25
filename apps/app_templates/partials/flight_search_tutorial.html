@@ -1,0 +1,126 @@
+{% load static i18n %}
+<!-- Flight Search Tutorial with Shepherd.js -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("Initializing flight reservation tutorial...");
+
+    if (typeof Shepherd === 'undefined') {
+        console.error("Shepherd.js is not loaded.");
+        return;
+    }
+
+    const tour = new Shepherd.Tour({
+        useModalOverlay: true,
+        defaultStepOptions: {
+            cancelIcon: { enabled: true },
+            classes: 'shadow-md bg-purple-dark',
+            scrollTo: { behavior: 'smooth', block: 'center' },
+        },
+    });
+
+    // Step 1: Highlight "From" field
+    tour.addStep({
+        id: 'step-1',
+        text: `{% trans "Start by selecting your departure location. You can search by city, airport, or IATA code." %}`,
+        attachTo: { element: '#inputOrigin', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 2: Highlight "To" field
+    tour.addStep({
+        id: 'step-2',
+        text: `{% trans "Select your destination airport. The system will suggest airports as you type." %}`,
+        attachTo: { element: '#inputDestination', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 3: Highlight "Departure Date"
+    tour.addStep({
+        id: 'step-3',
+        text: `{% trans "Choose your departure date. You cannot select dates in the past." %}`,
+        attachTo: { element: '#idDeparturedate', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 4: Highlight "Return Date"
+    tour.addStep({
+        id: 'step-4',
+        text: `{% trans "If you're booking a round trip, select your return date here. Otherwise, leave it blank for a one-way trip." %}`,
+        attachTo: { element: '#idReturndate', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 5: Highlight "Search Flight" button
+    tour.addStep({
+        id: 'step-5',
+        text: `{% trans "Once all required fields are filled, click this button to search for available flights." %}`,
+        attachTo: { element: '#searchFlightButton', on: 'top' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Done" %}', 
+                action: tour.complete,
+                classes: 'btn btn-success'
+            },
+        ],
+    });
+
+    // Attach the Shepherd tour to the universal tutorial button
+    const universalButton = document.getElementById('universal-tutorial-btn');
+    if (universalButton) {
+        universalButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            console.log("Starting universal flight reservation tutorial...");
+            tour.start();
+        });
+    } else {
+        console.warn("Universal tutorial button (#universal-tutorial-btn) not found. Tutorial available but not auto-attached.");
+    }
+
+    // Expose tour globally for manual trigger
+    window.flightSearchTour = tour;
+});
+</script>

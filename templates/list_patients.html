@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h1>Patient List</h1>
+
+{% if patients %}
+    <ul>
+        {% for patient in patients %}
+            <li>
+                <a href="{% url 'app:create_treatment_plan' patient.id %}">
+                    {{ patient.get_full_name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No patients found.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{
+  "header.title": "Confirmation de votre réservation",
+  "book_flight.confirmation": "Votre réservation est confirmée!",
+  "book_flight.company_name": "BeyondClinic",
+  "book_flight.company_tagline": "Systèmes de réservation de vols®",
+  "book_flight.contact_phone": "tél: +90 538 0546393",
+  "book_flight.billed_to": "Facturé à",
+  "book_flight.departure": "Départ à",
+  "book_flight.return": "Retour à",
+  "book_flight.date_label": "Date",
+  "book_flight.status_label": "Statut",
+  "book_flight.reference_label": "Référence",
+  "book_flight.item": "Article",
+  "book_flight.qty": "Quantité",
+  "book_flight.currency": "Devise",
+  "book_flight.amount": "Montant",
+  "book_flight.base_price": "Prix de base",
+  "book_flight.fees": "Frais",
+  "book_flight.grand_total": "Total général",
+  "book_flight.thank_you": "Merci!",
+  "book_flight.contact_message": "Si vous rencontrez des problèmes liés à la facture, vous pouvez nous contacter à:",
+  "book_flight.email_label": "E-mail",
+  "book_flight.print_button": "Imprimer",
+  "form.flight_reservation": "Flight Reservation",
+  "form.get_best_offers": "Get the Best Offers",
+  "form.from": "From",
+  "form.to": "To",
+  "form.departure_date": "Departure Date",
+  "form.return_date": "Return Date",
+  "form.search_flight": "Search Flight"
+
+
+}

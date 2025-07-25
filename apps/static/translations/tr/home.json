@@ -1,0 +1,11 @@
+{
+  "header.title": "Gösterge Paneli",
+  "form.flight_reservation": "UÇUŞ REZERVASYONU",
+  "form.get_best_offers": "EN İYİ TEKLİFLERİ ŞİMDİ ALIN",
+  "form.from": "Nereden",
+  "form.to": "Nereye",
+  "form.departure_date": "Gidiş Tarihi",
+  "form.return_date": "Dönüş Tarihi",
+  "form.search_flight": "Uçuş Ara",
+  "footer.copyright": "© 2024 Şirketiniz"
+}

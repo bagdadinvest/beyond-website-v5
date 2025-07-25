@@ -1,0 +1,141 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.flag-icon {
+    display: inline-block;
+    border: 1px solid #dee2e6;
+    transition: transform 0.2s ease;
+}
+
+.flag-icon:hover {
+    transform: scale(1.05);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid my-5 py-2">
+    <div class="row mb-5">
+        <div class="col-lg-3">
+            <div class="card position-sticky top-1">
+                <ul class="nav flex-column bg-white border-radius-lg p-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-body d-flex align-items-center" href="{% url 'app:product' %}">
+                            <i class="fas fa-arrow-left me-2 text-dark opacity-6"></i>
+                            <span class="text-sm">{% trans "Back to Products" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-body d-flex align-items-center" data-scroll="" href="#product-info">
+                            <i class="fas fa-info-circle me-2 text-dark opacity-6"></i>
+                            <span class="text-sm">{% trans "Product Details" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-body d-flex align-items-center" data-scroll="" href="#product-image">
+                            <i class="fas fa-image me-2 text-dark opacity-6"></i>
+                            <span class="text-sm">{% trans "Product Image" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-body d-flex align-items-center" data-scroll="" href="#pricing">
+                            <i class="fas fa-dollar-sign me-2 text-dark opacity-6"></i>
+                            <span class="text-sm">{% trans "Pricing & Discounts" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-body d-flex align-items-center" data-scroll="" href="#actions">
+                            <i class="fas fa-plus me-2 text-dark opacity-6"></i>
+                            <span class="text-sm">{% trans "Add to Plan" %}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9 mt-lg-0 mt-4">
+            <div class="row g-4" id="product-info">
+        <!-- Product Image -->
+        <div class="col-md-6" id="product-image">
+            <div class="position-relative" style="height: 350px;">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" 
+                         alt="{{ product.name }}" 
+                         class="w-100 h-100 rounded shadow-sm"
+                         style="object-fit: contain; background-color: #f8f9fa;">
+                {% else %}
+                    <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center rounded shadow-sm">
+                        <div class="text-center">
+                            <i class="fas fa-image fa-3x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">{% trans "No image available" %}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Product Info -->
+        <div class="col-md-6">
+            <div class="h-100 d-flex flex-column">
+                <!-- Product Name with Flag -->
+                <div class="d-flex align-items-center mb-3">
+                    <h2 class="fw-bold mb-0 flex-grow-1">{{ product.name }}</h2>
+                    {% if product.country_of_origin %}
+                        <div class="ms-3">
+                            <img src="{% static 'flags/'|add:product.country_of_origin.code|lower|add:'.svg' %}" 
+                                 alt="{{ product.country_of_origin.name }}" 
+                                 title="{% trans 'Made in' %} {{ product.country_of_origin.name }}"
+                                 class="flag-icon"
+                                 style="width: 32px; height: 32px; object-fit: cover; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                            <span class="badge bg-secondary" style="display: none;" title="{% trans 'Made in' %} {{ product.country_of_origin.name }}">
+                                {{ product.country_of_origin.code }}
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Category, Price, and Discount in one row -->
+                <div class="d-flex align-items-center flex-wrap gap-2 mb-3" id="pricing">
+                    <span class="badge bg-primary">{{ product.get_category_display }}</span>
+                    {% if product.price %}
+                        <h4 class="text-success mb-0 ms-2">${{ product.price|floatformat:2 }}</h4>
+                    {% endif %}
+                    <small class="text-muted ms-auto">
+                        {% trans "Max discount" %}: {{ product.max_discount_percentage }}%
+                    </small>
+                </div>
+                
+                <!-- Description Card -->
+                {% if product.description %}
+                    <div class="card border-0 bg-light mb-3 flex-grow-1">
+                        <div class="card-body">
+                            <h6 class="card-title text-muted">{% trans "Description" %}</h6>
+                            <p class="card-text mb-0">{{ product.description|linebreaks }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <!-- Action Buttons -->
+                <div class="d-flex gap-2 mt-auto" id="actions">
+                    <a href="{% url 'app:product' %}" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>{% trans "Back to Products" %}
+                    </a>
+                    <button class="btn btn-primary flex-grow-1" onclick="addToTreatmentPlan()">
+                        <i class="fas fa-plus me-2"></i>{% trans "Add to Treatment Plan" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function addToTreatmentPlan() {
+    // This would be implemented based on your treatment plan functionality
+    alert('{% trans "This feature will be implemented to add the product to a treatment plan." %}');
+}
+</script>
+{% endblock %}

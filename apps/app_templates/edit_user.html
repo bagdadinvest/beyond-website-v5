@@ -1,0 +1,287 @@
+{% load static i18n %}
+{% include 'error.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css" />
+
+<!-- JS for intl-tel-input -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<form action="" method="post" accept-charset="utf-8" class="form" role="form" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="card mt-4 border-radius-lg p-3">
+    <label class="form-label">{% trans "Full Name and Surname" %}</label>
+    <div class="row">
+      <div class="col-6">
+        <input type="text" name="first_name" value="{{ requested_user.first_name }}" class="form-control form-control-lg" placeholder="{{ user.first_name }}" required />
+      </div>
+      <div class="col-6">
+        <input type="text" name="last_name" value="{{ requested_user.last_name }}" class="form-control form-control-lg" placeholder="{{ user.last_name }}" required />
+      </div>
+    </div>
+  </div>
+<div class="card mt-4 border-radius-lg p-3">
+      <label class="form-label">{% trans "Email" %}</label>
+      <input type="email" name="email" value="{{ requested_user.email }}" class="form-control form-control-lg" placeholder="{{ user.email }}" required />
+    </div>
+<div class="card mt-4 border-radius-lg p-3">
+  <label class="form-label">{% trans "Phone Number" %}</label>
+  <input
+    type="tel"
+    id="phone"
+    name="phone_number"
+    value="{{ requested_user.phone_number }}"
+    class="form-control form-control-lg"
+    placeholder="{{ user.phone_number }}"
+    required />
+</div>
+
+  </div>
+<div class="card mt-4 border-radius-lg p-3">
+    <label class="form-label">{% trans "Nationality" %}</label>
+    <select name="nationality" class="form-control form-control-lg" required>
+        {% for code, name in countries %}
+        <option value="{{ code }}" {% if requested_user.nationality == code %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+    </select>
+  </div>
+
+  <div class="card mt-4 border-radius-lg p-3">
+
+    <label class="form-label">{% trans "Birth Date" %}</label>
+    <div class="row">
+        <div class="col-4">
+            <select name="month" class="form-control form-control-lg" required>
+                {% for month in months %}
+                <option {% if requested_user.date_of_birth.month == forloop.counter %}selected="selected"{% endif %} value="{{ forloop.counter }}">{{ month }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-4">
+            <select name="day" class="form-control form-control-lg" required>
+                {% for day in day_range %}
+                <option {% if requested_user.date_of_birth.day == day %}selected="selected"{% endif %} value="{{ day }}">{{ day }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-4">
+            <select name="year" class="form-control form-control-lg" required>
+                {% for year in year_range %}
+                <option {% if requested_user.date_of_birth.year == year %}selected="selected"{% endif %} value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+{% if is_signup %}
+<div class="card mt-4 border-radius-lg p-3">
+  <label class="form-label">{% trans "Password" %}</label>
+  <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required />
+
+  <label class="form-label">{% trans "Confirm Password" %}</label>
+  <input type="password" name="confirm_password" class="form-control form-control-lg" placeholder="Confirm Password" required />
+</div>
+</div>
+
+{% if referral_code %}
+
+<input type="hidden" name="referral_code" value="{{ referral_code }}">
+{% else %}
+<div class="card mt-4 border-radius-lg p-3">
+  <label class="form-label">{% trans "Referral Code" %}</label>
+  <input type="text" name="referral_code" class="form-control form-control-lg" placeholder="Enter referral code (if any)" />
+</div>
+{% endif %}
+{% endif %}
+
+{% if not is_signup %}
+{% if requested_user.medical_information %}
+<div class="card mt-4 border-radius-lg p-3">
+
+  <label class="form-label">{% trans "Insurance Information" %}</label>
+  <div class="row">
+    <div class="col-xs-6 col-md-6">
+      <input type="text" name="company" value="{{ requested_user.medical_information.insurance.company }}" class="form-control form-control-lg" placeholder="Company" />
+    </div>
+    <div class="col-xs-6 col-md-6">
+      <input type="text" name="policy" value="{{ requested_user.medical_information.insurance.policy_number }}" class="form-control form-control-lg" placeholder="Policy Number" />
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4 border-radius-lg p-3">
+
+  <label class="form-label">{% trans "Family History" %}</label>
+  <textarea name="family_history" class="form-control form-control-lg" placeholder="Any medical conditions that may run in your family.">{{ requested_user.medical_information.family_history }}</textarea>
+</div>
+
+<div class="card mt-4 border-radius-lg p-3">
+
+  <label class="form-label">{% trans "Biological Sex" %}</label>
+  {% for sex in sexes %}
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="sex" id="sex{{ forloop.counter }}" value="{{ sex }}"  {% if sex == requested_user.medical_information.sex %} checked{% endif %}>
+    <label class="form-check-label" for="sex{{ forloop.counter }}">{{ sex }}</label>
+  </div>
+  {% endfor %}
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="radio" name="sex" aria-label="" {% if user_sex_other %}checked{% endif %}>
+      </div>
+    </div>
+    <input type="text" name="other_sex" class="form-control form-control-lg" aria-label="other-sex" placeholder="Other (specify)" {% if user_sex_other %}value="{{ requested_user.medical_information.sex }}" {% endif %} />
+  </div>
+</div>
+
+<div class="card mt-4 border-radius-lg p-3">
+
+  <label class="form-label">{% trans "Allergies" %}</label>
+  <textarea name="allergies" class="form-control form-control-lg" placeholder="Pollen, Ammoxicillin, ...">{{ requested_user.medical_information.allergies }}</textarea>
+</div>
+
+<div class="card mt-4 border-radius-lg p-3">
+
+  <label class="form-label">{% trans "Medications" %}</label>
+  <textarea name="medications" class="form-control form-control-lg" placeholder="Any medications you take on a regular basis">{{ requested_user.medical_information.medications }}</textarea>
+</div>
+
+<div class="card mt-4 border-radius-lg p-3">
+
+  <label class="form-label">{% trans "Medical Conditions" %}</label>
+  <textarea name="medical_conditions" class="form-control form-control-lg" placeholder="Any existing medical conditions you have or have had in the past">{{ requested_user.medical_information.medical_conditions }}</textarea>
+</div>
+
+<div class="card mt-4 border-radius-lg p-3">
+
+  <label class="form-label">{% trans "Additional Information" %}</label>
+  <textarea name="additional_info" class="form-control form-control-lg" placeholder="Any additional information you'd like to provide">{{ requested_user.medical_information.additional_info }}</textarea>
+</div>
+{% endif %}
+{% endif %}
+
+<div class="card mt-4 border-radius-lg p-3">
+<div class="row">
+
+  <div class="col-6 mb-3">
+
+    <label class="form-label">{% trans "Account Type" %}</label>
+    <select name="group" class="form-control form-control-lg">
+      {% for group in groups %}
+      <option value="{{ group.pk }}" {% if requested_user.group == group %}selected="selected" {% endif %}>{{ group.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-6 mb-3">
+    <label class="form-label">{% trans "Interested in.." %}</label>
+    <select name="hospital" class="form-control form-control-lg">
+      {% for hospital in hospitals %}
+      <option value="{{ hospital.pk }}" {% if requested_hospital == hospital %}selected="selected"{% endif %}>{{ hospital.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+
+</div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn btn-outline-primary w-100 my-4 mb-2" type="submit">{% trans "Save" %}</button>
+</div>
+</form>
+
+
+
+<!-- Modal Notification -->
+<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-title-notification">{% trans "Your attention is required" %}</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">{% trans "×" %}</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="py-3 text-center">
+          <i class="ni ni-bell-55 ni-3x"></i>
+          <h4 class="text-gradient text-danger mt-4" id="modal-message">{% trans "You should read this!" %}</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">{% trans "Ok, Got it" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const phoneInput = document.querySelector("#phone");
+  const countrySelect = document.querySelector('select[name="nationality"]');
+
+  const iti = window.intlTelInput(phoneInput, {
+    initialCountry: "auto",
+    geoIpLookup: function(callback) {
+      fetch('https://ipapi.co/json/')
+        .then((resp) => resp.json())
+        .then((data) => {
+          callback(data.country_code); // Set initial country based on IP
+          updateCountrySelect(data.country_code); // Update the nationality dropdown
+        })
+        .catch(() => {
+          callback("US"); // Default to US if IP lookup fails
+          updateCountrySelect("US");
+        });
+    },
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  });
+
+  // Function to update nationality dropdown and refresh Select2 for flags
+  function updateCountrySelect(countryCode) {
+    const options = countrySelect.options;
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].value.toUpperCase() === countryCode.toUpperCase()) {
+        options[i].selected = true;
+        break;
+      }
+    }
+    // Refresh Select2 to re-render flags
+    $(countrySelect).trigger('change');
+  }
+
+  // Sync nationality dropdown with phone input changes
+  phoneInput.addEventListener('input', function() {
+    const countryData = iti.getSelectedCountryData();
+    updateCountrySelect(countryData.iso2); // Sync nationality field with phone-detected country
+  });
+
+  // Form submission logic
+  document.querySelector('form').addEventListener('submit', function(e) {
+    const phoneNumber = iti.getNumber();
+    if (!iti.isValidNumber()) {
+      e.preventDefault();
+      alert('Please enter a valid phone number!');
+    } else {
+      phoneInput.value = phoneNumber; // Update form with international phone format
+    }
+  });
+
+  // Initialize Select2 with custom flag rendering
+  $(countrySelect).select2({
+    templateResult: formatCountry,
+    templateSelection: formatCountry,
+    escapeMarkup: function(m) { return m; } // Allow HTML for flags
+  });
+
+  // Custom function to render flags in Select2
+  function formatCountry(option) {
+    if (!option.id) return option.text;
+    const flagUrl = `https://flagcdn.com/w320/${option.id.toLowerCase()}.png`; // ISO country code flags
+    return `<span><img src="${flagUrl}" class="flag-icon" style="width:20px; height:15px; margin-right:10px;" /> ${option.text}</span>`;
+  }
+});
+</script>

@@ -1,0 +1,70 @@
+{% load static %}
+<!-- Entry and Exit Loaders -->
+<div id="entry-loader" class="loader active">
+  <img src="{% static 'assets/img/entry_loader.gif' %}" alt="Loading Entry...">
+</div>
+<div id="exit-loader" class="loader hidden">
+  <img src="{% static 'assets/img/exit_loader.gif' %}" alt="Loading Exit...">
+</div>
+
+<style>
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.loader.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .loader img {
+    width: 50%;
+    height: auto;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const entryLoader = document.getElementById("entry-loader");
+  const exitLoader = document.getElementById("exit-loader");
+  setTimeout(() => {
+    entryLoader.classList.add("hidden");
+  }, 1000);
+  barba.init({
+    transitions: [
+      {
+        name: "fade",
+        leave(data) {
+          exitLoader.classList.remove("hidden");
+          exitLoader.classList.add("active");
+          return gsap.to(data.current.container, { opacity: 0 });
+        },
+        enter(data) {
+          exitLoader.classList.remove("active");
+          exitLoader.classList.add("hidden");
+          return gsap.from(data.next.container, { opacity: 0 });
+        },
+      },
+    ],
+  });
+});
+</script>

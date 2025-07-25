@@ -1,0 +1,145 @@
+{% load static i18n custom_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrapesJS Editor</title>
+
+    <!-- Required CSS Files -->
+    <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" />
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/grapesjs-blocks-basic/dist/grapesjs-blocks-basic.min.css">
+<link rel="stylesheet" href="https://unpkg.com/grapesjs-navbar/dist/grapesjs-navbar.min.css">
+<link rel="stylesheet" href="https://unpkg.com/grapesjs-component-countdown/dist/grapesjs-component-countdown.min.css">
+<link rel="stylesheet" href="https://unpkg.com/grapesjs-plugin-export/dist/grapesjs-plugin-export.min.css">
+
+</head>
+<body>
+
+<!-- GrapesJS Canvas -->
+<div id="gjs" style="height: 100vh; overflow: hidden;"></div>
+
+<!-- Page Selector -->
+<div style="padding: 10px;">
+    <label for="pageSelect">Select Page:</label>
+    <select id="pageSelect" onchange="loadPage()">
+        <option value="{% url 'app:dashboard' %}">Leads</option>
+    </select>
+</div>
+
+<!-- Required JS Libraries -->
+<script src="https://unpkg.com/grapesjs"></script>
+<script src="https://unpkg.com/grapesjs-preset-webpage"></script>
+<script src="https://unpkg.com/grapesjs-blocks-basic"></script>
+<script src="https://unpkg.com/grapesjs-navbar"></script>
+<script src="https://unpkg.com/grapesjs-component-countdown"></script>
+<script src="https://unpkg.com/grapesjs-plugin-export"></script>
+
+
+<script>
+    // Initialize GrapesJS
+    const editor = grapesjs.init({
+        container: '#gjs',
+        fromElement: false,
+        width: 'auto',
+        height: '100vh',
+        storageManager: false,
+    plugins: [
+      'grapesjs-blocks-basic',
+      'grapesjs-plugin-forms',
+      'grapesjs-navbar',
+      'grapesjs-component-countdown',
+      'grapesjs-plugin-export'
+    ],
+    pluginsOpts: {
+      'grapesjs-blocks-basic': { /* options */ },
+      'grapesjs-navbar': { /* options */ },
+      'grapesjs-component-countdown': { /* options */ },
+      'grapesjs-plugin-export': { /* options */ }
+    }
+
+    });
+
+    // Load Pages Function
+function loadPage() {
+    const pageUrl = document.getElementById('pageSelect').value;
+
+    fetch(pageUrl, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+        .then(response => {
+            if (!response.ok) throw new Error(`Page load failed: ${response.status}`);
+            return response.text();
+        })
+        .then(html => {
+            // Load Components into GrapesJS
+            editor.setComponents(html);
+            editor.refresh();  // Ensure the canvas is refreshed
+
+            // Extract and Execute Inline Scripts
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            const scripts = tempDiv.querySelectorAll('script');
+            scripts.forEach(script => {
+                try {
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                        console.log(`Fetched external script: ${script.src}`);
+                    } else {
+                        newScript.textContent = script.innerHTML;
+                        console.log(`Executed inline script: ${script.innerHTML.substring(0, 100)}...`);  // Print a preview
+                    }
+                    document.body.appendChild(newScript);
+                } catch (error) {
+                    console.error(`Script execution failed: ${error}`);
+                }
+            });
+
+            console.log(`Loaded and executed scripts from: ${pageUrl}`);
+        })
+        .catch(error => console.error('Error loading page:', error));
+}
+
+    // Load Home Page on Initial Load
+    document.addEventListener('DOMContentLoaded', loadPage);
+    </script>
+
+  <script>
+
+function initializeDataTable() {
+    $('#leadsTable').DataTable({
+        "order": [[0, "asc"]],
+        "paging": true,
+        "searching": true,
+        "info": true
+    });
+}
+
+function initializeCalendar() {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: '/leads/calendar-events/',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        height: 'auto'
+    });
+    calendar.render();
+}
+
+
+            initializeDataTable();
+            initializeCalendar();
+</script>
+
+
+</body>
+</html>

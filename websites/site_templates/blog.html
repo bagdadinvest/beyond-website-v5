@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<div class="page-heading">
+    <div class="container">
+        <div class="heading-content">
+            <h1>Our <em>Blog</em></h1>
+        </div>
+    </div>
+</div>
+
+<div class="blog-entries">
+    <div class="container">
+        <div class="col-md-9">
+            <div class="blog-posts">
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-md-12">
+                        <div class="blog-post">
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                            <div class="text-content">
+                                <span>
+                                    <a href="#">{{ post.owner }}</a> /
+                                    <a href="#">{{ post.date }}</a> /
+                                    <a href="#">{{ post.category }}</a>
+                                </span>
+                                <h2>{{ post.title }}</h2>
+                                <p>{{ post.excerpt }}</p>
+                                <div class="simple-btn">
+                                    <a href="{{ post.url }}">continue reading</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="side-bar">
+                {% include 'partials/search.html' %}
+                {% include 'partials/recent-posts.html' %}
+                {% include 'partials/categories.html' %}
+                {% include 'partials/archives.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

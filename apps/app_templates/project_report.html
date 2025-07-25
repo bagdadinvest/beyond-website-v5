@@ -1,0 +1,1129 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}Project Analysis Report{% endblock %}
+{% block content %}
+<div class='container'>
+<h1 class='my-4'>Project Analysis Report</h1>
+<hr>
+<div class='accordion' id='projectAnalysisAccordion'>
+
+        <div class="card">
+            <div class="card-header" id="headingDjangoNative">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDjangoNative" aria-expanded="false" aria-controls="collapseDjangoNative">
+                        Django Native Apps
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseDjangoNative" class="collapse" aria-labelledby="headingDjangoNative" data-bs-parent="#projectAnalysisAccordion">
+                <div class="card-body">
+                    <ul>
+        
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="card">
+            <div class="card-header" id="headingCustomApps">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCustomApps" aria-expanded="false" aria-controls="collapseCustomApps">
+                        Custom Apps
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseCustomApps" class="collapse" aria-labelledby="headingCustomApps" data-bs-parent="#projectAnalysisAccordion">
+                <div class="card-body">
+                    <ul>
+        
+<li>django.contrib.admin</li>
+<li>django.contrib.admindocs</li>
+<li>django.contrib.auth</li>
+<li>django.contrib.contenttypes</li>
+<li>django.contrib.sessions</li>
+<li>django.contrib.messages</li>
+<li>django.contrib.sites</li>
+<li>allauth</li>
+<li>allauth.account</li>
+<li>allauth.socialaccount</li>
+<li>corsheaders</li>
+<li>django.contrib.staticfiles</li>
+<li>apps</li>
+<li>bootstrap3</li>
+<li>wagtail.contrib.forms</li>
+<li>wagtail.contrib.redirects</li>
+<li>wagtail.embeds</li>
+<li>wagtail.sites</li>
+<li>wagtail.users</li>
+<li>wagtail.snippets</li>
+<li>wagtail.documents</li>
+<li>wagtail.images</li>
+<li>wagtail.search</li>
+<li>wagtail.admin</li>
+<li>wagtail</li>
+<li>modelcluster</li>
+<li>taggit</li>
+<li>ckeditor</li>
+<li>ckeditor_uploader</li>
+<li>rosetta</li>
+<li>websites</li>
+<li>actstream</li>
+<li>import_export</li>
+<li>topblogs</li>
+<li>livereload</li>
+<li>debug_toolbar</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="card">
+            <div class="card-header" id="headingFeaturesOverview">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFeaturesOverview" aria-expanded="false" aria-controls="collapseFeaturesOverview">
+                        Features Overview
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFeaturesOverview" class="collapse" aria-labelledby="headingFeaturesOverview" data-bs-parent="#projectAnalysisAccordion">
+                <div class="card-body">
+        
+<h3>Analyzing App: django.contrib.admin</h3>
+<h4>Models:</h4><ul>
+<li>LogEntry</li>
+</ul>
+<p>No views found.</p>
+<p>Error analyzing URLs: No module named 'django.contrib.admin.urls'</p>
+<h3>Analyzing App: django.contrib.admindocs</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>BaseAdminDocsView - No URL found</li>
+<li>BookmarkletsView - No URL found</li>
+<li>Engine - No URL found</li>
+<li>Http404 - No URL found</li>
+<li>ImproperlyConfigured - No URL found</li>
+<li>ModelDetailView - No URL found</li>
+<li>ModelIndexView - No URL found</li>
+<li>Path - No URL found</li>
+<li>TemplateDetailView - No URL found</li>
+<li>TemplateFilterIndexView - No URL found</li>
+<li>TemplateTagIndexView - No URL found</li>
+<li>TemplateView - No URL found</li>
+<li>ViewDetailView - No URL found</li>
+<li>ViewDoesNotExist - No URL found</li>
+<li>ViewIndexView - No URL found</li>
+<li>_ - No URL found</li>
+<li>cached_property - No URL found</li>
+<li>cleandoc - No URL found</li>
+<li>extract_views_from_urlpatterns - No URL found</li>
+<li>func_accepts_kwargs - No URL found</li>
+<li>func_accepts_var_args - No URL found</li>
+<li>get_func_full_args - No URL found</li>
+<li>get_mod_func - No URL found</li>
+<li>get_readable_field_data_type - No URL found</li>
+<li>get_resolver - No URL found</li>
+<li>get_return_data_type - No URL found</li>
+<li>get_urlconf - No URL found</li>
+<li>get_view_name - No URL found</li>
+<li>import_module - No URL found</li>
+<li>method_decorator - No URL found</li>
+<li>method_has_no_args - No URL found</li>
+<li>remove_non_capturing_groups - No URL found</li>
+<li>replace_metacharacters - No URL found</li>
+<li>replace_named_groups - No URL found</li>
+<li>replace_unnamed_groups - No URL found</li>
+<li>safe_join - No URL found</li>
+<li>simplify_regex - No URL found</li>
+<li>staff_member_required - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/bookmarklets/</li>
+<li>http://localhost:8000/tags/</li>
+<li>http://localhost:8000/filters/</li>
+<li>http://localhost:8000/views/</li>
+<li>http://localhost:8000/views/<view>/</li>
+<li>http://localhost:8000/models/</li>
+<li>http://localhost:8000/^models/(?P<app_label>[^.]+)\.(?P<model_name>[^/]+)/$</li>
+<li>http://localhost:8000/templates/<path:template>/</li>
+</ul>
+<h3>Analyzing App: django.contrib.auth</h3>
+<h4>Models:</h4><ul>
+<li>Permission</li>
+<li>Group</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>AuthenticationForm - No URL found</li>
+<li>FormView - No URL found</li>
+<li>HttpResponseRedirect - No URL found</li>
+<li>ImproperlyConfigured - No URL found</li>
+<li>LoginView - No URL found</li>
+<li>LogoutView - No URL found</li>
+<li>PasswordChangeDoneView - No URL found</li>
+<li>PasswordChangeForm - No URL found</li>
+<li>PasswordChangeView - No URL found</li>
+<li>PasswordContextMixin - No URL found</li>
+<li>PasswordResetCompleteView - No URL found</li>
+<li>PasswordResetConfirmView - No URL found</li>
+<li>PasswordResetDoneView - No URL found</li>
+<li>PasswordResetForm - No URL found</li>
+<li>PasswordResetView - No URL found</li>
+<li>QueryDict - No URL found</li>
+<li>RedirectURLMixin - No URL found</li>
+<li>SetPasswordForm - No URL found</li>
+<li>TemplateView - No URL found</li>
+<li>UserModel - No URL found</li>
+<li>ValidationError - No URL found</li>
+<li>_ - No URL found</li>
+<li>auth_login - No URL found</li>
+<li>auth_logout - No URL found</li>
+<li>csrf_protect - No URL found</li>
+<li>get_current_site - No URL found</li>
+<li>get_user_model - No URL found</li>
+<li>login_not_required - No URL found</li>
+<li>login_required - No URL found</li>
+<li>logout_then_login - No URL found</li>
+<li>method_decorator - No URL found</li>
+<li>never_cache - No URL found</li>
+<li>redirect_to_login - No URL found</li>
+<li>resolve_url - No URL found</li>
+<li>reverse_lazy - No URL found</li>
+<li>sensitive_post_parameters - No URL found</li>
+<li>update_session_auth_hash - No URL found</li>
+<li>url_has_allowed_host_and_scheme - No URL found</li>
+<li>urlparse - No URL found</li>
+<li>urlsafe_base64_decode - No URL found</li>
+<li>urlunparse - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/login/</li>
+<li>http://localhost:8000/logout/</li>
+<li>http://localhost:8000/password_change/</li>
+<li>http://localhost:8000/password_change/done/</li>
+<li>http://localhost:8000/password_reset/</li>
+<li>http://localhost:8000/password_reset/done/</li>
+<li>http://localhost:8000/reset/<uidb64>/<token>/</li>
+<li>http://localhost:8000/reset/done/</li>
+</ul>
+<h3>Analyzing App: django.contrib.contenttypes</h3>
+<h4>Models:</h4><ul>
+<li>ContentType</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>ContentType - No URL found</li>
+<li>Http404 - No URL found</li>
+<li>HttpResponseRedirect - No URL found</li>
+<li>ObjectDoesNotExist - No URL found</li>
+<li>_ - No URL found</li>
+<li>get_current_site - No URL found</li>
+<li>shortcut - No URL found</li>
+</ul>
+<p>Error analyzing URLs: No module named 'django.contrib.contenttypes.urls'</p>
+<h3>Analyzing App: django.contrib.sessions</h3>
+<h4>Models:</h4><ul>
+<li>Session</li>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'django.contrib.sessions.urls'</p>
+<h3>Analyzing App: django.contrib.messages</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>SuccessMessageMixin - No URL found</li>
+</ul>
+<p>Error analyzing URLs: No module named 'django.contrib.messages.urls'</p>
+<h3>Analyzing App: django.contrib.sites</h3>
+<h4>Models:</h4><ul>
+<li>Site</li>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'django.contrib.sites.urls'</p>
+<h3>Analyzing App: allauth</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views module found.</p>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/3rdparty/</li>
+<li>http://localhost:8000/social/login/cancelled/</li>
+<li>http://localhost:8000/social/login/error/</li>
+<li>http://localhost:8000/social/signup/</li>
+<li>http://localhost:8000/social/connections/</li>
+</ul>
+<h3>Analyzing App: allauth.account</h3>
+<h4>Models:</h4><ul>
+<li>EmailAddress</li>
+<li>EmailConfirmation</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>AccountInactiveView - No URL found</li>
+<li>AddEmailForm - No URL found</li>
+<li>AjaxCapableProcessFormViewMixin - No URL found</li>
+<li>BaseReauthenticateView - No URL found</li>
+<li>ChangePasswordForm - No URL found</li>
+<li>CloseableSignupMixin - No URL found</li>
+<li>ConfirmEmailView - No URL found</li>
+<li>ConfirmLoginCodeForm - No URL found</li>
+<li>ConfirmLoginCodeView - No URL found</li>
+<li>EmailAddress - No URL found</li>
+<li>EmailConfirmation - No URL found</li>
+<li>EmailVerificationSentView - No URL found</li>
+<li>EmailView - No URL found</li>
+<li>FormView - No URL found</li>
+<li>Http404 - No URL found</li>
+<li>HttpResponse - No URL found</li>
+<li>HttpResponseRedirect - No URL found</li>
+<li>ImmediateHttpResponse - No URL found</li>
+<li>LoginForm - No URL found</li>
+<li>LoginView - No URL found</li>
+<li>LogoutFunctionalityMixin - No URL found</li>
+<li>LogoutView - No URL found</li>
+<li>NextRedirectMixin - No URL found</li>
+<li>PasswordChangeView - No URL found</li>
+<li>PasswordResetDoneView - No URL found</li>
+<li>PasswordResetFromKeyDoneView - No URL found</li>
+<li>PasswordResetFromKeyView - No URL found</li>
+<li>PasswordResetView - No URL found</li>
+<li>PasswordSetView - No URL found</li>
+<li>PermissionDenied - No URL found</li>
+<li>ReauthenticateForm - No URL found</li>
+<li>ReauthenticateView - No URL found</li>
+<li>RedirectAuthenticatedUserMixin - No URL found</li>
+<li>RequestLoginCodeForm - No URL found</li>
+<li>RequestLoginCodeView - No URL found</li>
+<li>ResetPasswordForm - No URL found</li>
+<li>ResetPasswordKeyForm - No URL found</li>
+<li>SetPasswordForm - No URL found</li>
+<li>SignupForm - No URL found</li>
+<li>SignupView - No URL found</li>
+<li>TemplateView - No URL found</li>
+<li>UserTokenForm - No URL found</li>
+<li>ValidationError - No URL found</li>
+<li>_ajax_response - No URL found</li>
+<li>account_inactive - No URL found</li>
+<li>complete_signup - No URL found</li>
+<li>confirm_email - No URL found</li>
+<li>confirm_login_code - No URL found</li>
+<li>email - No URL found</li>
+<li>email_verification_sent - No URL found</li>
+<li>get_adapter - No URL found</li>
+<li>get_current_site - No URL found</li>
+<li>get_emailconfirmation_model - No URL found</li>
+<li>get_form_class - No URL found</li>
+<li>login - No URL found</li>
+<li>login_required - No URL found</li>
+<li>logout - No URL found</li>
+<li>method_decorator - No URL found</li>
+<li>never_cache - No URL found</li>
+<li>password_change - No URL found</li>
+<li>password_reset - No URL found</li>
+<li>password_reset_done - No URL found</li>
+<li>password_reset_from_key - No URL found</li>
+<li>password_reset_from_key_done - No URL found</li>
+<li>password_set - No URL found</li>
+<li>perform_login - No URL found</li>
+<li>rate_limit - No URL found</li>
+<li>reauthenticate - No URL found</li>
+<li>redirect - No URL found</li>
+<li>request_login_code - No URL found</li>
+<li>reverse - No URL found</li>
+<li>reverse_lazy - No URL found</li>
+<li>send_email_confirmation - No URL found</li>
+<li>sensitive_post_parameters - No URL found</li>
+<li>sensitive_post_parameters_m - No URL found</li>
+<li>signup - No URL found</li>
+<li>sync_user_email_addresses - No URL found</li>
+<li>url_str_to_user_pk - No URL found</li>
+<li>user_display - No URL found</li>
+<li>validate_email - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/login/</li>
+<li>http://localhost:8000/logout/</li>
+<li>http://localhost:8000/inactive/</li>
+<li>http://localhost:8000/signup/</li>
+<li>http://localhost:8000/reauthenticate/</li>
+<li>http://localhost:8000/email/</li>
+<li>http://localhost:8000/confirm-email/</li>
+<li>http://localhost:8000/^confirm-email/(?P<key>[-:\w]+)/$</li>
+<li>http://localhost:8000/password/change/</li>
+<li>http://localhost:8000/password/set/</li>
+<li>http://localhost:8000/password/reset/</li>
+<li>http://localhost:8000/password/reset/done/</li>
+<li>http://localhost:8000/^password/reset/key/(?P<uidb36>[0-9A-Za-z]+)-(?P<key>.+)/$</li>
+<li>http://localhost:8000/password/reset/key/done/</li>
+</ul>
+<h3>Analyzing App: allauth.socialaccount</h3>
+<h4>Models:</h4><ul>
+<li>SocialApp</li>
+<li>SocialAccount</li>
+<li>SocialToken</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>AjaxCapableProcessFormViewMixin - No URL found</li>
+<li>CloseableSignupMixin - No URL found</li>
+<li>ConnectionsView - No URL found</li>
+<li>DisconnectForm - No URL found</li>
+<li>FormView - No URL found</li>
+<li>HttpResponseRedirect - No URL found</li>
+<li>LoginCancelledView - No URL found</li>
+<li>LoginErrorView - No URL found</li>
+<li>RedirectAuthenticatedUserMixin - No URL found</li>
+<li>SignupForm - No URL found</li>
+<li>SignupView - No URL found</li>
+<li>SocialAccount - No URL found</li>
+<li>TemplateView - No URL found</li>
+<li>connections - No URL found</li>
+<li>get_adapter - No URL found</li>
+<li>get_current_site - No URL found</li>
+<li>get_form_class - No URL found</li>
+<li>login_cancelled - No URL found</li>
+<li>login_error - No URL found</li>
+<li>login_required - No URL found</li>
+<li>method_decorator - No URL found</li>
+<li>reverse - No URL found</li>
+<li>reverse_lazy - No URL found</li>
+<li>signup - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/login/cancelled/</li>
+<li>http://localhost:8000/login/error/</li>
+<li>http://localhost:8000/signup/</li>
+<li>http://localhost:8000/</li>
+</ul>
+<h3>Analyzing App: corsheaders</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'corsheaders.urls'</p>
+<h3>Analyzing App: django.contrib.staticfiles</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>Http404 - No URL found</li>
+<li>serve - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/^static/(?P<path>.*)$</li>
+</ul>
+<h3>Analyzing App: apps</h3>
+<h4>Models:</h4><ul>
+<li>HomePage</li>
+<li>Insurance</li>
+<li>EmergencyContact</li>
+<li>MedicalInformation</li>
+<li>Hospital</li>
+<li>User</li>
+<li>Referral</li>
+<li>Appointment</li>
+<li>HospitalStay</li>
+<li>Prescription</li>
+<li>MessageGroup</li>
+<li>Message</li>
+<li>Subscription</li>
+<li>Contact</li>
+<li>EmailTemplate</li>
+<li>TreatmentProduct</li>
+<li>TreatmentPlan</li>
+<li>TreatmentPlanItem</li>
+<li>MedicalFile</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>Appointment - No URL found</li>
+<li>AuthenticationBackend - No URL found</li>
+<li>Booking - No URL found</li>
+<li>Client - No URL found</li>
+<li>Contact - No URL found</li>
+<li>ContentType - No URL found</li>
+<li>EmergencyContact - No URL found</li>
+<li>File - No URL found</li>
+<li>Flight - No URL found</li>
+<li>Group - No URL found</li>
+<li>Hospital - No URL found</li>
+<li>HospitalStay - No URL found</li>
+<li>HttpResponse - No URL found</li>
+<li>Insurance - No URL found</li>
+<li>JsonResponse - No URL found</li>
+<li>Location - No URL found</li>
+<li>LogEntry - No URL found</li>
+<li>Max - No URL found</li>
+<li>MedicalFile - No URL found</li>
+<li>MedicalInformation - No URL found</li>
+<li>Message - No URL found</li>
+<li>MessageGroup - No URL found</li>
+<li>Nominatim - No URL found</li>
+<li>PermissionDenied - No URL found</li>
+<li>Prescription - No URL found</li>
+<li>ResponseError - No URL found</li>
+<li>Subscription - No URL found</li>
+<li>TermsofService - No URL found</li>
+<li>TreatmentPlan - No URL found</li>
+<li>User - No URL found</li>
+<li>UserAdminForm - No URL found</li>
+<li>ValidationError - No URL found</li>
+<li>_ - No URL found</li>
+<li>activate - No URL found</li>
+<li>add_appointment_form - No URL found</li>
+<li>add_group - No URL found</li>
+<li>add_prescription_form - No URL found</li>
+<li>addition - No URL found</li>
+<li>appointment_form - No URL found</li>
+<li>authenticate - No URL found</li>
+<li>billing_view - No URL found</li>
+<li>book_flight - No URL found</li>
+<li>change - No URL found</li>
+<li>check_email - No URL found</li>
+<li>complete_signup - No URL found</li>
+<li>conversation - No URL found</li>
+<li>csrf_exempt - No URL found</li>
+<li>dashboard_view - No URL found</li>
+<li>delete_appointment - No URL found</li>
+<li>delete_prescription - No URL found</li>
+<li>deletion - No URL found</li>
+<li>demo - No URL found</li>
+<li>destination_airport_search - No URL found</li>
+<li>email_is_valid - No URL found</li>
+<li>export - No URL found</li>
+<li>export_me - No URL found</li>
+<li>find_nearest_airport - No URL found</li>
+<li>full_signup_context - No URL found</li>
+<li>generate_referral_code_view - No URL found</li>
+<li>get_change_message - No URL found</li>
+<li>get_city_airport_list - No URL found</li>
+<li>get_currency_code - No URL found</li>
+<li>get_currency_code_ajax - No URL found</li>
+<li>get_language - No URL found</li>
+<li>get_object_or_404 - No URL found</li>
+<li>get_or_create_referral_code - No URL found</li>
+<li>get_referral_link - No URL found</li>
+<li>get_text_list - No URL found</li>
+<li>get_user_model - No URL found</li>
+<li>handle_add_group_form - No URL found</li>
+<li>handle_appointment_form - No URL found</li>
+<li>handle_prescription_form - No URL found</li>
+<li>handle_referral - No URL found</li>
+<li>handle_user_form - No URL found</li>
+<li>home1 - No URL found</li>
+<li>login - No URL found</li>
+<li>login_required - No URL found</li>
+<li>login_view - No URL found</li>
+<li>logout - No URL found</li>
+<li>logout_view - No URL found</li>
+<li>logs - No URL found</li>
+<li>map_view - No URL found</li>
+<li>marketing_view - No URL found</li>
+<li>medical_information - No URL found</li>
+<li>messages - No URL found</li>
+<li>microsofter - No URL found</li>
+<li>my_medical_information - No URL found</li>
+<li>none_if_invalid - No URL found</li>
+<li>ocr_uploaded_document - No URL found</li>
+<li>origin_airport_search - No URL found</li>
+<li>prescription_form - No URL found</li>
+<li>prescriptions - No URL found</li>
+<li>prescriptions_invoice_view - No URL found</li>
+<li>privacypolicy - No URL found</li>
+<li>product - No URL found</li>
+<li>profile - No URL found</li>
+<li>project - No URL found</li>
+<li>redirect - No URL found</li>
+<li>render - No URL found</li>
+<li>reverse_geocode - No URL found</li>
+<li>salesdash - No URL found</li>
+<li>sanitize_phone - No URL found</li>
+<li>schedule - No URL found</li>
+<li>scheduletemp - No URL found</li>
+<li>send_email_confirmation - No URL found</li>
+<li>serp_view - No URL found</li>
+<li>set_language - No URL found</li>
+<li>signup - No URL found</li>
+<li>static_appointments_chart - No URL found</li>
+<li>streamlit_embed - No URL found</li>
+<li>transfers - No URL found</li>
+<li>upload_id_and_save - No URL found</li>
+<li>url_has_allowed_host_and_scheme - No URL found</li>
+<li>user_list_view - No URL found</li>
+<li>user_passes_test - No URL found</li>
+<li>users - No URL found</li>
+<li>virtual_reality - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/login/</li>
+<li>http://localhost:8000/logout/</li>
+<li>http://localhost:8000/generate-referral-code/</li>
+<li>http://localhost:8000/schedule/</li>
+<li>http://localhost:8000/prescriptions/</li>
+<li>http://localhost:8000/messages/</li>
+<li>http://localhost:8000/messages/<int:id>/</li>
+<li>http://localhost:8000/delete_prescription/<int:id>/</li>
+<li>http://localhost:8000/edit_prescription/<int:id>/</li>
+<li>http://localhost:8000/add_prescription/</li>
+<li>http://localhost:8000/prescriptions_invoice/</li>
+<li>http://localhost:8000/delete_appointment/<int:id>/</li>
+<li>http://localhost:8000/edit_appointment/<int:id>/</li>
+<li>http://localhost:8000/add_appointment/</li>
+<li>http://localhost:8000/add_group/</li>
+<li>http://localhost:8000/users/<int:id>/</li>
+<li>http://localhost:8000/users/me/</li>
+<li>http://localhost:8000/signup/</li>
+<li>http://localhost:8000/check_email</li>
+<li>http://localhost:8000/users/<int:id>/info.json/</li>
+<li>http://localhost:8000/users/me/info.json/</li>
+<li>http://localhost:8000/users/</li>
+<li>http://localhost:8000/logs/</li>
+<li>http://localhost:8000/profile/</li>
+<li>http://localhost:8000/dashboard/</li>
+<li>http://localhost:8000/map/</li>
+<li>http://localhost:8000/flight/</li>
+<li>http://localhost:8000/book_flight/<str:flight>/</li>
+<li>http://localhost:8000/origin_airport_search/</li>
+<li>http://localhost:8000/destination_airport_search/</li>
+<li>http://localhost:8000/get_currency_code/</li>
+<li>http://localhost:8000/upload_id_and_save/</li>
+<li>http://localhost:8000/ocr_uploaded_document/</li>
+<li>http://localhost:8000/billing/</li>
+<li>http://localhost:8000/transfers/</li>
+<li>http://localhost:8000/virtual-reality/</li>
+<li>http://localhost:8000/salesdash/</li>
+<li>http://localhost:8000/project/</li>
+<li>http://localhost:8000/product/</li>
+<li>http://localhost:8000/reverse_geocode/</li>
+<li>http://localhost:8000/marketing/</li>
+<li>http://localhost:8000/serp/</li>
+<li>http://localhost:8000/privacypolicy/</li>
+<li>http://localhost:8000/TermsofService/</li>
+<li>http://localhost:8000/streamlit_embed/</li>
+<li>http://localhost:8000/microsofter/</li>
+<li>http://localhost:8000/user-table/</li>
+<li>http://localhost:8000/ndash/</li>
+<li>http://localhost:8000/patients/</li>
+<li>http://localhost:8000/patients/<int:patient_id>/</li>
+<li>http://localhost:8000/patients/<int:patient_id>/treatment-plan/new/</li>
+<li>http://localhost:8000/treatment-plan/<int:treatment_plan_id>/</li>
+<li>http://localhost:8000/treatment-plan/<int:treatment_plan_id>/edit/</li>
+<li>http://localhost:8000/my-treatment-plans/</li>
+<li>http://localhost:8000/my-treatment-plans/download/</li>
+<li>http://localhost:8000/set_language/</li>
+<li>http://localhost:8000/dataviz/</li>
+<li>http://localhost:8000/^media/(?P<path>.*)$</li>
+</ul>
+<h3>Analyzing App: bootstrap3</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'bootstrap3.urls'</p>
+<h3>Analyzing App: wagtail.contrib.forms</h3>
+<h4>Models:</h4><ul>
+<li>FormSubmission</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>BaseListingView - No URL found</li>
+<li>Column - No URL found</li>
+<li>ContentTypeColumn - No URL found</li>
+<li>DateFromToRangeFilter - No URL found</li>
+<li>DateRangePickerWidget - No URL found</li>
+<li>DeleteSubmissionsView - No URL found</li>
+<li>FormPagesListView - No URL found</li>
+<li>OrderedDict - No URL found</li>
+<li>Page - No URL found</li>
+<li>PermissionDenied - No URL found</li>
+<li>SpreadsheetExportMixin - No URL found</li>
+<li>SubmissionsListFilterSet - No URL found</li>
+<li>SubmissionsListView - No URL found</li>
+<li>TemplateView - No URL found</li>
+<li>TitleColumn - No URL found</li>
+<li>WagtailFilterSet - No URL found</li>
+<li>get_forms_for_user - No URL found</li>
+<li>get_object_or_404 - No URL found</li>
+<li>get_submissions_list_view - No URL found</li>
+<li>gettext - No URL found</li>
+<li>gettext_lazy - No URL found</li>
+<li>ngettext - No URL found</li>
+<li>quote - No URL found</li>
+<li>redirect - No URL found</li>
+<li>reverse - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/results/</li>
+<li>http://localhost:8000/submissions/<int:page_id>/</li>
+<li>http://localhost:8000/submissions/<int:page_id>/results/</li>
+<li>http://localhost:8000/submissions/<int:page_id>/delete/</li>
+</ul>
+<h3>Analyzing App: wagtail.contrib.redirects</h3>
+<h4>Models:</h4><ul>
+<li>Redirect</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>Button - No URL found</li>
+<li>Column - No URL found</li>
+<li>ConfirmImportForm - No URL found</li>
+<li>ConfirmImportManagementForm - No URL found</li>
+<li>EditView - No URL found</li>
+<li>ImportForm - No URL found</li>
+<li>IndexView - No URL found</li>
+<li>List - No URL found</li>
+<li>PermissionDenied - No URL found</li>
+<li>PermissionPolicyChecker - No URL found</li>
+<li>Redirect - No URL found</li>
+<li>RedirectForm - No URL found</li>
+<li>RedirectTargetColumn - No URL found</li>
+<li>RedirectsReportFilterSet - No URL found</li>
+<li>SearchForm - No URL found</li>
+<li>StatusTagColumn - No URL found</li>
+<li>SuspiciousOperation - No URL found</li>
+<li>TemplateResponse - No URL found</li>
+<li>TitleColumn - No URL found</li>
+<li>_ - No URL found</li>
+<li>add - No URL found</li>
+<li>cached_property - No URL found</li>
+<li>create_redirects_from_dataset - No URL found</li>
+<li>delete - No URL found</li>
+<li>force_str - No URL found</li>
+<li>get_file_storage - No URL found</li>
+<li>get_format_cls_by_extension - No URL found</li>
+<li>get_import_formats - No URL found</li>
+<li>get_object_or_404 - No URL found</li>
+<li>get_supported_extensions - No URL found</li>
+<li>gettext_lazy - No URL found</li>
+<li>log - No URL found</li>
+<li>ngettext - No URL found</li>
+<li>process_import - No URL found</li>
+<li>redirect - No URL found</li>
+<li>render - No URL found</li>
+<li>require_http_methods - No URL found</li>
+<li>reverse - No URL found</li>
+<li>start_import - No URL found</li>
+<li>to_readable_errors - No URL found</li>
+<li>write_to_file_storage - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/results/</li>
+<li>http://localhost:8000/add/</li>
+<li>http://localhost:8000/<int:redirect_id>/</li>
+<li>http://localhost:8000/<int:redirect_id>/delete/</li>
+<li>http://localhost:8000/import/</li>
+<li>http://localhost:8000/import/process/</li>
+</ul>
+<h3>Analyzing App: wagtail.embeds</h3>
+<h4>Models:</h4><ul>
+<li>Embed</li>
+</ul>
+<p>No views found.</p>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/chooser/</li>
+<li>http://localhost:8000/chooser/upload/</li>
+</ul>
+<h3>Analyzing App: wagtail.sites</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>Column - No URL found</li>
+<li>CreateView - No URL found</li>
+<li>DeleteView - No URL found</li>
+<li>EditView - No URL found</li>
+<li>IndexView - No URL found</li>
+<li>ModelViewSet - No URL found</li>
+<li>Site - No URL found</li>
+<li>SiteForm - No URL found</li>
+<li>SiteViewSet - No URL found</li>
+<li>StatusFlagColumn - No URL found</li>
+<li>TitleColumn - No URL found</li>
+<li>_ - No URL found</li>
+</ul>
+<p>Error analyzing URLs: No module named 'wagtail.sites.urls'</p>
+<h3>Analyzing App: wagtail.users</h3>
+<h4>Models:</h4><ul>
+<li>UserProfile</li>
+</ul>
+<p>No views found.</p>
+<p>Error analyzing URLs: The included URLconf 'wagtail.users.urls' does not appear to have any patterns in it. If you see the 'urlpatterns' variable with valid patterns in the file then the issue is probably caused by a circular import.</p>
+<h3>Analyzing App: wagtail.snippets</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views found.</p>
+<p>Error analyzing URLs: No module named 'wagtail.snippets.urls'</p>
+<h3>Analyzing App: wagtail.documents</h3>
+<h4>Models:</h4><ul>
+<li>Document</li>
+</ul>
+<p>No views found.</p>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/^(\d+)/(.*)$</li>
+<li>http://localhost:8000/authenticate_with_password/<int:restriction_id>/</li>
+</ul>
+<h3>Analyzing App: wagtail.images</h3>
+<h4>Models:</h4><ul>
+<li>Image</li>
+<li>Rendition</li>
+</ul>
+<p>No views found.</p>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/^([^/]*)/(\d*)/([^/]*)/[^/]*$</li>
+</ul>
+<h3>Analyzing App: wagtail.search</h3>
+<h4>Models:</h4><ul>
+<li>SQLiteFTSIndexEntry</li>
+<li>IndexEntry</li>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'wagtail.search.urls'</p>
+<h3>Analyzing App: wagtail.admin</h3>
+<h4>Models:</h4><ul>
+<li>Admin</li>
+<li>EditingSession</li>
+</ul>
+<p>No views found.</p>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/test404/</li>
+<li>http://localhost:8000/api/</li>
+<li>http://localhost:8000/failwhale/</li>
+<li>http://localhost:8000/pages/</li>
+<li>http://localhost:8000/pages/<int:parent_page_id>/</li>
+<li>http://localhost:8000/pages/<int:parent_page_id>/results/</li>
+<li>http://localhost:8000/bulk/<str:app_label>/<str:model_name>/<str:action>/</li>
+<li>http://localhost:8000/pages/</li>
+<li>http://localhost:8000/choose-page/</li>
+<li>http://localhost:8000/choose-page/<int:parent_page_id>/</li>
+<li>http://localhost:8000/choose-page/search/</li>
+<li>http://localhost:8000/choose-page/chosen-multiple/</li>
+<li>http://localhost:8000/choose-external-link/</li>
+<li>http://localhost:8000/choose-email-link/</li>
+<li>http://localhost:8000/choose-phone-link/</li>
+<li>http://localhost:8000/choose-anchor-link/</li>
+<li>http://localhost:8000/tag-autocomplete/</li>
+<li>http://localhost:8000/tag-autocomplete/<slug:app_name>/<slug:model_name>/</li>
+<li>http://localhost:8000/collections/</li>
+<li>http://localhost:8000/workflows/</li>
+<li>http://localhost:8000/reports/</li>
+<li>http://localhost:8000/account/</li>
+<li>http://localhost:8000/logout/</li>
+<li>http://localhost:8000/dismissibles/</li>
+<li>http://localhost:8000/editing-sessions/</li>
+<li>http://localhost:8000/forms/</li>
+<li>http://localhost:8000/redirects/</li>
+<li>http://localhost:8000/embeds/</li>
+<li>http://localhost:8000/snippets/</li>
+<li>http://localhost:8000/documents/</li>
+<li>http://localhost:8000/images/</li>
+<li>http://localhost:8000/sites/</li>
+<li>http://localhost:8000/users/</li>
+<li>http://localhost:8000/groups/</li>
+<li>http://localhost:8000/documents/chooser/</li>
+<li>http://localhost:8000/images/chooser/</li>
+<li>http://localhost:8000/sprite/</li>
+<li>http://localhost:8000/login/</li>
+<li>http://localhost:8000/password_reset/</li>
+<li>http://localhost:8000/jsi18n/</li>
+<li>http://localhost:8000/^.*/$</li>
+</ul>
+<h3>Analyzing App: wagtail</h3>
+<h4>Models:</h4><ul>
+<li>Locale</li>
+<li>Site</li>
+<li>ModelLogEntry</li>
+<li>CollectionViewRestriction</li>
+<li>Collection</li>
+<li>GroupCollectionPermission</li>
+<li>UploadedFile</li>
+<li>ReferenceIndex</li>
+<li>Page</li>
+<li>Revision</li>
+<li>GroupPagePermission</li>
+<li>PageViewRestriction</li>
+<li>WorkflowPage</li>
+<li>WorkflowContentType</li>
+<li>WorkflowTask</li>
+<li>Task</li>
+<li>Workflow</li>
+<li>GroupApprovalTask</li>
+<li>WorkflowState</li>
+<li>TaskState</li>
+<li>PageLogEntry</li>
+<li>Comment</li>
+<li>CommentReply</li>
+<li>PageSubscription</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>Http404 - No URL found</li>
+<li>HttpResponse - No URL found</li>
+<li>Page - No URL found</li>
+<li>PageViewRestriction - No URL found</li>
+<li>PasswordViewRestrictionForm - No URL found</li>
+<li>authenticate_with_password - No URL found</li>
+<li>get_object_or_404 - No URL found</li>
+<li>redirect - No URL found</li>
+<li>reverse - No URL found</li>
+<li>serve - No URL found</li>
+<li>url_has_allowed_host_and_scheme - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/_util/authenticate_with_password/<int:page_view_restriction_id>/<int:page_id>/</li>
+<li>http://localhost:8000/_util/login/</li>
+<li>http://localhost:8000/^((?:[\w\-]+/)*)$</li>
+</ul>
+<h3>Analyzing App: modelcluster</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'modelcluster.urls'</p>
+<h3>Analyzing App: taggit</h3>
+<h4>Models:</h4><ul>
+<li>Tag</li>
+<li>TaggedItem</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>ContentType - No URL found</li>
+<li>ListView - No URL found</li>
+<li>Tag - No URL found</li>
+<li>TagListMixin - No URL found</li>
+<li>TaggedItem - No URL found</li>
+<li>get_object_or_404 - No URL found</li>
+<li>tagged_object_list - No URL found</li>
+</ul>
+<p>Error analyzing URLs: No module named 'taggit.urls'</p>
+<h3>Analyzing App: ckeditor</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'ckeditor.urls'</p>
+<h3>Analyzing App: ckeditor_uploader</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>HttpResponse - No URL found</li>
+<li>ImageUploadView - No URL found</li>
+<li>JsonResponse - No URL found</li>
+<li>SearchForm - No URL found</li>
+<li>_get_user_path - No URL found</li>
+<li>browse - No URL found</li>
+<li>csrf_exempt - No URL found</li>
+<li>datetime - No URL found</li>
+<li>escape - No URL found</li>
+<li>get_backend - No URL found</li>
+<li>get_files_browse_urls - No URL found</li>
+<li>get_image_files - No URL found</li>
+<li>get_upload_filename - No URL found</li>
+<li>import_string - No URL found</li>
+<li>is_valid_image_extension - No URL found</li>
+<li>render - No URL found</li>
+<li>upload - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/^upload/</li>
+<li>http://localhost:8000/^browse/</li>
+</ul>
+<h3>Analyzing App: rosetta</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>BytesIO - No URL found</li>
+<li>Http404 - No URL found</li>
+<li>HttpResponse - No URL found</li>
+<li>HttpResponseRedirect - No URL found</li>
+<li>JsonResponse - No URL found</li>
+<li>LoginURL - No URL found</li>
+<li>Paginator - No URL found</li>
+<li>Promise - No URL found</li>
+<li>RosettaBaseMixin - No URL found</li>
+<li>RosettaFileLevelMixin - No URL found</li>
+<li>TemplateView - No URL found</li>
+<li>TranslationException - No URL found</li>
+<li>TranslationFileDownload - No URL found</li>
+<li>TranslationFileListView - No URL found</li>
+<li>TranslationFormView - No URL found</li>
+<li>View - No URL found</li>
+<li>_ - No URL found</li>
+<li>cached_property - No URL found</li>
+<li>can_translate - No URL found</li>
+<li>can_translate_language - No URL found</li>
+<li>find_pos - No URL found</li>
+<li>force_bytes - No URL found</li>
+<li>get_app_name - No URL found</li>
+<li>get_rosetta_version - No URL found</li>
+<li>get_storage - No URL found</li>
+<li>method_decorator - No URL found</li>
+<li>never_cache - No URL found</li>
+<li>pagination_range - No URL found</li>
+<li>pofile - No URL found</li>
+<li>reverse - No URL found</li>
+<li>timestamp_with_timezone - No URL found</li>
+<li>translate - No URL found</li>
+<li>translate_text - No URL found</li>
+<li>urlencode - No URL found</li>
+<li>urlencode_safe - No URL found</li>
+<li>user_passes_test - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/^$</li>
+<li>http://localhost:8000/^files/$</li>
+<li>http://localhost:8000/^files/(?P<po_filter>[\w-]+)/$</li>
+<li>http://localhost:8000/^files/(?P<po_filter>[\w-]+)/(?P<lang_id>[\w\-_\.@]+)/(?P<idx>\d+)/$</li>
+<li>http://localhost:8000/^files/(?P<po_filter>[\w-]+)/(?P<lang_id>[\w\-_\.@]+)/(?P<idx>\d+)/download/$</li>
+<li>http://localhost:8000/^translate/$</li>
+</ul>
+<h3>Analyzing App: websites</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>HT_view - No URL found</li>
+<li>LogEntry - No URL found</li>
+<li>PermissionDenied - No URL found</li>
+<li>_ - No URL found</li>
+<li>about_view - No URL found</li>
+<li>activate - No URL found</li>
+<li>blog_view - No URL found</li>
+<li>comingsoon_view - No URL found</li>
+<li>dashboard_view - No URL found</li>
+<li>dentaslanFR_view - No URL found</li>
+<li>dentaslan_view - No URL found</li>
+<li>estetik_view - No URL found</li>
+<li>get_language - No URL found</li>
+<li>get_object_or_404 - No URL found</li>
+<li>grid_view - No URL found</li>
+<li>index_view - No URL found</li>
+<li>innovation_view - No URL found</li>
+<li>masonry_view - No URL found</li>
+<li>redirect - No URL found</li>
+<li>render - No URL found</li>
+<li>set_language - <a href='http://localhost:8000//set_language/'>http://localhost:8000//set_language/</a></li>
+<li>single_post_view - No URL found</li>
+<li>tooth_model_view - No URL found</li>
+<li>url_has_allowed_host_and_scheme - No URL found</li>
+<li>whybeyond_view - No URL found</li>
+<li>whyturkey_view - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/masonry/</li>
+<li>http://localhost:8000/grid/</li>
+<li>http://localhost:8000/about/</li>
+<li>http://localhost:8000/blog/</li>
+<li>http://localhost:8000/single-post/</li>
+<li>http://localhost:8000/innovation/</li>
+<li>http://localhost:8000/whyturkey/</li>
+<li>http://localhost:8000/whybeyond/</li>
+<li>http://localhost:8000/dentaslan/</li>
+<li>http://localhost:8000/HT/</li>
+<li>http://localhost:8000/estetik/</li>
+<li>http://localhost:8000/comingsoon/</li>
+<li>http://localhost:8000/dashboard/</li>
+<li>http://localhost:8000/dentaslanFR/</li>
+<li>http://localhost:8000/tooth-model/</li>
+<li>http://localhost:8000/set_language/</li>
+<li>http://localhost:8000/^media/(?P<path>.*)$</li>
+</ul>
+<h3>Analyzing App: actstream</h3>
+<h4>Models:</h4><ul>
+<li>Follow</li>
+<li>Action</li>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>ContentType - No URL found</li>
+<li>HttpResponse - No URL found</li>
+<li>HttpResponseRedirect - No URL found</li>
+<li>USER_MODEL - No URL found</li>
+<li>actor - No URL found</li>
+<li>csrf_exempt - No URL found</li>
+<li>detail - No URL found</li>
+<li>follow_unfollow - No URL found</li>
+<li>followers - No URL found</li>
+<li>following - No URL found</li>
+<li>get_object_or_404 - No URL found</li>
+<li>get_user_model - No URL found</li>
+<li>login_required - No URL found</li>
+<li>model - No URL found</li>
+<li>render - No URL found</li>
+<li>respond - No URL found</li>
+<li>stream - No URL found</li>
+<li>user - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/^feed/$</li>
+<li>http://localhost:8000/^feed/atom/$</li>
+<li>http://localhost:8000/^feed/json/$</li>
+<li>http://localhost:8000/^feed/(?P<content_type_id>[^/]+)/$</li>
+<li>http://localhost:8000/^feed/(?P<content_type_id>[^/]+)/atom/$</li>
+<li>http://localhost:8000/^feed/(?P<content_type_id>[^/]+)/json/$</li>
+<li>http://localhost:8000/^feed/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/$</li>
+<li>http://localhost:8000/^feed/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/atom/$</li>
+<li>http://localhost:8000/^feed/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/json/$</li>
+<li>http://localhost:8000/^follow/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/(?:(?P<flag>[^/]+)/)?$</li>
+<li>http://localhost:8000/^follow_all/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/(?:(?P<flag>[^/]+)/)?$</li>
+<li>http://localhost:8000/^unfollow_all/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/(?:(?P<flag>[^/]+)/)?$</li>
+<li>http://localhost:8000/^unfollow/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/(?:(?P<flag>[^/]+)/)?$</li>
+<li>http://localhost:8000/^followers/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/(?:(?P<flag>[^/]+)/)?$</li>
+<li>http://localhost:8000/^following/(?P<user_id>[^/]+)/(?:(?P<flag>[^/]+)/)?$</li>
+<li>http://localhost:8000/^actors/(?P<content_type_id>[^/]+)/(?P<object_id>[^/]+)/$</li>
+<li>http://localhost:8000/^actors/(?P<content_type_id>[^/]+)/$</li>
+<li>http://localhost:8000/^detail/(?P<action_id>[^/]+)/$</li>
+<li>http://localhost:8000/^(?P<username>[^/]+)/$</li>
+<li>http://localhost:8000/^$</li>
+</ul>
+<h3>Analyzing App: import_export</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'import_export.urls'</p>
+<h3>Analyzing App: topblogs</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>dashboard_view - No URL found</li>
+<li>estetik_view - No URL found</li>
+<li>ht_view - No URL found</li>
+<li>internal_surgeries_view - No URL found</li>
+<li>render - No URL found</li>
+<li>set_language - <a href='http://localhost:8000//topblogs/set_language/'>http://localhost:8000//topblogs/set_language/</a></li>
+<li>tbindex_view - No URL found</li>
+<li>whybeyond_view - No URL found</li>
+<li>whyturkey_view - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/dashboard/</li>
+<li>http://localhost:8000/estetik/</li>
+<li>http://localhost:8000/ht/</li>
+<li>http://localhost:8000/internalsurgeries/</li>
+<li>http://localhost:8000/</li>
+<li>http://localhost:8000/whybeyond/</li>
+<li>http://localhost:8000/whyturkey/</li>
+<li>http://localhost:8000/set_language/</li>
+</ul>
+<h3>Analyzing App: livereload</h3>
+<h4>Models:</h4><ul>
+</ul>
+<p>No views module found.</p>
+<p>Error analyzing URLs: No module named 'livereload.urls'</p>
+<h3>Analyzing App: debug_toolbar</h3>
+<h4>Models:</h4><ul>
+</ul>
+<h4>Views and URLs:</h4><ul>
+<li>DebugToolbar - No URL found</li>
+<li>JsonResponse - No URL found</li>
+<li>_ - No URL found</li>
+<li>escape - No URL found</li>
+<li>render_panel - No URL found</li>
+<li>render_with_toolbar_language - No URL found</li>
+<li>require_show_toolbar - No URL found</li>
+</ul>
+<h4>URLs Found:</h4><ul>
+<li>http://localhost:8000/render_panel/</li>
+<li>http://localhost:8000/history_sidebar/</li>
+<li>http://localhost:8000/history_refresh/</li>
+<li>http://localhost:8000/sql_select/</li>
+<li>http://localhost:8000/sql_explain/</li>
+<li>http://localhost:8000/sql_profile/</li>
+<li>http://localhost:8000/template_source/</li>
+</ul>
+</div></div></div>
+</div>
+</div>
+{% endblock content %}

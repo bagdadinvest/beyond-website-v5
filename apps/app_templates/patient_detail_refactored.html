@@ -1,0 +1,616 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Patient Detail" %} - {{ patient.first_name }} {{ patient.last_name }}{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+<style>
+    .card {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border: none;
+        border-radius: 0.75rem;
+    }
+    
+    .shadow-sm {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+    }
+    
+    .nav-pills .nav-link {
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-pills .nav-link:not(.active):hover {
+        background-color: rgba(0, 123, 255, 0.1);
+    }
+    
+    .table-responsive {
+        border-radius: 0.5rem;
+    }
+    
+    .btn {
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+    
+    /* Custom scrollbar */
+    .table-responsive::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .table-responsive::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .table-responsive::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 10px;
+    }
+    
+    .table-responsive::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<!-- Display messages (success/error) -->
+{% if messages %}
+    <div class="container-fluid mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="container-fluid mt-3">
+    <!-- Navigation breadcrumb -->
+    <div class="row align-items-center mb-3">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'app:list_patients' %}">
+                            <i class="fas fa-users"></i> {% trans "Patients" %}
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ patient.first_name }} {{ patient.last_name }}
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-auto">
+            <div class="btn-group" role="group">
+                <a href="{% url 'app:list_patients' %}" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-arrow-left"></i> {% trans "Back to Patients" %}
+                </a>
+                <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
+                    <i class="fas fa-print"></i> {% trans "Print" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid py-2">
+    <div class="row mb-5">
+        <!-- Sidebar Navigation -->
+        <div class="col-lg-3">
+            <div class="card position-sticky shadow-sm" style="top: 1rem;">
+                <div class="card-header">
+                    <h6 class="mb-0 text-sm font-weight-bold">{% trans "Navigation" %}</h6>
+                </div>
+                <ul class="nav flex-column bg-white border-radius-lg p-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active" href="#profile">
+                            <i class="fas fa-user-circle me-2"></i>
+                            <span class="text-sm">{% trans "Profile" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#basic-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <span class="text-sm">{% trans "Basic Information" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#medical-files">
+                            <i class="fas fa-file-medical me-2"></i>
+                            <span class="text-sm">{% trans "Medical Files" %}</span>
+                            {% if patient.has_medical_files %}
+                                <span class="badge bg-success ms-auto">{{ patient.medical_files|length }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#treatment-plans">
+                            <i class="fas fa-procedures me-2"></i>
+                            <span class="text-sm">{% trans "Treatment Plans" %}</span>
+                            {% if patient.treatment_plans %}
+                                <span class="badge bg-primary ms-auto">{{ patient.treatment_plans|length }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-lg-9 mt-lg-0 mt-4">
+            <!-- Profile Section -->
+            {% include 'includes/patient/profile_card.html' %}
+
+            <!-- Tab Content -->
+            <div class="tab-content mt-4">
+                <!-- Basic Info Section -->
+                <div class="tab-pane fade show active" id="basic-info-content">
+                    {% include 'includes/patient/basic_info_card.html' %}
+                </div>
+
+                <!-- Medical Files Section -->
+                <div class="tab-pane fade" id="medical-files-content">
+                    {% include 'includes/patient/medical_files_card.html' %}
+                </div>
+
+                <!-- Treatment Plans Section -->
+                <div class="tab-pane fade" id="treatment-plans-content">
+                    {% include 'includes/patient/treatment_plans_card.html' %}
+                </div>
+            </div>
+
+            <!-- Treatment Plan Form (Hidden by default) -->
+            {% include 'includes/patient/treatment_plan_form.html' %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<!-- Core JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Initialize DataTables for treatment plans
+    if ($.fn.DataTable.isDataTable('#treatment-plan-table')) {
+        $('#treatment-plan-table').DataTable().destroy();
+    }
+
+    if ($('#treatment-plan-table').length) {
+        $('#treatment-plan-table').DataTable({
+            paging: true,
+            searching: true,
+            ordering: true,
+            pageLength: 10,
+            responsive: true,
+            columnDefs: [
+                { orderable: false, targets: [2, 7] }, // Disable ordering for "Treatment Items" and "Actions"
+                { width: "10%", targets: 0 },  // ID column
+                { width: "15%", targets: 1 },  // Doctor column  
+                { width: "25%", targets: 2 },  // Items column
+                { width: "10%", targets: 3 },  // Subtotal column
+                { width: "10%", targets: 4 },  // Discount column
+                { width: "10%", targets: 5 },  // Total column
+                { width: "10%", targets: 6 },  // Date column
+                { width: "10%", targets: 7 }   // Actions column
+            ],
+            language: {
+                lengthMenu: "{% trans 'Show _MENU_ entries' %}",
+                zeroRecords: "{% trans 'No matching records found' %}",
+                info: "{% trans 'Showing _START_ to _END_ of _TOTAL_ entries' %}",
+                infoEmpty: "{% trans 'Showing 0 to 0 of 0 entries' %}",
+                infoFiltered: "{% trans '(filtered from _MAX_ total entries)' %}",
+                search: "{% trans 'Search:' %}",
+                paginate: {
+                    first: "{% trans 'First' %}",
+                    last: "{% trans 'Last' %}",
+                    next: "{% trans 'Next' %}",
+                    previous: "{% trans 'Previous' %}"
+                }
+            }
+        });
+    }
+
+    // Smooth scrolling for navigation links
+    $('.nav-link[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        var target = $(this.getAttribute('href'));
+        if (target.length) {
+            $('html, body').animate({
+                scrollTop: target.offset().top - 100
+            }, 500);
+            
+            // Update active state
+            $('.nav-link').removeClass('active');
+            $(this).addClass('active');
+        }
+    });
+
+    // Tab switching functionality
+    $('.nav-pills .nav-link').on('click', function(e) {
+        e.preventDefault();
+        var targetTab = $(this).attr('href');
+        
+        // Hide all tab content
+        $('.tab-pane').removeClass('show active');
+        
+        // Show target tab content
+        $(targetTab + '-content').addClass('show active');
+        
+        // Update nav state
+        $('.nav-pills .nav-link').removeClass('active');
+        $(this).addClass('active');
+    });
+});
+
+// Treatment Plan Form Management
+let formsetIndex = parseInt($('#id_treatmentplanitem_set-TOTAL_FORMS').val()) || 0;
+
+// Add Treatment Plan Button
+document.getElementById('add-treatment-plan-btn').addEventListener('click', function() {
+    resetTreatmentPlanForm();
+    document.getElementById('treatment-plan-form-title').innerText = '{% trans "Add New Treatment Plan" %}';
+    document.getElementById('treatment-plan-submit-btn').innerText = '{% trans "Save Treatment Plan" %}';
+    document.getElementById('treatment-plan-form-card').style.display = 'block';
+    scrollToForm();
+});
+
+// Add First Treatment Plan Button (for empty state)
+if (document.getElementById('add-first-treatment-plan-btn')) {
+    document.getElementById('add-first-treatment-plan-btn').addEventListener('click', function() {
+        resetTreatmentPlanForm();
+        document.getElementById('treatment-plan-form-title').innerText = '{% trans "Create First Treatment Plan" %}';
+        document.getElementById('treatment-plan-submit-btn').innerText = '{% trans "Save Treatment Plan" %}';
+        document.getElementById('treatment-plan-form-card').style.display = 'block';
+        scrollToForm();
+    });
+}
+
+// Edit Treatment Plan Buttons
+document.querySelectorAll('.edit-treatment-plan-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const planId = this.getAttribute('data-plan-id');
+        // Load treatment plan data via AJAX
+        fetch(`/treatment-plan/${planId}/edit/`)
+            .then(response => response.json())
+            .then(data => {
+                populateTreatmentPlanForm(data);
+                document.getElementById('treatment-plan-form-title').innerText = '{% trans "Edit Treatment Plan" %}';
+                document.getElementById('treatment-plan-submit-btn').innerText = '{% trans "Update Treatment Plan" %}';
+                document.getElementById('treatment-plan-id').value = planId;
+                document.getElementById('treatment-plan-form-card').style.display = 'block';
+                scrollToForm();
+            })
+            .catch(error => {
+                console.error('Error loading treatment plan:', error);
+                alert('{% trans "Error loading treatment plan data" %}');
+            });
+    });
+});
+
+// View Treatment Plan Details
+document.querySelectorAll('.view-treatment-plan-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const planId = this.getAttribute('data-plan-id');
+        // Load treatment plan details into modal
+        fetch(`/treatment-plan/${planId}/`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('treatmentPlanModalBody').innerHTML = html;
+                const modal = new bootstrap.Modal(document.getElementById('treatmentPlanModal'));
+                modal.show();
+            })
+            .catch(error => {
+                console.error('Error loading treatment plan details:', error);
+                alert('{% trans "Error loading treatment plan details" %}');
+            });
+    });
+});
+
+// Delete Treatment Plan
+document.querySelectorAll('.delete-treatment-plan-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const planId = this.getAttribute('data-plan-id');
+        if (confirm('{% trans "Are you sure you want to delete this treatment plan?" %}')) {
+            // Implement delete functionality
+            fetch(`/treatment-plan/${planId}/delete/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('{% trans "Error deleting treatment plan" %}');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting treatment plan:', error);
+                alert('{% trans "Error deleting treatment plan" %}');
+            });
+        }
+    });
+});
+
+// Cancel Treatment Plan Form
+document.getElementById('cancel-treatment-plan-btn').addEventListener('click', function() {
+    document.getElementById('treatment-plan-form-card').style.display = 'none';
+    resetTreatmentPlanForm();
+});
+
+// Add Item Button
+document.getElementById('add-item-btn').addEventListener('click', function() {
+    addTreatmentPlanItem();
+});
+
+// Remove Item Buttons (delegated event)
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.remove-item-btn')) {
+        e.preventDefault();
+        removeTreatmentPlanItem(e.target.closest('.item-form-row'));
+    }
+});
+
+// Calculate totals when form values change
+document.addEventListener('input', function(e) {
+    if (e.target.closest('#treatment-plan-form')) {
+        calculateTreatmentPlanTotals();
+    }
+});
+
+document.addEventListener('change', function(e) {
+    if (e.target.closest('#treatment-plan-form')) {
+        calculateTreatmentPlanTotals();
+    }
+});
+
+function resetTreatmentPlanForm() {
+    document.getElementById('treatment-plan-form').reset();
+    document.getElementById('treatment-plan-id').value = '';
+    
+    // Remove all item forms except the first one
+    const container = document.getElementById('item-forms-container');
+    const firstForm = container.querySelector('.item-form-row');
+    container.innerHTML = '';
+    if (firstForm) {
+        container.appendChild(firstForm);
+        // Reset the first form
+        firstForm.querySelectorAll('input, select').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+    }
+    
+    formsetIndex = 1;
+    updateFormsetManagement();
+    calculateTreatmentPlanTotals();
+}
+
+function addTreatmentPlanItem() {
+    const template = document.getElementById('empty-form-template');
+    const container = document.getElementById('item-forms-container');
+    
+    // Clone the template
+    const newForm = template.innerHTML
+        .replace(/__prefix__/g, formsetIndex)
+        .replace(/data-form-index="__prefix__"/g, `data-form-index="${formsetIndex}"`);
+    
+    // Create a wrapper div and insert the new form
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = newForm;
+    container.appendChild(wrapper.firstElementChild);
+    
+    formsetIndex++;
+    updateFormsetManagement();
+}
+
+function removeTreatmentPlanItem(formRow) {
+    const deleteInput = formRow.querySelector('input[name$="-DELETE"]');
+    if (deleteInput) {
+        deleteInput.value = 'on';
+        formRow.style.display = 'none';
+    } else {
+        formRow.remove();
+    }
+    calculateTreatmentPlanTotals();
+}
+
+function updateFormsetManagement() {
+    const totalFormsInput = document.getElementById('id_treatmentplanitem_set-TOTAL_FORMS');
+    if (totalFormsInput) {
+        totalFormsInput.value = formsetIndex;
+    }
+}
+
+function calculateTreatmentPlanTotals() {
+    let subtotal = 0;
+    
+    // Calculate subtotal from all visible item forms
+    document.querySelectorAll('.item-form-row:not([style*="display: none"])').forEach(function(formRow) {
+        const productSelect = formRow.querySelector('select[name$="-product"]');
+        const quantityInput = formRow.querySelector('input[name$="-quantity"]');
+        const discountInput = formRow.querySelector('input[name$="-discount_percentage"]');
+        const totalSpan = formRow.querySelector('.item-total');
+        
+        if (productSelect && quantityInput && discountInput && totalSpan) {
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            const price = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+            const quantity = parseInt(quantityInput.value) || 0;
+            const discount = parseFloat(discountInput.value) || 0;
+            
+            const itemSubtotal = price * quantity;
+            const itemDiscount = (itemSubtotal * discount) / 100;
+            const itemTotal = itemSubtotal - itemDiscount;
+            
+            totalSpan.textContent = `$${itemTotal.toFixed(2)}`;
+            subtotal += itemTotal;
+        }
+    });
+    
+    // Update plan totals
+    const planDiscountInput = document.querySelector('input[name="final_discount_percentage"]');
+    const planDiscount = parseFloat(planDiscountInput ? planDiscountInput.value : 0) || 0;
+    const discountAmount = (subtotal * planDiscount) / 100;
+    const total = subtotal - discountAmount;
+    
+    document.getElementById('plan-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('plan-discount').textContent = `-$${discountAmount.toFixed(2)}`;
+    document.getElementById('plan-total').textContent = `$${total.toFixed(2)}`;
+}
+
+function populateTreatmentPlanForm(data) {
+    // This function would populate the form with data from the server
+    // Implementation depends on the structure of the data returned
+    console.log('Populating form with data:', data);
+}
+
+function scrollToForm() {
+    setTimeout(() => {
+        document.getElementById('treatment-plan-form-card').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }, 100);
+}
+
+// File Preview Functionality
+// Image Preview
+document.querySelectorAll('.view-image-btn').forEach(function(img) {
+    img.addEventListener('click', function() {
+        const fileUrl = this.getAttribute('data-file-url');
+        const fileName = this.getAttribute('data-file-name');
+        
+        document.getElementById('modalImage').src = fileUrl;
+        document.getElementById('modalImage').alt = fileName;
+        document.getElementById('imageModalLabel').textContent = fileName;
+        document.getElementById('downloadImageBtn').href = fileUrl;
+        document.getElementById('downloadImageBtn').download = fileName;
+        
+        const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+    });
+});
+
+// PDF Preview
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
+let scale = 1;
+const canvas = document.getElementById('pdfCanvas');
+const ctx = canvas.getContext('2d');
+
+document.querySelectorAll('.view-pdf-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        const fileUrl = this.getAttribute('data-file-url');
+        const fileName = this.getAttribute('data-file-name');
+        
+        document.getElementById('pdfModalLabel').textContent = fileName;
+        document.getElementById('downloadPdfBtn').href = fileUrl;
+        
+        // Load PDF
+        pdfjsLib.getDocument(fileUrl).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            pageNum = 1;
+            scale = 1;
+            renderPage(pageNum);
+            updatePageInfo();
+        });
+        
+        const modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+        modal.show();
+    });
+});
+
+function renderPage(num) {
+    pageRendering = true;
+    pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({scale: scale});
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+        
+        const renderTask = page.render(renderContext);
+        renderTask.promise.then(function() {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+    });
+}
+
+function queueRenderPage(num) {
+    if (pageRendering) {
+        pageNumPending = num;
+    } else {
+        renderPage(num);
+    }
+}
+
+function updatePageInfo() {
+    document.getElementById('pageInfo').textContent = `${pageNum} / ${pdfDoc.numPages}`;
+    document.getElementById('zoomLevel').textContent = `${Math.round(scale * 100)}%`;
+}
+
+// PDF Controls
+document.getElementById('prevPage').addEventListener('click', function() {
+    if (pageNum <= 1) return;
+    pageNum--;
+    queueRenderPage(pageNum);
+    updatePageInfo();
+});
+
+document.getElementById('nextPage').addEventListener('click', function() {
+    if (pageNum >= pdfDoc.numPages) return;
+    pageNum++;
+    queueRenderPage(pageNum);
+    updatePageInfo();
+});
+
+document.getElementById('zoomIn').addEventListener('click', function() {
+    scale += 0.25;
+    queueRenderPage(pageNum);
+    updatePageInfo();
+});
+
+document.getElementById('zoomOut').addEventListener('click', function() {
+    if (scale <= 0.5) return;
+    scale -= 0.25;
+    queueRenderPage(pageNum);
+    updatePageInfo();
+});
+
+// Initialize tooltips
+if (typeof bootstrap !== 'undefined') {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+}
+
+// Initialize on page load
+calculateTreatmentPlanTotals();
+</script>
+{% endblock javascripts %}

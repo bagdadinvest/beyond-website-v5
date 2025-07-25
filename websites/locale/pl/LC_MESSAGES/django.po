@@ -1,0 +1,697 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-24 19:52+0300\n"
+"PO-Revision-Date: 2024-08-24 20:03+0000\n"
+"Last-Translator: lotfi kanouni <lofa@bc.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\site_templates\home\about.html:7 .\site_templates\home\home.html:5
+msgid "BEYONDCLINIC"
+msgstr "POZA KLINIKĄ"
+
+#: .\site_templates\home\about.html:17 .\site_templates\home\about.html:232
+#: .\site_templates\home\blog.html:239 .\site_templates\home\home.html:216
+#: .\site_templates\home\single-post.html:208
+msgid "About Us"
+msgstr "O nas"
+
+#: .\site_templates\home\about.html:31 .\site_templates\home\blog.html:24
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:91
+#: .\site_templates\home\blog.html:101 .\site_templates\home\blog.html:112
+#: .\site_templates\home\single-post.html:29
+#: .\site_templates\home\single-post.html:32
+msgid "Dental Implants"
+msgstr "Implanty"
+
+#: .\site_templates\home\about.html:32
+msgid ""
+"Restore your smile with our state-of-the-art dental implants. we ensure a "
+"seamless and comfortable procedure."
+msgstr ""
+"Przywróć swój uśmiech dzięki naszym najnowocześniejszym implantom "
+"dentystycznym. Zapewniamy bezproblemową i komfortową procedurę."
+
+#: .\site_templates\home\about.html:42
+msgid "Teeth Whitening"
+msgstr "Wybielanie zębów"
+
+#: .\site_templates\home\about.html:43
+msgid ""
+"Achieve a brighter smile with our professional teeth whitening services. "
+"Safe, effective, and long-lasting results."
+msgstr ""
+"Osiągnij jaśniejszy uśmiech dzięki naszym profesjonalnym usługom wybielania "
+"zębów. Bezpieczne, skuteczne i długotrwałe rezultaty."
+
+#: .\site_templates\home\about.html:53
+msgid "Orthodontics"
+msgstr "Ortodoncja"
+
+#: .\site_templates\home\about.html:54
+msgid ""
+"Straighten your teeth with our advanced orthodontic treatments, including "
+"braces and Invisalign."
+msgstr ""
+"Wyprostuj swoje zęby dzięki naszym zaawansowanym zabiegom ortodontycznym, w "
+"tym aparatom ortodontycznym i Invisalign."
+
+#: .\site_templates\home\about.html:64
+msgid "Cosmetic Dentistry"
+msgstr "Stomatologia estetyczna"
+
+#: .\site_templates\home\about.html:65
+msgid ""
+"Enhance the appearance of your teeth with our range of cosmetic dentistry "
+"services, including veneers and bonding."
+msgstr ""
+"Popraw wygląd swoich zębów dzięki naszej ofercie usług stomatologii "
+"estetycznej, w tym licówkom i bondingowi."
+
+#: .\site_templates\home\about.html:75
+#, fuzzy
+#| msgid "Dental Care"
+msgid "Preventive Care"
+msgstr "Opieka profilaktyczna"
+
+#: .\site_templates\home\about.html:76
+msgid ""
+"Maintain your oral health with regular check-ups, cleanings, and "
+"personalized care plans from our skilled team."
+msgstr ""
+"Utrzymuj zdrowie jamy ustnej dzięki regularnym kontrolom, czyszczeniu i "
+"spersonalizowanym planom pielęgnacji od naszego wykwalifikowanego zespołu."
+
+#: .\site_templates\home\about.html:86
+msgid "Emergency Dental Services"
+msgstr "Pogotowie stomatologiczne"
+
+#: .\site_templates\home\about.html:87
+msgid ""
+"Receive prompt and efficient care for dental emergencies, including "
+"toothaches, broken teeth, and more."
+msgstr ""
+"Uzyskaj szybką i skuteczną opiekę w nagłych przypadkach stomatologicznych, w"
+" tym bólach zębów, złamanych zębach i innych."
+
+#: .\site_templates\home\about.html:99 .\site_templates\home\about.html:101
+#: .\site_templates\home\about.html:103
+msgid "John"
+msgstr "Bradsava"
+
+#: .\site_templates\home\about.html:99
+msgid "'s Journey to a New Smile"
+msgstr "Podróż do nowego uśmiechu"
+
+#: .\site_templates\home\about.html:100
+msgid "A Life-Changing Dental Experience"
+msgstr "Doświadczenie dentystyczne, które zmienia życie"
+
+#: .\site_templates\home\about.html:102
+msgid "from"
+msgstr "z"
+
+#: .\site_templates\home\about.html:103
+msgid "UK"
+msgstr "polska"
+
+#: .\site_templates\home\about.html:103
+msgid ""
+"visited us last month with severe dental issues that had been affecting "
+"their confidence and quality of life. After a comprehensive treatment plan, "
+"including dental implants and restorative procedures,"
+msgstr ""
+"odwiedzili nas w zeszłym miesiącu z poważnymi problemami stomatologicznymi, "
+"które wpływały na ich pewność siebie i jakość życia. Po kompleksowym planie "
+"leczenia, w tym implantach stomatologicznych i zabiegach odtwórczych,"
+
+#: .\site_templates\home\about.html:103
+msgid " now smiles with confidence and enjoys a pain-free life."
+msgstr " Teraz uśmiecha się z pewnością siebie i cieszy się życiem bez bólu."
+
+#: .\site_templates\home\about.html:106
+#, fuzzy
+#| msgid "Patient Stories"
+msgid "Read More Patient Stories"
+msgstr "Przeczytaj więcej historii pacjentów"
+
+#: .\site_templates\home\about.html:117
+msgid "$250/Procedure"
+msgstr "$250/Procedura"
+
+#: .\site_templates\home\about.html:118
+msgid "Single Tooth Implant"
+msgstr "Implant pojedynczego zęba"
+
+#: .\site_templates\home\about.html:120 .\site_templates\home\about.html:134
+msgid "Initial Consultation"
+msgstr "Wstępna konsultacja"
+
+#: .\site_templates\home\about.html:121
+msgid "Implantation Procedure"
+msgstr "Procedura implantacji"
+
+#: .\site_templates\home\about.html:122
+msgid "Follow-Up Care"
+msgstr "Zachowaj ostrożność"
+
+#: .\site_templates\home\about.html:125 .\site_templates\home\about.html:139
+#: .\site_templates\home\about.html:153
+msgid "Details"
+msgstr "Szczegóły"
+
+#: .\site_templates\home\about.html:131
+msgid "$420/Procedure"
+msgstr "$420/Procedura"
+
+#: .\site_templates\home\about.html:132
+msgid "Multiple Tooth Implant"
+msgstr "Implant wielozębowy"
+
+#: .\site_templates\home\about.html:135
+msgid "Multiple Implantation Procedures"
+msgstr "Wielokrotne zabiegi implantacji"
+
+#: .\site_templates\home\about.html:136
+msgid "Comprehensive Follow-Up Care"
+msgstr "Kompleksowa opieka kontrolna"
+
+#: .\site_templates\home\about.html:145
+msgid "$750/Procedure"
+msgstr "$750/Procedura"
+
+#: .\site_templates\home\about.html:146
+msgid "Full Mouth Restoration"
+msgstr "Odbudowa całej jamy ustnej"
+
+#: .\site_templates\home\about.html:148
+msgid "Comprehensive Consultation"
+msgstr "Kompleksowe doradztwo"
+
+#: .\site_templates\home\about.html:149
+msgid "Full Dental Restoration"
+msgstr "Pełna odbudowa zębów"
+
+#: .\site_templates\home\about.html:150
+msgid "Dedicated Follow-Up Support"
+msgstr "Dedykowane wsparcie w zakresie działań następczych"
+
+#: .\site_templates\home\about.html:180
+#, fuzzy
+#| msgid "Say hello to Beyond!"
+msgid "Say hello to Highway"
+msgstr "Przywitaj się z Highway"
+
+#: .\site_templates\home\about.html:205 .\site_templates\home\blog.html:224
+#: .\site_templates\home\home.html:201
+#: .\site_templates\home\single-post.html:187
+msgid "Send Message Now"
+msgstr "Wyślij wiadomość teraz"
+
+#: .\site_templates\home\about.html:223
+msgid "Home - Full-width"
+msgstr "Strona główna - Pełna szerokość"
+
+#: .\site_templates\home\about.html:226
+msgid "Home - Masonry"
+msgstr "Strona główna - Murarstwo"
+
+#: .\site_templates\home\about.html:229
+msgid "Home - Small-width"
+msgstr "Strona główna - Mała szerokość"
+
+#: .\site_templates\home\about.html:235
+msgid "Blog Entries"
+msgstr "Wpisy na blogu"
+
+#: .\site_templates\home\about.html:238
+msgid "Single Post"
+msgstr "Pojedynczy post"
+
+#: .\site_templates\home\about.html:241
+msgid "We create awesome templates for you"
+msgstr "Tworzymy dla Ciebie niesamowite szablony"
+
+#: .\site_templates\home\blog.html:5 .\site_templates\home\blog.html:197
+#: .\site_templates\home\single-post.html:6
+msgid "MedTour Dental"
+msgstr "MedTour Dental"
+
+#: .\site_templates\home\blog.html:13
+msgid "Our Blog"
+msgstr "Nasz Blog"
+
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:36
+#: .\site_templates\home\blog.html:47
+#: .\site_templates\home\single-post.html:32
+msgid "Admin"
+msgstr "Admin"
+
+#: .\site_templates\home\blog.html:25
+msgid "August 24, 2024"
+msgstr "24 sierpnia 2024 r"
+
+#: .\site_templates\home\blog.html:26
+msgid "Why Choose Dental Implants Abroad?"
+msgstr "Dlaczego warto wybrać implanty stomatologiczne za granicą?"
+
+#: .\site_templates\home\blog.html:27
+#, python-format
+msgid ""
+"Dental implants have become a popular solution for those seeking to restore "
+"their smile, but the high costs in some countries can be prohibitive. This "
+"is where medical tourism comes into play. By choosing to get your dental "
+"implants abroad, you can save up to 70%% on costs while receiving top-notch "
+"care in state-of-the-art facilities."
+msgstr ""
+"Implanty dentystyczne stały się popularnym rozwiązaniem dla osób chcących "
+"przywrócić uśmiech, ale wysokie koszty w niektórych krajach mogą być "
+"zaporowe. W tym miejscu do gry wchodzi turystyka medyczna. Decydując się na "
+"zakup implantów dentystycznych za granicą, możesz zaoszczędzić do 70% "
+"kosztów, otrzymując jednocześnie opiekę na najwyższym poziomie w "
+"najnowocześniejszych placówkach."
+
+#: .\site_templates\home\blog.html:28 .\site_templates\home\blog.html:39
+#: .\site_templates\home\blog.html:50
+msgid "Continue reading"
+msgstr "Kontynuuj czytanie"
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:101
+msgid "August 10, 2024"
+msgstr "10 sierpnia 2024 r"
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:115
+msgid "Cost Savings"
+msgstr "Oszczędności"
+
+#: .\site_templates\home\blog.html:37
+msgid "Cost Savings: A Guide to Dental Implants in Medical Tourism"
+msgstr ""
+"Oszczędność kosztów: przewodnik po implantach dentystycznych w turystyce "
+"medycznej"
+
+#: .\site_templates\home\blog.html:38
+msgid ""
+"Medical tourism for dental implants not only offers cost savings but also "
+"gives patients access to world-renowned specialists. Learn how to plan your "
+"dental trip abroad and what to expect during your journey to a healthier, "
+"more confident smile."
+msgstr ""
+"Turystyka medyczna związana z implantami stomatologicznymi to nie tylko "
+"oszczędność kosztów, ale także dostęp do światowej sławy specjalistów. "
+"Dowiedz się, jak zaplanować zagraniczną wizytę u dentysty i czego możesz się"
+" spodziewać na drodze do zdrowszego, pewniejszego siebie uśmiechu."
+
+#: .\site_templates\home\blog.html:47
+msgid "July 15, 2024"
+msgstr "15 lipca 2024 r"
+
+#: .\site_templates\home\blog.html:47 .\site_templates\home\blog.html:114
+msgid "Patient Stories"
+msgstr "Historie pacjentów"
+
+#: .\site_templates\home\blog.html:48
+msgid "Success Stories: Patients Who Found Their Perfect Smile Abroad"
+msgstr ""
+"Historie sukcesu: Pacjenci, którzy znaleźli swój idealny uśmiech za granicą"
+
+#: .\site_templates\home\blog.html:49
+msgid ""
+"From initial consultations to final results, follow the journeys of patients"
+" who traveled abroad for dental implants. Discover how they overcame their "
+"dental issues and regained their confidence through affordable, high-quality"
+" care."
+msgstr ""
+"Od wstępnych konsultacji po końcowe wyniki, śledź podróże pacjentów, którzy "
+"wyjechali za granicę w celu wszczepienia implantów dentystycznych. Dowiedz "
+"się, jak przezwyciężyli problemy z zębami i odzyskali pewność siebie dzięki "
+"niedrogiej, wysokiej jakości opiece."
+
+#: .\site_templates\home\blog.html:75
+#: .\site_templates\home\single-post.html:69
+msgid "Archives"
+msgstr "Archiwum"
+
+#: .\site_templates\home\blog.html:78
+#: .\site_templates\home\single-post.html:72
+msgid "> August 2024 (4)"
+msgstr "> sierpnia 2024 (4)"
+
+#: .\site_templates\home\blog.html:79
+#: .\site_templates\home\single-post.html:73
+msgid "> July 2024 (16)"
+msgstr "> lipca 2024 (16)"
+
+#: .\site_templates\home\blog.html:80
+#: .\site_templates\home\single-post.html:74
+msgid "> June 2024 (5)"
+msgstr "> czerwca 2024 (5)"
+
+#: .\site_templates\home\blog.html:81
+#: .\site_templates\home\single-post.html:75
+msgid "> May 2024 (3)"
+msgstr "> maja 2024 (3)"
+
+#: .\site_templates\home\blog.html:82
+#: .\site_templates\home\single-post.html:76
+msgid "> April 2024 (27)"
+msgstr "> kwietnia 2024 (27)"
+
+#: .\site_templates\home\blog.html:87
+#: .\site_templates\home\single-post.html:81
+msgid "Recent Posts"
+msgstr "Najnowsze wpisy"
+
+#: .\site_templates\home\blog.html:91
+msgid "August 20, 2024"
+msgstr "20 sierpnia 2024 r"
+
+#: .\site_templates\home\blog.html:96
+msgid "How to Choose the Right Clinic Abroad"
+msgstr "Jak wybrać odpowiednią klinikę za granicą"
+
+#: .\site_templates\home\blog.html:96
+msgid "August 15, 2024"
+msgstr "15 sierpnia 2024 r"
+
+#: .\site_templates\home\blog.html:109
+#: .\site_templates\home\single-post.html:109
+msgid "Categories"
+msgstr "Kategorie"
+
+#: .\site_templates\home\blog.html:113
+#: .\site_templates\home\single-post.html:113
+msgid "> Medical Tourism (9)"
+msgstr "> Turystyka medyczna (9)"
+
+#: .\site_templates\home\blog.html:116
+#: .\site_templates\home\single-post.html:116
+msgid "> Clinics (5)"
+msgstr "> Kliniki (5)"
+
+#: .\site_templates\home\blog.html:121
+#: .\site_templates\home\single-post.html:121
+msgid "Latest Gallery"
+msgstr "Najnowsza galeria"
+
+#: .\site_templates\home\blog.html:238 .\site_templates\home\home.html:215
+#: .\site_templates\home\single-post.html:205
+msgid "Home"
+msgstr "Dom"
+
+#: .\site_templates\home\blog.html:240 .\site_templates\home\home.html:217
+#: .\site_templates\home\single-post.html:211
+msgid "Blog"
+msgstr "Blog"
+
+#: .\site_templates\home\blog.html:242 .\site_templates\home\home.html:219
+#: .\site_templates\home\single-post.html:216
+msgid "Your smile, our priority. Affordable dental care abroad."
+msgstr ""
+"Twój uśmiech to nasz priorytet. Niedroga opieka dentystyczna za granicą."
+
+#: .\site_templates\home\home.html:15
+msgid "MEDICAL TOURISM SERVICES PROVIDER"
+msgstr "DOSTAWCA USŁUG TURYSTYKI MEDYCZNEJ"
+
+#: .\site_templates\home\home.html:16
+msgid "xxx"
+msgstr "Xxx"
+
+#: .\site_templates\home\home.html:31
+msgid "INNOVATIVE SOLUTIONS"
+msgstr "INNOWACYJNE ROZWIĄZANIA"
+
+#: .\site_templates\home\home.html:46
+msgid "Beyond the Bazaar"
+msgstr "Poza bazarem"
+
+#: .\site_templates\home\home.html:59
+msgid "Why BEYOND CLINIC"
+msgstr "Dlaczego BEYOND CLINIC"
+
+#: .\site_templates\home\home.html:60
+msgid "HERE IS WHAT SETS US APART"
+msgstr "OTO, CO NAS WYRÓŻNIA"
+
+#: .\site_templates\home\home.html:74
+msgid "ALL YOU NEED TO KNOW IS THIS"
+msgstr "WSZYSTKO, CO MUSISZ WIEDZIEĆ, TO TO"
+
+#: .\site_templates\home\home.html:88
+msgid "Beyond Baldness"
+msgstr "Poza łysieniem"
+
+#: .\site_templates\home\home.html:101
+msgid "AESTHETIC SURGERIES"
+msgstr "OPERACJE ESTETYCZNE"
+
+#: .\site_templates\home\home.html:102
+msgid "SCULPT YOUR DREAM"
+msgstr "WYRZEŹBIJ SWOJE MARZENIE"
+
+#: .\site_templates\home\home.html:115
+msgid "DASHBOARD LOGIN"
+msgstr "LOGOWANIE DO PULPITU NAWIGACYJNEGO"
+
+#: .\site_templates\home\home.html:116
+msgid "CHECK IT FOR YOURSELF"
+msgstr "SPRAWDŹ SAM"
+
+#: .\site_templates\home\home.html:144
+msgid "IF YOU WANT FURHTHER RESOURCES"
+msgstr "JEŚLI POTRZEBUJESZ WIĘCEJ ZASOBÓW"
+
+#: .\site_templates\home\home.html:174
+msgid "Say hello to Beyond!"
+msgstr "Przywitaj się z Beyond!"
+
+#: .\site_templates\home\lang.html:9
+msgid "language"
+msgstr "Język"
+
+#: .\site_templates\home\single-post.html:16
+msgid "Dental Implants: A New Smile Abroad"
+msgstr "Implanty stomatologiczne: nowy uśmiech za granicą"
+
+#: .\site_templates\home\single-post.html:31
+msgid "Why Get Dental Implants Abroad?"
+msgstr "Dlaczego warto zdecydować się na implanty dentystyczne za granicą?"
+
+#: .\site_templates\home\single-post.html:32
+msgid "/"
+msgstr "/"
+
+#: .\site_templates\home\single-post.html:32
+msgid "24 August 2024"
+msgstr "środa, 24 sierpnia 2024"
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Dental implants are a life-changing solution for those with missing or "
+"damaged teeth, but the cost can be a barrier. By choosing to get your "
+"implants through medical tourism, you can access world-class dental care at "
+"a fraction of the price. Countries like Turkey, Mexico, and Thailand offer "
+"highly qualified dentists and state-of-the-art facilities."
+msgstr ""
+"Implanty dentystyczne to rozwiązanie zmieniające życie osób z brakującymi "
+"lub uszkodzonymi zębami, ale koszt może stanowić barierę. Decydując się na "
+"zakup implantów w ramach turystyki medycznej, możesz uzyskać dostęp do "
+"światowej klasy opieki stomatologicznej za ułamek ceny. Kraje takie jak "
+"Turcja, Meksyk i Tajlandia oferują wysoko wykwalifikowanych dentystów i "
+"najnowocześniejsze obiekty."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"This post explores the benefits of traveling abroad for dental implants, "
+"including cost savings, quality of care, and the added bonus of exploring a "
+"new country while improving your smile."
+msgstr ""
+"W tym poście omówiono korzyści płynące z podróżowania za granicę w celu "
+"wszczepienia implantów dentystycznych, w tym oszczędność kosztów, jakość "
+"opieki i dodatkową korzyść z odkrywania nowego kraju przy jednoczesnej "
+"poprawie uśmiechu."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Learn about patient experiences, the steps involved in the process, and tips"
+" for choosing the right clinic and destination for your dental needs."
+msgstr ""
+"Dowiedz się o doświadczeniach pacjentów, krokach związanych z tym procesem "
+"oraz wskazówkach dotyczących wyboru odpowiedniej kliniki i miejsca "
+"docelowego dla Twoich potrzeb dentystycznych."
+
+#: .\site_templates\home\single-post.html:33
+msgid "Back to Blog"
+msgstr "Powrót do bloga"
+
+#: .\site_templates\home\single-post.html:38
+msgid "Tags:"
+msgstr "Tagi:"
+
+#: .\site_templates\home\single-post.html:39
+msgid "Dental Care"
+msgstr "Opieka stomatologiczna"
+
+#: .\site_templates\home\single-post.html:39
+#: .\site_templates\home\single-post.html:40
+#: .\site_templates\home\single-post.html:47
+#: .\site_templates\home\single-post.html:48
+msgid ","
+msgstr ","
+
+#: .\site_templates\home\single-post.html:40
+msgid "Medical Tourism"
+msgstr "Turystyka medyczna"
+
+#: .\site_templates\home\single-post.html:41
+msgid "Affordable Implants"
+msgstr "Implanty w przystępnej cenie"
+
+#: .\site_templates\home\single-post.html:46
+msgid "Share:"
+msgstr "Udostępnij:"
+
+#: .\site_templates\home\single-post.html:47
+msgid "facebook"
+msgstr "Aktualności"
+
+#: .\site_templates\home\single-post.html:48
+msgid "twitter"
+msgstr "świergot"
+
+#: .\site_templates\home\single-post.html:49
+msgid "linkedin"
+msgstr "Serwis linkedin"
+
+#: .\site_templates\home\single-post.html:64
+msgid "Search..."
+msgstr "Szukać..."
+
+#: .\site_templates\home\single-post.html:85
+msgid "Recent Post 1"
+msgstr "Ostatni post 1"
+
+#: .\site_templates\home\single-post.html:87
+msgid "Top Destinations for Dental Implants"
+msgstr "Najpopularniejsze miejsca dla implantów dentystycznych"
+
+#: .\site_templates\home\single-post.html:88
+msgid "20 August 2024"
+msgstr "środa, 20 sierpnia 2024"
+
+#: .\site_templates\home\single-post.html:92
+msgid "Recent Post 2"
+msgstr "Ostatni post 2"
+
+#: .\site_templates\home\single-post.html:94
+msgid "Choosing the Right Clinic Abroad"
+msgstr "Wybór odpowiedniej kliniki za granicą"
+
+#: .\site_templates\home\single-post.html:95
+msgid "15 August 2024"
+msgstr "środa, 15 sierpnia 2024"
+
+#: .\site_templates\home\single-post.html:99
+msgid "Recent Post 3"
+msgstr "Ostatni post 3"
+
+#: .\site_templates\home\single-post.html:101
+msgid "Benefits of Dental Implants"
+msgstr "Korzyści z implantów dentystycznych"
+
+#: .\site_templates\home\single-post.html:102
+msgid "10 August 2024"
+msgstr "środa, 10 sierpnia 2024"
+
+#: .\site_templates\home\single-post.html:112
+msgid "> Dental Implants (7)"
+msgstr "> Implanty stomatologiczne (7)"
+
+#: .\site_templates\home\single-post.html:114
+msgid "> Patient Stories (14)"
+msgstr "> Historie pacjentów (14)"
+
+#: .\site_templates\home\single-post.html:115
+msgid "> Cost Savings (6)"
+msgstr "> Oszczędność kosztów (6)"
+
+#: .\site_templates\home\single-post.html:124
+msgid "Dental Implants Gallery 1"
+msgstr "Implanty stomatologiczne Galeria 1"
+
+#: .\site_templates\home\single-post.html:125
+msgid "Dental Implants Gallery 2"
+msgstr "Galeria implantów zębowych 2"
+
+#: .\site_templates\home\single-post.html:126
+msgid "Dental Implants Gallery 3"
+msgstr "Implanty stomatologiczne Galeria 3"
+
+#: .\site_templates\home\single-post.html:127
+msgid "Dental Implants Gallery 4"
+msgstr "Implanty stomatologiczne Galeria 4"
+
+#: .\site_templates\home\single-post.html:128
+msgid "Dental Implants Gallery 5"
+msgstr "Implanty stomatologiczne Galeria 5"
+
+#: .\site_templates\home\single-post.html:129
+msgid "Dental Implants Gallery 6"
+msgstr "Implanty stomatologiczne Galeria 6"
+
+#: .\site_templates\home\single-post.html:130
+msgid "Dental Implants Gallery 7"
+msgstr "Implanty stomatologiczne Galeria 7"
+
+#: .\site_templates\home\single-post.html:131
+msgid "Dental Implants Gallery 8"
+msgstr "Implanty stomatologiczne Galeria 8"
+
+#: .\site_templates\home\single-post.html:143
+msgid "Copyright &copy; 2024 MedTour Dental"
+msgstr "Prawa autorskie &amp;copy; 2024 MedTour Dental"
+
+#: .\site_templates\home\single-post.html:145
+msgid "Designed by TemplateMo"
+msgstr "Zaprojektowany przez TemplateMo"
+
+#: .\site_templates\home\single-post.html:153
+msgid "Contact Icon"
+msgstr "Ikona kontaktu"
+
+#: .\site_templates\home\single-post.html:162
+msgid "Contact MedTour Dental"
+msgstr "Skontaktuj się z MedTour Dental"
+
+#: .\site_templates\home\single-post.html:163
+msgid "Close"
+msgstr "Zamykać"
+
+#: .\site_templates\home\single-post.html:172
+msgid "Your name..."
+msgstr "Imię i nazwisko..."
+
+#: .\site_templates\home\single-post.html:177
+msgid "Your email..."
+msgstr "Twój adres e-mail..."
+
+#: .\site_templates\home\single-post.html:182
+msgid "Your message..."
+msgstr "Twoja wiadomość..."
+
+#: .\site_templates\home\sitebase.html:6
+msgid "BEYONDCLINIC - Home Page"
+msgstr "BEYONDCLINIC - Strona główna"

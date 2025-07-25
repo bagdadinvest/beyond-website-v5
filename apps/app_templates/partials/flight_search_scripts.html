@@ -1,0 +1,150 @@
+{% load static i18n %}
+
+<!-- Flight Search JavaScript -->
+<script>
+$(document).ready(function () {
+    console.log("Flight search with flag support initialized"); // Debug log
+    
+    // Initialize autocomplete for origin and destination fields
+    $("#inputOrigin, #inputDestination").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "{% url 'app:origin_airport_search' %}",
+                dataType: "json",
+                data: {
+                    term: request.term
+                },
+                success: function (data) {
+                    response(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Autocomplete error:', error);
+                }
+            });
+        },
+        minLength: 1,
+        delay: 200,
+        select: function(event, ui) {
+            var selectedIATA = ui.item.value.split(',')[0];
+            $(this).val(selectedIATA);
+            
+            // Update currency code for origin selection
+            if (this.id === "inputOrigin") {
+                updateCurrencyCode(selectedIATA);
+            }
+            
+            return false; // Prevent default behavior
+        }
+    });
+
+    // Function to update currency code and flag
+    function updateCurrencyCode(iataCode) {
+        // Clear previous data
+        $("#currencyText").text("");
+        $("#countryFlag").hide();
+        
+        $.ajax({
+            url: "{% url 'app:get_currency_code' %}",
+            dataType: "json",
+            data: {
+                iata_code: iataCode
+            },
+            success: function (data) {
+                console.log('Currency data received:', data); // Debug log
+                
+                const currencyText = $("#currencyText");
+                const countryFlag = $("#countryFlag");
+                
+                if (data.currency_code) {
+                    // Build display text
+                    let displayText = `Currency: ${data.currency_code}`;
+                    if (data.country_name) {
+                        displayText += ` (${data.country_name})`;
+                    }
+                    currencyText.text(displayText);
+                    
+                    // Display country flag if available
+                    if (data.country_code) {
+                        const flagPath = "{% static 'flags/' %}" + data.country_code + ".svg";
+                        console.log('Flag path constructed:', flagPath); // Debug log
+                        console.log('Country code:', data.country_code); // Debug log
+                        
+                        // Create a new image to test if flag exists
+                        const testImg = new Image();
+                        testImg.onload = function() {
+                            // Flag loaded successfully
+                            countryFlag.attr('src', flagPath);
+                            countryFlag.attr('alt', `${data.country_name || 'Country'} flag`);
+                            countryFlag.attr('title', data.country_name || 'Country');
+                            countryFlag.show();
+                            console.log('Flag loaded successfully for:', data.country_code);
+                        };
+                        testImg.onerror = function() {
+                            // Flag failed to load
+                            console.warn('Flag not found for country code:', data.country_code);
+                            countryFlag.hide();
+                        };
+                        testImg.src = flagPath;
+                    } else {
+                        console.log('No country code provided');
+                        countryFlag.hide();
+                    }
+                } else {
+                    console.log('No currency code provided');
+                    currencyText.text("");
+                    countryFlag.hide();
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Currency code AJAX error:', error);
+                console.error('Response:', xhr.responseText);
+                $("#currencyText").text("");
+                $("#countryFlag").hide();
+            }
+        });
+    }
+
+    // Handle form submission
+    $("#form_id").on("submit", function (e) {
+        e.preventDefault();
+        
+        var self = $(this);
+        var originValue = $("#inputOrigin").val();
+        var destinationValue = $("#inputDestination").val();
+        
+        // Validate inputs
+        if (!originValue || !destinationValue) {
+            alert("Please select both origin and destination airports.");
+            return false;
+        }
+        
+        // Extract IATA codes (first 3 characters)
+        $("#inputOrigin").val(originValue.slice(0, 3));
+        $("#inputDestination").val(destinationValue.slice(0, 3));
+        
+        // Disable submit to prevent double submission
+        $("#searchFlightButton").prop('disabled', true);
+        
+        // Remove event handler and submit
+        $("#form_id").off("submit");
+        self.submit();
+    });
+
+    // Set minimum date to today for departure and return dates
+    var today = new Date().toISOString().split('T')[0];
+    $("#idDeparturedate").attr('min', today);
+    $("#idReturndate").attr('min', today);
+    
+    // Update return date minimum when departure date changes
+    $("#idDeparturedate").on('change', function() {
+        var departureDate = $(this).val();
+        $("#idReturndate").attr('min', departureDate);
+        
+        // Clear return date if it's before departure date
+        var returnDate = $("#idReturndate").val();
+        if (returnDate && returnDate < departureDate) {
+            $("#idReturndate").val('');
+        }
+    });
+});
+</script>

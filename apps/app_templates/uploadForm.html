@@ -1,0 +1,69 @@
+{% load static i18n %}
+{% include 'error.html' %}
+
+<!-- File Upload Form -->
+<form action="" id="uploadForm" method="post" accept-charset="utf-8" class="form" role="form" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">{% trans "Upload File" %}</label>
+    <input type="file" name="id_image" class="form-control form-control-lg" required>
+  </div>
+  <div class="text-center">
+    <button class="btn bg-gradient-dark w-100 my-4 mb-2" type="submit">{% trans "Upload" %}</button>
+  </div>
+</form>
+
+<!-- Modal Notification -->
+<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-title-notification">{% trans "Your attention is required" %}</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="py-3 text-center">
+          <i class="ni ni-bell-55 ni-3x"></i>
+          <h4 class="text-gradient text-danger mt-4" id="modal-message">{% trans "You should read this!" %}</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-bs-dismiss="modal">{% trans "Ok, Got it" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#uploadForm').on('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var formData = new FormData(this); // Create a new FormData object
+
+            $.ajax({
+                url: "{% url 'app:upload_id_and_save' %}", // AJAX request URL
+                type: 'POST',
+                data: formData, // Data sent to the server
+                processData: false, // Don't process the files
+                contentType: false, // Set content type to false for file upload
+                success: function(response) {
+                    $('#modal-title-notification').text('{% trans "Success" %}');
+                    $('#modal-message').text('{% trans "File uploaded successfully." %}');
+                    $('#modal-notification').modal('show');
+                    // Optionally, you could refresh the list of uploaded files here
+                },
+                error: function(response) {
+                    $('#modal-title-notification').text('{% trans "Error" %}');
+                    $('#modal-message').text('{% trans "There was an error uploading the file." %}');
+                    $('#modal-notification').modal('show');
+                }
+            });
+        });
+    });
+</script>

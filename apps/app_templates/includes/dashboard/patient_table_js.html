@@ -1,0 +1,240 @@
+{% load static i18n %}
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Initialize DataTable with compact configuration
+    const table = $('#patients-table').DataTable({
+        responsive: true,
+        pageLength: 25,
+        order: [[1, 'asc']], // Sort by User ID by default
+        searching: false, // Disable default search (we use custom)
+        lengthChange: false, // Disable default length change (we use custom)
+        dom: 'rt<"row mt-3"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>', // Remove default controls
+        language: {
+            info: "{% trans 'Showing' %} _START_ {% trans 'to' %} _END_ {% trans 'of' %} _TOTAL_ {% trans 'patients' %}",
+            infoEmpty: "{% trans 'No patients available' %}",
+            infoFiltered: "({% trans 'filtered from' %} _MAX_ {% trans 'total patients' %})",
+            paginate: {
+                first: "{% trans 'First' %}",
+                last: "{% trans 'Last' %}",
+                next: "{% trans 'Next' %}",
+                previous: "{% trans 'Previous' %}"
+            },
+            emptyTable: "{% trans 'No patients found in the system' %}",
+            zeroRecords: "{% trans 'No matching patients found' %}"
+        },
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel me-1"></i>{% trans "Excel" %}',
+                className: 'dropdown-item',
+                title: '{% trans "Patient List" %} - ' + new Date().toLocaleDateString(),
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6] // Exclude thumbnail and actions columns
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf me-1"></i>{% trans "PDF" %}',
+                className: 'dropdown-item',
+                title: '{% trans "Patient List" %}',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6]
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="fas fa-file-csv me-1"></i>{% trans "CSV" %}',
+                className: 'dropdown-item',
+                title: '{% trans "Patient List" %} - ' + new Date().toLocaleDateString(),
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6]
+                }
+            },
+            {
+                extend: 'print',
+                text: '<i class="fas fa-print me-1"></i>{% trans "Print" %}',
+                className: 'dropdown-item',
+                title: '{% trans "Patient List" %}',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6]
+                }
+            }
+        ],
+        columnDefs: [
+            {
+                targets: [0], // Patient name column
+                orderable: true,
+                searchable: true,
+                className: 'patient-name-col'
+            },
+            {
+                targets: [7], // Actions column
+                orderable: false,
+                searchable: false,
+                className: 'text-center'
+            },
+            {
+                targets: [6], // Medical Files column
+                render: function(data, type, row) {
+                    if (type === 'export') {
+                        return data.includes('Yes') ? 'Yes' : 'No';
+                    }
+                    return data;
+                }
+            }
+        ],
+        initComplete: function() {
+            // Populate filter dropdowns
+            populateFilterDropdowns(this.api());
+        }
+    });
+
+    // Move export buttons to custom dropdown
+    table.buttons().container().appendTo('#export-buttons-container');
+    
+    // Custom length control
+    $('#table-length').on('change', function() {
+        table.page.len(parseInt($(this).val())).draw();
+    });
+
+    // Custom global search
+    let searchTimer;
+    $('#global-search').on('keyup', function() {
+        clearTimeout(searchTimer);
+        const searchTerm = this.value;
+        searchTimer = setTimeout(() => {
+            table.search(searchTerm).draw();
+        }, 300);
+    });
+
+    // Custom filter controls
+    $('#nationality-filter').on('change', function() {
+        table.column(2).search(this.value).draw();
+    });
+
+    $('#hospital-filter').on('change', function() {
+        table.column(3).search(this.value).draw();
+    });
+
+    $('#files-filter').on('change', function() {
+        table.column(6).search(this.value).draw();
+    });
+
+    // Function to populate filter dropdowns
+    function populateFilterDropdowns(api) {
+        // Populate Nationality filter
+        const nationalitySelect = $('#nationality-filter');
+        const uniqueNationalities = [];
+        api.column(2).data().unique().sort().each(function(d) {
+            const cleanData = $(d).text().trim();
+            if (cleanData && cleanData !== '' && cleanData !== 'N/A' && !uniqueNationalities.includes(cleanData)) {
+                uniqueNationalities.push(cleanData);
+            }
+        });
+        uniqueNationalities.forEach(function(value) {
+            nationalitySelect.append('<option value="' + value + '">' + value + '</option>');
+        });
+
+        // Populate Hospital filter
+        const hospitalSelect = $('#hospital-filter');
+        const uniqueHospitals = [];
+        api.column(3).data().unique().sort().each(function(d) {
+            const cleanData = $(d).text().trim();
+            if (cleanData && cleanData !== '' && cleanData !== 'N/A' && !uniqueHospitals.includes(cleanData)) {
+                uniqueHospitals.push(cleanData);
+            }
+        });
+        uniqueHospitals.forEach(function(value) {
+            hospitalSelect.append('<option value="' + value + '">' + value + '</option>');
+        });
+    }
+});
+
+// Function to refresh the table
+function refreshTable() {
+    $('#patients-table').DataTable().ajax.reload(null, false);
+    showNotification('{% trans "Table refreshed successfully" %}', 'success');
+}
+
+// Function to show notifications
+function showNotification(message, type = 'info') {
+    const alertClass = type === 'success' ? 'alert-success' : type === 'error' ? 'alert-danger' : 'alert-info';
+    const notification = `
+        <div class="alert ${alertClass} alert-dismissible fade show position-fixed" 
+             style="top: 20px; right: 20px; z-index: 9999;" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+    $('body').append(notification);
+    setTimeout(() => {
+        $('.alert').fadeOut(() => $('.alert').remove());
+    }, 3000);
+}
+
+// Function to confirm patient deletion
+function confirmDelete(patientId, patientName) {
+    if (confirm('{% trans "Are you sure you want to delete patient" %} "' + patientName + '"?')) {
+        // Add your delete logic here
+        // Example: window.location.href = `/patients/delete/${patientId}/`;
+        showNotification('{% trans "Delete functionality not implemented yet" %}', 'error');
+    }
+}
+
+// Mobile responsive enhancements
+$(window).resize(function() {
+    $('#patients-table').DataTable().columns.adjust().responsive.recalc();
+});
+
+// Function to filter specific columns
+function filterColumn(columnIdx, value) {
+    $('#patients-table').DataTable().column(columnIdx).search(value).draw();
+}
+
+// Function to refresh the table
+function refreshTable() {
+    $('#patients-table').DataTable().ajax.reload(null, false);
+    showNotification('{% trans "Table refreshed successfully" %}', 'success');
+}
+
+// Function to show notifications
+function showNotification(message, type = 'info') {
+    const alertClass = type === 'success' ? 'alert-success' : type === 'error' ? 'alert-danger' : 'alert-info';
+    const notification = `
+        <div class="alert ${alertClass} alert-dismissible fade show position-fixed" 
+             style="top: 20px; right: 20px; z-index: 9999;" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+    $('body').append(notification);
+    setTimeout(() => {
+        $('.alert').fadeOut(() => $('.alert').remove());
+    }, 3000);
+}
+
+// Function to confirm patient deletion
+function confirmDelete(patientId, patientName) {
+    if (confirm('{% trans "Are you sure you want to delete patient" %} "' + patientName + '"?')) {
+        // Add your delete logic here
+        // Example: window.location.href = `/patients/delete/${patientId}/`;
+        showNotification('{% trans "Delete functionality not implemented yet" %}', 'error');
+    }
+}
+</script>

@@ -1,0 +1,59 @@
+{% load static i18n %}
+
+<div class="swiper-slide">
+    <div class="card h-100 border-0 shadow-sm product-card">
+        <!-- Product Image -->
+        <div class="position-relative" style="height: 120px; overflow: hidden;">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" 
+                     alt="{{ product.name }}" 
+                     class="w-100 h-100"
+                     style="object-fit: cover; background-color: #f8f9fa;">
+            {% else %}
+                <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                    <i class="fas fa-image fa-2x text-muted"></i>
+                </div>
+            {% endif %}
+            <!-- Category Badge -->
+            <div class="position-absolute top-0 end-0 m-2">
+                <span class="badge bg-primary text-xs">{{ product.get_category_display }}</span>
+            </div>
+        </div>
+        
+        <!-- Product Content -->
+        <div class="card-body p-3 d-flex flex-column">
+            <div class="d-flex align-items-center mb-2">
+                <h6 class="card-title fw-bold mb-0 text-truncate flex-grow-1" title="{{ product.name }}">
+                    {{ product.name }}
+                </h6>
+                {% if product.country_of_origin %}
+                    <div class="ms-2">
+                        <img src="{% static 'flags/'|add:product.country_of_origin.code|lower|add:'.svg' %}" 
+                             alt="{{ product.country_of_origin.name }}" 
+                             title="{% trans 'Made in' %} {{ product.country_of_origin.name }}"
+                             class="flag-icon"
+                             style="width: 24px; height: 24px; object-fit: cover; border-radius: 2px;"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <small class="text-muted" style="display: none;" title="{% trans 'Made in' %} {{ product.country_of_origin.name }}">
+                            {{ product.country_of_origin.code }}
+                        </small>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="mt-auto">
+                {% if product.price %}
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-success fw-bold">${{ product.price|floatformat:2 }}</span>
+                        <small class="text-muted">{{ product.max_discount_percentage }}% off</small>
+                    </div>
+                {% endif %}
+                
+                <a href="{% url 'app:product_detail' product.slug %}" 
+                   class="btn btn-primary btn-sm w-100">
+                    {% trans "View Details" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}
+{% autoescape off %}
+{% user_display user as user_display %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+Hello {{ user_display }},
+
+Welcome to Beyond Clinic's BeyondBoard! We take our patients' account security and medical data records with the utmost care. 
+
+You're receiving this email because you’ve provided this email address to register an account with us. 
+
+To confirm that this is correct and to proceed with the sign-up process, please click the link below:
+
+{{ activate_url }}
+
+If you did not request this registration, please ignore this email.
+
+Thank you for choosing Beyond Clinic.
+
+Best regards,
+The Beyond Clinic Team
+{% endblocktrans %}
+{% endautoescape %}
+{% endblock content %}

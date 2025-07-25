@@ -1,0 +1,55 @@
+{% load static i18n %}
+
+<div class="card card-body shadow-sm" id="profile">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-auto">
+            <div class="avatar avatar-xxl position-relative">
+                <img src="{{ patient.thumbnail }}" alt="profile picture" class="w-100 border-radius-lg shadow-sm">
+            </div>
+        </div>
+        <div class="col-auto my-auto">
+            <div class="h-100">
+                <h5 class="mb-1">
+                    {{ patient.first_name }} {{ patient.last_name }}
+                </h5>
+                <p class="mb-0 font-weight-bold text-sm">
+                    {% trans "Patient ID" %}: {{ patient.user_id }}
+                </p>
+                <p class="mb-0 text-sm">
+                    {% if patient.nationality %}
+                        <i class="fas fa-flag me-1"></i> {{ patient.nationality }}
+                    {% endif %}
+                </p>
+                <p class="mb-0 text-sm">
+                    {% if patient.hospital != "N/A" %}
+                        <i class="fas fa-hospital me-1"></i> {{ patient.hospital }}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+            <div class="nav-wrapper position-relative end-0">
+                <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link mb-0 px-0 py-1 active" data-bs-toggle="tab" href="#basic-info" role="tab" aria-controls="basic-info" aria-selected="true">
+                            <i class="fas fa-user-circle"></i>
+                            <span class="ms-1">{% trans "Info" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#medical-files" role="tab" aria-controls="medical-files" aria-selected="false">
+                            <i class="fas fa-file-medical"></i>
+                            <span class="ms-1">{% trans "Files" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mb-0 px-0 py-1" data-bs-toggle="tab" href="#treatment-plans" role="tab" aria-controls="treatment-plans" aria-selected="false">
+                            <i class="fas fa-procedures"></i>
+                            <span class="ms-1">{% trans "Plans" %}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

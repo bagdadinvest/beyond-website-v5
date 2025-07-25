@@ -1,0 +1,85 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+
+{% block extra %}
+    <link rel="stylesheet" href="{% static 'assets/css/messages.css' %}">
+{% endblock %}
+
+{% block title %}{{ group.name }}{% endblock %}
+
+{% block content %}
+    <div class="row mb-3">
+        <div class="col-12">
+            <a class="btn btn-primary" href="{% url 'app:messages' %}">
+                <i class="fa fa-chevron-left"></i>&nbsp;{% trans "Back to Messages" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                {% with first_member=group.members.all|first %}
+                    {% if first_member.thumbnail %}
+                        <img alt="Profile Image" src="{{ first_member.thumbnail.url }}" class="avatar me-3">
+                    {% else %}
+                        <img alt="Default Image" src="{% static 'assets/img/team-2.jpg' %}" class="avatar me-3">
+                    {% endif %}
+                {% endwith %}
+                <div>
+                    <h4 class="mb-0">{{ group.name }}</h4>
+                    <small class="text-muted">{{ group.combined_names:True }}</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body" style="height: 400px; overflow-y: auto;">
+            {% for message in messages %}
+                <div class="message-item mb-3 {% if message.sender == user %}text-end{% endif %}">
+                    <div class="d-inline-block {% if message.sender == user %}bg-primary text-white{% else %}bg-light{% endif %} p-3 rounded" style="max-width: 70%;">
+                        <div class="message-header mb-2">
+                            <strong>{{ message.sender.get_full_name }}</strong>
+                            <small class="{% if message.sender == user %}text-white-50{% else %}text-muted{% endif %} ms-2">
+                                {{ message.date|date:"M d, H:i" }}
+                            </small>
+                        </div>
+                        <div class="message-body">
+                            {{ message.body|linebreaks }}
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center text-muted">
+                    <p>{% trans "No messages in this conversation yet." %}</p>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="card-footer">
+            <form action="" method="post" accept-charset="utf-8">
+                {% csrf_token %}
+                <div class="input-group">
+                    <textarea id="message" class="form-control" name="message" placeholder="{% trans 'Type your message here...' %}" rows="2" required></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ni ni-send"></i> {% trans "Send" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Auto-scroll to bottom of messages
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageContainer = document.querySelector('.card-body');
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        });
+        
+        // Auto-resize textarea
+        const textarea = document.getElementById('message');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+    </script>
+{% endblock %}

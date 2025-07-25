@@ -1,0 +1,1066 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Profile" %} - {{ user.first_name }} {{ user.last_name }}{% endblock %}
+
+{% block stylesheets %}
+<!-- Shepherd.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js/dist/css/shepherd.css">
+<style>
+    .card {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border: none;
+        border-radius: 0.75rem;
+    }
+    
+    .shadow-sm {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+    }
+    
+    .nav-link {
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link:not(.active):hover {
+        background-color: rgba(0, 123, 255, 0.1);
+        transform: translateX(5px);
+    }
+    
+    .nav-link.active {
+        background-color: rgba(0, 123, 255, 0.1);
+        font-weight: 600;
+    }
+    
+    .btn {
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+    
+    .file-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    
+    .file-card {
+        border: 1px solid #e9ecef;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        transition: all 0.3s ease;
+        background: white;
+    }
+    
+    .file-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .file-preview {
+        width: 100%;
+        height: 150px;
+        border-radius: 0.5rem;
+        object-fit: cover;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .file-icon {
+        font-size: 3rem;
+        color: #6c757d;
+    }
+    
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .welcome-badge {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+    
+    .stats-card {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    .upload-zone {
+        border: 2px dashed #dee2e6;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+    
+    .upload-zone:hover {
+        border-color: #007bff;
+        background: rgba(0, 123, 255, 0.05);
+    }
+    
+    .upload-zone.dragover {
+        border-color: #007bff;
+        background: rgba(0, 123, 255, 0.1);
+    }
+    
+    @media (max-width: 467px) {
+        #accounts {
+            display: none;
+        }
+        
+        .file-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+        }
+    }
+    
+    /* Modal styles for file preview */
+    .modal-lg {
+        max-width: 800px;
+    }
+    
+    #pdfCanvas {
+        max-width: 100%;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+    }
+    
+    .pdf-controls {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .pdf-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<!-- Welcome Message for New Users -->
+{% if user.date_joined|timesince|slice:":1" == "0" %}
+<div class="container-fluid mt-3">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-rocket me-3" style="font-size: 1.5rem;"></i>
+            <div>
+                <h6 class="mb-1">{% trans "Welcome to your profile!" %}</h6>
+                <p class="mb-0">{% trans "Complete your profile and upload your medical files to get started." %}</p>
+            </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+{% endif %}
+
+<div class="container-fluid my-5 py-2">
+    <div class="row mb-5">
+        <!-- Sidebar Navigation -->
+        <div class="col-lg-3">
+            <div class="card position-sticky shadow-sm" style="top: 1rem;" data-step="1">
+                <div class="card-header">
+                    <h6 class="mb-0 text-sm font-weight-bold">{% trans "Account Settings" %}</h6>
+                </div>
+                <ul class="nav flex-column bg-white border-radius-lg p-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark active" data-scroll="" href="#profile">
+                            <i class="fas fa-user-circle me-2 text-primary"></i>
+                            <span class="text-sm">{% trans "Profile" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#basic-info">
+                            <i class="fas fa-info-circle me-2 text-success"></i>
+                            <span class="text-sm">{% trans "Basic Information" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#uploadForm">
+                            <i class="fas fa-file-medical me-2 text-warning"></i>
+                            <span class="text-sm">{% trans "Medical Files" %}</span>
+                            {% if uploaded_files %}
+                                <span class="badge bg-success ms-auto">{{ uploaded_files|length }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#upload-new">
+                            <i class="fas fa-cloud-upload-alt me-2 text-info"></i>
+                            <span class="text-sm">{% trans "Upload New Files" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#2fa">
+                            <i class="fas fa-shield-alt me-2 text-secondary"></i>
+                            <span class="text-sm">{% trans "Security (2FA)" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#accounts">
+                            <i class="fab fa-facebook me-2 text-primary"></i>
+                            <span class="text-sm">{% trans "Social Accounts" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#notifications">
+                            <i class="fas fa-bell me-2 text-warning"></i>
+                            <span class="text-sm">{% trans "Notifications" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#sessions">
+                            <i class="fas fa-clock me-2 text-info"></i>
+                            <span class="text-sm">{% trans "Active Sessions" %}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item pt-2">
+                        <a class="nav-link text-dark" data-scroll="" href="#delete">
+                            <i class="fas fa-trash-alt me-2 text-danger"></i>
+                            <span class="text-sm">{% trans "Delete Account" %}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-lg-9 mt-lg-0 mt-4">
+            <!-- Profile Header Card -->
+            <div class="card card-body shadow-sm" id="profile" data-step="2">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <div class="avatar avatar-xl position-relative">
+                            {% if user.thumbnail and user.thumbnail.file %}
+                                <img src="{{ user.thumbnail.file.url }}" alt="{% trans "profile_image" %}" class="profile-avatar">
+                            {% else %}
+                                <div class="profile-avatar bg-gradient-primary d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-user text-white" style="font-size: 3rem;"></i>
+                                </div>
+                            {% endif %}
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="h-100">
+                            <h4 class="mb-1 font-weight-bolder">
+                                {{ user.first_name }} {{ user.last_name }}
+                                <span class="welcome-badge ms-2">{% trans "Welcome!" %}</span>
+                            </h4>
+                            <p class="mb-2 text-sm">
+                                <i class="fas fa-envelope me-2"></i>{{ user.email }}
+                            </p>
+                            <p class="mb-0 font-weight-bold text-sm">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                {% trans "Member since" %} {{ user.date_joined|date:"F j, Y" }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="stats-card">
+                            <h5 class="mb-1">{{ uploaded_files|length|default:"0" }}</h5>
+                            <p class="mb-0 text-sm">{% trans "Files Uploaded" %}</p>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="profileVisibilitySwitch" checked="" onchange="toggleVisibility()">
+                            <label class="form-check-label" for="profileVisibilitySwitch">
+                                <small id="profileVisibility">{% trans "Profile Visible" %}</small>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Information Card -->
+            <div class="card mt-4" id="basic-info" data-step="3">
+                <div class="card-header d-flex">
+                    <h5 class="mb-0">
+                        <i class="fas fa-user-edit me-2"></i>
+                        {% trans "Basic Information" %}
+                    </h5>
+                    <span class="badge bg-success ms-auto">{% trans "Editable" %}</span>
+                </div>
+                <div class="card-body">
+                    {% include 'edit_user.html' %}
+                </div>
+            </div>
+
+            <!-- Medical Files Section -->
+            <div class="card mt-4" id="uploadForm" data-step="4">
+                <div class="card-header d-flex">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-medical me-2"></i>
+                        {% trans "Your Medical Files" %}
+                    </h5>
+                    <span class="badge bg-info ms-auto">
+                        {{ uploaded_files|length|default:"0" }} {% trans "files" %}
+                    </span>
+                </div>
+                <div class="card-body">
+                    {% if uploaded_files %}
+                        <div class="file-grid">
+                            {% for file in uploaded_files %}
+                                <div class="file-card">
+                                    <div class="file-preview mb-3">
+                                        {% if file.file.name|lower|slice:"-4:" == ".pdf" %}
+                                            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                                                <i class="fas fa-file-pdf file-icon text-danger"></i>
+                                                <small class="text-muted mt-2">PDF Document</small>
+                                            </div>
+                                        {% elif file.file.name|lower|slice:"-4:" in ".jpg,.png,.gif" or file.file.name|lower|slice:"-5:" == ".jpeg" %}
+                                            <img src="{{ file.file.url }}" alt="{{ file.file.name }}" class="file-preview" style="object-fit: cover;">
+                                        {% else %}
+                                            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                                                <i class="fas fa-file file-icon"></i>
+                                                <small class="text-muted mt-2">Document</small>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <h6 class="mb-2 text-truncate" title="{{ file.file.name|slice:'9:' }}">
+                                        {{ file.file.name|slice:"9:"|truncatechars:25 }}
+                                    </h6>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock me-1"></i>
+                                            {{ file.created_at|timesince }} ago
+                                        </small>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            {% if file.file.name|lower|slice:"-4:" == ".pdf" %}
+                                                <button type="button" class="btn btn-outline-primary view-pdf-btn" 
+                                                        data-file-url="{{ file.file.url }}" 
+                                                        data-file-name="{{ file.file.name|slice:'9:' }}"
+                                                        title="{% trans 'Preview PDF' %}">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            {% elif file.file.name|lower|slice:"-4:" in ".jpg,.png,.gif" or file.file.name|lower|slice:"-5:" == ".jpeg" %}
+                                                <button type="button" class="btn btn-outline-primary view-image-btn" 
+                                                        data-file-url="{{ file.file.url }}" 
+                                                        data-file-name="{{ file.file.name|slice:'9:' }}"
+                                                        title="{% trans 'Preview Image' %}">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            {% endif %}
+                                            <a href="{{ file.file.url }}" class="btn btn-outline-success" 
+                                               download="{{ file.file.name|slice:'9:' }}" 
+                                               title="{% trans 'Download' %}">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-folder-open text-muted" style="font-size: 4rem;"></i>
+                            <h5 class="mt-3 text-muted">{% trans "No files uploaded yet" %}</h5>
+                            <p class="text-muted">{% trans "Start by uploading your medical files below" %}</p>
+                            <a href="#upload-new" class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i>{% trans "Upload First File" %}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Upload New Files Section -->
+            <div class="card mt-4" id="upload-new" data-step="5">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-cloud-upload-alt me-2"></i>
+                        {% trans "Upload New Medical Files" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="fas fa-cloud-upload-alt text-muted" style="font-size: 3rem;"></i>
+                        <h6 class="mt-3">{% trans "Drag & drop files here" %}</h6>
+                        <p class="text-muted">{% trans "or click to browse" %}</p>
+                        <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" style="display: none;">
+                        <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
+                            <i class="fas fa-folder-open me-2"></i>{% trans "Choose Files" %}
+                        </button>
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                {% trans "Supported formats: PDF, JPG, PNG, DOC, DOCX (Max 10MB per file)" %}
+                            </small>
+                        </div>
+                    </div>
+                    <div id="uploadProgress" class="mt-3" style="display: none;">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2FA Section Placeholder -->
+            <div class="card mt-4" id="2fa" data-step="6">
+                <div class="card-header d-flex">
+                    <h5 class="mb-0">
+                        <i class="fas fa-shield-alt me-2"></i>
+                        {% trans "Two-Factor Authentication" %}
+                    </h5>
+                    <span class="badge bg-warning ms-auto">{% trans "Recommended" %}</span>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">{% trans "Enhance your account security with two-factor authentication." %}</p>
+                    <button class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>{% trans "Enable 2FA" %}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Social Accounts Section Placeholder -->
+            <div class="card mt-4" id="accounts" data-step="7">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fab fa-facebook me-2"></i>
+                        {% trans "Connected Accounts" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">{% trans "Link your social media accounts for easier sign-in." %}</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-primary">
+                            <i class="fab fa-google me-2"></i>{% trans "Google" %}
+                        </button>
+                        <button class="btn btn-outline-info">
+                            <i class="fab fa-facebook me-2"></i>{% trans "Facebook" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Section Placeholder -->
+            <div class="card mt-4" id="notifications" data-step="8">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bell me-2"></i>
+                        {% trans "Notification Preferences" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                        <label class="form-check-label" for="emailNotifications">
+                            {% trans "Email Notifications" %}
+                        </label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="appointmentReminders" checked>
+                        <label class="form-check-label" for="appointmentReminders">
+                            {% trans "Appointment Reminders" %}
+                        </label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="marketingEmails">
+                        <label class="form-check-label" for="marketingEmails">
+                            {% trans "Marketing Updates" %}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sessions Section Placeholder -->
+            <div class="card mt-4" id="sessions" data-step="9">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-clock me-2"></i>
+                        {% trans "Active Sessions" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                        <div>
+                            <strong>{% trans "Current Session" %}</strong>
+                            <br>
+                            <small class="text-muted">{% trans "This device" %} • {% trans "Active now" %}</small>
+                        </div>
+                        <span class="badge bg-success">{% trans "Current" %}</span>
+                    </div>
+                    <button class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-sign-out-alt me-2"></i>{% trans "Sign out all other sessions" %}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Delete Account Section -->
+            <div class="card mt-4 border-danger" id="delete" data-step="10">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        {% trans "Danger Zone" %}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="text-danger">{% trans "Delete Account" %}</h6>
+                    <p class="text-muted">
+                        {% trans "Once you delete your account, there is no going back. Please be certain." %}
+                    </p>
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                        <i class="fas fa-trash-alt me-2"></i>{% trans "Delete Account" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Preview Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">{% trans "Image Preview" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="" class="img-fluid" style="max-height: 500px;">
+            </div>
+            <div class="modal-footer">
+                <a id="downloadImageBtn" href="" download="" class="btn btn-primary">
+                    <i class="fas fa-download me-2"></i>{% trans "Download" %}
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PDF Preview Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">{% trans "PDF Preview" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="pdf-controls">
+                    <button id="prevPage" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="nextPage" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button id="zoomOut" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button id="zoomIn" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+                <div class="pdf-info">
+                    <span id="pageInfo">1 / 1</span>
+                    <span id="zoomLevel">100%</span>
+                </div>
+                <div class="text-center">
+                    <canvas id="pdfCanvas"></canvas>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="downloadPdfBtn" href="" class="btn btn-primary">
+                    <i class="fas fa-download me-2"></i>{% trans "Download" %}
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Account Confirmation Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteAccountModalLabel">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    {% trans "Confirm Account Deletion" %}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>{% trans "Are you absolutely sure you want to delete your account?" %}</p>
+                <p class="text-danger">
+                    <strong>{% trans "This action cannot be undone. This will permanently delete your account and remove all your data." %}</strong>
+                </p>
+                <div class="form-group">
+                    <label for="deleteConfirmation">{% trans "Type 'DELETE' to confirm:" %}</label>
+                    <input type="text" class="form-control" id="deleteConfirmation" placeholder="DELETE">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Cancel" %}</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn" disabled>
+                    <i class="fas fa-trash-alt me-2"></i>{% trans "Delete Account" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<!-- Core JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@9.1.1/dist/js/shepherd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Initializing profile page...");
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('.nav-link[href^="#"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Update active state
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Smooth scroll
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            }
+        });
+    });
+
+    // File upload functionality
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+    const uploadProgress = document.getElementById('uploadProgress');
+
+    // Drag and drop functionality
+    uploadZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadZone.classList.add('dragover');
+    });
+
+    uploadZone.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+    });
+
+    uploadZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        handleFileUpload(files);
+    });
+
+    uploadZone.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function() {
+        handleFileUpload(this.files);
+    });
+
+    function handleFileUpload(files) {
+        if (files.length === 0) return;
+        
+        // Show progress
+        uploadProgress.style.display = 'block';
+        const progressBar = uploadProgress.querySelector('.progress-bar');
+        
+        // Simulate upload progress (replace with actual upload logic)
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 10;
+            progressBar.style.width = progress + '%';
+            
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    uploadProgress.style.display = 'none';
+                    progressBar.style.width = '0%';
+                    // Show success message or refresh file list
+                    showNotification('{% trans "Files uploaded successfully!" %}', 'success');
+                }, 500);
+            }
+        }, 200);
+    }
+
+    // Profile visibility toggle
+    window.toggleVisibility = function() {
+        const checkbox = document.getElementById('profileVisibilitySwitch');
+        const label = document.getElementById('profileVisibility');
+        
+        if (checkbox.checked) {
+            label.textContent = '{% trans "Profile Visible" %}';
+        } else {
+            label.textContent = '{% trans "Profile Hidden" %}';
+        }
+    };
+
+    // Delete account confirmation
+    const deleteConfirmationInput = document.getElementById('deleteConfirmation');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+    if (deleteConfirmationInput && confirmDeleteBtn) {
+        deleteConfirmationInput.addEventListener('input', function() {
+            confirmDeleteBtn.disabled = this.value !== 'DELETE';
+        });
+
+        confirmDeleteBtn.addEventListener('click', function() {
+            if (deleteConfirmationInput.value === 'DELETE') {
+                // Implement actual delete functionality
+                alert('{% trans "Account deletion functionality would be implemented here" %}');
+            }
+        });
+    }
+
+    // File preview functionality
+    setupFilePreview();
+    
+    // Initialize Shepherd tour
+    setupShepherdTour();
+});
+
+function setupFilePreview() {
+    // Image Preview
+    document.querySelectorAll('.view-image-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const fileUrl = this.getAttribute('data-file-url');
+            const fileName = this.getAttribute('data-file-name');
+            
+            document.getElementById('modalImage').src = fileUrl;
+            document.getElementById('modalImage').alt = fileName;
+            document.getElementById('imageModalLabel').textContent = fileName;
+            document.getElementById('downloadImageBtn').href = fileUrl;
+            document.getElementById('downloadImageBtn').download = fileName;
+            
+            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+            modal.show();
+        });
+    });
+
+    // PDF Preview
+    let pdfDoc = null;
+    let pageNum = 1;
+    let pageRendering = false;
+    let pageNumPending = null;
+    let scale = 1;
+    const canvas = document.getElementById('pdfCanvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+
+    document.querySelectorAll('.view-pdf-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const fileUrl = this.getAttribute('data-file-url');
+            const fileName = this.getAttribute('data-file-name');
+            
+            document.getElementById('pdfModalLabel').textContent = fileName;
+            document.getElementById('downloadPdfBtn').href = fileUrl;
+            
+            // Load PDF
+            if (typeof pdfjsLib !== 'undefined') {
+                pdfjsLib.getDocument(fileUrl).promise.then(function(pdf) {
+                    pdfDoc = pdf;
+                    pageNum = 1;
+                    scale = 1;
+                    renderPage(pageNum);
+                    updatePageInfo();
+                }).catch(function(error) {
+                    console.error('Error loading PDF:', error);
+                });
+            }
+            
+            const modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+            modal.show();
+        });
+    });
+
+    function renderPage(num) {
+        if (!ctx || !pdfDoc) return;
+        
+        pageRendering = true;
+        pdfDoc.getPage(num).then(function(page) {
+            const viewport = page.getViewport({scale: scale});
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            
+            const renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+            
+            const renderTask = page.render(renderContext);
+            renderTask.promise.then(function() {
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+            });
+        });
+    }
+
+    function queueRenderPage(num) {
+        if (pageRendering) {
+            pageNumPending = num;
+        } else {
+            renderPage(num);
+        }
+    }
+
+    function updatePageInfo() {
+        if (pdfDoc) {
+            document.getElementById('pageInfo').textContent = `${pageNum} / ${pdfDoc.numPages}`;
+            document.getElementById('zoomLevel').textContent = `${Math.round(scale * 100)}%`;
+        }
+    }
+
+    // PDF Controls
+    document.getElementById('prevPage')?.addEventListener('click', function() {
+        if (pageNum <= 1) return;
+        pageNum--;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+
+    document.getElementById('nextPage')?.addEventListener('click', function() {
+        if (!pdfDoc || pageNum >= pdfDoc.numPages) return;
+        pageNum++;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+
+    document.getElementById('zoomIn')?.addEventListener('click', function() {
+        scale += 0.25;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+
+    document.getElementById('zoomOut')?.addEventListener('click', function() {
+        if (scale <= 0.5) return;
+        scale -= 0.25;
+        queueRenderPage(pageNum);
+        updatePageInfo();
+    });
+}
+
+function setupShepherdTour() {
+    if (typeof Shepherd === 'undefined') {
+        console.error("Shepherd.js is not loaded.");
+        return;
+    }
+
+    const tour = new Shepherd.Tour({
+        useModalOverlay: true,
+        defaultStepOptions: {
+            cancelIcon: { enabled: true },
+            scrollTo: { behavior: 'smooth', block: 'center' },
+            classes: 'shepherd-theme-arrows'
+        }
+    });
+
+    // Step 1: Welcome & Navigation
+    tour.addStep({
+        id: 'welcome',
+        title: '{% trans "Welcome to Your Profile!" %}',
+        text: '{% trans "Let me show you around your profile page. This is where you can manage your account settings and medical files." %}',
+        attachTo: { element: '[data-step="1"]', on: 'right' },
+        buttons: [
+            { text: '{% trans "Skip Tour" %}', action: tour.cancel, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Start Tour" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 2: Profile Header
+    tour.addStep({
+        id: 'profile-header',
+        title: '{% trans "Your Profile Header" %}',
+        text: '{% trans "Here you can see your profile information, member status, and uploaded files count. You can also toggle your profile visibility." %}',
+        attachTo: { element: '[data-step="2"]', on: 'bottom' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 3: Basic Information
+    tour.addStep({
+        id: 'basic-info',
+        title: '{% trans "Basic Information" %}',
+        text: '{% trans "Update your personal information, contact details, and other basic profile data here." %}',
+        attachTo: { element: '[data-step="3"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 4: Medical Files
+    tour.addStep({
+        id: 'medical-files',
+        title: '{% trans "Medical Files" %}',
+        text: '{% trans "View and manage your uploaded medical files. You can preview images and PDFs directly in the browser." %}',
+        attachTo: { element: '[data-step="4"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 5: Upload New Files
+    tour.addStep({
+        id: 'upload-files',
+        title: '{% trans "Upload New Files" %}',
+        text: '{% trans "Drag and drop files here or click to browse. Supports PDF, images, and documents up to 10MB." %}',
+        attachTo: { element: '[data-step="5"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 6: Security Settings
+    tour.addStep({
+        id: 'security',
+        title: '{% trans "Security Settings" %}',
+        text: '{% trans "Enable two-factor authentication to secure your account with an additional layer of protection." %}',
+        attachTo: { element: '[data-step="6"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 7: Social Accounts
+    tour.addStep({
+        id: 'social-accounts',
+        title: '{% trans "Social Accounts" %}',
+        text: '{% trans "Connect your Google or Facebook accounts for easier sign-in and account recovery." %}',
+        attachTo: { element: '[data-step="7"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 8: Notifications
+    tour.addStep({
+        id: 'notifications',
+        title: '{% trans "Notification Preferences" %}',
+        text: '{% trans "Customize how and when you receive notifications about appointments, updates, and more." %}',
+        attachTo: { element: '[data-step="8"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 9: Active Sessions
+    tour.addStep({
+        id: 'sessions',
+        title: '{% trans "Active Sessions" %}',
+        text: '{% trans "Monitor your active login sessions and sign out from other devices if needed for security." %}',
+        attachTo: { element: '[data-step="9"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Next" %}', action: tour.next, classes: 'btn btn-primary' }
+        ]
+    });
+
+    // Step 10: Danger Zone
+    tour.addStep({
+        id: 'danger-zone',
+        title: '{% trans "Account Deletion" %}',
+        text: '{% trans "This is the danger zone. Only use this if you want to permanently delete your account and all data." %}',
+        attachTo: { element: '[data-step="10"]', on: 'top' },
+        buttons: [
+            { text: '{% trans "Previous" %}', action: tour.back, classes: 'btn btn-outline-secondary' },
+            { text: '{% trans "Finish Tour" %}', action: tour.complete, classes: 'btn btn-success' }
+        ]
+    });
+
+    // Auto-start tour for new users (joined today)
+    const userJoinedRecently = '{{ user.date_joined|timesince }}' === '0 minutes';
+    
+    // Also check if there's a tutorial button to manually start the tour
+    const tutorialBtn = document.getElementById('universal-tutorial-btn');
+    if (tutorialBtn) {
+        tutorialBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            tour.start();
+        });
+    }
+
+    // Auto-start tour for new users or if URL has ?tour=1
+    const urlParams = new URLSearchParams(window.location.search);
+    if (userJoinedRecently || urlParams.has('tour')) {
+        setTimeout(() => {
+            tour.start();
+        }, 1000);
+    }
+}
+
+// Utility function for notifications
+function showNotification(message, type = 'info') {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+    alertDiv.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    
+    document.body.appendChild(alertDiv);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (alertDiv.parentNode) {
+            alertDiv.parentNode.removeChild(alertDiv);
+        }
+    }, 5000);
+}
+
+// Initialize tooltips if Bootstrap is available
+if (typeof bootstrap !== 'undefined') {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+}
+</script>
+
+{% endblock javascripts %}

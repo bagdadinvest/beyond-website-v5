@@ -1,0 +1,225 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+<div class="container-fluid my-5 py-2">
+  <div class="row mb-5">
+    <div class="col-lg-3">
+      <div class="card position-sticky top-1">
+        <ul class="nav flex-column bg-white border-radius-lg p-3">
+          <li class="nav-item">
+            <a class="nav-link text-body d-flex align-items-center" data-scroll="" href="#profile">
+              <i class="ni ni-spaceship me-2 text-dark opacity-6"></i>
+              <span class="text-sm">{% trans "Profile" %}</span>
+            </a>
+          </li>
+          <!-- Add other navigation items as needed -->
+        </ul>
+      </div>
+    <div class="col-lg-9 mt-lg-0 mt-4">
+      <div class="card card-body" id="profile">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-auto col-4">
+                <div class="avatar avatar-xl position-relative">
+                    <img src="{{ user.thumbnail }}" class="avatar avatar-sm me-3" alt="avatar image" style="border-radius: 50%; width: 40px; height: 40px;">
+                </div>
+            </div>
+            <div class="col-sm-auto col-8 my-auto">
+                <div class="h-100">
+                    <h5 class="mb-1 font-weight-bolder">{{ user.full_name }}</h5>
+                    <p class="mb-0 font-weight-bold text-sm">
+                        Joined on {{ user.date_joined|date:"F j, Y" }}
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
+                <label class="form-check-label mb-0">
+                    <small id="profileVisibility">
+                        {% if user.is_online %}
+                            Switch to invisible
+                        {% else %}
+                            Switch to visible
+                        {% endif %}
+                    </small>
+                </label>
+                <div class="form-check form-switch ms-2">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault23" {% if requested_user.is_online %}checked{% endif %} onchange="visible()">
+                </div>
+            </div>
+        </div>
+    </div>      </div>
+
+      <div class="card mt-4" id="basic-info">
+        <div class="card-header">
+          <h5>{% trans "Basic Info" %}</h5>
+        </div>
+        <div class="card-body pt-0">
+          <form action="" method="post" accept-charset="utf-8" class="form" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-6">
+                <label class="form-label">{% trans "First Name" %}</label>
+                <div class="input-group">
+                  <input id="firstName" name="first_name" class="form-control" type="text" value="{{ requested_user.first_name }}" placeholder="{{ user.first_name }}" required="required" onfocus="focused(this)" onfocusout="defocused(this)">
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="form-label">{% trans "Last Name" %}</label>
+                <div class="input-group">
+                  <input id="lastName" name="last_name" class="form-control" type="text" value="{{ requested_user.last_name }}" placeholder="Last Name" required="required" onfocus="focused(this)" onfocusout="defocused(this)">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label class="form-label mt-4">{% trans "Email" %}</label>
+                <div class="input-group">
+                  <input id="email" name="email" class="form-control" type="email" value="{{ requested_user.email }}" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)">
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="form-label mt-4">{% trans "Confirmation Email" %}</label>
+                <div class="input-group">
+                  <input id="confirmation" name="confirmation" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)">
+                </div>
+              </div>
+            </div>
+            
+            {% if is_signup %}
+            <div class="row">
+              <div class="col-6">
+                <label class="form-label mt-4">{% trans "Password" %}</label>
+                <div class="input-group">
+                  <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required />
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="form-label mt-4">{% trans "Confirm Password" %}</label>
+                <div class="input-group">
+                  <input type="password" name="confirm_password" class="form-control form-control-lg" placeholder="Confirm Password" required />
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            
+            {% if not is_signup %}
+            <div class="row">
+              <div class="col-sm-4 col-6">
+                <label class="form-label mt-4">{% trans "I'm" %}</label>
+                {% for sex in sexes %}
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="sex" id="sex{{ forloop.counter }}" value="{{ sex }}" {% if sex == requested_user.medical_information.sex %} checked{% endif %}>
+                  <label class="form-check-label" for="sex{{ forloop.counter }}">{{ sex }}</label>
+                </div>
+                {% endfor %}
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="radio" name="sex" aria-label="" {% if user_sex_other %}checked{% endif %}>
+                    </div>
+                  </div>
+                  <input type="text" name="other_sex" class="form-control form-control-lg" aria-label="other-sex" placeholder="Other (specify)" {% if user_sex_other %}value="{{ requested_user.medical_information.sex }}" {% endif %} />
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="row">
+                  <div class="col-sm-5 col-5">
+                    <label class="form-label mt-4">{% trans "Birth Date" %}</label>
+                    <select name="month" class="form-control form-control-lg">
+                      {% for month in months %}
+                      <option {% if requested_user.date_of_birth.month == forloop.counter %}selected="selected" {% endif %} value="{{ forloop.counter }}">{{ month }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col-sm-4 col-3">
+                    <label class="form-label mt-4">{% trans "&nbsp;" %}</label>
+                    <select name="day" class="form-control form-control-lg">
+                      {% for day in day_range %}
+                      <option {% if requested_user.date_of_birth.day == day %}selected="selected" {% endif %} value="{{ day }}">{{ day }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col-sm-3 col-4">
+                    <label class="form-label mt-4">{% trans "&nbsp;" %}</label>
+                    <select name="year" class="form-control form-control-lg">
+                      {% for year in year_range %}
+                      <option {% if requested_user.date_of_birth.year == year %}selected="selected" {% endif %} value="{{ year }}">{{ year }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label class="form-label mt-4">{% trans "Insurance Information" %}</label>
+                <div class="input-group">
+                  <input type="text" name="company" value="{{ requested_user.medical_information.insurance.company }}" class="form-control form-control-lg" placeholder="Company" />
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="form-label mt-4">{% trans "Policy Number" %}</label>
+                <div class="input-group">
+                  <input type="text" name="policy" value="{{ requested_user.medical_information.insurance.policy_number }}" class="form-control form-control-lg" placeholder="Policy Number" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label mt-4">{% trans "Family History" %}</label>
+                <div class="input-group">
+                  <textarea name="family_history" class="form-control form-control-lg" placeholder="Any medical conditions that may run in your family.">{{ requested_user.medical_information.family_history }}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label mt-4">{% trans "Allergies" %}</label>
+                <div class="input-group">
+                  <textarea name="allergies" class="form-control form-control-lg" placeholder="Pollen, Ammoxicillin, ...">{{ requested_user.medical_information.allergies }}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label mt-4">{% trans "Medications" %}</label>
+                <div class="input-group">
+                  <textarea name="medications" class="form-control form-control-lg" placeholder="Any medications you take on a regular basis">{{ requested_user.medical_information.medications }}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label mt-4">{% trans "Medical Conditions" %}</label>
+                <div class="input-group">
+                  <textarea name="medical_conditions" class="form-control form-control-lg" placeholder="Any existing medical conditions you have or have had in the past">{{ requested_user.medical_information.medical_conditions }}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label mt-4">{% trans "Additional Information" %}</label>
+                <div class="input-group">
+                  <textarea name="additional_info" class="form-control form-control-lg" placeholder="Any additional information you'd like to provide">{{ requested_user.medical_information.additional_info }}</textarea>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            
+            <div class="text-center">
+              <button class="btn bg-gradient-dark w-100 my-4 mb-2" type="submit">{% trans "Save" %}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+  // Add any JavaScript code if needed
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,134 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}{% trans "Comprehensive Dashboard" %}{% endblock %}
+
+{% block stylesheets %}
+<!-- Shepherd.js CSS -->
+<!-- Bootstrap CSS is assumed to be already loaded -->
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">{% trans "Comprehensive Dashboard" %}</h1>
+
+    <div class="row">
+        <!-- User Activity Section -->
+        <div class="col-12">
+            <h2>{% trans "User Activity Section" %}</h2>
+        </div>
+
+        <!-- Card 1: User Actions by Type -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "User Actions by Type" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart1|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: User Logins and Logouts Over Time -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "User Logins and Logouts Over Time" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart2|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: User Actions by Group -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "User Actions by Group" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart3|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comprehensive Data Section -->
+        <div class="col-12">
+            <h2>{% trans "Comprehensive Data Section" %}</h2>
+        </div>
+
+        <!-- Card 4: Patient Distribution by Nationality -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "Patient Distribution by Nationality" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart4|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Appointments per Doctor -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "Appointments per Doctor" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart5|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: Active vs Inactive Users -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "Active vs Inactive Users" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart6|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7: Total Costs of Treatment Plans per Patient -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "Total Costs of Treatment Plans per Patient" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart7|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8: Most Popular Treatment Products -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "Most Popular Treatment Products" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart8|safe }}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 9: Active vs Inactive Prescriptions -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{% trans "Active vs Inactive Prescriptions" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div>{{ chart9|safe }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

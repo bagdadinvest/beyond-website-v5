@@ -1,0 +1,782 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-04 14:08+0300\n"
+"PO-Revision-Date: 2024-09-04 14:16+0000\n"
+"Last-Translator: lotfi kanouni <lofa@bc.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\templates\topblogs\HT.html:3 .\templates\topblogs\whyturkey.html:3
+msgid "Why Turkey"
+msgstr "Pourquoi la Turquie"
+
+#: .\templates\topblogs\HT.html:12
+msgid "Cosmetic Surgery in Turkey"
+msgstr "Chirurgie esthétique en Turquie"
+
+#: .\templates\topblogs\HT.html:15
+msgid "Historical Background of Istanbul"
+msgstr "Contexte historique d’Istanbul"
+
+#: .\templates\topblogs\HT.html:18 .\templates\topblogs\HT.html:76
+msgid "Best Flight Companies"
+msgstr "Meilleures compagnies aériennes"
+
+#: .\templates\topblogs\HT.html:21
+msgid "Top Hotel Chains"
+msgstr "Principales chaînes hôtelières"
+
+#: .\templates\topblogs\HT.html:24
+msgid "Accredited Hospitals"
+msgstr "Hôpitaux accrédités"
+
+#: .\templates\topblogs\HT.html:27
+msgid "Experienced Doctors"
+msgstr "Médecins expérimentés"
+
+#: .\templates\topblogs\HT.html:30 .\templates\topblogs\HT.html:98
+msgid "Multilingual Health Consultants"
+msgstr "Consultants en santé multilingues"
+
+#: .\templates\topblogs\HT.html:33
+msgid "Affordable Luxury"
+msgstr "Luxe abordable"
+
+#: .\templates\topblogs\HT.html:37
+msgid "Istanbul Image"
+msgstr "Istanbul Image"
+
+#: .\templates\topblogs\HT.html:41
+#: .\templates\topblogs\InternalSurgeries.html:15
+#: .\templates\topblogs\dashboard.html:15
+#: .\templates\topblogs\dashboard.html:31 .\templates\topblogs\estetik.html:15
+msgid "why turkey"
+msgstr "Pourquoi la Turquie"
+
+#: .\templates\topblogs\HT.html:42
+#: .\templates\topblogs\InternalSurgeries.html:16
+#: .\templates\topblogs\dashboard.html:16
+#: .\templates\topblogs\dashboard.html:32 .\templates\topblogs\estetik.html:16
+msgid "WHY BEYOND"
+msgstr "POURQUOI AU-DELÀ"
+
+#: .\templates\topblogs\HT.html:43
+#: .\templates\topblogs\InternalSurgeries.html:17
+#: .\templates\topblogs\dashboard.html:17
+#: .\templates\topblogs\dashboard.html:33 .\templates\topblogs\estetik.html:17
+msgid "HAIR TRANSPLANT"
+msgstr "GREFFE DE CHEVEUX"
+
+#: .\templates\topblogs\HT.html:44
+#: .\templates\topblogs\InternalSurgeries.html:18
+#: .\templates\topblogs\dashboard.html:18
+#: .\templates\topblogs\dashboard.html:34 .\templates\topblogs\estetik.html:18
+msgid "AESTHETIC SURGERIES"
+msgstr "CHIRURGIES ESTHÉTIQUES"
+
+#: .\templates\topblogs\HT.html:45
+#: .\templates\topblogs\InternalSurgeries.html:19
+#: .\templates\topblogs\dashboard.html:19
+#: .\templates\topblogs\dashboard.html:35 .\templates\topblogs\estetik.html:19
+msgid "DASHBOARD"
+msgstr "TABLEAU DE BORD"
+
+#: .\templates\topblogs\HT.html:46 .\templates\topblogs\dashboard.html:20
+#: .\templates\topblogs\dashboard.html:36 .\templates\topblogs\estetik.html:20
+msgid "XX"
+msgstr "XX"
+
+#: .\templates\topblogs\HT.html:47
+#: .\templates\topblogs\InternalSurgeries.html:21
+#: .\templates\topblogs\InternalSurgeries.html:23
+#: .\templates\topblogs\dashboard.html:21
+#: .\templates\topblogs\dashboard.html:37 .\templates\topblogs\estetik.html:21
+msgid "Internal Surgeries"
+msgstr "Chirurgies internes"
+
+#: .\templates\topblogs\HT.html:49
+msgid "WHY TURKEY?"
+msgstr "POURQUOI LA TURQUIE ?"
+
+#: .\templates\topblogs\HT.html:50
+msgid "All you need to know..."
+msgstr "Tout ce que vous devez savoir..."
+
+#: .\templates\topblogs\HT.html:51
+#: .\templates\topblogs\InternalSurgeries.html:25
+#: .\templates\topblogs\dashboard.html:41 .\templates\topblogs\estetik.html:25
+msgid "by"
+msgstr "par"
+
+#: .\templates\topblogs\HT.html:51
+msgid "BeyondBlog Team"
+msgstr "L’équipe BeyondBlog"
+
+#: .\templates\topblogs\HT.html:51
+#: .\templates\topblogs\InternalSurgeries.html:25
+#: .\templates\topblogs\dashboard.html:41
+msgid "Posted in"
+msgstr "Publié dans"
+
+#: .\templates\topblogs\HT.html:51
+msgid "Beyond Clinic"
+msgstr "Clinique Beyond"
+
+#: .\templates\topblogs\HT.html:51
+#: .\templates\topblogs\InternalSurgeries.html:25
+#: .\templates\topblogs\dashboard.html:41
+msgid "on"
+msgstr "sur"
+
+#: .\templates\topblogs\HT.html:54
+msgid "Click to know why"
+msgstr "Cliquez pour savoir pourquoi"
+
+#: .\templates\topblogs\HT.html:55
+#: .\templates\topblogs\InternalSurgeries.html:29
+#: .\templates\topblogs\dashboard.html:27 .\templates\topblogs\estetik.html:32
+msgid "Trigger"
+msgstr "Gâchette"
+
+#: .\templates\topblogs\HT.html:61
+msgid "Why Turkey Has Become the Number 1 Destination for Cosmetic Surgeries"
+msgstr ""
+"Pourquoi la Turquie est devenue la destination numéro 1 pour les chirurgies "
+"esthétiques"
+
+#: .\templates\topblogs\HT.html:63
+msgid ""
+"Turkey has rapidly become the top destination for cosmetic surgeries due to "
+"a combination of factors including advanced medical facilities, experienced "
+"doctors, and cost-effective treatments."
+msgstr ""
+"La Turquie est rapidement devenue la première destination pour les "
+"chirurgies esthétiques en raison d’une combinaison de facteurs, notamment "
+"des installations médicales avancées, des médecins expérimentés et des "
+"traitements rentables."
+
+#: .\templates\topblogs\HT.html:68
+msgid "Historical Background of Istanbul: A Bridge of Continents"
+msgstr "Contexte historique d’Istanbul : un pont de continents"
+
+#: .\templates\topblogs\HT.html:70
+msgid ""
+"Istanbul, historically known as Byzantium and later Constantinople, is a "
+"city that straddles Europe and Asia across the Bosphorus Strait. This unique"
+" position has made it a melting pot of cultures and a significant center of "
+"trade and commerce for centuries."
+msgstr ""
+"Istanbul, historiquement connue sous le nom de Byzance et plus tard de "
+"Constantinople, est une ville à cheval sur l’Europe et l’Asie à travers le "
+"détroit du Bosphore. Cette position unique en a fait un creuset de cultures "
+"et un centre important d’échanges et de commerce pendant des siècles."
+
+#: .\templates\topblogs\HT.html:78
+msgid ""
+"Turkey has become a top destination for cosmetic surgeries due to advanced "
+"medical facilities, experienced doctors, and cost-effective treatments."
+msgstr ""
+"La Turquie est devenue une destination de choix pour les chirurgies "
+"esthétiques en raison d’installations médicales avancées, de médecins "
+"expérimentés et de traitements rentables."
+
+#: .\templates\topblogs\HT.html:83
+msgid "Best Hotel Chains"
+msgstr "Meilleures chaînes hôtelières"
+
+#: .\templates\topblogs\HT.html:85
+msgid ""
+"Istanbul offers luxurious accommodation options with top hotel chains, "
+"ensuring comfort for medical tourists."
+msgstr ""
+"Istanbul offre des options d’hébergement luxueuses avec les meilleures "
+"chaînes hôtelières, assurant le confort des touristes médicaux."
+
+#: .\templates\topblogs\HT.html:91
+msgid "Accredited Hospitals and Experienced Doctors"
+msgstr "Hôpitaux accrédités et médecins expérimentés"
+
+#: .\templates\topblogs\HT.html:93
+msgid ""
+"Turkey is known for its world-class hospitals, accredited by international "
+"organizations, and experienced doctors with international training."
+msgstr ""
+"La Turquie est connue pour ses hôpitaux de classe mondiale, accrédités par "
+"des organisations internationales, et ses médecins expérimentés avec une "
+"formation internationale."
+
+#: .\templates\topblogs\HT.html:100
+msgid ""
+"To cater to international patients, Turkey offers multilingual health "
+"consultants who assist with communication and provide comprehensive support "
+"throughout the medical journey."
+msgstr ""
+"Pour répondre aux besoins des patients internationaux, la Turquie propose "
+"des consultants de santé multilingues qui aident à la communication et "
+"fournissent un soutien complet tout au long du parcours médical."
+
+#: .\templates\topblogs\HT.html:106
+msgid "Cost-Effective Luxury"
+msgstr "Luxe rentable"
+
+#: .\templates\topblogs\HT.html:107
+msgid ""
+"The devaluation of the local currency means that all these luxuries are "
+"offered at much lower prices compared to other countries. This makes Turkey "
+"an attractive destination for those seeking high-quality medical care at "
+"affordable rates."
+msgstr ""
+"La dévaluation de la monnaie locale signifie que tous ces produits de luxe "
+"sont proposés à des prix beaucoup plus bas par rapport à d’autres pays. Cela"
+" fait de la Turquie une destination attrayante pour ceux qui recherchent des"
+" soins médicaux de haute qualité à des tarifs abordables."
+
+#: .\templates\topblogs\HT.html:110
+#: .\templates\topblogs\InternalSurgeries.html:53
+#: .\templates\topblogs\dashboard.html:77 .\templates\topblogs\estetik.html:67
+msgid "BACK TO BLOGS INDEX"
+msgstr "RETOUR À L’INDEX DES BLOGS"
+
+#: .\templates\topblogs\InternalSurgeries.html:3
+msgid "Beyond Medical Tourism"
+msgstr "Au-delà du tourisme médical"
+
+#: .\templates\topblogs\InternalSurgeries.html:11
+#: .\templates\topblogs\dashboard.html:11 .\templates\topblogs\estetik.html:11
+#: .\templates\topblogs\estetik.html:28
+msgid "Background Image"
+msgstr "Image d’arrière-plan"
+
+#: .\templates\topblogs\InternalSurgeries.html:20
+msgid "INDEX"
+msgstr "INDEX"
+
+#: .\templates\topblogs\InternalSurgeries.html:24
+msgid "A second chance"
+msgstr "Une seconde chance"
+
+#: .\templates\topblogs\InternalSurgeries.html:25
+msgid "Society"
+msgstr "Société"
+
+#: .\templates\topblogs\InternalSurgeries.html:28
+#: .\templates\topblogs\estetik.html:31
+msgid "Click to see the header effect"
+msgstr "Cliquez pour voir l’effet d’en-tête"
+
+#: .\templates\topblogs\InternalSurgeries.html:33
+msgid ""
+"Internal surgeries, also known as invasive surgeries, involve procedures "
+"that require an incision or entry into the body."
+msgstr ""
+"Les chirurgies internes, également appelées chirurgies invasives, impliquent"
+" des procédures qui nécessitent une incision ou une entrée dans le corps."
+
+#: .\templates\topblogs\InternalSurgeries.html:34
+msgid ""
+"In Turkey, internal surgeries are performed using advanced medical "
+"technologies and techniques. The country has a strong healthcare system with"
+" well-trained surgeons and modern facilities."
+msgstr ""
+"En Turquie, les chirurgies internes sont pratiquées à l’aide de technologies"
+" et de techniques médicales avancées. Le pays dispose d’un système de santé "
+"solide avec des chirurgiens bien formés et des installations modernes."
+
+#: .\templates\topblogs\InternalSurgeries.html:35
+msgid ""
+"Common types of internal surgeries performed in Turkey include "
+"cardiovascular, gastrointestinal, and orthopedic surgeries."
+msgstr ""
+"Les types courants de chirurgies internes pratiquées en Turquie comprennent "
+"les chirurgies cardiovasculaires, gastro-intestinales et orthopédiques."
+
+#: .\templates\topblogs\InternalSurgeries.html:36
+msgid ""
+"Cardiovascular surgeries in Turkey include coronary artery bypass grafting "
+"(CABG), heart valve repair, and aortic aneurysm repair."
+msgstr ""
+"Les chirurgies cardiovasculaires en Turquie comprennent le pontage aorto-"
+"coronarien (PAC), la réparation des valves cardiaques et la réparation de "
+"l’anévrisme de l’aorte."
+
+#: .\templates\topblogs\InternalSurgeries.html:37
+msgid ""
+"Gastrointestinal surgeries address issues related to the digestive system, "
+"such as gastric bypass, colectomy, and liver resection."
+msgstr ""
+"Les chirurgies gastro-intestinales traitent des problèmes liés au système "
+"digestif, tels que le pontage gastrique, la colectomie et la résection du "
+"foie."
+
+#: .\templates\topblogs\InternalSurgeries.html:38
+msgid ""
+"Orthopedic surgeries focus on the musculoskeletal system, including joint "
+"replacements and spine surgeries."
+msgstr ""
+"Les chirurgies orthopédiques se concentrent sur le système musculo-"
+"squelettique, y compris les remplacements articulaires et les chirurgies de "
+"la colonne vertébrale."
+
+#: .\templates\topblogs\InternalSurgeries.html:40
+msgid "Cardiovascular Surgeries"
+msgstr "Chirurgies cardiovasculaires"
+
+#: .\templates\topblogs\InternalSurgeries.html:41
+msgid ""
+"Turkey is renowned for its expertise in cardiovascular surgeries, utilizing "
+"minimally invasive techniques for better recovery outcomes."
+msgstr ""
+"La Turquie est réputée pour son expertise dans les chirurgies "
+"cardiovasculaires, utilisant des techniques peu invasives pour de meilleurs "
+"résultats de récupération."
+
+#: .\templates\topblogs\InternalSurgeries.html:42
+msgid "Gastrointestinal Surgeries"
+msgstr "Chirurgies gastro-intestinales"
+
+#: .\templates\topblogs\InternalSurgeries.html:43
+msgid ""
+"Gastrointestinal surgeries in Turkey are performed by skilled surgeons "
+"specializing in digestive health, using laparoscopic techniques."
+msgstr ""
+"Les chirurgies gastro-intestinales en Turquie sont effectuées par des "
+"chirurgiens qualifiés spécialisés dans la santé digestive, à l’aide de "
+"techniques laparoscopique."
+
+#: .\templates\topblogs\InternalSurgeries.html:44
+msgid "Orthopedic Surgeries"
+msgstr "Chirurgies orthopédiques"
+
+#: .\templates\topblogs\InternalSurgeries.html:45
+msgid ""
+"Orthopedic surgeries in Turkey include joint replacements, spinal fusions, "
+"and fracture repairs with advanced imaging and surgical technology."
+msgstr ""
+"Les chirurgies orthopédiques en Turquie comprennent les remplacements "
+"articulaires, les fusions vertébrales et les réparations de fractures avec "
+"une imagerie avancée et une technologie chirurgicale."
+
+#: .\templates\topblogs\InternalSurgeries.html:46
+msgid "High Standards of Care"
+msgstr "Normes de soins élevées"
+
+#: .\templates\topblogs\InternalSurgeries.html:47
+msgid ""
+"Turkey's hospitals are accredited by international organizations, ensuring "
+"stringent quality and safety standards."
+msgstr ""
+"Les hôpitaux turcs sont accrédités par des organisations internationales, "
+"garantissant des normes de qualité et de sécurité strictes."
+
+#: .\templates\topblogs\InternalSurgeries.html:49
+msgid ""
+"In conclusion, Turkey is a leading destination for internal surgeries, "
+"offering advanced medical treatments at competitive prices."
+msgstr ""
+"En conclusion, la Turquie est une destination de premier plan pour les "
+"chirurgies internes, offrant des traitements médicaux avancés à des prix "
+"compétitifs."
+
+#: .\templates\topblogs\dashboard.html:3
+msgid "Login"
+msgstr "Connectez-vous"
+
+#: .\templates\topblogs\dashboard.html:23
+msgid "Introducing: BeyondBoard"
+msgstr "Présentation de BeyondBoard"
+
+#: .\templates\topblogs\dashboard.html:39
+msgid "BECAUSE YOU HAVE THE RIGHT"
+msgstr "PARCE QUE VOUS AVEZ LE DROIT"
+
+#: .\templates\topblogs\dashboard.html:40
+msgid "TO BE IN CONTROL"
+msgstr "POUR AVOIR LE CONTRÔLE"
+
+#: .\templates\topblogs\dashboard.html:41
+msgid "Beyond Blog Team"
+msgstr "Au-delà de l’équipe du blog"
+
+#: .\templates\topblogs\dashboard.html:41
+msgid "Inspiration"
+msgstr "Inspiration"
+
+#: .\templates\topblogs\dashboard.html:45
+msgid "Profile Management"
+msgstr "Gestion des profils"
+
+#: .\templates\topblogs\dashboard.html:46
+msgid "Personal Information:"
+msgstr "Informations personnelles :"
+
+#: .\templates\topblogs\dashboard.html:46
+msgid ""
+"Patients can view and update their personal details such as name, contact "
+"information, and medical history."
+msgstr ""
+"Les patients peuvent consulter et mettre à jour leurs informations "
+"personnelles telles que leur nom, leurs coordonnées et leurs antécédents "
+"médicaux."
+
+#: .\templates\topblogs\dashboard.html:47
+msgid "Medical Records:"
+msgstr "Dossiers médicaux :"
+
+#: .\templates\topblogs\dashboard.html:47
+msgid ""
+"Secure upload and storage of medical records which can be shared with "
+"medical advisors."
+msgstr ""
+"Téléchargement et stockage sécurisés des dossiers médicaux qui peuvent être "
+"partagés avec les conseillers médicaux."
+
+#: .\templates\topblogs\dashboard.html:48
+msgid "Flight Reservations"
+msgstr "Réservations de vols"
+
+#: .\templates\topblogs\dashboard.html:49
+msgid "Flight Search and Booking:"
+msgstr "Recherche de vols et réservation :"
+
+#: .\templates\topblogs\dashboard.html:49
+msgid ""
+"Integration with flight booking systems similar to Google Flights, allowing "
+"patients to search for and book flights."
+msgstr ""
+"Intégration avec des systèmes de réservation de vols similaires à Google "
+"Flights, permettant aux patients de rechercher et de réserver des vols."
+
+#: .\templates\topblogs\dashboard.html:50
+msgid "Flight Ticket Upload:"
+msgstr "Téléchargement du billet d’avion :"
+
+#: .\templates\topblogs\dashboard.html:50
+msgid ""
+"Patients can upload flight tickets, which are scanned and extracted for "
+"relevant information (e.g., flight date, arrival hour)."
+msgstr ""
+"Les patients peuvent télécharger des billets d’avion, qui sont scannés et "
+"extraits pour obtenir des informations pertinentes (par exemple, la date du "
+"vol, l’heure d’arrivée)."
+
+#: .\templates\topblogs\dashboard.html:51
+msgid "Hotel Reservations"
+msgstr "Réservations"
+
+#: .\templates\topblogs\dashboard.html:52
+msgid "Interactive Map:"
+msgstr "Carte interactive :"
+
+#: .\templates\topblogs\dashboard.html:52
+msgid ""
+"Integration with Google Maps API to display pre-selected nearby hotels with "
+"pictures and details, similar to Google Hotels."
+msgstr ""
+"Intégration avec l’API Google Maps pour afficher les hôtels à proximité "
+"présélectionnés avec des photos et des détails, comme dans Google Hotels."
+
+#: .\templates\topblogs\dashboard.html:53
+msgid "Hotel Booking:"
+msgstr "Réservation d’hôtel :"
+
+#: .\templates\topblogs\dashboard.html:53
+msgid "Option to reserve hotel rooms directly through the dashboard."
+msgstr ""
+"Possibilité de réserver des chambres d’hôtel directement via le tableau de "
+"bord."
+
+#: .\templates\topblogs\dashboard.html:54
+msgid "Medical Appointments"
+msgstr "Rendez-vous médicaux"
+
+#: .\templates\topblogs\dashboard.html:55
+msgid "Appointment Scheduling:"
+msgstr "Prise de rendez-vous :"
+
+#: .\templates\topblogs\dashboard.html:55
+msgid "Patients can schedule appointments with medical professionals."
+msgstr ""
+"Les patients peuvent prendre rendez-vous avec des professionnels de la "
+"santé."
+
+#: .\templates\topblogs\dashboard.html:56
+msgid "Appointment History:"
+msgstr "Historique des rendez-vous :"
+
+#: .\templates\topblogs\dashboard.html:56
+msgid "View past and upcoming appointments with details."
+msgstr "Consultez les rendez-vous passés et à venir avec les détails."
+
+#: .\templates\topblogs\dashboard.html:57
+msgid "Transfer Requests"
+msgstr "Demandes de transfert"
+
+#: .\templates\topblogs\dashboard.html:58
+msgid "Request Transfers:"
+msgstr "Demander des transferts :"
+
+#: .\templates\topblogs\dashboard.html:58
+msgid ""
+"Patients can request transportation services (e.g., airport pickup) through "
+"a chatbot."
+msgstr ""
+"Les patients peuvent demander des services de transport (par exemple, une "
+"prise en charge à l’aéroport) par le biais d’un chatbot."
+
+#: .\templates\topblogs\dashboard.html:59
+msgid "Real-Time Updates:"
+msgstr "Mises à jour en temps réel :"
+
+#: .\templates\topblogs\dashboard.html:59
+msgid "Live updates on transfer status once a driver is assigned."
+msgstr ""
+"Mises à jour en direct sur l’état du transfert une fois qu’un conducteur est"
+" attribué."
+
+#: .\templates\topblogs\dashboard.html:60
+msgid "Live Chat Assistance"
+msgstr "Assistance par chat en direct"
+
+#: .\templates\topblogs\dashboard.html:61
+msgid "Chatbot Support:"
+msgstr "Assistance chatbot :"
+
+#: .\templates\topblogs\dashboard.html:61
+msgid ""
+"A chatbot providing assistance with flight tickets, hotel reservations, and "
+"general inquiries."
+msgstr ""
+"Un chatbot fournissant une assistance pour les billets d’avion, les "
+"réservations d’hôtel et les demandes générales."
+
+#: .\templates\topblogs\dashboard.html:62
+msgid "Live Agent Chat:"
+msgstr "Chat en direct de l’agent :"
+
+#: .\templates\topblogs\dashboard.html:62
+msgid "Option to chat with a live support agent for more complex issues."
+msgstr ""
+"Possibilité de discuter avec un agent d’assistance en direct pour les "
+"problèmes plus complexes."
+
+#: .\templates\topblogs\dashboard.html:63
+msgid "Dashboard Overview"
+msgstr "Vue d’ensemble du tableau de bord"
+
+#: .\templates\topblogs\dashboard.html:64
+msgid "Reservation Summary:"
+msgstr "Résumé de la réservation :"
+
+#: .\templates\topblogs\dashboard.html:64
+msgid "Overview of all current reservations (flights, hotels, transfers)."
+msgstr ""
+"Vue d’ensemble de toutes les réservations en cours (vols, hôtels, "
+"transferts)."
+
+#: .\templates\topblogs\dashboard.html:65
+msgid "Notifications:"
+msgstr "Notifications:"
+
+#: .\templates\topblogs\dashboard.html:65
+msgid ""
+"Alerts and notifications for upcoming appointments, flight reminders, and "
+"other important updates."
+msgstr ""
+"Alertes et notifications pour les rendez-vous à venir, rappels de vol et "
+"autres mises à jour importantes."
+
+#: .\templates\topblogs\dashboard.html:66
+msgid "Document Management"
+msgstr "Gestion des documents"
+
+#: .\templates\topblogs\dashboard.html:67
+msgid "Upload Documents:"
+msgstr "Télécharger les documents :"
+
+#: .\templates\topblogs\dashboard.html:67
+msgid "Patients can upload various documents (e.g., ID, insurance)."
+msgstr ""
+"Les patients peuvent télécharger divers documents (par exemple, une pièce "
+"d’identité, une assurance)."
+
+#: .\templates\topblogs\dashboard.html:68
+msgid "Document Links:"
+msgstr "Liens vers les documents :"
+
+#: .\templates\topblogs\dashboard.html:68
+msgid "Links to uploaded documents stored securely."
+msgstr "Liens vers les documents téléchargés stockés en toute sécurité."
+
+#: .\templates\topblogs\dashboard.html:69
+msgid "Billing and Payments"
+msgstr "Facturation et paiements"
+
+#: .\templates\topblogs\dashboard.html:70
+msgid "Invoice Management:"
+msgstr "Gestion des factures :"
+
+#: .\templates\topblogs\dashboard.html:70
+msgid ""
+"View and manage invoices for medical services, hotel stays, and other "
+"expenses."
+msgstr ""
+"Consultez et gérez les factures pour les services médicaux, les séjours à "
+"l’hôtel et d’autres dépenses."
+
+#: .\templates\topblogs\dashboard.html:71
+msgid "Payment Processing:"
+msgstr "Traitement des paiements :"
+
+#: .\templates\topblogs\dashboard.html:71
+msgid "Secure payment gateways for handling transactions."
+msgstr ""
+"Passerelles de paiement sécurisées pour le traitement des transactions."
+
+#: .\templates\topblogs\dashboard.html:72
+msgid "User Interface and Experience"
+msgstr "Interface utilisateur et expérience"
+
+#: .\templates\topblogs\dashboard.html:73
+msgid "Customizable Interface:"
+msgstr "Interface personnalisable :"
+
+#: .\templates\topblogs\dashboard.html:73
+msgid "Options to customize the dashboard layout and appearance."
+msgstr ""
+"Options pour personnaliser la disposition et l’apparence du tableau de bord."
+
+#: .\templates\topblogs\dashboard.html:74
+msgid "User-Friendly Navigation:"
+msgstr "Navigation conviviale :"
+
+#: .\templates\topblogs\dashboard.html:74
+msgid "Intuitive design ensuring ease of use."
+msgstr "Conception intuitive assurant une facilité d’utilisation."
+
+#: .\templates\topblogs\estetik.html:3
+msgid "Beyond Beauty"
+msgstr "Au-delà de la beauté"
+
+#: .\templates\topblogs\estetik.html:23
+msgid "Aesthetic Procedures in Turkey"
+msgstr "Procédures esthétiques en Turquie"
+
+#: .\templates\topblogs\estetik.html:24
+msgid "get a glimpse of the current view"
+msgstr "Avoir un aperçu de la vue actuelle"
+
+#: .\templates\topblogs\estetik.html:25
+msgid "Posted in BeyondClinic on"
+msgstr "Publié dans BeyondClinic le"
+
+#: .\templates\topblogs\estetik.html:37
+msgid "High-Quality Medical Services"
+msgstr "Des services médicaux de haute qualité"
+
+#: .\templates\topblogs\estetik.html:38
+msgid ""
+"Turkey has become a leading destination for aesthetic procedures, attracting"
+" patients from all over the world. The country offers high-quality medical "
+"services, experienced surgeons, and state-of-the-art facilities at "
+"competitive prices."
+msgstr ""
+"La Turquie est devenue une destination de premier plan pour les procédures "
+"esthétiques, attirant des patients du monde entier. Le pays offre des "
+"services médicaux de haute qualité, des chirurgiens expérimentés et des "
+"installations de pointe à des prix compétitifs."
+
+#: .\templates\topblogs\estetik.html:41
+msgid "Cost-Effective Treatments"
+msgstr "Traitements rentables"
+
+#: .\templates\topblogs\estetik.html:42
+#, python-format
+msgid ""
+"One of the main advantages of undergoing aesthetic procedures in Turkey is "
+"the cost. Patients can save up to 70%% on treatments compared to prices in "
+"the US and Europe, without compromising on quality."
+msgstr ""
+"L’un des principaux avantages de subir des procédures esthétiques en Turquie"
+" est le coût. Les patients peuvent économiser jusqu’à 70 % sur les "
+"traitements par rapport aux prix pratiqués aux États-Unis et en Europe, sans"
+" compromettre la qualité."
+
+#: .\templates\topblogs\estetik.html:45
+msgid "Experienced Surgeons"
+msgstr "Chirurgiens expérimentés"
+
+#: .\templates\topblogs\estetik.html:46
+msgid ""
+"Another significant benefit is the expertise of Turkish surgeons. Many of "
+"them have trained and practiced internationally, bringing a wealth of "
+"experience and knowledge to their practice."
+msgstr ""
+"Un autre avantage non négligeable est l’expertise des chirurgiens turcs. "
+"Beaucoup d’entre eux ont suivi une formation et exercé à l’échelle "
+"internationale, apportant une richesse d’expérience et de connaissances à "
+"leur pratique."
+
+#: .\templates\topblogs\estetik.html:49
+msgid "Advanced Medical Facilities"
+msgstr "Installations médicales de pointe"
+
+#: .\templates\topblogs\estetik.html:50
+msgid ""
+"Turkey is also renowned for its advanced medical facilities. Clinics and "
+"hospitals are equipped with the latest technology and adhere to stringent "
+"international standards."
+msgstr ""
+"La Turquie est également réputée pour ses installations médicales avancées. "
+"Les cliniques et les hôpitaux sont équipés des dernières technologies et "
+"respectent des normes internationales strictes."
+
+#: .\templates\topblogs\estetik.html:53
+msgid "Combining Healthcare with Tourism"
+msgstr "Allier soins de santé et tourisme"
+
+#: .\templates\topblogs\estetik.html:54
+msgid ""
+"In addition to the medical advantages, Turkey offers a unique opportunity to"
+" combine healthcare with a vacation."
+msgstr ""
+"En plus des avantages médicaux, la Turquie offre une occasion unique de "
+"combiner soins de santé et vacances."
+
+#: .\templates\topblogs\estetik.html:57
+msgid "Convenient Arrangement Process"
+msgstr "Processus d’arrangement pratique"
+
+#: .\templates\topblogs\estetik.html:58
+msgid ""
+"The process of arranging aesthetic procedures in Turkey is straightforward. "
+"Many clinics offer comprehensive packages that include accommodation, "
+"airport transfers, and post-operative care."
+msgstr ""
+"Le processus d’organisation des procédures esthétiques en Turquie est "
+"simple. De nombreuses cliniques proposent des forfaits complets qui "
+"comprennent l’hébergement, les transferts aéroport et les soins "
+"postopératoires."
+
+#: .\templates\topblogs\estetik.html:61
+msgid "Conclusion"
+msgstr "Conclusion"
+
+#: .\templates\topblogs\estetik.html:62
+msgid ""
+"In conclusion, Turkey offers numerous advantages for those considering "
+"aesthetic procedures."
+msgstr ""
+"En conclusion, la Turquie offre de nombreux avantages pour ceux qui "
+"envisagent des procédures esthétiques."

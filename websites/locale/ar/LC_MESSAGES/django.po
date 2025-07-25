@@ -1,0 +1,687 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-04 14:04+0300\n"
+"PO-Revision-Date: 2024-08-24 19:57+0000\n"
+"Last-Translator: lotfi kanouni <lofa@bc.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\site_templates\home\about.html:7 .\site_templates\home\home.html:5
+msgid "BEYONDCLINIC"
+msgstr "بيوند كلينيك"
+
+#: .\site_templates\home\about.html:17 .\site_templates\home\about.html:232
+#: .\site_templates\home\blog.html:239 .\site_templates\home\home.html:216
+#: .\site_templates\home\single-post.html:208
+msgid "About Us"
+msgstr "من نحن"
+
+#: .\site_templates\home\about.html:31 .\site_templates\home\blog.html:24
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:91
+#: .\site_templates\home\blog.html:101 .\site_templates\home\blog.html:112
+#: .\site_templates\home\single-post.html:29
+#: .\site_templates\home\single-post.html:32
+msgid "Dental Implants"
+msgstr "زراعة الأسنان"
+
+#: .\site_templates\home\about.html:32
+msgid ""
+"Restore your smile with our state-of-the-art dental implants. we ensure a "
+"seamless and comfortable procedure."
+msgstr ""
+"استعد ابتسامتك من خلال زراعة الأسنان الحديثة لدينا. نحن نضمن إجراء سلس ومريح."
+
+#: .\site_templates\home\about.html:42
+msgid "Teeth Whitening"
+msgstr "تبييض الأسنان"
+
+#: .\site_templates\home\about.html:43
+msgid ""
+"Achieve a brighter smile with our professional teeth whitening services. "
+"Safe, effective, and long-lasting results."
+msgstr ""
+"احصل على ابتسامة أكثر إشراقا من خلال خدمات تبييض الأسنان الاحترافية لدينا. "
+"نتائج آمنة وفعالة وطويلة الأمد."
+
+#: .\site_templates\home\about.html:53
+msgid "Orthodontics"
+msgstr "تقويم الاسنان"
+
+#: .\site_templates\home\about.html:54
+msgid ""
+"Straighten your teeth with our advanced orthodontic treatments, including "
+"braces and Invisalign."
+msgstr ""
+"قم بتقويم أسنانك من خلال علاجات تقويم الأسنان المتقدمة لدينا ، بما في ذلك "
+"تقويم الأسنان والتقويم الشفاف."
+
+#: .\site_templates\home\about.html:64
+msgid "Cosmetic Dentistry"
+msgstr "طب الأسنان التجميلي"
+
+#: .\site_templates\home\about.html:65
+msgid ""
+"Enhance the appearance of your teeth with our range of cosmetic dentistry "
+"services, including veneers and bonding."
+msgstr ""
+"عزز مظهر أسنانك من خلال مجموعتنا من خدمات طب الأسنان التجميلي ، بما في ذلك "
+"القشرة والترابط."
+
+#: .\site_templates\home\about.html:75
+#, fuzzy
+#| msgid "Dental Care"
+msgid "Preventive Care"
+msgstr "الرعاية الوقائية"
+
+#: .\site_templates\home\about.html:76
+msgid ""
+"Maintain your oral health with regular check-ups, cleanings, and "
+"personalized care plans from our skilled team."
+msgstr ""
+"حافظ على صحة فمك من خلال الفحوصات المنتظمة والتنظيف وخطط الرعاية الشخصية من "
+"فريقنا الماهر."
+
+#: .\site_templates\home\about.html:86
+msgid "Emergency Dental Services"
+msgstr "خدمات طب الأسنان الطارئة"
+
+#: .\site_templates\home\about.html:87
+msgid ""
+"Receive prompt and efficient care for dental emergencies, including "
+"toothaches, broken teeth, and more."
+msgstr ""
+"احصل على رعاية سريعة وفعالة لحالات الطوارئ المتعلقة بالأسنان ، بما في ذلك "
+"آلام الأسنان والأسنان المكسورة والمزيد."
+
+#: .\site_templates\home\about.html:99 .\site_templates\home\about.html:101
+#: .\site_templates\home\about.html:103
+msgid "John"
+msgstr "عائشة"
+
+#: .\site_templates\home\about.html:99
+msgid "'s Journey to a New Smile"
+msgstr "و رحلة إلى ابتسامة جديدة"
+
+#: .\site_templates\home\about.html:100
+msgid "A Life-Changing Dental Experience"
+msgstr "تجربة أسنان مغيرة للحياة"
+
+#: .\site_templates\home\about.html:102
+msgid "from"
+msgstr "من"
+
+#: .\site_templates\home\about.html:103
+msgid "UK"
+msgstr "العلمة بسطيف "
+
+#: .\site_templates\home\about.html:103
+msgid ""
+"visited us last month with severe dental issues that had been affecting "
+"their confidence and quality of life. After a comprehensive treatment plan, "
+"including dental implants and restorative procedures,"
+msgstr ""
+"زارتنا الشهر الماضي مع مشاكل الأسنان الحادة التي كانت تؤثر على ثقتهم ونوعية "
+"حياتهم. بعد خطة علاج شاملة ، بما في ذلك زراعة الأسنان والإجراءات الترميمية ،"
+
+#: .\site_templates\home\about.html:103
+msgid " now smiles with confidence and enjoys a pain-free life."
+msgstr " الآن عائشة تعيش غايا راك فاهم"
+
+#: .\site_templates\home\about.html:106
+#, fuzzy
+#| msgid "Patient Stories"
+msgid "Read More Patient Stories"
+msgstr "اقرأ المزيد من قصص المرضى"
+
+#: .\site_templates\home\about.html:117
+msgid "$250/Procedure"
+msgstr "$ 250 / الإجراء"
+
+#: .\site_templates\home\about.html:118
+msgid "Single Tooth Implant"
+msgstr "زراعة الأسنان الواحدة"
+
+#: .\site_templates\home\about.html:120 .\site_templates\home\about.html:134
+msgid "Initial Consultation"
+msgstr "الاستشارة الأولية"
+
+#: .\site_templates\home\about.html:121
+msgid "Implantation Procedure"
+msgstr "إجراء الزرع"
+
+#: .\site_templates\home\about.html:122
+msgid "Follow-Up Care"
+msgstr "متابعة الرعاية"
+
+#: .\site_templates\home\about.html:125 .\site_templates\home\about.html:139
+#: .\site_templates\home\about.html:153
+msgid "Details"
+msgstr "التفاصيل"
+
+#: .\site_templates\home\about.html:131
+msgid "$420/Procedure"
+msgstr "$ 420 / الإجراء"
+
+#: .\site_templates\home\about.html:132
+msgid "Multiple Tooth Implant"
+msgstr "زراعة الأسنان المتعددة"
+
+#: .\site_templates\home\about.html:135
+msgid "Multiple Implantation Procedures"
+msgstr "إجراءات الزرع المتعدد"
+
+#: .\site_templates\home\about.html:136
+msgid "Comprehensive Follow-Up Care"
+msgstr "رعاية المتابعة الشاملة"
+
+#: .\site_templates\home\about.html:145
+msgid "$750/Procedure"
+msgstr "$ 750 / الإجراء"
+
+#: .\site_templates\home\about.html:146
+msgid "Full Mouth Restoration"
+msgstr "ترميم الفم بالكامل"
+
+#: .\site_templates\home\about.html:148
+msgid "Comprehensive Consultation"
+msgstr "استشارة شاملة"
+
+#: .\site_templates\home\about.html:149
+msgid "Full Dental Restoration"
+msgstr "ترميم الأسنان بالكامل"
+
+#: .\site_templates\home\about.html:150
+msgid "Dedicated Follow-Up Support"
+msgstr "دعم متابعة مخصص"
+
+#: .\site_templates\home\about.html:180
+#, fuzzy
+#| msgid "Say hello to Beyond!"
+msgid "Say hello to Highway"
+msgstr "قل مرحبا للطريق السريع"
+
+#: .\site_templates\home\about.html:205 .\site_templates\home\blog.html:224
+#: .\site_templates\home\home.html:201
+#: .\site_templates\home\single-post.html:187
+msgid "Send Message Now"
+msgstr "أرسل رسالة الآن"
+
+#: .\site_templates\home\about.html:223
+msgid "Home - Full-width"
+msgstr "الصفحة الرئيسية - العرض الكامل"
+
+#: .\site_templates\home\about.html:226
+msgid "Home - Masonry"
+msgstr "الصفحة الرئيسية - البناء"
+
+#: .\site_templates\home\about.html:229
+msgid "Home - Small-width"
+msgstr "الصفحة الرئيسية - عرض صغير"
+
+#: .\site_templates\home\about.html:235
+msgid "Blog Entries"
+msgstr "مداخل المدونة"
+
+#: .\site_templates\home\about.html:238
+msgid "Single Post"
+msgstr "وظيفة واحدة"
+
+#: .\site_templates\home\about.html:241
+msgid "We create awesome templates for you"
+msgstr "نقوم بإنشاء قوالب رائعة لك"
+
+#: .\site_templates\home\blog.html:5 .\site_templates\home\blog.html:197
+#: .\site_templates\home\single-post.html:6
+msgid "MedTour Dental"
+msgstr "مدتور لطب الأسنان"
+
+#: .\site_templates\home\blog.html:13
+msgid "Our Blog"
+msgstr "مدونتنا"
+
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:36
+#: .\site_templates\home\blog.html:47
+#: .\site_templates\home\single-post.html:32
+msgid "Admin"
+msgstr "المشرف"
+
+#: .\site_templates\home\blog.html:25
+msgid "August 24, 2024"
+msgstr "24 أغسطس 2024"
+
+#: .\site_templates\home\blog.html:26
+msgid "Why Choose Dental Implants Abroad?"
+msgstr "لماذا تختار زراعة الأسنان في الخارج؟"
+
+#: .\site_templates\home\blog.html:27
+#, python-format
+msgid ""
+"Dental implants have become a popular solution for those seeking to restore "
+"their smile, but the high costs in some countries can be prohibitive. This "
+"is where medical tourism comes into play. By choosing to get your dental "
+"implants abroad, you can save up to 70%% on costs while receiving top-notch "
+"care in state-of-the-art facilities."
+msgstr ""
+"أصبحت زراعة الأسنان حلا شائعا لأولئك الذين يسعون لاستعادة ابتسامتهم ، لكن "
+"التكاليف المرتفعة في بعض البلدان يمكن أن تكون باهظة. هذا هو المكان الذي تلعب "
+"فيه السياحة العلاجية. باختيار الحصول على زراعة الأسنان الخاصة بك في الخارج ، "
+"يمكنك توفير ما يصل إلى 70٪ من التكاليف أثناء تلقي رعاية من الدرجة الأولى في "
+"أحدث المرافق."
+
+#: .\site_templates\home\blog.html:28 .\site_templates\home\blog.html:39
+#: .\site_templates\home\blog.html:50
+msgid "Continue reading"
+msgstr "أكمل القراءة"
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:101
+msgid "August 10, 2024"
+msgstr "أغسطس 10, 2024"
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:115
+msgid "Cost Savings"
+msgstr "وفورات في التكاليف"
+
+#: .\site_templates\home\blog.html:37
+msgid "Cost Savings: A Guide to Dental Implants in Medical Tourism"
+msgstr "توفير التكاليف: دليل لزراعة الأسنان في السياحة العلاجية"
+
+#: .\site_templates\home\blog.html:38
+msgid ""
+"Medical tourism for dental implants not only offers cost savings but also "
+"gives patients access to world-renowned specialists. Learn how to plan your "
+"dental trip abroad and what to expect during your journey to a healthier, "
+"more confident smile."
+msgstr ""
+"لا توفر السياحة الطبية لزراعة الأسنان وفورات في التكاليف فحسب ، بل تتيح أيضا "
+"للمرضى الوصول إلى متخصصين مشهورين عالميا. تعرف على كيفية التخطيط لرحلة طب "
+"الأسنان الخاصة بك في الخارج وما يمكن توقعه خلال رحلتك إلى ابتسامة أكثر صحة "
+"وثقة."
+
+#: .\site_templates\home\blog.html:47
+msgid "July 15, 2024"
+msgstr "15 يوليو، 2024"
+
+#: .\site_templates\home\blog.html:47 .\site_templates\home\blog.html:114
+msgid "Patient Stories"
+msgstr "قصص المرضى"
+
+#: .\site_templates\home\blog.html:48
+msgid "Success Stories: Patients Who Found Their Perfect Smile Abroad"
+msgstr "قصص نجاح: المرضى الذين وجدوا ابتسامتهم المثالية في الخارج"
+
+#: .\site_templates\home\blog.html:49
+msgid ""
+"From initial consultations to final results, follow the journeys of patients "
+"who traveled abroad for dental implants. Discover how they overcame their "
+"dental issues and regained their confidence through affordable, high-quality "
+"care."
+msgstr ""
+"من الاستشارات الأولية إلى النتائج النهائية ، تابع رحلات المرضى الذين سافروا "
+"إلى الخارج لزراعة الأسنان. اكتشف كيف تغلبوا على مشاكل أسنانهم واستعادوا "
+"ثقتهم من خلال رعاية عالية الجودة وبأسعار معقولة."
+
+#: .\site_templates\home\blog.html:75
+#: .\site_templates\home\single-post.html:69
+msgid "Archives"
+msgstr "المحفوظات"
+
+#: .\site_templates\home\blog.html:78
+#: .\site_templates\home\single-post.html:72
+msgid "> August 2024 (4)"
+msgstr "> أغسطس 2024 (4)"
+
+#: .\site_templates\home\blog.html:79
+#: .\site_templates\home\single-post.html:73
+msgid "> July 2024 (16)"
+msgstr "> يوليو 2024 (16)"
+
+#: .\site_templates\home\blog.html:80
+#: .\site_templates\home\single-post.html:74
+msgid "> June 2024 (5)"
+msgstr "> يونيو 2024 (5)"
+
+#: .\site_templates\home\blog.html:81
+#: .\site_templates\home\single-post.html:75
+msgid "> May 2024 (3)"
+msgstr "> مايو 2024 (3)"
+
+#: .\site_templates\home\blog.html:82
+#: .\site_templates\home\single-post.html:76
+msgid "> April 2024 (27)"
+msgstr "> أبريل 2024 (27)"
+
+#: .\site_templates\home\blog.html:87
+#: .\site_templates\home\single-post.html:81
+msgid "Recent Posts"
+msgstr "آخر المقالات"
+
+#: .\site_templates\home\blog.html:91
+msgid "August 20, 2024"
+msgstr "20 أغسطس 2024"
+
+#: .\site_templates\home\blog.html:96
+msgid "How to Choose the Right Clinic Abroad"
+msgstr "كيفية اختيار العيادة المناسبة في الخارج"
+
+#: .\site_templates\home\blog.html:96
+msgid "August 15, 2024"
+msgstr "أغسطس 15, 2024"
+
+#: .\site_templates\home\blog.html:109
+#: .\site_templates\home\single-post.html:109
+msgid "Categories"
+msgstr "فئات"
+
+#: .\site_templates\home\blog.html:113
+#: .\site_templates\home\single-post.html:113
+msgid "> Medical Tourism (9)"
+msgstr "> السياحة العلاجية (9)"
+
+#: .\site_templates\home\blog.html:116
+#: .\site_templates\home\single-post.html:116
+msgid "> Clinics (5)"
+msgstr "> عيادات (5)"
+
+#: .\site_templates\home\blog.html:121
+#: .\site_templates\home\single-post.html:121
+msgid "Latest Gallery"
+msgstr "أحدث معرض"
+
+#: .\site_templates\home\blog.html:238 .\site_templates\home\home.html:215
+#: .\site_templates\home\single-post.html:205
+msgid "Home"
+msgstr "وطن"
+
+#: .\site_templates\home\blog.html:240 .\site_templates\home\home.html:217
+#: .\site_templates\home\single-post.html:211
+msgid "Blog"
+msgstr "المدونة"
+
+#: .\site_templates\home\blog.html:242 .\site_templates\home\home.html:221
+#: .\site_templates\home\single-post.html:216
+msgid "Your smile, our priority. Affordable dental care abroad."
+msgstr "ابتسامتك ، أولويتنا. رعاية الأسنان بأسعار معقولة في الخارج."
+
+#: .\site_templates\home\home.html:15
+msgid "MEDICAL TOURISM SERVICES PROVIDER"
+msgstr "مزود خدمات السياحة العلاجية"
+
+#: .\site_templates\home\home.html:16
+msgid "xxx"
+msgstr "الثلاثون"
+
+#: .\site_templates\home\home.html:31
+msgid "INNOVATIVE SOLUTIONS"
+msgstr "حلول مبتكرة"
+
+#: .\site_templates\home\home.html:46
+msgid "Beyond the Bazaar"
+msgstr "ما وراء البازار"
+
+#: .\site_templates\home\home.html:59
+msgid "Why BEYOND CLINIC"
+msgstr "لماذا بيوند كلينيك"
+
+#: .\site_templates\home\home.html:60
+msgid "HERE IS WHAT SETS US APART"
+msgstr "هذا ما يميزنا"
+
+#: .\site_templates\home\home.html:74
+msgid "ALL YOU NEED TO KNOW IS THIS"
+msgstr "كل ما تحتاج إلى معرفته هو هذا"
+
+#: .\site_templates\home\home.html:88
+msgid "Beyond Baldness"
+msgstr "ما وراء الصلع"
+
+#: .\site_templates\home\home.html:101
+msgid "AESTHETIC SURGERIES"
+msgstr "الجراحات التجميلية"
+
+#: .\site_templates\home\home.html:102
+msgid "SCULPT YOUR DREAM"
+msgstr "نحت حلمك"
+
+#: .\site_templates\home\home.html:115 .\site_templates\home\home.html:218
+msgid "DASHBOARD LOGIN"
+msgstr "تسجيل الدخول إلى لوحة القيادة"
+
+#: .\site_templates\home\home.html:116
+msgid "CHECK IT FOR YOURSELF"
+msgstr "تحقق من ذلك بنفسك"
+
+#: .\site_templates\home\home.html:144
+msgid "IF YOU WANT FURHTHER RESOURCES"
+msgstr "إذا كنت تريد موارد أبعد"
+
+#: .\site_templates\home\home.html:174
+msgid "Say hello to Beyond!"
+msgstr "قل مرحبا ل Beyond!"
+
+#: .\site_templates\home\lang.html:9
+msgid "language"
+msgstr "اللغة"
+
+#: .\site_templates\home\single-post.html:16
+msgid "Dental Implants: A New Smile Abroad"
+msgstr "زراعة الأسنان: ابتسامة جديدة في الخارج"
+
+#: .\site_templates\home\single-post.html:31
+msgid "Why Get Dental Implants Abroad?"
+msgstr "لماذا الحصول على زراعة الأسنان في الخارج؟"
+
+#: .\site_templates\home\single-post.html:32
+msgid "/"
+msgstr "/"
+
+#: .\site_templates\home\single-post.html:32
+msgid "24 August 2024"
+msgstr "24 أغسطس, 2024"
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Dental implants are a life-changing solution for those with missing or "
+"damaged teeth, but the cost can be a barrier. By choosing to get your "
+"implants through medical tourism, you can access world-class dental care at "
+"a fraction of the price. Countries like Turkey, Mexico, and Thailand offer "
+"highly qualified dentists and state-of-the-art facilities."
+msgstr ""
+"زراعة الأسنان هي حل يغير الحياة لأولئك الذين لديهم أسنان مفقودة أو تالفة ، "
+"ولكن التكلفة يمكن أن تكون عائقا. من خلال اختيار الحصول على الغرسات الخاصة بك "
+"من خلال السياحة الطبية ، يمكنك الوصول إلى رعاية الأسنان ذات المستوى العالمي "
+"بجزء بسيط من السعر. تقدم دول مثل تركيا والمكسيك وتايلاند أطباء أسنان مؤهلين "
+"تأهيلا عاليا ومرافق حديثة."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"This post explores the benefits of traveling abroad for dental implants, "
+"including cost savings, quality of care, and the added bonus of exploring a "
+"new country while improving your smile."
+msgstr ""
+"يستكشف هذا المنشور فوائد السفر إلى الخارج لزراعة الأسنان ، بما في ذلك توفير "
+"التكاليف وجودة الرعاية والمكافأة الإضافية لاستكشاف بلد جديد مع تحسين "
+"ابتسامتك."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Learn about patient experiences, the steps involved in the process, and tips "
+"for choosing the right clinic and destination for your dental needs."
+msgstr ""
+"تعرف على تجارب المرضى ، والخطوات المتضمنة في العملية ، ونصائح لاختيار "
+"العيادة والوجهة المناسبة لاحتياجات أسنانك."
+
+#: .\site_templates\home\single-post.html:33
+msgid "Back to Blog"
+msgstr "الرجوع إلى المدونة"
+
+#: .\site_templates\home\single-post.html:38
+msgid "Tags:"
+msgstr "العلامات:"
+
+#: .\site_templates\home\single-post.html:39
+msgid "Dental Care"
+msgstr "العناية بالأسنان"
+
+#: .\site_templates\home\single-post.html:39
+#: .\site_templates\home\single-post.html:40
+#: .\site_templates\home\single-post.html:47
+#: .\site_templates\home\single-post.html:48
+msgid ","
+msgstr ","
+
+#: .\site_templates\home\single-post.html:40
+msgid "Medical Tourism"
+msgstr "السياحة العلاجية"
+
+#: .\site_templates\home\single-post.html:41
+msgid "Affordable Implants"
+msgstr "يزرع بأسعار معقولة"
+
+#: .\site_templates\home\single-post.html:46
+msgid "Share:"
+msgstr "سهم:"
+
+#: .\site_templates\home\single-post.html:47
+msgid "facebook"
+msgstr "فيس بوك"
+
+#: .\site_templates\home\single-post.html:48
+msgid "twitter"
+msgstr "التغريد"
+
+#: .\site_templates\home\single-post.html:49
+msgid "linkedin"
+msgstr "لينكد إن"
+
+#: .\site_templates\home\single-post.html:64
+msgid "Search..."
+msgstr "بحث..."
+
+#: .\site_templates\home\single-post.html:85
+msgid "Recent Post 1"
+msgstr "آخر المقالات 1"
+
+#: .\site_templates\home\single-post.html:87
+msgid "Top Destinations for Dental Implants"
+msgstr "أفضل الوجهات لزراعة الأسنان"
+
+#: .\site_templates\home\single-post.html:88
+msgid "20 August 2024"
+msgstr "20 أغسطس, 2024"
+
+#: .\site_templates\home\single-post.html:92
+msgid "Recent Post 2"
+msgstr "آخر المقالات 2"
+
+#: .\site_templates\home\single-post.html:94
+msgid "Choosing the Right Clinic Abroad"
+msgstr "اختيار العيادة المناسبة في الخارج"
+
+#: .\site_templates\home\single-post.html:95
+msgid "15 August 2024"
+msgstr "15 أغسطس, 2024"
+
+#: .\site_templates\home\single-post.html:99
+msgid "Recent Post 3"
+msgstr "آخر المقالات 3"
+
+#: .\site_templates\home\single-post.html:101
+msgid "Benefits of Dental Implants"
+msgstr "فوائد زراعة الأسنان"
+
+#: .\site_templates\home\single-post.html:102
+msgid "10 August 2024"
+msgstr "10 أغسطس, 2024"
+
+#: .\site_templates\home\single-post.html:112
+msgid "> Dental Implants (7)"
+msgstr "زراعة الأسنان > (7)"
+
+#: .\site_templates\home\single-post.html:114
+msgid "> Patient Stories (14)"
+msgstr "> قصص المرضى (14)"
+
+#: .\site_templates\home\single-post.html:115
+msgid "> Cost Savings (6)"
+msgstr "> وفورات في التكاليف (6)"
+
+#: .\site_templates\home\single-post.html:124
+msgid "Dental Implants Gallery 1"
+msgstr "زراعة الأسنان المعرض 1"
+
+#: .\site_templates\home\single-post.html:125
+msgid "Dental Implants Gallery 2"
+msgstr "زراعة الأسنان معرض الصور 2"
+
+#: .\site_templates\home\single-post.html:126
+msgid "Dental Implants Gallery 3"
+msgstr "زراعة الأسنان معرض الصور 3"
+
+#: .\site_templates\home\single-post.html:127
+msgid "Dental Implants Gallery 4"
+msgstr "زراعة الأسنان المعرض 4"
+
+#: .\site_templates\home\single-post.html:128
+msgid "Dental Implants Gallery 5"
+msgstr "زراعة الأسنان معرض الصور 5"
+
+#: .\site_templates\home\single-post.html:129
+msgid "Dental Implants Gallery 6"
+msgstr "زراعة الأسنان المعرض 6"
+
+#: .\site_templates\home\single-post.html:130
+msgid "Dental Implants Gallery 7"
+msgstr "زراعة الأسنان المعرض 7"
+
+#: .\site_templates\home\single-post.html:131
+msgid "Dental Implants Gallery 8"
+msgstr "زراعة الأسنان المعرض 8"
+
+#: .\site_templates\home\single-post.html:143
+msgid "Copyright &copy; 2024 MedTour Dental"
+msgstr "حقوق الطبع والنشر ونسخ؛ 2024 مدتور لطب الأسنان"
+
+#: .\site_templates\home\single-post.html:145
+msgid "Designed by TemplateMo"
+msgstr "صمم بواسطة TemplateMo"
+
+#: .\site_templates\home\single-post.html:153
+msgid "Contact Icon"
+msgstr "أيقونة جهة الاتصال"
+
+#: .\site_templates\home\single-post.html:162
+msgid "Contact MedTour Dental"
+msgstr "تواصل مع مدتور لطب الأسنان"
+
+#: .\site_templates\home\single-post.html:163
+msgid "Close"
+msgstr "غلق"
+
+#: .\site_templates\home\single-post.html:172
+msgid "Your name..."
+msgstr "الاسم..."
+
+#: .\site_templates\home\single-post.html:177
+msgid "Your email..."
+msgstr "بريدك الإلكتروني..."
+
+#: .\site_templates\home\single-post.html:182
+msgid "Your message..."
+msgstr "رسالتك..."
+
+#: .\site_templates\home\sitebase.html:6
+msgid "BEYONDCLINIC - Home Page"
+msgstr "بيوند كلينيك - الصفحة الرئيسية"

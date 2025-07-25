@@ -1,0 +1,9 @@
+{
+  "form.flight_reservation": "FLIGHT RESERVATION",
+  "form.get_best_offers": "GET THE BEST OFFERS NOW",
+  "form.from": "From",
+  "form.to": "To",
+  "form.departure_date": "Departure Date",
+  "form.return_date": "Return Date",
+  "form.search_flight": "Search Flight"
+}

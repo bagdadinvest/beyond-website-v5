@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block title %}Schedule{% endblock %}
+{% block content %}
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    {% if not user.is_nurse %}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit" data-remote="{% url 'app:add_appointment' %}">{% trans "Add an Appointment" %}</button>
+        <br />
+    {% endif %}
+    <hr />
+    {% include 'error.html' %}
+    {% if schedule_future %}
+        <table class="table table-bordered table-striped">
+            <legend>Upcoming appointments for {% include 'user_link.html' %}</legend>
+            {% include 'appointment_table.html' with schedule=schedule_future editable=True %}
+        </table>
+    {% else %}
+        <h2 class="text-center">{% trans "No upcoming appointments." %}</h2>
+    {% endif %}
+    <hr>
+    {% if schedule_past %}
+        <table class="table table-bordered table-striped">
+            <legend>Past appointments for {% include 'user_link.html' %}</legend>
+            {% include 'appointment_table.html' with schedule=schedule_past editable=False %}
+        </table>
+    {% else %}
+        <h2 class="text-center">{% trans "No past appointments." %}</h2>
+    {% endif %}
+    <hr />
+    
+    <!-- Calendly Inline Widget -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/medtouradmin-bagdadinvest" style="min-width:320px;height:630px;"></div>
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+
+    <script>
+        // Remove modal data when it's closed.
+        $(document).on('hidden.bs.modal', function (e) {
+            $(e.target).removeData('bs.modal');
+        });
+    </script>
+{% endblock %}

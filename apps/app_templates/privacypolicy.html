@@ -1,0 +1,101 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% load static i18n %}
+{% block title %}Sign Up{% endblock %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+{% include "includes/navigation-fullscreen.html" %}
+<main class="main-content main-content-bg mt-0">
+    <div class="page-header min-vh-100" style="background-image: url({% static 'assets/img/bg3.jpg' %});">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" style="padding-top:5%">
+                    <h1 class="text-white mb-2 mt-5">{% trans "Privacy Policy" %}</h1>
+                    <p class="text-white mb-2 mt-5">{% trans "Our Commitment to Protecting Your Information." %}</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="card z-index-0 col-lg-6 col-md-6 col-sm-8 col-12" style="padding-bottom: 15px;">
+                    <h6>{% trans "beyondboard : Privacy Policy" %}</h6>
+                    <p><strong>{% trans "Effective Date:" %}</strong> {% trans "06-06-2024" %}</p>
+
+                    <h6>{% trans "1. Introduction" %}</h6>
+                    <p>{% trans "Welcome to BeyondBoard, a service provided by Delil Clinic. We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our app, including the social login feature." %}</p>
+                    
+                    <h6>{% trans "2. Information We Collect" %}</h6>
+                    <p>{% trans "When you use our app and log in through social media platforms (e.g., Google, Facebook), we may collect the following information:" %}</p>
+                    <ul>
+                        <li><strong>{% trans "Personal Information:" %}</strong> {% trans "This includes your name, email address, and profile picture, which are provided by the social media platform when you authenticate." %}</li>
+                        <li><strong>{% trans "Usage Data:" %}</strong> {% trans "We collect data on how you use our app, including interactions, preferences, and the duration of your sessions." %}</li>
+                    </ul>
+                    
+                    <h6>{% trans "3. How We Use Your Information" %}</h6>
+                    <p>{% trans "We use the information we collect to:" %}</p>
+                    <ul>
+                        <li>{% trans "Provide and improve our services." %}</li>
+                        <li>{% trans "Personalize your experience in the app." %}</li>
+                        <li>{% trans "Communicate with you about your account, updates, and relevant information." %}</li>
+                        <li>{% trans "Ensure the security of our platform." %}</li>
+                    </ul>
+                    
+                    <h6>{% trans "4. Sharing Your Information" %}</h6>
+                    <p>{% trans "We do not sell or share your personal information with third parties for their marketing purposes. We may share your data with:" %}</p>
+                    <ul>
+                        <li><strong>{% trans "Service Providers:" %}</strong> {% trans "Trusted third parties who assist us in operating our app, provided they comply with our Privacy Policy." %}</li>
+                        <li><strong>{% trans "Legal Compliance:" %}</strong> {% trans "If required by law or to protect the rights, property, or safety of our users or the public." %}</li>
+                    </ul>
+                    
+                    <h6>{% trans "5. Data Security" %}</h6>
+                    <p>{% trans "We take appropriate measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no security system is completely foolproof, and we cannot guarantee absolute security." %}</p>
+                    
+                    <h6>{% trans "6. Your Choices" %}</h6>
+                    <p>{% trans "You have the right to:" %}</p>
+                    <ul>
+                        <li>{% trans "Access and update your personal information." %}</li>
+                        <li>{% trans "Opt-out of receiving non-essential communications." %}</li>
+                        <li>{% trans "Deactivate your account if you no longer wish to use our services." %}</li>
+                    </ul>
+                    
+                    <h6>{% trans "7. Third-Party Links" %}</h6>
+                    <p>{% trans "Our app may contain links to third-party websites or services that are not controlled by us. We are not responsible for the privacy practices of these third parties. We encourage you to review their privacy policies." %}</p>
+                    
+                    <h6>{% trans "8. Changes to This Privacy Policy" %}</h6>
+                    <p>{% trans "We may update this Privacy Policy from time to time. Any changes will be posted on this page, and the revised policy will take effect immediately upon posting." %}</p>
+                    
+                    <h6>{% trans "9. Contact Us" %}</h6>
+                    <p>{% trans "If you have any questions or concerns about this Privacy Policy, please contact us at " %}<strong><a href="mailto:beyond-clinic@outlook.com">{% trans "beyond-clinic@outlook.com" %}</a></strong></p>
+                                    </div>
+                {% include "includes/footer-fullscreen.html" %}                      
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="fixed-plugin ps z-index-0">
+      <a href="https://wa.me/905380546393" target="_blank" class="fixed-plugin-button text-dark position-fixed px-3 py-2 z-index-0">
+          <i class="fa fa-whatsapp py-2"> </i>
+      </a>
+  </div>
+
+
+</main>
+{% endblock content %}
+{% block javascripts %}
+<script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+<script>
+  var win = navigator.platform.indexOf('Win') > -1;
+  if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+          damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+  }
+</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="{% static 'assets/js/argon-dashboard.min.js' %}"></script>
+{% endblock javascripts %}

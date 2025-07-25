@@ -1,0 +1,84 @@
+{% load i18n %}
+<!-- Flight Search Form -->
+<div class="card flight-search-card">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="text-danger">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <h2 class="text-white mb-2 mt-5">{% trans "FLIGHT RESERVATION" %}</h2>
+    <h5 class="text-white"><small>{% trans "GET THE BEST OFFERS NOW" %}</small></h5>
+    
+    <form action="" method="POST" id="form_id">
+        {% csrf_token %}
+        
+        <!-- Origin Field -->
+        <div class="form-label-group">
+            <label for="inputOrigin" class="text-white mb-2 mt-5">{% trans "From" %}</label>
+            <input type="text" 
+                   name="Origin" 
+                   id="inputOrigin" 
+                   class="form-control" 
+                   placeholder="{% trans 'Search by City, Airport or IATA code' %}" 
+                   required 
+                   autofocus>
+        </div>
+        
+        <!-- Currency Display -->
+        <div id="currencyCode" class="text-white currency-display">
+            <div class="currency-info">
+                <img id="countryFlag" class="currency-flag" style="display: none;" alt="Country flag">
+                <span id="currencyText" class="currency-text"></span>
+            </div>
+        </div>
+        
+        <!-- Destination Field -->
+        <div class="form-label-group">
+            <label for="inputDestination" class="text-white mb-2">{% trans "To" %}</label>
+            <input type="text" 
+                   name="Destination" 
+                   id="inputDestination" 
+                   class="form-control" 
+                   placeholder="{% trans 'Search by City, Airport or IATA code' %}" 
+                   required>
+        </div>
+        
+        <!-- Departure Date Field -->
+        <div class="form-label-group">
+            <label for="idDeparturedate" class="text-white">{% trans "Departure Date" %}</label>
+            <input type="date" 
+                   name="Departuredate" 
+                   id="idDeparturedate" 
+                   class="form-control" 
+                   placeholder="{% trans 'Departure Date' %}" 
+                   required>
+        </div>
+        
+        <!-- Return Date Field -->
+        <div class="form-label-group">
+            <label for="idReturndate" class="text-white">{% trans "Return Date" %}</label>
+            <input type="date" 
+                   name="Returndate" 
+                   id="idReturndate" 
+                   class="form-control" 
+                   placeholder="{% trans 'Return Date' %}">
+        </div>
+        
+        <hr>
+        
+        <!-- Submit Button -->
+        <div class="search-button-container d-flex gap-3">
+            <button class="btn btn-secondary flex-fill" type="submit" id="searchFlightButton">
+                <span class="btn-inner--icon"><i class="fas fa-search"></i></span>
+                <span class="btn-inner--text">{% trans "Search Flight" %}</span>
+            </button>
+            <a href="{% url 'app:flight_time' %}" class="btn btn-primary flex-fill">
+                <span class="btn-inner--icon"><i class="fas fa-globe"></i></span>
+                <span class="btn-inner--text">{% trans "Flight Time Demo" %}</span>
+            </a>
+        </div>
+    </form>
+</div>

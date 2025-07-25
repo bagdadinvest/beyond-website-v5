@@ -1,0 +1,695 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-24 19:52+0300\n"
+"PO-Revision-Date: 2024-08-24 20:05+0000\n"
+"Last-Translator: lotfi kanouni <lofa@bc.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\site_templates\home\about.html:7 .\site_templates\home\home.html:5
+msgid "BEYONDCLINIC"
+msgstr "BEYONDCLINIC"
+
+#: .\site_templates\home\about.html:17 .\site_templates\home\about.html:232
+#: .\site_templates\home\blog.html:239 .\site_templates\home\home.html:216
+#: .\site_templates\home\single-post.html:208
+msgid "About Us"
+msgstr "Rólunk"
+
+#: .\site_templates\home\about.html:31 .\site_templates\home\blog.html:24
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:91
+#: .\site_templates\home\blog.html:101 .\site_templates\home\blog.html:112
+#: .\site_templates\home\single-post.html:29
+#: .\site_templates\home\single-post.html:32
+msgid "Dental Implants"
+msgstr "Fogászati implantátumok"
+
+#: .\site_templates\home\about.html:32
+msgid ""
+"Restore your smile with our state-of-the-art dental implants. we ensure a "
+"seamless and comfortable procedure."
+msgstr ""
+"Állítsa helyre mosolyát korszerű fogászati implantátumainkkal. Zökkenőmentes"
+" és kényelmes eljárást biztosítunk."
+
+#: .\site_templates\home\about.html:42
+msgid "Teeth Whitening"
+msgstr "Fogfehérítés"
+
+#: .\site_templates\home\about.html:43
+msgid ""
+"Achieve a brighter smile with our professional teeth whitening services. "
+"Safe, effective, and long-lasting results."
+msgstr ""
+"Érjen el ragyogóbb mosolyt professzionális fogfehérítő szolgáltatásainkkal. "
+"Biztonságos, hatékony és tartós eredmények."
+
+#: .\site_templates\home\about.html:53
+msgid "Orthodontics"
+msgstr "Fogszabályozás"
+
+#: .\site_templates\home\about.html:54
+msgid ""
+"Straighten your teeth with our advanced orthodontic treatments, including "
+"braces and Invisalign."
+msgstr ""
+"Egyenesítse ki fogait fejlett fogszabályozó kezeléseinkkel, beleértve a "
+"fogszabályozót és az Invisalign fogszabályozót."
+
+#: .\site_templates\home\about.html:64
+msgid "Cosmetic Dentistry"
+msgstr "Kozmetikai fogászat"
+
+#: .\site_templates\home\about.html:65
+msgid ""
+"Enhance the appearance of your teeth with our range of cosmetic dentistry "
+"services, including veneers and bonding."
+msgstr ""
+"Javítsa fogai megjelenését kozmetikai fogászati szolgáltatásainkkal, "
+"beleértve a héjakat és a ragasztást."
+
+#: .\site_templates\home\about.html:75
+#, fuzzy
+#| msgid "Dental Care"
+msgid "Preventive Care"
+msgstr "Fogászati ellátás"
+
+#: .\site_templates\home\about.html:76
+msgid ""
+"Maintain your oral health with regular check-ups, cleanings, and "
+"personalized care plans from our skilled team."
+msgstr ""
+"Őrizze meg szájüregi egészségét rendszeres ellenőrzésekkel, tisztításokkal "
+"és személyre szabott gondozási tervekkel képzett csapatunktól."
+
+#: .\site_templates\home\about.html:86
+msgid "Emergency Dental Services"
+msgstr "Sürgősségi fogászati szolgáltatások"
+
+#: .\site_templates\home\about.html:87
+msgid ""
+"Receive prompt and efficient care for dental emergencies, including "
+"toothaches, broken teeth, and more."
+msgstr ""
+"Gyors és hatékony ellátást kaphat fogászati vészhelyzetek esetén, beleértve "
+"a fogfájást, a törött fogakat és egyebeket."
+
+#: .\site_templates\home\about.html:99 .\site_templates\home\about.html:101
+#: .\site_templates\home\about.html:103
+msgid "John"
+msgstr "Pandiev"
+
+#: .\site_templates\home\about.html:99
+msgid "'s Journey to a New Smile"
+msgstr "Utazás egy új mosoly felé"
+
+#: .\site_templates\home\about.html:100
+msgid "A Life-Changing Dental Experience"
+msgstr "Egy életet megváltoztató fogászati élmény"
+
+#: .\site_templates\home\about.html:102
+msgid "from"
+msgstr "tól"
+
+#: .\site_templates\home\about.html:103
+msgid "UK"
+msgstr "Budapest-Hungarya"
+
+#: .\site_templates\home\about.html:103
+msgid ""
+"visited us last month with severe dental issues that had been affecting "
+"their confidence and quality of life. After a comprehensive treatment plan, "
+"including dental implants and restorative procedures,"
+msgstr ""
+"A múlt hónapban súlyos fogászati problémákkal látogatott el hozzánk, amelyek"
+" befolyásolták önbizalmukat és életminőségüket. Átfogó kezelési terv után, "
+"beleértve a fogászati implantátumokat és a helyreállító eljárásokat,"
+
+#: .\site_templates\home\about.html:103
+msgid " now smiles with confidence and enjoys a pain-free life."
+msgstr " Most magabiztosan mosolyog és élvezi a fájdalommentes életet."
+
+#: .\site_templates\home\about.html:106
+#, fuzzy
+#| msgid "Patient Stories"
+msgid "Read More Patient Stories"
+msgstr "Betegek történetei"
+
+#: .\site_templates\home\about.html:117
+msgid "$250/Procedure"
+msgstr "$250/eljárás"
+
+#: .\site_templates\home\about.html:118
+msgid "Single Tooth Implant"
+msgstr "Egyfogú implantátum"
+
+#: .\site_templates\home\about.html:120 .\site_templates\home\about.html:134
+msgid "Initial Consultation"
+msgstr "Első konzultáció"
+
+#: .\site_templates\home\about.html:121
+msgid "Implantation Procedure"
+msgstr "Implantációs eljárás"
+
+#: .\site_templates\home\about.html:122
+msgid "Follow-Up Care"
+msgstr "Utókezelés"
+
+#: .\site_templates\home\about.html:125 .\site_templates\home\about.html:139
+#: .\site_templates\home\about.html:153
+msgid "Details"
+msgstr "Részletek"
+
+#: .\site_templates\home\about.html:131
+msgid "$420/Procedure"
+msgstr "$ 420 / eljárás"
+
+#: .\site_templates\home\about.html:132
+msgid "Multiple Tooth Implant"
+msgstr "Többszörös fogú implantátum"
+
+#: .\site_templates\home\about.html:135
+msgid "Multiple Implantation Procedures"
+msgstr "Többszörös implantációs eljárások"
+
+#: .\site_templates\home\about.html:136
+msgid "Comprehensive Follow-Up Care"
+msgstr "Átfogó utókezelés"
+
+#: .\site_templates\home\about.html:145
+msgid "$750/Procedure"
+msgstr "$ 750 / eljárás"
+
+#: .\site_templates\home\about.html:146
+msgid "Full Mouth Restoration"
+msgstr "Teljes száj helyreállítása"
+
+#: .\site_templates\home\about.html:148
+msgid "Comprehensive Consultation"
+msgstr "Átfogó konzultáció"
+
+#: .\site_templates\home\about.html:149
+msgid "Full Dental Restoration"
+msgstr "Teljes fogpótlás"
+
+#: .\site_templates\home\about.html:150
+msgid "Dedicated Follow-Up Support"
+msgstr "Dedikált nyomon követési támogatás"
+
+#: .\site_templates\home\about.html:180
+#, fuzzy
+#| msgid "Say hello to Beyond!"
+msgid "Say hello to Highway"
+msgstr "Üdvözöld a Beyond-ot!"
+
+#: .\site_templates\home\about.html:205 .\site_templates\home\blog.html:224
+#: .\site_templates\home\home.html:201
+#: .\site_templates\home\single-post.html:187
+msgid "Send Message Now"
+msgstr "Üzenet küldése most"
+
+#: .\site_templates\home\about.html:223
+msgid "Home - Full-width"
+msgstr "Kezdőlap - Teljes szélességű"
+
+#: .\site_templates\home\about.html:226
+msgid "Home - Masonry"
+msgstr "Főoldal - Kőművesség"
+
+#: .\site_templates\home\about.html:229
+msgid "Home - Small-width"
+msgstr "Kezdőlap - Kis szélességű"
+
+#: .\site_templates\home\about.html:235
+msgid "Blog Entries"
+msgstr "Blog bejegyzések"
+
+#: .\site_templates\home\about.html:238
+msgid "Single Post"
+msgstr "Egyetlen bejegyzés"
+
+#: .\site_templates\home\about.html:241
+msgid "We create awesome templates for you"
+msgstr "Fantasztikus sablonokat készítünk Önnek"
+
+#: .\site_templates\home\blog.html:5 .\site_templates\home\blog.html:197
+#: .\site_templates\home\single-post.html:6
+msgid "MedTour Dental"
+msgstr "MedTour Dental"
+
+#: .\site_templates\home\blog.html:13
+msgid "Our Blog"
+msgstr "Blogunk"
+
+#: .\site_templates\home\blog.html:25 .\site_templates\home\blog.html:36
+#: .\site_templates\home\blog.html:47
+#: .\site_templates\home\single-post.html:32
+msgid "Admin"
+msgstr "Admin"
+
+#: .\site_templates\home\blog.html:25
+msgid "August 24, 2024"
+msgstr "2024. augusztus 24."
+
+#: .\site_templates\home\blog.html:26
+msgid "Why Choose Dental Implants Abroad?"
+msgstr "Miért válasszon fogászati implantátumokat külföldön?"
+
+#: .\site_templates\home\blog.html:27
+#, python-format
+msgid ""
+"Dental implants have become a popular solution for those seeking to restore "
+"their smile, but the high costs in some countries can be prohibitive. This "
+"is where medical tourism comes into play. By choosing to get your dental "
+"implants abroad, you can save up to 70%% on costs while receiving top-notch "
+"care in state-of-the-art facilities."
+msgstr ""
+"A fogászati implantátumok népszerű megoldássá váltak azok számára, akik "
+"vissza akarják állítani mosolyukat, de egyes országokban a magas költségek "
+"megfizethetetlenek lehetnek. Itt jön képbe az orvosi turizmus. Ha úgy dönt, "
+"hogy fogászati implantátumait külföldön szerzi be, akár 70%-ot is "
+"megtakaríthat a költségeken, miközben csúcsminőségű ellátásban részesül a "
+"legmodernebb létesítményekben."
+
+#: .\site_templates\home\blog.html:28 .\site_templates\home\blog.html:39
+#: .\site_templates\home\blog.html:50
+msgid "Continue reading"
+msgstr "Tovább olvas"
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:101
+msgid "August 10, 2024"
+msgstr "2024. augusztus 10."
+
+#: .\site_templates\home\blog.html:36 .\site_templates\home\blog.html:115
+msgid "Cost Savings"
+msgstr "Költségmegtakarítás"
+
+#: .\site_templates\home\blog.html:37
+msgid "Cost Savings: A Guide to Dental Implants in Medical Tourism"
+msgstr ""
+"Költségmegtakarítás: Útmutató a fogászati implantátumokhoz az orvosi "
+"turizmusban"
+
+#: .\site_templates\home\blog.html:38
+msgid ""
+"Medical tourism for dental implants not only offers cost savings but also "
+"gives patients access to world-renowned specialists. Learn how to plan your "
+"dental trip abroad and what to expect during your journey to a healthier, "
+"more confident smile."
+msgstr ""
+"A fogászati implantátumok orvosi turizmusa nemcsak költségmegtakarítást "
+"kínál, hanem a betegek számára is hozzáférést biztosít a világhírű "
+"szakemberekhez. Tudja meg, hogyan tervezze meg külföldi fogászati útját, és "
+"mire számíthat az egészségesebb, magabiztosabb mosoly felé vezető úton."
+
+#: .\site_templates\home\blog.html:47
+msgid "July 15, 2024"
+msgstr "2024. július 15."
+
+#: .\site_templates\home\blog.html:47 .\site_templates\home\blog.html:114
+msgid "Patient Stories"
+msgstr "Betegek történetei"
+
+#: .\site_templates\home\blog.html:48
+msgid "Success Stories: Patients Who Found Their Perfect Smile Abroad"
+msgstr ""
+"Sikertörténetek: Betegek, akik külföldön találták meg tökéletes mosolyukat"
+
+#: .\site_templates\home\blog.html:49
+msgid ""
+"From initial consultations to final results, follow the journeys of patients"
+" who traveled abroad for dental implants. Discover how they overcame their "
+"dental issues and regained their confidence through affordable, high-quality"
+" care."
+msgstr ""
+"A kezdeti konzultációktól a végeredményekig kövesse nyomon azoknak a "
+"pácienseknek az útját, akik külföldre utaztak fogászati implantátumokért. "
+"Fedezze fel, hogyan győzték le fogászati problémáikat, és hogyan nyerték "
+"vissza önbizalmukat megfizethető, magas színvonalú ellátás révén."
+
+#: .\site_templates\home\blog.html:75
+#: .\site_templates\home\single-post.html:69
+msgid "Archives"
+msgstr "Levéltár"
+
+#: .\site_templates\home\blog.html:78
+#: .\site_templates\home\single-post.html:72
+msgid "> August 2024 (4)"
+msgstr "2024. augusztus > (4)"
+
+#: .\site_templates\home\blog.html:79
+#: .\site_templates\home\single-post.html:73
+msgid "> July 2024 (16)"
+msgstr "> 2024. július (16)"
+
+#: .\site_templates\home\blog.html:80
+#: .\site_templates\home\single-post.html:74
+msgid "> June 2024 (5)"
+msgstr "2024. június >. (5)"
+
+#: .\site_templates\home\blog.html:81
+#: .\site_templates\home\single-post.html:75
+msgid "> May 2024 (3)"
+msgstr "2024. május >. (3)"
+
+#: .\site_templates\home\blog.html:82
+#: .\site_templates\home\single-post.html:76
+msgid "> April 2024 (27)"
+msgstr "> április 2024 (27)"
+
+#: .\site_templates\home\blog.html:87
+#: .\site_templates\home\single-post.html:81
+msgid "Recent Posts"
+msgstr "Legutóbbi hozzászólások"
+
+#: .\site_templates\home\blog.html:91
+msgid "August 20, 2024"
+msgstr "2024. augusztus 20."
+
+#: .\site_templates\home\blog.html:96
+msgid "How to Choose the Right Clinic Abroad"
+msgstr "Hogyan válasszuk ki a megfelelő klinikát külföldön"
+
+#: .\site_templates\home\blog.html:96
+msgid "August 15, 2024"
+msgstr "2024. augusztus 15."
+
+#: .\site_templates\home\blog.html:109
+#: .\site_templates\home\single-post.html:109
+msgid "Categories"
+msgstr "Kategóriák"
+
+#: .\site_templates\home\blog.html:113
+#: .\site_templates\home\single-post.html:113
+msgid "> Medical Tourism (9)"
+msgstr "> Gyógyturizmus (9)"
+
+#: .\site_templates\home\blog.html:116
+#: .\site_templates\home\single-post.html:116
+msgid "> Clinics (5)"
+msgstr "> rendelő kínálata (5)"
+
+#: .\site_templates\home\blog.html:121
+#: .\site_templates\home\single-post.html:121
+msgid "Latest Gallery"
+msgstr "Legújabb galéria"
+
+#: .\site_templates\home\blog.html:238 .\site_templates\home\home.html:215
+#: .\site_templates\home\single-post.html:205
+msgid "Home"
+msgstr "Otthon"
+
+#: .\site_templates\home\blog.html:240 .\site_templates\home\home.html:217
+#: .\site_templates\home\single-post.html:211
+msgid "Blog"
+msgstr "Blog"
+
+#: .\site_templates\home\blog.html:242 .\site_templates\home\home.html:219
+#: .\site_templates\home\single-post.html:216
+msgid "Your smile, our priority. Affordable dental care abroad."
+msgstr ""
+"Az Ön mosolya, a mi prioritásunk. Megfizethető fogászati ellátás külföldön."
+
+#: .\site_templates\home\home.html:15
+msgid "MEDICAL TOURISM SERVICES PROVIDER"
+msgstr "EGÉSZSÉGÜGYI TURISZTIKAI SZOLGÁLTATÓ"
+
+#: .\site_templates\home\home.html:16
+msgid "xxx"
+msgstr "Xxx"
+
+#: .\site_templates\home\home.html:31
+msgid "INNOVATIVE SOLUTIONS"
+msgstr "INNOVATÍV MEGOLDÁSOK"
+
+#: .\site_templates\home\home.html:46
+msgid "Beyond the Bazaar"
+msgstr "A bazáron túl"
+
+#: .\site_templates\home\home.html:59
+msgid "Why BEYOND CLINIC"
+msgstr "Miért a BEYOND CLINIC?"
+
+#: .\site_templates\home\home.html:60
+msgid "HERE IS WHAT SETS US APART"
+msgstr "ÍME, MI KÜLÖNBÖZTET MEG MINKET"
+
+#: .\site_templates\home\home.html:74
+msgid "ALL YOU NEED TO KNOW IS THIS"
+msgstr "CSAK EZT KELL TUDNOD"
+
+#: .\site_templates\home\home.html:88
+msgid "Beyond Baldness"
+msgstr "A kopaszságon túl"
+
+#: .\site_templates\home\home.html:101
+msgid "AESTHETIC SURGERIES"
+msgstr "ESZTÉTIKAI MŰTÉTEK"
+
+#: .\site_templates\home\home.html:102
+msgid "SCULPT YOUR DREAM"
+msgstr "FARAGJA MEG ÁLMAIT"
+
+#: .\site_templates\home\home.html:115
+msgid "DASHBOARD LOGIN"
+msgstr "BEJELENTKEZÉS IRÁNYÍTÓPULTRA"
+
+#: .\site_templates\home\home.html:116
+msgid "CHECK IT FOR YOURSELF"
+msgstr "ELLENŐRIZD TE MAGAD"
+
+#: .\site_templates\home\home.html:144
+msgid "IF YOU WANT FURHTHER RESOURCES"
+msgstr "HA TOVÁBBI ERŐFORRÁSOKAT SZERETNE"
+
+#: .\site_templates\home\home.html:174
+msgid "Say hello to Beyond!"
+msgstr "Üdvözöld a Beyond-ot!"
+
+#: .\site_templates\home\lang.html:9
+msgid "language"
+msgstr "Nyelv"
+
+#: .\site_templates\home\single-post.html:16
+msgid "Dental Implants: A New Smile Abroad"
+msgstr "Fogászati implantátumok: új mosoly külföldön"
+
+#: .\site_templates\home\single-post.html:31
+msgid "Why Get Dental Implants Abroad?"
+msgstr "Miért érdemes külföldön fogászati implantátumot szerezni?"
+
+#: .\site_templates\home\single-post.html:32
+msgid "/"
+msgstr "/"
+
+#: .\site_templates\home\single-post.html:32
+msgid "24 August 2024"
+msgstr "2024. augusztus 24."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Dental implants are a life-changing solution for those with missing or "
+"damaged teeth, but the cost can be a barrier. By choosing to get your "
+"implants through medical tourism, you can access world-class dental care at "
+"a fraction of the price. Countries like Turkey, Mexico, and Thailand offer "
+"highly qualified dentists and state-of-the-art facilities."
+msgstr ""
+"A fogászati implantátumok életet megváltoztató megoldást jelentenek azok "
+"számára, akiknek hiányoznak vagy sérültek a fogai, de a költségek akadályt "
+"jelenthetnek. Ha úgy dönt, hogy implantátumait az orvosi turizmuson "
+"keresztül szerzi be, világszínvonalú fogászati ellátáshoz férhet hozzá az ár"
+" töredékéért. Az olyan országok, mint Törökország, Mexikó és Thaiföld "
+"magasan képzett fogorvosokat és korszerű létesítményeket kínálnak."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"This post explores the benefits of traveling abroad for dental implants, "
+"including cost savings, quality of care, and the added bonus of exploring a "
+"new country while improving your smile."
+msgstr ""
+"Ez a bejegyzés feltárja a fogászati implantátumok külföldre utazásának "
+"előnyeit, beleértve a költségmegtakarítást, az ellátás minőségét és egy új "
+"ország felfedezésének bónuszát, miközben javítja mosolyát."
+
+#: .\site_templates\home\single-post.html:33
+msgid ""
+"Learn about patient experiences, the steps involved in the process, and tips"
+" for choosing the right clinic and destination for your dental needs."
+msgstr ""
+"Ismerje meg a páciensek tapasztalatait, a folyamat lépéseit, és tippeket a "
+"fogászati igényeinek megfelelő klinika és úti cél kiválasztásához."
+
+#: .\site_templates\home\single-post.html:33
+msgid "Back to Blog"
+msgstr "Vissza a bloghoz"
+
+#: .\site_templates\home\single-post.html:38
+msgid "Tags:"
+msgstr "Címkék:"
+
+#: .\site_templates\home\single-post.html:39
+msgid "Dental Care"
+msgstr "Fogászati ellátás"
+
+#: .\site_templates\home\single-post.html:39
+#: .\site_templates\home\single-post.html:40
+#: .\site_templates\home\single-post.html:47
+#: .\site_templates\home\single-post.html:48
+msgid ","
+msgstr ","
+
+#: .\site_templates\home\single-post.html:40
+msgid "Medical Tourism"
+msgstr "Gyógyturizmus"
+
+#: .\site_templates\home\single-post.html:41
+msgid "Affordable Implants"
+msgstr "Megfizethető implantátumok"
+
+#: .\site_templates\home\single-post.html:46
+msgid "Share:"
+msgstr "Részvény:"
+
+#: .\site_templates\home\single-post.html:47
+msgid "facebook"
+msgstr "Facebook"
+
+#: .\site_templates\home\single-post.html:48
+msgid "twitter"
+msgstr "csicsergés"
+
+#: .\site_templates\home\single-post.html:49
+msgid "linkedin"
+msgstr "LinkedIn"
+
+#: .\site_templates\home\single-post.html:64
+msgid "Search..."
+msgstr "Keresés..."
+
+#: .\site_templates\home\single-post.html:85
+msgid "Recent Post 1"
+msgstr "Legutóbbi hozzászólás 1"
+
+#: .\site_templates\home\single-post.html:87
+msgid "Top Destinations for Dental Implants"
+msgstr "Legjobb úti célok fogászati implantátumok számára"
+
+#: .\site_templates\home\single-post.html:88
+msgid "20 August 2024"
+msgstr "2024. augusztus 20."
+
+#: .\site_templates\home\single-post.html:92
+msgid "Recent Post 2"
+msgstr "Legutóbbi bejegyzés 2"
+
+#: .\site_templates\home\single-post.html:94
+msgid "Choosing the Right Clinic Abroad"
+msgstr "A megfelelő klinika kiválasztása külföldön"
+
+#: .\site_templates\home\single-post.html:95
+msgid "15 August 2024"
+msgstr "2024. augusztus 15."
+
+#: .\site_templates\home\single-post.html:99
+msgid "Recent Post 3"
+msgstr "Legutóbbi bejegyzés 3"
+
+#: .\site_templates\home\single-post.html:101
+msgid "Benefits of Dental Implants"
+msgstr "A fogászati implantátumok előnyei"
+
+#: .\site_templates\home\single-post.html:102
+msgid "10 August 2024"
+msgstr "2024. augusztus 10."
+
+#: .\site_templates\home\single-post.html:112
+msgid "> Dental Implants (7)"
+msgstr "> Fogászati implantátumok (7)"
+
+#: .\site_templates\home\single-post.html:114
+msgid "> Patient Stories (14)"
+msgstr "> betegtörténetek (14)"
+
+#: .\site_templates\home\single-post.html:115
+msgid "> Cost Savings (6)"
+msgstr "> költségmegtakarítás (6)"
+
+#: .\site_templates\home\single-post.html:124
+msgid "Dental Implants Gallery 1"
+msgstr "Fogászati implantátumok galériája 1"
+
+#: .\site_templates\home\single-post.html:125
+msgid "Dental Implants Gallery 2"
+msgstr "Fogászati implantátumok galériája 2"
+
+#: .\site_templates\home\single-post.html:126
+msgid "Dental Implants Gallery 3"
+msgstr "Fogászati implantátumok galériája 3"
+
+#: .\site_templates\home\single-post.html:127
+msgid "Dental Implants Gallery 4"
+msgstr "Fogászati implantátumok galériája 4"
+
+#: .\site_templates\home\single-post.html:128
+msgid "Dental Implants Gallery 5"
+msgstr "Fogászati implantátumok galériája 5"
+
+#: .\site_templates\home\single-post.html:129
+msgid "Dental Implants Gallery 6"
+msgstr "Fogászati implantátumok galériája 6"
+
+#: .\site_templates\home\single-post.html:130
+msgid "Dental Implants Gallery 7"
+msgstr "Fogászati implantátumok galériája 7"
+
+#: .\site_templates\home\single-post.html:131
+msgid "Dental Implants Gallery 8"
+msgstr "Fogászati implantátumok galériája 8"
+
+#: .\site_templates\home\single-post.html:143
+msgid "Copyright &copy; 2024 MedTour Dental"
+msgstr "Szerzői jog és másolás; 2024 MedTour Dental"
+
+#: .\site_templates\home\single-post.html:145
+msgid "Designed by TemplateMo"
+msgstr "Tervezte: TemplateMo"
+
+#: .\site_templates\home\single-post.html:153
+msgid "Contact Icon"
+msgstr "Kapcsolat ikon"
+
+#: .\site_templates\home\single-post.html:162
+msgid "Contact MedTour Dental"
+msgstr "Lépjen kapcsolatba a MedTour Dental céggel"
+
+#: .\site_templates\home\single-post.html:163
+msgid "Close"
+msgstr "Bezár"
+
+#: .\site_templates\home\single-post.html:172
+msgid "Your name..."
+msgstr "A neved..."
+
+#: .\site_templates\home\single-post.html:177
+msgid "Your email..."
+msgstr "Az Ön e-mail címe..."
+
+#: .\site_templates\home\single-post.html:182
+msgid "Your message..."
+msgstr "Az Ön üzenete..."
+
+#: .\site_templates\home\sitebase.html:6
+msgid "BEYONDCLINIC - Home Page"
+msgstr "BEYONDCLINIC - Kezdőlap"

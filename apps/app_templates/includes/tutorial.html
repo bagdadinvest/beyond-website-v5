@@ -1,0 +1,24 @@
+{% load static %}
+<!-- Shepherd.js Tutorial Integration -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Adding login page-specific Shepherd steps...");
+
+    if (typeof Shepherd === 'undefined') {
+        console.error("Shepherd.js not loaded for the login page.");
+        return;
+    }
+
+    // Add login page-specific steps
+    tour.addStep({
+        id: 'step-1',
+        text: 'Welcome to Delil Clinic! This is the main banner.',
+        attachTo: { element: '[data-step="1"]', on: 'bottom' },
+        buttons: [{ text: 'Next', action: tour.next }]
+    });
+
+    // Additional steps...
+
+    window.tour = tour;  // Expose tour for universal button
+});
+</script>

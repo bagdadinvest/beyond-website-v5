@@ -1,0 +1,77 @@
+{% load i18n %}
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@9.1.1/dist/js/shepherd.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  console.log("Setting up dashboard Shepherd tour...");
+
+  if (typeof Shepherd === 'undefined') {
+    console.error("Shepherd.js is not loaded.");
+    return;
+  }
+
+  const tour = new Shepherd.Tour({
+    useModalOverlay: true,
+    defaultStepOptions: {
+      cancelIcon: { enabled: true },
+      classes: 'shadow-md bg-purple-dark',
+      scrollTo: { behavior: 'smooth', block: 'center' },
+    },
+  });
+
+  // Step 1: Highlight "New Messages"
+  tour.addStep({
+    id: 'step-1',
+    text: `{% trans "Here you can see your new messages. Click 'View Messages' to read them." %}`,
+    attachTo: { element: '[data-step="1"]', on: 'bottom' },
+    buttons: [
+      { text: '{% trans "Next" %}', action: tour.next },
+    ],
+  });
+
+  // Step 2: Highlight "Appointments"
+  tour.addStep({
+    id: 'step-2',
+    text: `{% trans "This section shows your upcoming appointments. Click 'View Appointments' to manage your schedule." %}`,
+    attachTo: { element: '[data-step="2"]', on: 'bottom' },
+    buttons: [
+      { text: '{% trans "Back" %}', action: tour.back },
+      { text: '{% trans "Next" %}', action: tour.next },
+    ],
+  });
+
+  // Step 3: Highlight "Prescriptions"
+  tour.addStep({
+    id: 'step-3',
+    text: `{% trans "Here you can view your active prescriptions. Click 'View Prescriptions' to check the details." %}`,
+    attachTo: { element: '[data-step="3"]', on: 'bottom' },
+    buttons: [
+      { text: '{% trans "Back" %}', action: tour.back },
+      { text: '{% trans "Next" %}', action: tour.next },
+    ],
+  });
+
+  // Step 4: Highlight "Current Balance" and Referral Link
+  tour.addStep({
+    id: 'step-4',
+    text: `{% trans "This section displays your current balance. You can also generate a referral link to invite others and earn rewards." %}`,
+    attachTo: { element: '[data-step="4"]', on: 'top' },
+    buttons: [
+      { text: '{% trans "Back" %}', action: tour.back },
+      { text: '{% trans "Done" %}', action: tour.complete },
+    ],
+  });
+
+  // Attach Shepherd tour to the universal tutorial button
+  const universalButton = document.getElementById('universal-tutorial-btn');
+  if (universalButton) {
+    universalButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log("Starting universal Shepherd tour for dashboard...");
+      tour.start();
+    });
+  } else {
+    console.error("Universal tutorial button (#universal-tutorial-btn) not found!");
+  }
+});
+</script>

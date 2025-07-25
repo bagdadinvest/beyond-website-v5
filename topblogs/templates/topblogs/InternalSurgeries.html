@@ -1,0 +1,156 @@
+{% extends 'topblogs/blogbase.html' %}
+{% load static i18n %}
+{% block title %} {% trans "Beyond Medical Tourism" %} {% endblock title %}
+{% block content %}
+    <body class="demo-7">
+        <div id="container" class="container intro-effect-jam3">
+            <!-- Top Navigation -->
+            {% include "topblogs/topnav.html" %}
+            <header class="header">
+                <div class="bg-img">
+                    <img src="{% static 'topblogstatic/blogs/img/1.jpg' %}" alt="{% trans 'Background Image' %}"/>
+                </div>
+                <div class="title">
+                    <nav class="codrops-demos">
+                        <a href="{% url 'topblogs:whyturkey' %}">{% trans "why turkey" %}</a>
+                        <a href="{% url 'topblogs:whybeyond' %}">{% trans "WHY BEYOND" %}</a>
+                        <a href="{% url 'topblogs:ht' %}">{% trans "HAIR TRANSPLANT" %}</a>
+                        <a href="{% url 'topblogs:estetik' %}">{% trans "AESTHETIC SURGERIES" %}</a>
+                        <a href="{% url 'topblogs:dashboard' %}">{% trans "DASHBOARD" %}</a>
+                        <a href="{% url 'topblogs:tbindex' %}">{% trans "INDEX" %}</a>
+                        <a class="current-demo" href="{% url 'topblogs:internal_surgeries' %}">{% trans "Internal Surgeries" %}</a>
+                    </nav>
+                    <h1>{% trans "Internal Surgeries" %}</h1>
+                    <p class="subline">{% trans "A second chance" %}&nbsp;</p>
+                    <p>{% trans "by" %} <strong>BeyondBlog Team</strong> &#8212; {% trans "Posted in" %} <strong>{% trans "Society" %}</strong> {% trans "on" %} <strong>May 19, 2014</strong></p>
+                </div>
+            </header>
+            <button class="trigger" data-info="{% trans 'Click to see the header effect' %}">
+                <span>{% trans "Trigger" %}</span>
+            </button>
+            <article class="content">
+                <div> 
+                    <p>{% trans "Internal surgeries, also known as invasive surgeries, involve procedures that require an incision or entry into the body." %}</p> 
+                    <p>{% trans "In Turkey, internal surgeries are performed using advanced medical technologies and techniques. The country has a strong healthcare system with well-trained surgeons and modern facilities." %}</p> 
+                    <p>{% trans "Common types of internal surgeries performed in Turkey include cardiovascular, gastrointestinal, and orthopedic surgeries." %}</p> 
+                    <p>{% trans "Cardiovascular surgeries in Turkey include coronary artery bypass grafting (CABG), heart valve repair, and aortic aneurysm repair." %}</p> 
+                    <p>{% trans "Gastrointestinal surgeries address issues related to the digestive system, such as gastric bypass, colectomy, and liver resection." %}</p> 
+                    <p>{% trans "Orthopedic surgeries focus on the musculoskeletal system, including joint replacements and spine surgeries." %}</p>
+                    
+                    <h3>{% trans "Cardiovascular Surgeries" %}</h3> 
+                    <p>{% trans "Turkey is renowned for its expertise in cardiovascular surgeries, utilizing minimally invasive techniques for better recovery outcomes." %}</p> 
+                    <h3>{% trans "Gastrointestinal Surgeries" %}</h3> 
+                    <p>{% trans "Gastrointestinal surgeries in Turkey are performed by skilled surgeons specializing in digestive health, using laparoscopic techniques." %}</p> 
+                    <h3>{% trans "Orthopedic Surgeries" %}</h3> 
+                    <p>{% trans "Orthopedic surgeries in Turkey include joint replacements, spinal fusions, and fracture repairs with advanced imaging and surgical technology." %}</p> 
+                    <h3>{% trans "High Standards of Care" %}</h3> 
+                    <p>{% trans "Turkey's hospitals are accredited by international organizations, ensuring stringent quality and safety standards." %}</p>
+                    
+                    <p>{% trans "In conclusion, Turkey is a leading destination for internal surgeries, offering advanced medical treatments at competitive prices." %}</p>
+                </div>
+
+                <section class="related">
+                    <div><a class="codrops-icon codrops-icon-prev" href="{% url 'topblogs:tbindex' %}"><span>{% trans "BACK TO BLOGS INDEX" %}</span></a></div>
+                </section>
+            </article>
+        </div>
+        <!-- /container -->
+        <script src="{% static 'topblogstatic/blogs/js/singleclassie.js' %}"></script>
+        {% block javascript %}
+        <script>
+			(function() {
+				var ie = (function(){
+					var undef, rv = -1;
+					var ua = window.navigator.userAgent;
+					var msie = ua.indexOf('MSIE ');
+					var trident = ua.indexOf('Trident/');
+					if (msie > 0) {
+						rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+					} else if (trident > 0) {
+						var rvNum = ua.indexOf('rv:');
+						rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
+					}
+					return ((rv > -1) ? rv : undef);
+				}());
+				var keys = [32, 37, 38, 39, 40], wheelIter = 0;
+				function preventDefault(e) {
+					e = e || window.event;
+					if (e.preventDefault) e.preventDefault();
+					e.returnValue = false;
+				}
+				function keydown(e) {
+					for (var i = keys.length; i--;) {
+						if (e.keyCode === keys[i]) {
+							preventDefault(e);
+							return;
+						}
+					}
+				}
+				function touchmove(e) {
+					preventDefault(e);
+				}
+				function wheel(e) {}
+				function disable_scroll() {
+					window.onmousewheel = document.onmousewheel = wheel;
+					document.onkeydown = keydown;
+					document.body.ontouchmove = touchmove;
+				}
+				function enable_scroll() {
+					window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;
+				}
+				var docElem = window.document.documentElement,
+					scrollVal, isRevealed, noscroll, isAnimating,
+					container = document.getElementById('container'),
+					trigger = container.querySelector('button.trigger');
+				function scrollY() {
+					return window.pageYOffset || docElem.scrollTop;
+				}
+				function scrollPage() {
+					scrollVal = scrollY();
+					if (noscroll && !ie) {
+						if (scrollVal < 0) return false;
+						window.scrollTo(0, 0);
+					}
+					if (classie.has(container, 'notrans')) {
+						classie.remove(container, 'notrans');
+						return false;
+					}
+					if (isAnimating) return false;
+					if (scrollVal <= 0 && isRevealed) {
+						toggle(0);
+					} else if (scrollVal > 0 && !isRevealed) {
+						toggle(1);
+					}
+				}
+				function toggle(reveal) {
+					isAnimating = true;
+					if (reveal) {
+						classie.add(container, 'modify');
+					} else {
+						noscroll = true;
+						disable_scroll();
+						classie.remove(container, 'modify');
+					}
+					setTimeout(function() {
+						isRevealed = !isRevealed;
+						isAnimating = false;
+						if (reveal) {
+							noscroll = false;
+							enable_scroll();
+						}
+					}, 600);
+				}
+				var pageScroll = scrollY();
+				noscroll = pageScroll === 0;
+				disable_scroll();
+				if (pageScroll) {
+					isRevealed = true;
+					classie.add(container, 'notrans');
+					classie.add(container, 'modify');
+				}
+				window.addEventListener('scroll', scrollPage);
+				trigger.addEventListener('click', function() { toggle('reveal'); });
+			})();
+		</script>
+		{% endblock javascript %}
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% block content %}
+<h1>Create Treatment Product</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Product</button>
+</form>
+
+<a href="{% url 'app:treatment_product_list' %}">Back to Product List</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% block content %}
+<h1>Treatment Plan Details</h1>
+
+<p><strong>Patient:</strong> {{ treatment_plan.patient.get_full_name }}</p>
+<p><strong>Doctor:</strong> Dr. {{ treatment_plan.doctor.get_full_name }}</p>
+<p><strong>Discount:</strong> {{ treatment_plan.discount_percentage }}%</p>
+<p><strong>Total Price:</strong> ${{ treatment_plan.total_price }}</p>
+
+<h3>Items</h3>
+<ul>
+    {% for item in treatment_plan.treatmentplanitem_set.all %}
+        <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.product.price }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'app:edit_treatment_plan' treatment_plan.pk %}">Edit Treatment Plan</a>
+{% endblock %}

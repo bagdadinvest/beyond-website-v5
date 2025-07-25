@@ -1,0 +1,214 @@
+{% extends 'topblogs/blogbase.html' %}
+{% load static i18n %}
+{% block title %} {% trans "Why Turkey" %} {% endblock title %}
+{% block content %}
+    <body class="demo-6">
+        <div id="container" class="container intro-effect-grid">
+            <!-- Top Navigation -->
+            {% include "topblogs/topnav.html" %}
+            <header class="header"> 
+                <ul class="grid"> 
+                    <li style="background-image:url('https://images.unsplash.com/photo-1598300188904-6287d52746ad?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDJ8fGNvc21ldGljJTIwc3VyZ2VyeXxlbnwwfHx8fDE3MTk4ODY4MDV8MA&ixlib=rb-4.0.3q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop'); background-size: cover; padding: 20px;"> 
+                        <a href="{% url 'topblogs:tbindex' %}"><h2>{% trans "Cosmetic Surgery in Turkey" %}</h2></a> 
+                    </li>
+                    <li style="background-image:url('https://images.unsplash.com/photo-1589561454226-796a8aa89b05?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDl8fGlzdGFuYnVsfGVufDB8fHx8MTcxOTg4NjY0NXww&ixlib=rb-4.0.3q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop'); background-size: cover; padding: 20px; color: white;"> 
+                        <h2>{% trans "Historical Background of Istanbul" %}</h2> 
+                    </li>
+                    <li style="background-image:url('https://cdn.jsdelivr.net/gh/bagdadinvest/beyondclinic@main/Untitled design.png'); background-size: cover; padding: 20px; border-radius: 5px;">
+                        <h2>{% trans "Best Flight Companies" %}</h2>
+                    </li>
+                    <li style="background-image:url('https://cdn.jsdelivr.net/gh/bagdadinvest/beyondclinic@main/hotels.png'); background-size: cover; padding: 20px; border-radius: 10px;">
+                        <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">{% trans "Top Hotel Chains" %}</h2>
+                    </li>
+                    <li style="background-image:url('https://images.unsplash.com/photo-1579154491915-611e891d3a5b?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDV8fGljdSUyMHJvb218ZW58MHx8fHwxNzE5ODg5NjI0fDA&ixlib=rb-4.0.3q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop'); background-size: cover; padding: 20px;"> 
+                        <h2>{% trans "Accredited Hospitals" %}</h2> 
+                    </li>
+                    <li style="background-image:url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDl8fGRvY3RvcnxlbnwwfHx8fDE3MTk4ODk2NDh8MA&ixlib=rb-4.0.3q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop'); background-size: cover; padding: 20px;">
+                        <h2>{% trans "Experienced Doctors" %}</h2>
+                    </li>
+                    <li>
+                        <h2>{% trans "Multilingual Health Consultants" %}</h2>
+                    </li>
+                    <li>
+                        <h2>{% trans "Affordable Luxury" %}</h2>
+                    </li>
+                </ul>
+                <div class="bg-img">
+                    <img src="https://images.unsplash.com/photo-1626956291772-3aa243614fd0?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDE3fHxpc3RhbmJ1bHxlbnwwfHx8fDE3MTk2NTkzOTd8MA&ixlib=rb-4.0.3q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" alt="{% trans 'Istanbul Image' %}"/>
+                </div>
+                <div class="title">
+                    <nav class="codrops-demos">
+                        <a class="current-demo" href="{% url 'topblogs:whyturkey' %}">{% trans "why turkey" %}</a>
+                        <a href="{% url 'topblogs:whybeyond' %}">{% trans "WHY BEYOND" %}</a>
+                        <a href="{% url 'topblogs:ht' %}">{% trans "HAIR TRANSPLANT" %}</a>
+                        <a href="{% url 'topblogs:estetik' %}">{% trans "AESTHETIC SURGERIES" %}</a>
+                        <a href="{% url 'topblogs:dashboard' %}">{% trans "DASHBOARD" %}</a>
+                        <a href="{% url 'topblogs:tbindex' %}">{% trans "XX" %}</a>
+                        <a href="{% url 'topblogs:internal_surgeries' %}">{% trans "Internal Surgeries" %}</a>
+                    </nav>
+                    <h1>{% trans "WHY TURKEY?" %}</h1>
+                    <p class="subline">{% trans "All you need to know..." %}</p>
+                    <p>{% trans "by" %} <strong>{% trans "BeyondBlog Team" %}</strong> &mdash; {% trans "Posted in" %} <strong>{% trans "Beyond Clinic" %}</strong> {% trans "on" %} <strong>May 21, 2014</strong></p>
+                </div>
+            </header>
+            <button class="trigger" data-info="{% trans 'Click to know why' %}">
+                <span>{% trans "Trigger" %}</span>
+            </button>
+            <main class="content">
+                <article style="margin: 10px 50px 20px;">
+                    <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+                        <section>
+                            <h2>{% trans "Why Turkey Has Become the Number 1 Destination for Cosmetic Surgeries" %}</h2>
+                            <div style="display: flex; align-items: center;">
+                                <p style="margin: 0;">{% trans "Turkey has rapidly become the top destination for cosmetic surgeries due to a combination of factors including advanced medical facilities, experienced doctors, and cost-effective treatments." %}</p>
+                            </div>
+                            <hr>
+                        </section>
+                        <section>
+                            <h2>{% trans "Historical Background of Istanbul: A Bridge of Continents" %}</h2>
+                            <div style="display: flex;align-items: center;">
+                                <p style="margin: 0;">{% trans "Istanbul, historically known as Byzantium and later Constantinople, is a city that straddles Europe and Asia across the Bosphorus Strait. This unique position has made it a melting pot of cultures and a significant center of trade and commerce for centuries." %}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+                        <section>
+                            <h2>{% trans "Best Flight Companies" %}</h2>
+                            <div style="display: flex; align-items: center; flex-wrap: wrap;">
+                                <p style="margin: 0; flex: 1 1 100%;">{% trans "Turkey has become a top destination for cosmetic surgeries due to advanced medical facilities, experienced doctors, and cost-effective treatments." %}</p>
+                            </div>
+                            <hr>
+                        </section>
+                        <section>
+                            <h2>{% trans "Best Hotel Chains" %}</h2>
+                            <div style="display: flex;align-items: center;">
+                                <p style="margin: 0;">{% trans "Istanbul offers luxurious accommodation options with top hotel chains, ensuring comfort for medical tourists." %}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+                        <section>
+                            <h2>{% trans "Accredited Hospitals and Experienced Doctors" %}</h2>
+                            <div style="display: flex; align-items: center;">
+                                <p>{% trans "Turkey is known for its world-class hospitals, accredited by international organizations, and experienced doctors with international training." %}</p>
+                            </div>
+                            <hr>
+                        </section>
+                        <section>
+                            <h2>{% trans "Multilingual Health Consultants" %}</h2>
+                            <div style="display: flex;align-items: center;">
+                                <p style="margin: 0;">{% trans "To cater to international patients, Turkey offers multilingual health consultants who assist with communication and provide comprehensive support throughout the medical journey." %}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <hr>
+                    <section>
+                        <h3>{% trans "Cost-Effective Luxury" %}</h3>
+                        <p>{% trans "The devaluation of the local currency means that all these luxuries are offered at much lower prices compared to other countries. This makes Turkey an attractive destination for those seeking high-quality medical care at affordable rates." %}</p>
+                    </section>
+                    <section class="related"> 
+                        <div><a class="codrops-icon codrops-icon-prev" href="{% url 'topblogs:tbindex' %}"><span>{% trans "BACK TO BLOGS INDEX" %}</span></a></div>
+                    </section>
+                </article>
+            </main>
+        </div>
+        <!-- /container -->
+        <script src="{% static 'topblogstatic/blogs/js/singleclassie.js' %}"></script>
+        {% block javascript %}
+        <script>
+        (function() {
+            var ie = (function(){
+                var undef, rv = -1;
+                var ua = window.navigator.userAgent;
+                var msie = ua.indexOf('MSIE ');
+                var trident = ua.indexOf('Trident/');
+                if (msie > 0) {
+                    rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+                } else if (trident > 0) {
+                    var rvNum = ua.indexOf('rv:');
+                    rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
+                }
+                return ((rv > -1) ? rv : undef);
+            }());
+            var keys = [32, 37, 38, 39, 40], wheelIter = 0;
+            function preventDefault(e) {
+                e = e || window.event;
+                if (e.preventDefault) e.preventDefault();
+                e.returnValue = false;
+            }
+            function keydown(e) {
+                for (var i = keys.length; i--;) {
+                    if (e.keyCode === keys[i]) {
+                        preventDefault(e);
+                        return;
+                    }
+                }
+            }
+            function touchmove(e) {
+                preventDefault(e);
+            }
+            function wheel(e) {}
+            function disable_scroll() {
+                window.onmousewheel = document.onmousewheel = wheel;
+                document.onkeydown = keydown;
+                document.body.ontouchmove = touchmove;
+            }
+            function enable_scroll() {
+                window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;  
+            }
+            var docElem = window.document.documentElement,
+                scrollVal, isRevealed, noscroll, isAnimating,
+                container = document.getElementById('container'),
+                trigger = container.querySelector('button.trigger');
+            function scrollY() {
+                return window.pageYOffset || docElem.scrollTop;
+            }
+            function scrollPage() {
+                scrollVal = scrollY();
+                if (noscroll && !ie) {
+                    if (scrollVal < 0) return false;
+                    window.scrollTo(0, 0);
+                }
+                if (classie.has(container, 'notrans')) {
+                    classie.remove(container, 'notrans');
+                    return false;
+                }
+                if (isAnimating) return false;
+                if (scrollVal <= 0 && isRevealed) {
+                    toggle(0);
+                } else if (scrollVal > 0 && !isRevealed) {
+                    toggle(1);
+                }
+            }
+            function toggle(reveal) {
+                isAnimating = true;
+                if (reveal) {
+                    classie.add(container, 'modify');
+                } else {
+                    noscroll = true;
+                    disable_scroll();
+                    classie.remove(container, 'modify');
+                }
+                setTimeout(function() {
+                    isRevealed = !isRevealed;
+                    isAnimating = false;
+                    if (reveal) {
+                        noscroll = false;
+                        enable_scroll();
+                    }
+                }, 1000);
+            }
+            var pageScroll = scrollY();
+            noscroll = pageScroll === 0;
+            disable_scroll();
+            if (pageScroll) {
+                isRevealed = true;
+                classie.add(container, 'notrans');
+                classie.add(container, 'modify');
+            }
+            window.addEventListener('scroll', scrollPage);
+            trigger.addEventListener('click', function() { toggle('reveal'); });
+        })();
+    </script>
+    {% endblock javascript %}
+{% endblock content %}

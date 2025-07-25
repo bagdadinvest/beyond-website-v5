@@ -1,0 +1,20 @@
+import requests
+
+# Define the API endpoint and your parameters
+url = "https://libretranslate.de/translate"
+params = {
+    'q': 'Hello, world!',
+    'source': 'en',
+    'target': 'es',
+    'format': 'text'
+}
+
+# Send the request
+response = requests.post(url, data=params)
+
+# Check the response
+if response.status_code == 200:
+    translated_text = response.json()['translatedText']
+    print(f"Translated text: {translated_text}")
+else:
+    print("Error:", response.status_code)

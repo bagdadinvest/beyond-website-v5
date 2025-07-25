@@ -1,0 +1,25 @@
+
+{
+  "header.title": "Rezervasyon onayınız",
+  "book_flight.confirmation": "Rezervasyonunuz Onaylandı!",
+  "book_flight.company_name": "BeyondClinic",
+  "book_flight.company_tagline": "Uçuş Rezervasyon Sistemleri®",
+  "book_flight.contact_phone": "tel: +90 538 0546393",
+  "book_flight.billed_to": "Fatura Edilen Kişi",
+  "book_flight.departure": "Kalkış tarihi",
+  "book_flight.return": "Dönüş tarihi",
+  "book_flight.date_label": "Tarih",
+  "book_flight.status_label": "Durum",
+  "book_flight.reference_label": "Referans",
+  "book_flight.item": "Ürün",
+  "book_flight.qty": "Adet",
+  "book_flight.currency": "Para Birimi",
+  "book_flight.amount": "Tutar",
+  "book_flight.base_price": "Temel fiyat",
+  "book_flight.fees": "Ücretler",
+  "book_flight.grand_total": "Genel Toplam",
+  "book_flight.thank_you": "Teşekkürler!",
+  "book_flight.contact_message": "Faturayla ilgili herhangi bir sorunla karşılaşırsanız, bize şu adresten ulaşabilirsiniz:",
+  "book_flight.email_label": "E-posta",
+  "book_flight.print_button": "Yazdır"
+}

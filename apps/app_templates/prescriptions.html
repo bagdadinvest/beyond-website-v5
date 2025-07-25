@@ -1,0 +1,107 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% load static i18n %}
+{% block title %}Prescriptions{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container-fluid my-5 py-2">
+  <div class="row">
+    <div class="col-md-8 col-sm-10 mx-auto">
+      {% include 'error.html' %}
+      {% if user.active_patients %}
+        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          {% if logged_in_user.can_add_prescription %}
+            <button class="btn btn-primary" data-toggle="modal" data-target="#edit" data-remote="{% url 'app:add_prescription' %}">Add a Prescription</button>
+            <hr />
+            {% for patient in user.active_patients %}
+              {% if patient.active_prescriptions %}
+                <table class="table table-bordered table-striped">
+                  <legend>Prescriptions for {% include 'user_link.html' %}</legend>
+                  <thead>
+                    <tr>
+                      <th>Dosage</th>
+                      <th>Name</th>
+                      <th>Directions</th>
+                      {% if logged_in_user.can_add_prescription %}
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      {% endif %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for prescription in patient.active_prescriptions %}
+                      <tr>
+                        <td>{{ prescription.dosage }}</td>
+                        <td>{{ prescription.name }}</td>
+                        <td>{{ prescription.directions }}</td>
+                        {% if logged_in_user.can_add_prescription %}
+                          <td>
+                            <button class="btn btn-primary btn-xs" data-title="Edit" data-remote="{% url 'app:edit_prescription' prescription.pk %}" data-toggle="modal" data-target="#edit">
+                              <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                          </td>
+                          <td>
+                            <a class="btn btn-danger btn-xs" data-title="Delete" href="{% url 'app:delete_prescription' prescription.pk %}">
+                              <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                          </td>
+                        {% endif %}
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              {% else %}
+                <div class="text-center">
+                  <h2>No prescriptions for {% include 'user_link.html' %}</h2>
+                </div>
+              {% endif %}
+              <hr />
+            {% endfor %}
+            {% else %}
+            <h2 class="text-center">You do not have permission to add prescriptions.</h2>
+          {% endif %}
+        </div>
+      {% else %}
+        <h2 class="text-center">No active patients in hospital.</h2>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Remove the data from the modal when it's closed.
+  $(document).on('hidden.bs.modal', function (e) {
+    $(e.target).removeData('bs.modal');
+  });
+</script>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/dragula/dragula.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/jkanban/jkanban.js' %}"></script>
+<script>
+  var win = navigator.platform.indexOf('Win') > -1;
+  if (win && document.querySelector('#sidenav-scrollbar')) {
+    var options = {
+      damping: '0.5'
+    }
+    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+  }
+</script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="{% static 'assets/js/argon-dashboard.min.js?v=2.0.5' %}"></script>
+{% endblock scripts %}
+            

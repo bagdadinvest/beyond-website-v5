@@ -1,0 +1,173 @@
+{% load static i18n %}
+
+<div class="card mt-4 shadow-sm" id="medical-files">
+    <div class="card-header pb-0">
+        <div class="d-flex align-items-center">
+            <p class="mb-0 font-weight-bold">{% trans "Medical Files" %}</p>
+            <button class="btn btn-sm btn-success ms-auto">
+                <i class="fas fa-upload"></i> {% trans "Upload File" %}
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if patient.has_medical_files %}
+            <div class="row g-3">
+                {% for file in patient.medical_files %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card file-card h-100 shadow-sm border-0">
+                        <div class="card-body text-center p-3">
+                            {% if file.file.name|slice:"-4:" == ".pdf" or file.file.name|slice:"-4:" == ".PDF" %}
+                                <!-- PDF File -->
+                                <div class="file-icon mb-2">
+                                    <i class="fas fa-file-pdf fa-3x text-danger"></i>
+                                </div>
+                                <h6 class="file-name text-sm font-weight-bold mb-1">{{ file.file_name }}</h6>
+                                <p class="text-xs text-muted mb-2">{% trans "PDF Document" %}</p>
+                                <button class="btn btn-sm btn-outline-primary view-pdf-btn" 
+                                        data-file-url="{{ file.file.url }}" 
+                                        data-file-name="{{ file.file_name }}">
+                                    <i class="fas fa-eye"></i> {% trans "View" %}
+                                </button>
+                            {% elif file.file.name|slice:"-4:" == ".jpg" or file.file.name|slice:"-4:" == ".png" or file.file.name|slice:"-5:" == ".jpeg" or file.file.name|slice:"-4:" == ".JPG" or file.file.name|slice:"-4:" == ".PNG" or file.file.name|slice:"-5:" == ".JPEG" %}
+                                <!-- Image File -->
+                                <div class="file-preview mb-2">
+                                    <img src="{{ file.file.url }}" 
+                                         alt="{{ file.file_name }}" 
+                                         class="img-thumbnail cursor-pointer view-image-btn"
+                                         style="width: 100px; height: 100px; object-fit: cover;"
+                                         data-file-url="{{ file.file.url }}" 
+                                         data-file-name="{{ file.file_name }}">
+                                </div>
+                                <h6 class="file-name text-sm font-weight-bold mb-1">{{ file.file_name }}</h6>
+                                <p class="text-xs text-muted mb-2">{% trans "Image" %}</p>
+                            {% else %}
+                                <!-- Other File Types -->
+                                <div class="file-icon mb-2">
+                                    <i class="fas fa-file fa-3x text-info"></i>
+                                </div>
+                                <h6 class="file-name text-sm font-weight-bold mb-1">{{ file.file_name }}</h6>
+                                <p class="text-xs text-muted mb-2">{% trans "Document" %}</p>
+                                <a href="{{ file.file.url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-download"></i> {% trans "Download" %}
+                                </a>
+                            {% endif %}
+                            <div class="file-meta mt-2">
+                                <small class="text-muted d-block">
+                                    {% trans "Uploaded" %}: {{ file.upload_timestamp|date:"M d, Y" }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-4">
+                <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                <p class="text-muted">{% trans "No medical files uploaded yet." %}</p>
+                <button class="btn btn-primary">
+                    <i class="fas fa-upload"></i> {% trans "Upload First File" %}
+                </button>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">{% trans "Image Preview" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="" class="img-fluid">
+            </div>
+            <div class="modal-footer">
+                <a id="downloadImageBtn" href="" download class="btn btn-primary">
+                    <i class="fas fa-download"></i> {% trans "Download" %}
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    {% trans "Close" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PDF Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">{% trans "PDF Preview" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div id="pdfContainer" style="height: 70vh; overflow: auto;">
+                    <canvas id="pdfCanvas"></canvas>
+                </div>
+                <div id="pdfControls" class="p-3 border-top bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <button id="prevPage" class="btn btn-sm btn-outline-secondary me-1">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span id="pageInfo" class="mx-2"></span>
+                            <button id="nextPage" class="btn btn-sm btn-outline-secondary ms-1">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button id="zoomOut" class="btn btn-sm btn-outline-secondary me-1">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <span id="zoomLevel" class="mx-2">100%</span>
+                            <button id="zoomIn" class="btn btn-sm btn-outline-secondary ms-1">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="downloadPdfBtn" href="" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-download"></i> {% trans "Download" %}
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    {% trans "Close" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.file-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.file-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.file-preview img {
+    transition: transform 0.2s ease-in-out;
+}
+
+.file-preview img:hover {
+    transform: scale(1.05);
+}
+
+#pdfCanvas {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+}
+</style>

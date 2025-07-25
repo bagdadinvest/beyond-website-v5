@@ -1,0 +1,306 @@
+Name	Description	Status  	Startup Type	Log On As
+AarSvc_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+ABBYY FineReader 16 Licensing Service	This service is required for the operation of the ABBYY FineReader PDF licensing mechanism.	Running	Automatic	Local System
+AJRouter	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+ALG	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+AnyDesk Service	AnyDesk support service.	Running	Automatic	Local System
+AppIDSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+Appinfo	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+AppReadiness	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+AppXSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+AudioEndpointBuilder	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+Audiosrv	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+autotimesvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+AxInstSV	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+BcastDVRUserService_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+BDESVC	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+BFE	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+BITS	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+BluetoothUserService_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+Bonjour Service	Enables hardware devices and software services to automatically configure themselves on the network and advertise their presence.	Running	Automatic	Local System
+BrokerInfrastructure	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+Browser	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+BTAGService	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+BthAvctpSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+bthserv	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+camsvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+CaptureService_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+cbdhsvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start)	Local System
+CDPSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start, Trigger Start)	Local Service
+CDPUserSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+CertPropSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+ClipSVC	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+CloudBackupRestoreSvc_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+COMSysApp	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+ConsentUxUserSvc_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+CoreMessagingRegistrar	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+CredentialEnrollmentManagerUserSvc_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+CryptSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Network Service
+DcomLaunch	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+dcsvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+defragsvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+DeviceAssociationBrokerSvc_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+DeviceAssociationService	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local System
+DeviceInstall	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+DevicePickerUserSvc_4d868	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+DevicesFlowUserSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+DevQueryBroker	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+Dhcp	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+diagnosticshub.standardcollector.service	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+diagsvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+DiagTrack	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+DispBrokerDesktopSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+DisplayEnhancementService	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+DmEnrollmentSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+dmwappushservice	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+Dnscache	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Network Service
+Dolby DAX API Service	Dolby DAX API Service is used by Dolby DAX applications to control Dolby Atmos components in the system.	Running	Automatic	Local System
+DoSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start, Trigger Start)	Network Service
+dot3svc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+DPS	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+DsmSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+DsSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+DusmSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+EapHost	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+EFS	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+embeddedmode	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+EntAppSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+EventLog	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+EventSystem	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+Fax	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+fdPHost	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+FDResPub	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+fhsvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+FileSyncHelper	Helper service for OneDrive		Manual (Trigger Start)	Local System
+FontCache	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+FontCache3.0.0.0	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local Service
+Fortemedia APO Control Service	Fortemedia APO Control Service	Running	Automatic	Local System
+FrameServer	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+FrameServerMonitor	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+GameInputSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+Google Chrome Elevation Service (GoogleChromeElevationService)	?????? ??? ?????? ????? ????? ?????? ???? ?????? Google Chrome ????? ???? ??????. ??? ??? ????? ??? ??????? ?? ????  ??????? ?????? ??? ???????? ????????? ??? ?????? ???  ????? ???????.		Manual	Local System
+Google Updater Internal Service (GoogleUpdaterInternalService134.0.6947.0)	Keeps your Google software up to date. If this service is disabled or stopped, your Google software will not be kept up to date, meaning security vulnerabilities that may arise cannot be fixed and features may not work. This service uninstalls itself when there is no Google software using it.		Automatic	Local System
+Google Updater Service (GoogleUpdaterService134.0.6947.0)	Keeps your Google software up to date. If this service is disabled or stopped, your Google software will not be kept up to date, meaning security vulnerabilities that may arise cannot be fixed and features may not work. This service uninstalls itself when there is no Google software using it.		Automatic	Local System
+gpsvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local System
+GraphicsPerfSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+HgClientService	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+hidserv	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+hns	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+HvHost	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+icssvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+IKEEXT	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local System
+InstallService	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+Intel(R) Audio Service		Running	Automatic	Local System
+Intel(R) Capability Licensing Service TCP IP Interface	Version: 1.61.251.0		Manual	Local System
+Intel(R) Content Protection HDCP Service	Intel(R) Content Protection HDCP Service - enables communication with Content Protection HDCP HW	Running	Automatic (Trigger Start)	Local System
+Intel(R) Dynamic Application Loader Host Interface Service	Intel(R) Dynamic Application Loader Host Interface Service - Allows applications to access the local Intel (R) DAL	Running	Automatic	Local System
+Intel(R) Dynamic Tuning service	Intel(R) Dynamic Tuning service	Running	Automatic	Local System
+Intel(R) Graphics Command Center Service	Service for Intel(R) Graphics Command Center	Running	Automatic	Local System
+Intel(R) HD Graphics Control Panel Service	Service for Intel(R) HD Graphics Control Panel	Running	Automatic	Local System
+Intel(R) Management Engine WMI Provider Registration	Intel(R) Management Engine WMI Provider Registration Service	Running	Automatic	Local System
+Intel(R) TPM Provisioning Service	Version: 1.61.251.0		Automatic	Local System
+InventorySvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+iphlpsvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+IpxlatCfgSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+KeyIso	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+KtmRm	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Network Service
+LanmanServer	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local System
+LanmanWorkstation	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Network Service
+Lenovo Fn and function keys service	Lenovo Fn and function keys service	Running	Automatic	Local System
+Lenovo Notebook ITS Service		Running	Automatic	Local System
+lfsvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+LicenseManager	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+lltdsvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+lmhosts	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+LSM	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+LxpSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+LxssManager	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+MapsBroker	<Failed to Read Description. Error Code: 2 > 		Automatic (Delayed Start)	Network Service
+McpManagementService	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+MDCoreSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+MessagingService_4d868	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+Microsoft Edge Elevation Service (MicrosoftEdgeElevationService)	Keeps Microsoft Edge up to update. If this service is disabled, the application will not be kept up to date.		Manual	Local System
+Microsoft Edge Update Service (edgeupdate)	Keeps your Microsoft software up to date. If this service is disabled or stopped, your Microsoft software will not be kept up to date, meaning security vulnerabilities that may arise cannot be fixed and features may not work. This service uninstalls itself when there is no Microsoft software using it.		Automatic (Delayed Start, Trigger Start)	Local System
+Microsoft Edge Update Service (edgeupdatem)	Keeps your Microsoft software up to date. If this service is disabled or stopped, your Microsoft software will not be kept up to date, meaning security vulnerabilities that may arise cannot be fixed and features may not work. This service uninstalls itself when there is no Microsoft software using it.		Manual (Trigger Start)	Local System
+Microsoft Update Health Service	Maintains Update Health		Disabled	Local System
+MixedRealityOpenXRSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+mpssvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+MSDTC	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+MSiSCSI	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+msiserver	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+NaturalAuthentication	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+NcaSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+NcbService	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+NcdAutoSetup	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+Netlogon	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+Netman	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+netprofm	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Network Service
+NetSetupSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+NetTcpPortSharing	<Failed to Read Description. Error Code: 2 > 		Disabled	Local Service
+NgcCtnrSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+NgcSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+NlaSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+NPSMSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+nsi	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local Service
+nvagent	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+OneDrive Updater Service	Keeps your OneDrive up to date.		Manual (Trigger Start)	Local System
+OneSyncSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start)	Local System
+OpenSSH Authentication Agent	Agent to hold private keys used for public key authentication.		Disabled	Local System
+p2pimsvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+p2psvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+P9RdrService_4d868	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+PcaSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start, Trigger Start)	Local System
+PenService_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+perceptionsimulation	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+PerfHost	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+PhoneSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+PimIndexMaintenanceSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+pla	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+PlugPlay	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+PNRPAutoReg	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+PNRPsvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+PolicyAgent	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Network Service
+Power	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+PowerToys.MWB.Service			Manual	Local System
+PrintNotify	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+PrintWorkflowUserSvc_4d868	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+ProfSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+ProtonVPN Service			Manual	Local System
+ProtonVPN WireGuard			Manual	Local System
+PushToInstall	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+QWAVE	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+RabbitMQ	Multi-protocol open source messaging broker		Automatic	Local System
+RasAuto	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+RasMan	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+Realtek Audio Universal Service	Realtek Audio Universal Service	Running	Automatic	Local System
+Reason Security DNS Client Service	Provides protection for use with Reason DNS.	Running	Automatic	Local System
+RemoteAccess	<Failed to Read Description. Error Code: 2 > 		Disabled	Local System
+RemoteRegistry	<Failed to Read Description. Error Code: 2 > 		Disabled	Local Service
+RetailDemo	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+RmSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local Service
+RpcEptMapper	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Network Service
+RpcLocator	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+RpcSs	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Network Service
+Safer Web DNS Resolver	A DNS Resolver for Safer Web	Running	Automatic	Local System
+Safer Web Service	Provides DNS Services for Safer Web.	Running	Automatic	Local System
+SamSs	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+SCardSvr	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+ScDeviceEnum	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+Schedule	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+SCPolicySvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+SDRSVC	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+seclogon	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+SecurityHealthService	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+SEMgrSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+SENS	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+SensorDataService	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+SensorService	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+SensrSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+SessionEnv	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+SgrmBroker	<Failed to Read Description. Error Code: 2 > 		Disabled	Local System
+SharedAccess	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+SharedRealitySvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+ShellHWDetection	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+shpamsvc	<Failed to Read Description. Error Code: 2 > 		Disabled	Local System
+smphost	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+SmsRouter	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+SNMPTrap	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+spectrum	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+Spooler	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+sppsvc	<Failed to Read Description. Error Code: 2 > 		Automatic (Delayed Start, Trigger Start)	Network Service
+SSDPSRV	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local Service
+SstpSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local Service
+StateRepository	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+StiSvc	<Failed to Read Description. Error Code: 2 > 		Automatic (Trigger Start)	Local Service
+StorSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start, Trigger Start)	Local System
+svsvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+swprv	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+SysMain	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+System Update	Lenovo System Update		Manual (Trigger Start)	Local System
+SystemEventsBroker	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local System
+TapiSrv	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Network Service
+TermService	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+TextInputManagementService	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local System
+Themes	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+TieringEngineService	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+TimeBrokerSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+TokenBroker	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+TrkWks	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+TroubleshootingSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+TrustedInstaller	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+tzautoupdate	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+UdkUserSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+UmRdpService	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+UnistoreSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+upnphost	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+UserDataSvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+UserManager	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local System
+UsoSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start)	Local System
+VacSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+VaultSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+vds	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+VirtualBox system service	Used as a COM server for VirtualBox API.		Manual	Local System
+Visual Studio Installer Elevation Service	This service is responsible for elevating the Visual Studio Installer.		Manual	Local System
+Visual Studio Standard Collector Service 150	Visual Studio Data Collection Service. When running, this service collects real-time ETW events and processes them.		Manual	Local System
+vmcompute	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+vmicguestinterface	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+vmicheartbeat	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+vmickvpexchange	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+vmicrdv	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+vmicshutdown	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+vmictimesync	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+vmicvmsession	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+vmicvss	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+vmms	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+VSS	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+W32Time	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start, Trigger Start)	Local Service
+WaaSMedicSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+Wacom ISD Service	Driver for Wacom Tablets	Running	Automatic	Local System
+WalletService	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+WarpJITSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+wbengine	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+WbioSrvc	<Failed to Read Description. Error Code: 2 > 		Automatic (Trigger Start)	Local System
+Wcmsvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Trigger Start)	Local Service
+wcncsvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+WdiServiceHost	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+WdiSystemHost	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local System
+WdNisSvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local Service
+WebClient	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+webthreatdefsvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local Service
+webthreatdefusersvc_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+Wecsvc	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+WEPHOSTSVC	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+wercplsupport	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+WerSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+WFDSConMgrSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+WiaRpc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+WinDefend	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+WinHttpAutoProxySvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual	Local Service
+Winmgmt	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+WinRM	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+wisvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+WlanSvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+wlidsvc	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+wlpasvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local Service
+WManSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+wmiApSrv	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+WMPNetworkSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Network Service
+workfolderssvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local Service
+WpcMonSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+WPDBusEnum	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+WpnService	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+WpnUserService_4d868	<Failed to Read Description. Error Code: 2 > 	Running	Automatic	Local System
+wscsvc	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start)	Local Service
+WSearch	<Failed to Read Description. Error Code: 2 > 	Running	Automatic (Delayed Start)	Local System
+WSL Service	WSL Service	Running	Automatic	Local System
+wuauserv	<Failed to Read Description. Error Code: 2 > 	Running	Manual (Trigger Start)	Local System
+WwanSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+XblAuthManager	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+XblGameSave	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+XboxGipSvc	<Failed to Read Description. Error Code: 2 > 		Manual (Trigger Start)	Local System
+XboxNetApiSvc	<Failed to Read Description. Error Code: 2 > 		Manual	Local System
+Yandex.Browser Update Service	Keeps your Yandex Browser up to date.	Running	Automatic	Local System
+YMC		Running	Automatic	Local System
+Zero Install Store Service	Manages a Zero Install implementation cache shared between all users.	Running	Automatic	Local System
+???? Google Update (gupdate)	Keeps your Google software up to date. If this service is disabled or stopped, your Google software will not be kept up to date, meaning security vulnerabilities that may arise cannot be fixed and features may not work. This service uninstalls itself when there is no Google software using it.		Automatic (Delayed Start)	Local System
+???? Google Update (gupdatem)	Keeps your Google software up to date. If this service is disabled or stopped, your Google software will not be kept up to date, meaning security vulnerabilities that may arise cannot be fixed and features may not work. This service uninstalls itself when there is no Google software using it.		Manual	Local System
