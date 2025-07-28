@@ -1,0 +1,848 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Miniature Earth | Flight Time Demo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@300;400;600;700&display=swap&subset=arabic" rel="stylesheet">
+  <link id="pagestyle" rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}" type="text/css">
+
+    <style>
+
+/* Reset Browser Default Margins */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Initial Mobile Navigation Style */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.nav-logo-circle {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-items {
+    display: none;
+    gap: 20px;
+    margin-left: 20px;
+}
+
+.mobile-bottom-nav.expanded {
+    width: 80%;
+    height: 60px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: space-around;
+}
+
+.mobile-bottom-nav.expanded .nav-logo-circle {
+    display: none;
+}
+
+.mobile-bottom-nav.expanded .nav-items {
+    display: flex;
+}
+
+/* Optional: Hover Effects */
+.mobile-bottom-nav:hover {
+    background: rgba(255, 255, 255, 1);
+}
+.css-1kgb40s {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    flex-direction: column;
+    align-items: flex-end;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    z-index: 98;
+    display: flex
+;
+}
+.menu {
+    position: absolute; /* Positions the element absolutely within its containing element */
+    top: 3%;           /* Moves the top edge to the middle of the containing element */
+    left: 50%;          /* Moves the left edge to the middle of the containing element */
+    transform: translate(-50%, -50%); /* Shifts the element back by 50% of its own width and height */
+    z-index: 1000;      /* Ensures the element appears above other elements */
+    min-width: 220px;
+    text-align: center;
+}
+
+/* Mobile Responsive Improvements */
+@media (max-width: 768px) {
+    /* Make wrapper full width on mobile */
+    #wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 10px;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    /* Make main earth section responsive */
+    #main-col {
+        width: 100%;
+        height: 50vh;
+        min-height: 300px;
+        order: 2;
+    }
+    
+    /* Improve sidebar for mobile */
+    #side-col {
+        width: 100% !important;
+        max-width: 100% !important;
+        order: 1;
+        margin-bottom: 10px;
+    }
+    
+    #side-col .card {
+        margin: 10px;
+        padding: 15px !important;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Improve form elements */
+    #side-col h1 {
+        font-size: 1.5em !important;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    #side-col h2 {
+        font-size: 1.1em !important;
+        margin: 10px 0 5px 0;
+        color: #333;
+    }
+    
+    #from, #to {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        background: white;
+        color: #333 !important;
+    }
+    
+    /* Make reset button more accessible on mobile */
+    #button-reset {
+        width: 60px !important;
+        height: 60px !important;
+        right: 15px !important;
+        bottom: 15px !important;
+    }
+    
+    /* Hide sidebar toggle on mobile since we stack everything */
+    #button-col {
+        display: none !important;
+    }
+    
+    /* Improve tip display for mobile */
+    #tip-layer {
+        left: 10% !important;
+        right: 10% !important;
+        top: 50% !important;
+        bottom: 40% !important;
+        font-size: 0.9em;
+    }
+    
+    #tip-big {
+        font-size: 2em !important;
+    }
+    
+    #tip-small {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    #main-col {
+        height: 40vh;
+        min-height: 250px;
+    }
+    
+    #side-col .card {
+        margin: 5px;
+        padding: 10px !important;
+    }
+    
+    #side-col h1 {
+        font-size: 1.3em !important;
+    }
+    
+    #from, #to {
+        padding: 10px !important;
+        font-size: 14px !important;
+    }
+    
+    #button-reset {
+        width: 50px !important;
+        height: 50px !important;
+        right: 10px !important;
+        bottom: 10px !important;
+    }
+    
+    #tip-layer {
+        left: 5% !important;
+        right: 5% !important;
+    }
+    
+    #tip-big {
+        font-size: 1.5em !important;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    #wrapper {
+        flex-direction: row;
+    }
+    
+    #main-col {
+        width: 70%;
+        height: 100vh;
+        order: 1;
+    }
+    
+    #side-col {
+        width: 30% !important;
+        order: 2;
+        height: 100vh;
+        overflow-y: auto;
+    }
+    
+    #side-col .card {
+        height: calc(100vh - 20px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    #from, #to {
+        min-height: 44px;
+    }
+    
+    #button-reset {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .mobile-bottom-nav:hover {
+        background: rgba(255, 255, 255, 0.9);
+    }
+}
+
+ </style>
+<link rel="stylesheet" href="{% static 'flight-time/style.css' %}">
+<script src="{% static 'flight-time/airports-and-plane-mesh.js' %}"></script>
+<script src="{% static 'miniature.earth.js' %}"></script>
+
+<script>
+
+window.addEventListener( "earthjsload", function() {
+
+	// parse plane mesh from string in airports-and-plane-mesh.js	
+	Earth.addMesh( airplaneMesh );
+
+	
+	// setup earth
+	myearth = new Earth( 'myearth', {
+		location: { lat: 20, lng: 10 },
+		light: 'none',		
+		mapLandColor : '#fff',
+		mapSeaColor : '#66d8ff',
+		mapBorderColor : '#66d8ff',
+		mapBorderWidth : 0.4
+	} );
+	
+	
+	myearth.addEventListener( "ready", function() {
+		
+		var fromSelect = document.getElementById('from');
+		var toSelect = document.getElementById('to');
+		
+
+		// add airport pins from airports array in airports-and-plane-mesh.js
+		
+		for ( var i=0; i < airports.length; i++ ) {
+		
+			var marker = this.addMarker( {
+			
+				mesh : ["Pin","Needle"],
+				color: '#00a8ff',
+				color2: '#9f9f9f',
+				offset: -0.2,
+				location : { lat: airports[i][2], lng: airports[i][3] },
+				scale: 0.01,
+				visible: false,
+				hotspot: true,
+				hotspotRadius : 0.4,
+				hotspotHeight : 1.5,						
+				
+				// custom properties
+				index: i,
+				airportCode : airports[i][0],
+				airportName : airports[i][1]
+				
+			} );
+			
+			
+			// pin events
+			
+			marker.addEventListener('mouseover', function() {
+			
+				document.getElementById('tip-layer').style.opacity = 1;
+				document.getElementById('tip-big').innerHTML = this.airportCode;
+				document.getElementById('tip-small').innerHTML = this.airportName.split(',').join('<br>');
+				
+				this.color = 'red';
+				
+			});
+			
+			marker.addEventListener('mouseout', function() {
+			
+				if ( this != startMarker && this != endMarker ) {
+					this.color = '#00a8ff';
+				}
+				document.getElementById('tip-layer').style.opacity = 0;
+				
+			});
+			
+			marker.addEventListener('click', function() {
+			
+				if ( ! startMarker ) {
+					selectStartMarker( this );
+				} else {
+					selectEndMarker( this );
+				}
+				
+			});
+			
+			markers.push( marker );
+			
+
+			// add select options
+			
+			var option = document.createElement("option");
+			option.text = airports[i][0] + ' | ' + airports[i][1];
+			fromSelect.add(option);
+			
+			var option = document.createElement("option");
+			option.text = airports[i][0] + ' | ' + airports[i][1];
+			toSelect.add(option);
+			
+		}
+		
+		restorePins();
+		
+		// Apply mobile optimizations
+		adjustForMobile();
+
+	} );
+
+} );
+
+
+
+var markers = [];
+
+var flying = false;
+var plane, X;
+var startMarker, endMarker;
+var dashedLine, solidLine;
+var flightScale = 1;
+
+
+function selectStartMarker( marker ) {
+
+	document.body.classList.add( 'config-start' );
+	
+	document.getElementById('from').setAttribute( 'disabled', true );
+	document.getElementById('from').selectedIndex = marker.index + 1;
+	document.getElementById('to').removeAttribute( 'disabled' );
+	
+	
+	// shrink selected marker
+	startMarker = marker;
+	startMarker.dispatchEvent( { type: 'mouseout' } );
+	startMarker.hotspot = false;	
+	startMarker.animate( 'scale', 0.01, { easing: 'in-quad', complete: function() {
+	
+		this.visible = false;
+		plane.animate( 'scale', 1.2, { easing: 'out-back' } );
+	
+	} } );
+	
+	
+	// add plane
+	
+	plane = myearth.addMarker( {
+		mesh : "plane",
+		color: '#444',
+		
+		location : marker.location,
+		scale: 0.01,
+		offset: 0,
+		lookAt: { lat: 0, lng: 0 },
+		hotspot: false,
+		transparent: true
+	} );
+	
+	
+	// approach marker location
+
+	myearth.goTo( marker.location, { duration: 200, relativeDuration: 300, approachAngle: 20 } );
+
+}
+
+function selectEndMarker( marker ) {
+
+	document.getElementById('to').setAttribute( 'disabled', true );
+	document.getElementById('to').selectedIndex = marker.index + 1;
+
+	// shrink marker
+	endMarker = marker;
+	endMarker.dispatchEvent( { type: 'mouseout' } );
+	endMarker.hotspot = false;
+	endMarker.animate( 'scale', 0.01, { easing: 'in-quad', complete: function() {
+	
+		this.visible = false;
+		X.animate( 'scale', 0.8 * flightScale, { easing: 'out-back' } );
+	
+	} } );
+	
+	
+	myearth.goTo( marker.location, { duration: 200, relativeDuration: 300, approachAngle: 20 } );
+	
+	startFlight();
+	
+}
+
+
+function startFlight() {
+
+	flying = true;
+	
+	shrinkPins();
+
+	var distance = Earth.getDistance( startMarker.location, endMarker.location );
+	flightScale = 1;
+	
+	
+	// shrink plane for short flights
+	if ( distance < 3000 ) {
+		flightScale = 0.6 + flightScale / 3000 * 0.4;
+		plane.animate( 'scale', 1.2 * flightScale );
+	}
+	
+	var flightTime = 2000 + distance;
+	
+	
+	// add target X
+	
+	X = myearth.addMarker( {
+		mesh : "X",
+		color: '#444',
+		
+		location : endMarker.location,
+		scale: 0.01,
+		offset: 0,
+		hotspot: false
+	} );
+	
+	
+	// add lines
+	
+	dashedLine = myearth.addLine( {
+		locations: [ startMarker.location, endMarker.location ],
+		color : "red",
+		width: 1.25 * flightScale,
+		offsetFlow: flightScale,
+		dashed: true,
+		dashSize: 0.25 * flightScale,
+		dashRatio : 0.5,
+		clip: 0,
+		alwaysBehind: true
+	} );
+	
+	dashedLine.animate( 'clip', 1, { duration: 1000 + distance/10 } );
+
+	
+	solidLine = myearth.addLine( {
+		locations: [ startMarker.location, endMarker.location ],
+		color : "red",
+		width: 1.25 * flightScale,
+		offsetFlow: flightScale,
+		clip: 0,
+		alwaysBehind: true
+	} );
+	
+
+	// flight
+	
+	plane.animate( 'lookAt',  endMarker.location, { duration: 50, relativeDuration: 200, complete: function() {
+	
+		plane.animate( 'offset', flightScale * 0.75, { duration: flightTime, easing: 'arc' } );
+		plane.animate( 'location', endMarker.location, { duration: flightTime, easing: 'linear', complete: function(){
+		
+			dashedLine.remove();
+			flying = false;
+			
+		} } );
+		
+		plane.animate( 'rotationZ', 15 * flightScale, { duration: flightTime/2, easing: 'arc', complete: function(){
+		
+			if ( ! flying ) return;
+		
+			plane.animate( 'rotationZ', -15 * flightScale, { duration: flightTime/2, easing: 'arc' } );
+			X.animate( 'scale', 0.01, { duration: flightTime/2, easing: 'in-quart', complete: function() { this.remove(); } } );
+			
+			document.getElementById('tip-big').innerHTML = Math.ceil(distance/500)/2 + 'h';
+			document.getElementById('tip-small').innerHTML = startMarker.airportCode + ' - ' + endMarker.airportCode;
+			document.getElementById('tip-layer').style.opacity = 1;
+			
+		} } );
+		
+		
+		
+		var syncLineToPlane = function() {
+		
+			if ( ! flying ) {
+				solidLine.clip = 1;
+				myearth.removeEventListener( "update", syncLineToPlane );
+				return;
+			}
+			
+			dashedLine.dashOffset -= 0.001; // animate dashed line
+			
+			// calc flight progress and set line clipping
+			
+			var from = startMarker.object3d.position;
+			var to = endMarker.object3d.position;
+			var mid = plane.object3d.position;
+			
+			var before = from.distanceTo( mid );
+			var after = to.distanceTo( mid );
+			
+			var t = before / (before+after);
+			
+			solidLine.clip = t;
+			
+		};
+
+		myearth.addEventListener( "update", syncLineToPlane );
+	
+	} } );
+	
+}
+
+function reset() {
+
+	flying = false;
+	
+	document.body.classList.remove( 'config-start' );
+	document.getElementById('tip-layer').style.opacity = 0;
+
+	document.getElementById('from').selectedIndex=0;
+	document.getElementById('from').removeAttribute( 'disabled' );
+	document.getElementById('to').setAttribute( 'disabled', true );
+	document.getElementById('to').selectedIndex=0;
+	
+	if ( plane ) {
+		plane.animate( 'scale', 0.01, { complete : function(){ this.remove(); } } );
+	}
+	if ( X ) {
+		X.animate( 'scale', 0.01, { complete : function(){ this.remove(); } } );
+	}
+	if ( dashedLine ) {
+		dashedLine.animate( 'width', 0.01, { complete : function(){ this.remove(); } } );
+	}
+	if ( solidLine ) {
+		solidLine.animate( 'width', 0.01, { complete : function(){ this.remove(); } } );
+	}
+	
+	startMarker = false;
+	endMarker = false;
+	
+	restorePins();
+
+}
+
+
+
+var pinIndex = 0;
+var pinTime = 0;
+var pinsPerSec = 1000 / 18;
+
+function shrinkPins() {
+
+	pinIndex = 0;
+	
+	var shrinkOnePin = function() {
+	
+		markers[ pinIndex ].animate( 'scale', 0.01, { complete: function(){ this.visible = false; } } );
+		
+		if ( ++ pinIndex >= markers.length ) {
+			myearth.removeEventListener( "update", shrinkOnePin );
+		}
+		
+	};
+
+	myearth.addEventListener( "update", shrinkOnePin );
+
+}
+
+function restorePins() {
+
+	pinIndex = 0;
+	pinTime = myearth.deltaTime;
+	
+	var restoreOnePin = function() {
+	
+		pinTime += myearth.deltaTime;
+		if ( pinTime > pinsPerSec ) {
+			pinTime -= pinsPerSec;
+		} else {
+			return;
+		}
+		
+		if ( ! markers[ pinIndex ].visible ) {
+			
+			markers[ pinIndex ].visible = true;
+			markers[ pinIndex ].hotspot = true;
+			markers[ pinIndex ].animate( 'scale', 1, { duration: 560, easing: 'out-back' } );
+			
+		} else {
+			
+			// skip wait time
+			pinTime = pinsPerSec;
+			
+		}
+		
+		if ( ++ pinIndex >= markers.length ) {
+			myearth.removeEventListener( "update", restoreOnePin );
+		}
+		
+	};
+
+	myearth.addEventListener( "update", restoreOnePin );
+
+}
+
+
+function toggleSidebar() {
+	document.body.classList.toggle( 'sidebar-open' );
+}
+
+
+function selectFrom() {
+	var index = document.getElementById('from').selectedIndex;
+	if ( index == 0 ) return;
+	markers[ index - 1 ].dispatchEvent({ type: 'click' });
+}
+
+function selectTo() {
+	var index = document.getElementById('to').selectedIndex;
+	if ( index == 0 ) return;
+	markers[ index - 1 ].dispatchEvent({ type: 'click' });
+}
+
+// Mobile-friendly enhancements
+function isMobileDevice() {
+	return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Adjust hotspot sizes for mobile
+function adjustForMobile() {
+	if (isMobileDevice()) {
+		// Increase hotspot radius for easier touch interaction
+		markers.forEach(function(marker) {
+			marker.hotspotRadius = 0.6;
+			marker.hotspotHeight = 2.0;
+		});
+		
+		// Adjust earth interaction for mobile
+		if (myearth) {
+			myearth.config.pointerEventsEnabled = true;
+		}
+	}
+}
+
+// Handle orientation changes
+function handleOrientationChange() {
+	setTimeout(function() {
+		if (myearth) {
+			myearth.resize();
+		}
+	}, 100);
+}
+
+// Add event listeners for mobile optimization
+window.addEventListener('orientationchange', handleOrientationChange);
+window.addEventListener('resize', function() {
+	if (isMobileDevice()) {
+		handleOrientationChange();
+	}
+});
+
+// Prevent zoom on double tap for better UX
+document.addEventListener('touchstart', function(event) {
+	if (event.touches.length > 1) {
+		event.preventDefault();
+	}
+}, { passive: false });
+
+var lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+	var now = (new Date()).getTime();
+	if (now - lastTouchEnd <= 300) {
+		event.preventDefault();
+	}
+	lastTouchEnd = now;
+}, false);
+
+</script>
+
+</head>
+{% include "includes/navigation-fullscreen.html" %}
+
+<body class="sidebar-open">
+  {% include "includes/loaders.html" %}
+  <div id="barba-wrapper">
+    <div class="barba-container">
+
+		{% include "includes/mobile-nav.html" %}
+
+<div id="wrapper">
+	<div id="main-col">
+	
+		<div id="myearth" class="little-earth">
+		
+			<div id="tip-layer">
+				<div>
+					<div id="tip-big"></div>
+					<div id="tip-small"></div>
+				</div>
+			</div>
+			
+			<div id="button-reset" onclick="reset();"></div>
+			
+		</div>
+		
+	</div><!--main-col-->
+	
+	
+	<div id="side-col">
+		<div class="card" style="background: white">
+		
+			<h1>
+				Flight Time<br>
+				<span style="font-size: 0.8em; color: white;">Calculator</span>
+			</h1>
+			
+			<h2>From</h2>
+			<select id="from" onchange="if ( ! this.getAttribute('disabled') ) selectFrom();"><option></option></select>
+			
+			<h2>To</h2>
+			<select id="to" onchange="if ( ! this.getAttribute('disabled') ) selectTo();" disabled><option></option></select>
+			
+		</div>
+	</div><!--side-col-->
+	
+	
+	<div id="button-col">
+		<div id="button-toggle-sidebar" onclick="toggleSidebar();"></div>
+	</div><!--button-col-->
+	
+</div><!--wrapper-->
+
+<style>
+
+#back-link {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #0d130e;
+	padding: 0.5em;
+	font-size: 26px;
+	z-index: 10000;
+	border-right: 1px RGBA(255,255,255,0.5) solid;
+	border-bottom: 1px RGBA(255,255,255,0.5) solid;
+}
+#back-link img {
+	display: block;
+	width: 4em;
+	height: auto;
+}
+
+@media (max-width: 1199px) {
+	#back-link {
+		font-size: 20px;
+	}
+}
+@media (max-width: 511px) {
+	#back-link {
+		font-size: 16px;
+	}
+}
+
+#legal-footer-wrap {
+	position: relative;
+	height: 0;
+	z-index: 10002;
+	font-family: Arial, sans-serif;
+}
+
+#legal-footer {
+	position: absolute;
+	bottom: 0.5em;
+	right: 0.5em;
+}
+
+#legal-footer a {
+	text-decoration: none;
+	color: inherit;
+	padding: 0 0.5em;
+	font-size: 10px;
+}
+
+</style>
+
+
+</body>
+</html>

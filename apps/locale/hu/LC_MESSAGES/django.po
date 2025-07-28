@@ -117,7 +117,7 @@ msgstr ""
 
 #: app_templates/TermsofService.html:25
 msgid ""
-"Welcome to BeyondBoard, a service provided by Dent i-Delil Clinic. By using "
+"Welcome to BeyondBoard, a service provided by Dent i-Delil Turkiye  Medical Tourism . By using "
 "our app, you agree to comply with and be bound by the following Terms of "
 "Service. Please read them carefully."
 msgstr ""
@@ -201,7 +201,7 @@ msgstr ""
 #: app_templates/TermsofService.html:50
 msgid ""
 "All content and materials available on the app, including but not limited to "
-"text, graphics, logos, and software, are the property of Dent i-Delil Clinic "
+"text, graphics, logos, and software, are the property of Dent i-Delil Turkiye  Medical Tourism  "
 "or its licensors and are protected by applicable intellectual property laws."
 msgstr ""
 
@@ -211,7 +211,7 @@ msgstr ""
 
 #: app_templates/TermsofService.html:53
 msgid ""
-"To the fullest extent permitted by law, Dent i-Delil Clinic and its "
+"To the fullest extent permitted by law, Dent i-Delil Turkiye  Medical Tourism  and its "
 "affiliates will not be liable for any indirect, incidental, special, "
 "consequential, or punitive damages arising out of your use of the app or "
 "these Terms of Service."
@@ -1290,12 +1290,12 @@ msgstr ""
 #: app_templates/includes/sidenav.html:7 app_templates/login.html:22
 #: app_templates/my_treatment_plans.html:18
 #: app_templates/my_treatment_plans_pdf.html:18
-msgid "Dent i-Delil Clinic"
+msgid "Dent i-Delil Turkiye  Medical Tourism "
 msgstr ""
 
 #: app_templates/account/login.html:28 app_templates/login.html:23
 msgid ""
-"Welcome to Dent i-Delil Clinic! providing comprehensive healthcare solutions."
+"Welcome to Dent i-Delil Turkiye  Medical Tourism ! providing comprehensive healthcare solutions."
 msgstr ""
 
 #: app_templates/account/login.html:39 app_templates/login.html:34
@@ -2880,7 +2880,7 @@ msgid "Email:"
 msgstr ""
 
 #: app_templates/demo/book_flight.html:136
-msgid "support@Dent i-Delil Clinic.com"
+msgid "support@Dent i-Delil Turkiye  Medical Tourism .com"
 msgstr ""
 
 #: app_templates/demo/book_flight.html:139
@@ -3536,7 +3536,7 @@ msgid "Facilities"
 msgstr ""
 
 #: app_templates/includes/footer-fullscreen.html:33
-msgid "&copy; Dent i-Delil Clinic - Design by Lotfi Kanouni"
+msgid "&copy; Dent i-Delil Turkiye  Medical Tourism  - Design by Lotfi Kanouni"
 msgstr ""
 
 #: app_templates/includes/language.html:29
@@ -3975,7 +3975,7 @@ msgstr ""
 #: app_templates/l.html:217 app_templates/salesdash.html:217
 msgid ""
 "A group of dedicated professionals ensuring the best care for our patients "
-"at Dent i-Delil Clinic."
+"at Dent i-Delil Turkiye  Medical Tourism ."
 msgstr ""
 
 #: app_templates/l.html:220 app_templates/salesdash.html:220
@@ -4205,7 +4205,7 @@ msgstr ""
 
 #: app_templates/login.html:93
 msgid ""
-"This is the welcome message for Dent i-Delil Clinic, providing comprehensive "
+"This is the welcome message for Dent i-Delil Turkiye  Medical Tourism , providing comprehensive "
 "healthcare solutions."
 msgstr ""
 
@@ -4914,7 +4914,7 @@ msgstr ""
 
 #: app_templates/privacypolicy.html:25
 msgid ""
-"Welcome to BeyondBoard, a service provided by Dent i-Delil Clinic. We value "
+"Welcome to BeyondBoard, a service provided by Dent i-Delil Turkiye  Medical Tourism . We value "
 "your privacy and are committed to protecting your personal information. This "
 "Privacy Policy outlines how we collect, use, and safeguard your data when "
 "you use our app, including the social login feature."

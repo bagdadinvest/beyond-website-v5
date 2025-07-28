@@ -1,0 +1,18 @@
+{
+	"name": "line-md",
+	"version": "2.0.8",
+	"type": "module",
+	"description": "Material Line Icons",
+	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://iconify.design)",
+	"license": "MIT",
+	"scripts": {
+		"build": "node build.js"
+	},
+	"bugs": "https://github.com/cyberalien/line-md/issues",
+	"homepage": "https://github.com/cyberalien/line-md",
+	"repository": "github:cyberalien/line-md",
+	"packageManager": "pnpm@9.15.9",
+	"devDependencies": {
+		"@iconify/tools": "^4.1.2"
+	}
+}

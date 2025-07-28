@@ -1,0 +1,12 @@
+{
+  "header.title": "حجز رحلة أماديوس",
+  "results.available_flights": "الرحلات المتاحة",
+  "results.departure": "المغادرة",
+  "results.flight_number": "رقم الرحلة",
+  "results.arrival": "الوصول",
+  "results.price": "السعر",
+  "results.book": "احجز",
+  "results.book_flight": "احجز رحلة",
+  "results.no_flights": "لم يتم العثور على رحلات لهذا المسار",
+  "results.connection_duration": "مدة الاتصال هي"
+}

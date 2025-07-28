@@ -44,11 +44,13 @@ urlpatterns += i18n_patterns(
     path('editor/', views.editor_view, name='editor'),
     path('admin/doc/', include('django.contrib.admindocs.urls')),  # Add this line
     path('website/', include("websites.urls")),  # Websites app URLs
-    path('admin/', admin.site.urls),
     path('baton/', include('baton.urls')),
+
+    path('admin/', admin.site.urls),
     path('action-log/', action_log_view, name='action_log'),  # Moved outside the admin/ path
     path('accounts/', include('allauth.urls')),
     path("", include("apps.urls")),  # Main app URLs for 'apps'
+    path('flights/', include('flights.urls')),  # Flights app URLs
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('rosetta/', include('rosetta.urls')),  # Rosetta for translation management
     path('cms/', include(wagtailadmin_urls)),  # Wagtail admin URLs
@@ -58,14 +60,13 @@ urlpatterns += i18n_patterns(
     path('leads/', include('leads.urls')),
 )
 
-# Debug settings
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += [
-        path('__debug__/', include(debug_toolbar.urls)),  # Django Debug Toolbar
-    ]
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# Always include Django Debug Toolbar
+import debug_toolbar
+urlpatterns += [
+    path('__debug__/', include(debug_toolbar.urls)),  # Django Debug Toolbar
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # API Docs
 urlpatterns += [

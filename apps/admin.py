@@ -16,27 +16,30 @@ from .models import (
 )
 
 
-# Email actions
-@admin.action(description='Send verification email')
+# Email actions - DISABLED TO PREVENT EMAIL FLOODING
+@admin.action(description='Send verification email (DISABLED)')
 def send_verification_email(modeladmin, request, queryset):
     for email_address in queryset:
         if not email_address.verified:
-            subject = 'Verify Your Email Address'
-            html_message = render_to_string('emails/verification_email.html', {'user': email_address.user})
-            plain_message = strip_tags(html_message)
-            from_email = settings.DEFAULT_FROM_EMAIL
-            send_mail(subject, plain_message, from_email, [email_address.email], html_message=html_message)
-            modeladmin.message_user(request, f'Verification email sent to {email_address.email}')
+            # Email sending disabled to prevent flooding
+            # subject = 'Verify Your Email Address'
+            # html_message = render_to_string('emails/verification_email.html', {'user': email_address.user})
+            # plain_message = strip_tags(html_message)
+            # from_email = settings.DEFAULT_FROM_EMAIL
+            # send_mail(subject, plain_message, from_email, [email_address.email], html_message=html_message)
+            modeladmin.message_user(request, f'Verification email sending disabled for {email_address.email}')
 
-@admin.action(description='Send password reset email')
+@admin.action(description='Send password reset email (DISABLED)')
 def send_password_reset_email(modeladmin, request, queryset):
     for user in queryset:
-        subject = 'Password Reset Request'
-        reset_url = request.build_absolute_uri(f'/reset/{user.pk}/{user.password_reset_token}/')
-        html_message = render_to_string('registration/password_reset_email.html', {'user': user, 'reset_url': reset_url})
-        plain_message = strip_tags(html_message)
-        from_email = settings.DEFAULT_FROM_EMAIL
-        send_mail(subject, plain_message, from_email, [user.email], html_message=html_message)
+        # Email sending disabled to prevent flooding
+        # subject = 'Password Reset Request'
+        # reset_url = request.build_absolute_uri(f'/reset/{user.pk}/{user.password_reset_token}/')
+        # html_message = render_to_string('registration/password_reset_email.html', {'user': user, 'reset_url': reset_url})
+        # plain_message = strip_tags(html_message)
+        # from_email = settings.DEFAULT_FROM_EMAIL
+        # send_mail(subject, plain_message, from_email, [user.email], html_message=html_message)
+        modeladmin.message_user(request, f'Password reset email sending disabled for {user.email}')
 
 # Resources for import-export functionality
 class UserResource(resources.ModelResource):
@@ -121,10 +124,37 @@ class HotelAdmin(ImportExportModelAdmin):
 # Admin classes
 class UserAdmin(ImportExportModelAdmin):
     resource_class = UserResource
-    list_display = ('username', 'email', 'date_of_birth', 'phone_number', 'emergency_contact', 'thumbnail', 'referral_code', 'referred_by', 'thread_id', 'beyondblog_profileid')
-    search_fields = ('username', 'email', 'phone_number')
-    list_filter = ('date_of_birth',)
+    list_display = ('username', 'email', 'date_of_birth', 'phone_number', 'emergency_contact', 'thumbnail', 'referral_code', 'referred_by', 'thread_id', 'beyondblog_profileid', 'invoiceninja_client_id', 'invoiceninja_sync_status')
+    search_fields = ('username', 'email', 'phone_number', 'invoiceninja_client_id')
+    list_filter = ('date_of_birth', 'invoiceninja_sync_status')
     actions = [send_verification_email, send_password_reset_email]
+    
+    # Add Invoice Ninja fields to admin form
+    fieldsets = (
+        (None, {
+            'fields': ('username', 'password', 'email', 'first_name', 'last_name')
+        }),
+        ('Personal Info', {
+            'fields': ('date_of_birth', 'nationality', 'phone_number', 'thumbnail', 'medical_information', 'emergency_contact')
+        }),
+        ('Referral Info', {
+            'fields': ('referral_code', 'referred_by')
+        }),
+        ('Invoice Ninja Integration', {
+            'fields': ('invoiceninja_client_id', 'invoiceninja_sync_status', 'invoiceninja_sync_attempts', 'invoiceninja_last_sync_attempt'),
+            'classes': ('collapse',),
+            'description': 'Invoice Ninja synchronization status and information. These fields are automatically managed by the system.'
+        }),
+        ('Additional Info', {
+            'fields': ('thread_id', 'beyondblog_profileid', 'is_online', 'last_login_time', 'last_logout_time')
+        }),
+        ('Permissions', {
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+        }),
+    )
+    
+    # Make Invoice Ninja fields read-only for safety
+    readonly_fields = ('invoiceninja_client_id', 'invoiceninja_sync_status', 'invoiceninja_sync_attempts', 'invoiceninja_last_sync_attempt')
 
 class AppointmentAdmin(ImportExportModelAdmin):
     resource_class = AppointmentResource

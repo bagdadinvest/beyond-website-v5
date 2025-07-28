@@ -1,0 +1,139 @@
+{% extends 'layouts/base.html' %}
+{% load duration_filters %}
+{% load static i18n %}
+{% block title %}{% trans "Available Flights" %}{% endblock %}
+
+{% block stylesheets %}
+<style>
+/* Scroll Right Animation */
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.scroll-right {
+    animation: scrollRight 1s ease-out;
+}
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="row pt-5">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-2 scroll-right">
+                        <h6>{% trans "Available Flights" %}</h6>
+                    </div>
+                    <div class="card">
+                        <div class="table-responsive">
+                            {% if response %}
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Departure" %}</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Flight Number" %}</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Arrival" %}</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Price" %}</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Book" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for r, flight in response %}
+                                        {% if r.0firstFlightDepartureDate %}
+                                        <tr>
+                                            <td>
+                                                <p class="text text-center font-weight-bold mb-0">
+                                                    <img src="{{ r.0firstFlightAirlineLogo }}" alt="{{ r.0firstFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                    {{ r.0firstFlightDepartureDate }} {{ r.0firstFlightDepartureAirport }}
+                                                    <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.0firstFlightArrivalDuration|format_duration }} duration">&#10230</a>
+                                                    {{ r.0firstFlightArrivalAirport }} {{ r.0firstFlightArrivalDate }}
+                                                </p>
+                                                {% if r.0secondFlightDepartureAirport %}
+                                                    <p class="text-xs text-center text-secondary mb-0">Connection duration is {{ r.0stop_time }}</p>
+                                                    <p class="text-s text-center font-weight-bold mb-0">
+                                                        <img src="{{ r.0secondFlightAirlineLogo }}" alt="{{ r.0secondFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                        {{ r.0secondFlightDepartureDate }} {{ r.0secondFlightDepartureAirport }}
+                                                        <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.0secondFlightArrivalDuration|format_duration }} duration">&#10230</a>
+                                                        {{ r.0secondFlightArrivalAirport }} {{ r.0secondFlightArrivalDate }}
+                                                    </p>
+                                                {% endif %}
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="text-secondary text-s font-weight-bold">{{ r.flight_number }}</span>
+                                            </td>
+                                            <td>
+                                                {% if r.1firstFlightDepartureAirport %}
+                                                    <p class="text-s text-center font-weight-bold mb-0">
+                                                        <img src="{{ r.1firstFlightAirlineLogo }}" alt="{{ r.1firstFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                        {{ r.1firstFlightDepartureDate }} {{ r.1firstFlightDepartureAirport }}
+                                                        <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.1firstFlightArrivalDuration|format_duration }} duration">&#10230</a>
+                                                        {{ r.1firstFlightArrivalAirport }} {{ r.1firstFlightArrivalDate }}
+                                                    </p>
+                                                    {% if r.1secondFlightDepartureAirport %}
+                                                    <p class="text-xs text-center text-secondary mb-0">Connection duration is {{ r.1stop_time }}</p>
+                                                    <p class="text-s text-center font-weight-bold mb-0">
+                                                        <img src="{{ r.1secondFlightAirlineLogo }}" alt="{{ r.1secondFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                        {{ r.1secondFlightDepartureDate }} {{ r.1secondFlightDepartureAirport }}
+                                                        <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.1secondFlightArrivalDuration|format_duration }} duration">&#10230</a>
+                                                        {{ r.1secondFlightArrivalAirport }} {{ r.1secondFlightArrivalDate }}
+                                                    </p>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-center text-s">{{ currency_code }} {{ r.price }}</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex justify-content-center">
+                                                <a href="{% url 'flights:book_flight' flight %}" class="btn btn-outline-primary">{% trans "Book Flight" %}</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                                   
+                            {% else %}
+                            <h4 class="login-heading mb-4 text-left">{% trans "No flights found for this itinerary" %}</h4>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    <div class="col-md-5">
+        <h3 class="login-heading pl-3">{{ origin }} &#x2708 {{ destination }} <br>{{ departureDate }}
+        {% if returnDate %} <span class="text-info">&#10594&#10596</span> {{ returnDate }}{% endif %}</h3>
+    </div>
+  </div>
+{% endblock content %}
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.card-header').addClass('scroll-right');
+        });
+</script>
+
+{% endblock javascripts %}

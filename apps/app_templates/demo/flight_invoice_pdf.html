@@ -1,0 +1,267 @@
+{% load safe_filters %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Invoice {{ invoice.invoice_number|safe_get:"N/A" }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333 ;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .invoice-container {
+            width: 100%;
+        }
+        
+        .header {
+            background-color: #667eea;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 0;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .header .subtitle {
+            margin: 10px 0 0 0;
+            font-size: 18px;
+        }
+        
+        .invoice-info {
+            background-color: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .invoice-info h3 {
+            margin: 0 0 20px 0;
+            color: #667eea;
+            font-size: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        
+        .info-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            width: 40%;
+        }
+        
+        .info-value {
+            width: 60%;
+        }
+        
+        .flight-details {
+            border: 3px solid #667eea;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .flight-details h3 {
+            margin: 0 0 20px 0;
+            color: #667eea;
+            font-size: 20px;
+            text-align: center;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .route {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: #667eea;
+            padding: 15px;
+            border: 2px dashed #667eea;
+        }
+        
+        .flight-info-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .flight-info-table td {
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        .flight-info-table .label {
+            font-weight: bold;
+            background-color: #f8f9fa;
+            width: 30%;
+        }
+        
+        .total-section {
+            background-color: #667eea;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .total-section h3 {
+            margin: 0 0 15px 0;
+            font-size: 22px;
+        }
+        
+        .total-amount {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #f8f9fa;
+            margin-top: 25px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .confirmation-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 15px 0;
+        }
+        
+        .company-info {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+        
+    <div class="invoice-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>{{ invoice.company_name|safe_get:"Beyond Clinic" }}</h1>
+            <div class="subtitle">Flight Booking Services</div>
+            <div style="margin-top: 15px; font-size: 22px;">
+                Invoice #{{ invoice.invoice_number|safe_get:"N/A" }}
+            </div>
+        </div>
+
+        <!-- Customer Information -->
+        <div class="invoice-info">
+            <h3>Customer Information</h3>
+            <table class="info-table">
+                <tr>
+                    <td class="info-label">Passenger Name:</td>
+                    <td class="info-value">{{ invoice.customer_name|safe_get:"Guest User" }}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Email:</td>
+                    <td class="info-value">{{ invoice.customer_email|safe_get:"not-provided@example.com" }}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Phone:</td>
+                    <td class="info-value">{{ invoice.customer_phone|safe_get:"Not provided" }}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Address:</td>
+                    <td class="info-value">{{ invoice.customer_address|safe_get:"Address not provided" }}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Invoice Date:</td>
+                    <td class="info-value">{{ invoice.date|safe_get:"N/A" }}</td>
+                </tr>
+                <tr>
+                    <td class="info-label">Confirmation Code:</td>
+                    <td class="info-value">{{ invoice.ref_no|safe_get:"N/A" }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Flight Details -->
+        <div class="flight-details">
+            <h3>Flight Details</h3>
+            
+            <div class="route">{{ invoice.flight_details.route|safe_get:"Route not available" }}</div>
+            
+            <table class="flight-info-table">
+                <tr>
+                    <td class="label">Flight Number:</td>
+                    <td>{{ invoice.flight_details.flight_number|safe_get:"N/A" }}</td>
+                    <td class="label">Airline:</td>
+                    <td>{{ invoice.flight_details.airline|safe_get:"N/A" }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Departure:</td>
+                    <td>{{ invoice.flight_details.departure|safe_get:"N/A" }}</td>
+                    <td class="label">Arrival:</td>
+                    <td>{{ invoice.flight_details.arrival|safe_get:"N/A" }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Duration:</td>
+                    <td>{{ invoice.flight_details.duration|safe_get:"N/A" }}</td>
+                    <td class="label">Class:</td>
+                    <td>{{ invoice.flight_details.class|safe_get:"N/A" }}</td>
+                </tr>
+            </table>
+            
+            <div style="text-align: center;">
+                <span class="confirmation-badge">{{ invoice.booking_status|safe_get:"Pending" }}</span>
+            </div>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="total-section">
+            <h3>Total Amount</h3>
+            <div class="total-amount">{{ invoice.flight_details.price|safe_get:"0.00" }} {{ invoice.flight_details.currency|safe_get:"USD" }}</div>
+            <div style="font-size: 18px;">Payment Status: Confirmed</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="company-info">
+                <strong>{{ invoice.company_name|safe_get:"Beyond Clinic" }}</strong><br>
+                Flight Booking Services<br>
+                {{ invoice.company_address|safe_get:"123 Medical Street, Health City" }}<br><br>
+                Thank you for choosing {{ invoice.company_name|safe_get:"Beyond Clinic" }} for your travel needs.<br>
+                For support, contact us at <strong>{{ invoice.company_email|safe_get:"support@beyondclinic.com" }}</strong><br>
+                Phone: {{ invoice.company_phone|safe_get:"+1-555-BEYOND" }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

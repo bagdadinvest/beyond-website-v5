@@ -155,8 +155,9 @@ def send_email(request, lead_id):
 
     if lead.email:
         try:
-            send_mail(subject, message, from_email, recipient_list)
-            messages.success(request, f"Email successfully sent to {lead.name} at {lead.email}.")
+            # Email sending disabled to prevent flooding
+            # send_mail(subject, message, from_email, recipient_list)
+            messages.success(request, f"Email sending disabled - Would have sent to {lead.name} at {lead.email}.")
         except Exception as e:
             messages.error(request, f"Failed to send email to {lead.name}: {e}")
     else:

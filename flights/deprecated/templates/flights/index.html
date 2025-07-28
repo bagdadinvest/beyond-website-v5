@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .welcome-message {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <div class="welcome-message">
+            <p>{{ message }}</p>
+            <p>The Flights app has been successfully created and configured.</p>
+            <p>You can now start building your flight management features here.</p>
+        </div>
+        
+        <h2>Next Steps</h2>
+        <ul>
+            <li>Define your flight models in <code>flights/models.py</code></li>
+            <li>Create additional views in <code>flights/views.py</code></li>
+            <li>Add more templates in <code>flights/templates/flights/</code></li>
+            <li>Add static files (CSS, JS) in <code>flights/static/flights/</code></li>
+            <li>Configure admin interface in <code>flights/admin.py</code></li>
+        </ul>
+    </div>
+</body>
+</html>

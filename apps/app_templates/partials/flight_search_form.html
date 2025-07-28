@@ -10,7 +10,10 @@
     {% endif %}
     
     <h2 class="text-white mb-2 mt-5">{% trans "FLIGHT RESERVATION" %}</h2>
-    <h5 class="text-white"><small>{% trans "GET THE BEST OFFERS NOW" %}</small></h5>
+    <h5 class="text-white"><small>{% trans "POWERED BY AMADEUS API - WORLD'S LEADING TRAVEL TECHNOLOGY" %}</small></h5>
+    <p class="text-white-50 mb-4">
+        <small>{% trans "We help thousands of customers find cheap flight tickets using the world-renowned Amadeus API, ensuring you get the best prices available in real-time." %}</small>
+    </p>
     
     <form action="" method="POST" id="form_id">
         {% csrf_token %}
@@ -70,15 +73,11 @@
         <hr>
         
         <!-- Submit Button -->
-        <div class="search-button-container d-flex gap-3">
-            <button class="btn btn-secondary flex-fill" type="submit" id="searchFlightButton">
+        <div class="search-button-container">
+            <button class="btn btn-secondary w-100 py-3" type="submit" id="searchFlightButton">
                 <span class="btn-inner--icon"><i class="fas fa-search"></i></span>
                 <span class="btn-inner--text">{% trans "Search Flight" %}</span>
             </button>
-            <a href="{% url 'app:flight_time' %}" class="btn btn-primary flex-fill">
-                <span class="btn-inner--icon"><i class="fas fa-globe"></i></span>
-                <span class="btn-inner--text">{% trans "Flight Time Demo" %}</span>
-            </a>
         </div>
     </form>
 </div>

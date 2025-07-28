@@ -119,11 +119,11 @@ msgstr "1. Introduzione"
 #: app_templates/TermsofService.html:25
 #, fuzzy
 #| msgid ""
-#| "Welcome to BeyondBoard, a service provided by Dent i-Delil Clinic. By using "
+#| "Welcome to BeyondBoard, a service provided by Dent i-Delil Turkiye  Medical Tourism . By using "
 #| "our app, you agree to comply with and be bound by the following Terms of "
 #| "Service. Please read them carefully."
 msgid ""
-"Welcome to BeyondBoard, a service provided by Delil Clinic. By using our "
+"Welcome to BeyondBoard, a service provided by Delil Turkiye  Medical Tourism . By using our "
 "app, you agree to comply with and be bound by the following Terms of "
 "Service. Please read them carefully."
 msgstr ""
@@ -238,12 +238,12 @@ msgstr "6. Proprietà intellettuale"
 #| "property laws."
 msgid ""
 "All content and materials available on the app, including but not limited to"
-" text, graphics, logos, and software, are the property of Delil Clinic or "
+" text, graphics, logos, and software, are the property of Delil Turkiye  Medical Tourism  or "
 "its licensors and are protected by applicable intellectual property laws."
 msgstr ""
 "Tutti i contenuti e i materiali disponibili sull'app, inclusi, a titolo "
 "esemplificativo ma non esaustivo, testo, grafica, loghi e software, sono di "
-"proprietà di Dent i-Delil Clinic o dei suoi licenziatari e sono protetti "
+"proprietà di Dent i-Delil Turkiye  Medical Tourism  o dei suoi licenziatari e sono protetti "
 "dalle leggi applicabili sulla proprietà intellettuale."
 
 #: app_templates/TermsofService.html:52
@@ -253,12 +253,12 @@ msgstr "7. Limitazione di responsabilità"
 #: app_templates/TermsofService.html:53
 #, fuzzy
 #| msgid ""
-#| "To the fullest extent permitted by law, Dent i-Delil Clinic and its "
+#| "To the fullest extent permitted by law, Dent i-Delil Turkiye  Medical Tourism  and its "
 #| "affiliates will not be liable for any indirect, incidental, special, "
 #| "consequential, or punitive damages arising out of your use of the app or "
 #| "these Terms of Service."
 msgid ""
-"To the fullest extent permitted by law, Delil Clinic and its affiliates will"
+"To the fullest extent permitted by law, Delil Turkiye  Medical Tourism  and its affiliates will"
 " not be liable for any indirect, incidental, special, consequential, or "
 "punitive damages arising out of your use of the app or these Terms of "
 "Service."
@@ -1458,16 +1458,16 @@ msgstr "Conferma il tuo indirizzo e-mail"
 #: app_templates/my_treatment_plans.html:18
 #: app_templates/my_treatment_plans_pdf.html:18
 #, fuzzy
-#| msgid "Dent i-Delil Clinic"
-msgid "Delil Clinic"
+#| msgid "Dent i-Delil Turkiye  Medical Tourism "
+msgid "Delil Turkiye  Medical Tourism "
 msgstr "Clinica Dent i-Delil"
 
 #: app_templates/account/login.html:28 app_templates/login.html:23
 #, fuzzy
 #| msgid ""
-#| "Welcome to Dent i-Delil Clinic! providing comprehensive healthcare "
+#| "Welcome to Dent i-Delil Turkiye  Medical Tourism ! providing comprehensive healthcare "
 #| "solutions."
-msgid "Welcome to Delil Clinic! providing comprehensive healthcare solutions."
+msgid "Welcome to Delil Turkiye  Medical Tourism ! providing comprehensive healthcare solutions."
 msgstr ""
 "Benvenuti alla Clinica Dent i-Delil! fornendo soluzioni sanitarie complete."
 
@@ -3163,8 +3163,8 @@ msgstr "Email:"
 
 #: app_templates/demo/book_flight.html:136
 #, fuzzy
-#| msgid "Dent i-Delil Clinic"
-msgid "support@Delil Clinic.com"
+#| msgid "Dent i-Delil Turkiye  Medical Tourism "
+msgid "support@Delil Turkiye  Medical Tourism .com"
 msgstr "Clinica Dent i-Delil"
 
 #: app_templates/demo/book_flight.html:139
@@ -3828,8 +3828,8 @@ msgid "Facilities"
 msgstr "Servizi"
 
 #: app_templates/includes/footer-fullscreen.html:34
-msgid "&copy; Delil Clinic - Design by Lotfi Kanouni"
-msgstr "© Delil Clinic - Design di Lotfi Kanouni"
+msgid "&copy; Delil Turkiye  Medical Tourism  - Design by Lotfi Kanouni"
+msgstr "© Delil Turkiye  Medical Tourism  - Design di Lotfi Kanouni"
 
 #: app_templates/includes/language.html:29
 msgid "English"
@@ -4259,10 +4259,10 @@ msgstr "Rimuovi il team"
 #: app_templates/l.html:217 app_templates/salesdash.html:217
 msgid ""
 "A group of dedicated professionals ensuring the best care for our patients "
-"at Delil Clinic."
+"at Delil Turkiye  Medical Tourism ."
 msgstr ""
 "Un gruppo di professionisti dedicati che assicurano la migliore cura dei "
-"nostri pazienti alla Delil Clinic."
+"nostri pazienti alla Delil Turkiye  Medical Tourism ."
 
 #: app_templates/l.html:220 app_templates/salesdash.html:220
 msgid "Industry:"
@@ -4508,10 +4508,10 @@ msgstr "Nessun piano di trattamento trovato."
 #: app_templates/login.html:93
 #, fuzzy
 #| msgid ""
-#| "Welcome to Dent i-Delil Clinic! providing comprehensive healthcare "
+#| "Welcome to Dent i-Delil Turkiye  Medical Tourism ! providing comprehensive healthcare "
 #| "solutions."
 msgid ""
-"This is the welcome message for Delil Clinic, providing comprehensive "
+"This is the welcome message for Delil Turkiye  Medical Tourism , providing comprehensive "
 "healthcare solutions."
 msgstr ""
 "Benvenuti alla Clinica Dent i-Delil! fornendo soluzioni sanitarie complete."
@@ -5241,12 +5241,12 @@ msgstr "fuoribordo: Informativa sulla privacy"
 
 #: app_templates/privacypolicy.html:25
 msgid ""
-"Welcome to BeyondBoard, a service provided by Delil Clinic. We value your "
+"Welcome to BeyondBoard, a service provided by Delil Turkiye  Medical Tourism . We value your "
 "privacy and are committed to protecting your personal information. This "
 "Privacy Policy outlines how we collect, use, and safeguard your data when "
 "you use our app, including the social login feature."
 msgstr ""
-"Benvenuti a BeyondBoard, un servizio fornito da Delil Clinic. Apprezziamo la"
+"Benvenuti a BeyondBoard, un servizio fornito da Delil Turkiye  Medical Tourism . Apprezziamo la"
 " vostra privacy e ci impegniamo a proteggere le vostre informazioni "
 "personali. La presente Informativa sulla privacy illustra come raccogliamo, "
 "utilizziamo e salvaguardiamo i tuoi dati quando utilizzi la nostra app, "

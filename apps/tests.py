@@ -34,8 +34,15 @@ class UserProfileUpdateTestCase(TestCase):
         self.assertIn('Phone number changed to 0987654321', update_action.first().description)
 
 
-@receiver(post_save, sender=User)
-def log_user_profile_update(sender, instance, created, **kwargs):
+# TEMPORARILY DISABLED TO PREVENT DUPLICATE SIGNAL PROCESSING DURING SIGNUP
+# @receiver(post_save, sender=User)
+def log_user_profile_update_test(sender, instance, created, **kwargs):
+    """
+    Test signal handler - DISABLED to prevent conflicts with main signal handler
+    """
+    print(f"[DEBUG] Test signal handler DISABLED for user {instance.id}")
+    return
+    
     if not created:
         changes = []
         if 'phone_number' in instance.get_dirty_fields():

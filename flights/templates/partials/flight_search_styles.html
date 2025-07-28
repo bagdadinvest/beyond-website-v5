@@ -1,0 +1,157 @@
+{% load static %}
+<!-- Flight Search Page Specific Styles -->
+<style>
+.video-background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+.video-background {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .video-background {
+        width: auto;
+        height: 100%;
+    }
+}
+
+.video-overlay {
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.video-content {
+    z-index: 99999;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+}
+
+.video-content p {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 200;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 0px 30px;
+}
+
+.video-content a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1050;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.flight-search-card {
+    background: transparent;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.form-label-group {
+    margin-bottom: 1rem;
+}
+
+.form-label-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.currency-display {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 40px; /* Reserve space even when empty */
+    transition: all 0.3s ease;
+}
+
+.currency-flag {
+    width: 28px;
+    height: 20px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    background: #f0f0f0; /* Fallback background */
+}
+
+.currency-flag:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.currency-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.currency-info:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.currency-info:empty {
+    display: none;
+}
+
+.currency-text {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.search-button-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+</style>

@@ -2,6 +2,13 @@ from __future__ import absolute_import, unicode_literals
 import os
 from pathlib import Path
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 try:
     import psycopg2
 except ImportError:
@@ -92,6 +99,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps',
     'leads',
+    'flights',
     'bootstrap3',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -293,12 +301,87 @@ LIBRETRANSLATE_URL = os.getenv('LIBRETRANSLATE_URL', None)  # e.g., 'http://loca
 LIBRETRANSLATE_API_KEY = os.getenv('LIBRETRANSLATE_API_KEY', None)  # Optional API key
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # or 'optional', depending on your needs
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Disabled email verification to fix login issues
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
+
+# Authentication backends configuration
+AUTHENTICATION_BACKENDS = [
+    'apps.backends.EmailBackend',  # Custom email authentication backend
+    'django.contrib.auth.backends.ModelBackend',  # Default Django backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend for email authentication
+]
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# =============================================================================
+# INVOICE NINJA INTEGRATION SETTINGS
+# =============================================================================
+
+# Invoice Ninja webhook configuration
+INVOICE_NINJA_WEBHOOK_URL = os.getenv('INVOICE_NINJA_WEBHOOK_URL', None)
+# Example: 'https://your-n8n-instance.com/webhook/invoice-ninja-sync'
+
+# Webhook security (optional but recommended)
+INVOICE_NINJA_WEBHOOK_SECRET = os.getenv('INVOICE_NINJA_WEBHOOK_SECRET', None)
+
+# Webhook timeout in seconds
+INVOICE_NINJA_WEBHOOK_TIMEOUT = int(os.getenv('INVOICE_NINJA_WEBHOOK_TIMEOUT', 30))
+
+# Maximum number of sync attempts before marking as permanently failed
+INVOICE_NINJA_MAX_SYNC_ATTEMPTS = int(os.getenv('INVOICE_NINJA_MAX_SYNC_ATTEMPTS', 3))
+
+# Invoice Ninja API configuration (for future direct API integration)
+INVOICE_NINJA_API_URL = os.getenv('INVOICE_NINJA_API_URL', None)
+# Example: 'https://invoicing.co' or your self-hosted instance
+
+INVOICE_NINJA_API_TOKEN = os.getenv('INVOICE_NINJA_API_TOKEN', None)
+# Your Invoice Ninja API token
+
+# Logging configuration for Invoice Ninja integration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'invoice_ninja.log'),
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'apps.invoice_ninja_utils': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'apps.invoice_ninja_views': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'apps.signals': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
+# Create logs directory if it doesn't exist
+import os
+logs_dir = os.path.join(BASE_DIR, 'logs')
+if not os.path.exists(logs_dir):
+    os.makedirs(logs_dir)
+# Email backend temporarily disabled to prevent login blocking
+# EMAIL CONFIGURATION - COMPLETELY DISABLED TO PREVENT EMAIL FLOODING
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'  # Changed to dummy backend to prevent any emails
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Changed from SMTP to console
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Original SMTP backend
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -319,3 +402,7 @@ CKEDITOR_5_CONFIGS = {
 }
 
 COUNTRIES_FLAG_URL = 'flags/{code}.svg'
+
+# Amadeus API Configuration
+AMADEUS_CLIENT_ID = os.getenv('AMADEUS_CLIENT_ID', 'if4CO6oUQYKNCAr2lZsNympVLRM2AU1y')
+AMADEUS_CLIENT_SECRET = os.getenv('AMADEUS_CLIENT_SECRET', 'pWbAzP4WTjPKqNn9')

@@ -1,0 +1,261 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- Custom Styles -->
+        <link href="{% static 'css/styles2.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/ico" href="/static/img/favicon.ico">
+        
+        <style>
+            /* Custom styles for improved layout */
+            .first-section {
+                min-height: 100vh;
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+            
+            .flight-search-form {
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.2);
+            }
+            
+            .feature-card {
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                border: 1px solid rgba(255,255,255,0.2);
+                transition: transform 0.3s ease;
+            }
+            
+            .feature-card:hover {
+                transform: translateY(-10px);
+            }
+            
+            .places_box {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                max-height: 200px;
+                overflow-y: auto;
+                display: none;
+            }
+            
+            .places__list {
+                padding: 12px 16px;
+                cursor: pointer;
+                border-bottom: 1px solid #eee;
+                transition: background-color 0.2s ease;
+            }
+            
+            .places__list:hover {
+                background-color: #f8f9fa;
+            }
+            
+            .places__list:last-child {
+                border-bottom: none;
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 1199px) {
+                .hero-title {
+                    font-size: 2.8rem;
+                }
+            }
+            
+            @media (max-width: 991px) {
+                .hero-title {
+                    font-size: 2.4rem;
+                }
+                
+                .first-section {
+                    background-attachment: scroll;
+                }
+            }
+            
+            @media (max-width: 767px) {
+                .hero-title {
+                    font-size: 2rem;
+                }
+                
+                .flight-search-form {
+                    margin-top: 2rem;
+                }
+            }
+            
+            /* Carousel custom styles */
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 5%;
+            }
+            
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                background-color: rgba(255,255,255,0.3);
+                border-radius: 50%;
+                padding: 20px;
+            }
+            
+            /* Destination cards */
+            .destination-card {
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background: white;
+            }
+            
+            .destination-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important;
+            }
+            
+            .destination-image {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .destination-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .destination-card:hover .destination-overlay {
+                opacity: 1;
+            }
+            
+            .overlay-content {
+                transform: translateY(20px);
+                transition: transform 0.3s ease;
+            }
+            
+            .destination-card:hover .overlay-content {
+                transform: translateY(0);
+            }
+            
+            /* Step cards */
+            .step-card {
+                background: rgba(255,255,255,0.1);
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.2);
+                transition: transform 0.3s ease;
+            }
+            
+            .step-card:hover {
+                transform: translateY(-5px);
+            }
+        </style>
+        
+        {% block script %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+        
+        <!-- Bootstrap 5 JS Bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Custom JavaScript -->
+        <script>
+            // Toggle return date based on trip type
+            document.addEventListener('DOMContentLoaded', function() {
+                const tripTypeInputs = document.querySelectorAll('input[name="TripType"]');
+                const returnDateInput = document.getElementById('return_date');
+                
+                tripTypeInputs.forEach(input => {
+                    input.addEventListener('change', function() {
+                        if (this.value === '2') {
+                            returnDateInput.disabled = false;
+                            returnDateInput.required = true;
+                        } else {
+                            returnDateInput.disabled = true;
+                            returnDateInput.required = false;
+                            returnDateInput.value = '';
+                        }
+                    });
+                });
+                
+                // Set minimum date to today
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('depart_date').min = today;
+                document.getElementById('return_date').min = today;
+                
+                // Airport search functionality
+                function setupAirportSearch(inputId, dropdownId) {
+                    const input = document.getElementById(inputId);
+                    const dropdown = document.getElementById(dropdownId);
+                    
+                    if (input && dropdown) {
+                        input.addEventListener('focus', function() {
+                            dropdown.style.display = 'block';
+                        });
+                        
+                        input.addEventListener('input', function() {
+                            // Here you would typically filter the dropdown based on input
+                            dropdown.style.display = 'block';
+                        });
+                        
+                        document.addEventListener('click', function(e) {
+                            if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                                dropdown.style.display = 'none';
+                            }
+                        });
+                    }
+                }
+                
+                setupAirportSearch('flight-from', 'places_from');
+                setupAirportSearch('flight-to', 'places_to');
+            });
+            
+            // Function to select place from dropdown
+            function selectplace(element) {
+                const value = element.getAttribute('data-value');
+                const text = element.textContent;
+                const input = element.closest('.position-relative').querySelector('input');
+                
+                if (input) {
+                    input.value = text;
+                    element.parentElement.style.display = 'none';
+                }
+            }
+            
+            // Function to hide places dropdown
+            function hideplaces(input) {
+                setTimeout(() => {
+                    const dropdown = input.nextElementSibling;
+                    if (dropdown && dropdown.classList.contains('places_box')) {
+                        dropdown.style.display = 'none';
+                    }
+                }, 200);
+            }
+        </script>
+    </body>
+</html>

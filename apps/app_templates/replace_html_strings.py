@@ -11,7 +11,7 @@ variations = [
 ]
 
 # Replacement string
-replacement = "Delil Clinic"
+replacement = "Delil Turkiye  Medical Tourism "
 
 # Function to replace the strings in files
 def replace_in_file(file_path, variations, replacement):

@@ -1,0 +1,1664 @@
+{% extends "new/base.html" %}
+{% load static i18n duration_filters %}
+
+{% block title %}Home - CT Travel{% endblock %}
+
+{% block content %}
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shepherd.js/8.0.0/shepherd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shepherd.js/8.0.0/shepherd.css" />
+
+<!-- Integrated Flight Search Styles -->
+<style>
+.video-background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+.video-background {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .video-background {
+        width: auto;
+        height: 100%;
+    }
+}
+
+.video-overlay {
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.video-content {
+    z-index: 99999;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flight-search-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+.currency-display {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.currency-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.currency-flag {
+    width: 24px;
+    height: 16px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.currency-text {
+    font-weight: 500;
+    color: #fff;
+}
+
+.search-button-container {
+    margin-top: 20px;
+}
+
+.form-label-group {
+    margin-bottom: 15px;
+}
+
+.form-label-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-info:hover {
+    background: #138496;
+}
+
+.flex-fill {
+    flex: 1;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+.messages {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.messages li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.text-danger {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.text-white {
+    color: white !important;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+/* Integration with existing hero section */
+.hero .flight-search-enhanced {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+}
+
+/* Autocomplete styling */
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ui-menu-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.ui-menu-item:hover {
+    background: #f8f9fa;
+}
+
+/* Flight Results Section Styles */
+.flight-results-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.flight-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.airline {
+    font-weight: bold;
+    color: #333;
+}
+
+.price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.flight-details {
+    margin-bottom: 15px;
+}
+
+.flight-route {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.flight-time, .flight-duration {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.flight-actions {
+    text-align: center;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    border: none;
+}
+
+.alert {
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-info {
+    background: rgba(23, 162, 184, 0.1);
+    border: 1px solid rgba(23, 162, 184, 0.2);
+    color: #17a2b8;
+}
+
+/* Enhanced Results Table Styles from results.html */
+.results-card {
+    background: rgba(255, 255, 255, 0.98);
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(15px);
+}
+
+.results-card .card-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    border: none;
+}
+
+.flights-table {
+    background: white;
+}
+
+.flights-table thead th {
+    background: #f8f9fa;
+    border-top: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.flight-row {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.flight-row:hover {
+    background: rgba(0, 123, 255, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-sm {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.price-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.book-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid #007bff;
+}
+
+.book-btn:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.flight-route-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+}
+
+.departure-date, .return-date {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.return-indicator {
+    font-size: 1.3rem;
+    margin: 0 10px;
+}
+
+.no-flights-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+}
+
+.nounderline {
+    text-decoration: none !important;
+}
+
+/* Scroll Right Animation from results.html */
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.scroll-right {
+    animation: scrollRight 1s ease-out;
+}
+
+/* Responsive table improvements */
+@media (max-width: 768px) {
+    .flights-table {
+        font-size: 0.8rem;
+    }
+    
+    .flight-route-header {
+        font-size: 1.2rem;
+    }
+    
+    .avatar {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+    
+    .book-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+</style>
+
+<div class="hero">
+	<div class="container">
+						<div class="row align-items-center">
+
+			<div class="col-lg-6">
+				<div class="intro-wrap">
+					<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Trip in <span class="typed-words"></span></h1>
+
+				<div class="slides">
+
+					<img src="{% static 'tour/images/hero-slider-1.jpg' %}" alt="Image" class="img-fluid active">
+					<img src="{% static 'tour/images/hero-slider-2.jpg' %}" alt="Image" class="img-fluid">
+					<img src="{% static 'tour/images/hero-slider-3.jpg' %}" alt="Image" class="img-fluid">
+					<img src="{% static 'tour/images/hero-slider-4.jpg' %}" alt="Image" class="img-fluid">
+					<img src="{% static 'tour/images/hero-slider-5.jpg' %}" alt="Image" class="img-fluid">
+				</div>
+			</div>
+				</div>
+ 						<div class="col-9">
+            <!-- Enhanced Flight Search Form with Integrated Partials -->
+            <div class="flight-search-enhanced">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li class="text-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                
+                <h2 class="text-white mb-2 mt-5">{% trans "FLIGHT RESERVATION" %}</h2>
+                <h5 class="text-white"><small>{% trans "GET THE BEST OFFERS NOW" %}</small></h5>
+                
+                <form class="form" action="{% url 'app:demo' %}" method="POST" id="flightSearchForm">
+                    {% csrf_token %}
+                    <div class="align-items-center">
+                        <div class="search-flight-form-data">
+                            <div class="input-row" style="display: flex;">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="radio" class="form-check-input trip-type" id="one-way" name="TripType" value="1" checked>One-way
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="radio" class="form-check-input trip-type" id="round-trip" name="TripType" value="2" {% if trip_type == '2' %}checked{% endif %}>Round Trip
+                                </label>
+                            </div>
+                            </div>
+                            
+                            <!-- Enhanced Origin Field with Autocomplete -->
+                            <div class="form-label-group">
+                                <label for="inputOrigin" class="text-white mb-2 mt-5">{% trans "From" %}</label>
+                                <input type="text" 
+                                       name="Origin" 
+                                       id="inputOrigin" 
+                                       class="form-control mr-sm-3" 
+                                       placeholder="{% trans 'Search by City, Airport or IATA code' %}" 
+                                       onblur="hideplaces(this)" 
+                                       data-value="{{origin | lower}}" 
+                                       data-list="places_from" 
+                                       autocomplete="off" 
+                                       value="{{origin | upper}}"
+                                       required 
+                                       autofocus>
+                                <div id="places_from" class="places_box">
+                                </div>
+                            </div>
+                            
+                            <!-- Currency Display -->
+                            <div id="currencyCode" class="text-white currency-display" style="display: none;">
+                                <div class="currency-info">
+                                    <img id="countryFlag" class="currency-flag" style="display: none;" alt="Country flag">
+                                    <span id="currencyText" class="currency-text"></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Enhanced Destination Field with Autocomplete -->
+                            <div class="form-label-group">
+                                <label for="inputDestination" class="text-white mb-2">{% trans "To" %}</label>
+                                <input type="text" 
+                                       name="Destination" 
+                                       id="inputDestination" 
+                                       class="form-control mr-sm-3" 
+                                       placeholder="{% trans 'Search by City, Airport or IATA code' %}" 
+                                       onblur="hideplaces(this)" 
+                                       data-value="{{destination | lower}}" 
+                                       data-list="places_to" 
+                                       autocomplete="off" 
+                                       value="{{destination | upper}}"
+                                       required>
+                                <div id="places_to" class="places_box">
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <label for="idDeparturedate" class="text-white">{% trans "Departure Date" %}</label>
+                                <input type="date" 
+                                       name="Departuredate" 
+                                       id="idDeparturedate" 
+                                       min="{{min_date}}" 
+                                       max="{{max_date}}" 
+                                       class="form-control mr-sm-2" 
+                                       placeholder="{% trans 'Departure Date' %}" 
+                                       value="{{depart_date}}"
+                                       required>
+                            </div>
+                            <div class="input-row">
+                                <label for="idReturndate" class="text-white">{% trans "Return Date" %}</label>
+                                <input type="date" 
+                                       name="Returndate" 
+                                       id="idReturndate" 
+                                       min="{{min_date}}" 
+                                       max="{{max_date}}" 
+                                       class="form-control mr-sm-2" 
+                                       placeholder="{% trans 'Return Date' %}" 
+                                       value="{{return_date}}" 
+                                       {% if trip_type != '2' %} disabled {% endif %}>
+                            </div>
+                            <div class="input-row">
+                                <label for="seat_class" class="text-white">{% trans "Class" %}</label>
+                                <select name="SeatClass" id="SeatType" class="form-control mr-sm-2 selectpicker">
+                                    <option value="economy" {% if seat == 'economy' %}selected{% endif %}>Economy</option>
+                                    <option value="business" {% if seat == 'business' %}selected{% endif %}>Business</option>
+                                    <option value="first" {% if seat == 'first' %}selected{% endif %}>First</option>
+                                </select>
+                            </div>
+                         	   <hr>
+                            <div class="search-button-container d-flex gap-3">
+                                <button class="btn btn-secondary flex-fill" type="submit" id="searchFlightButton">
+                                    <span class="btn-inner--icon"><i class="fas fa-search"></i></span>
+                                    <span class="btn-inner--text">{% trans "Search Flight" %}</span>
+                                </button>
+                                <a href="{% url 'flights:flight_time' %}" class="btn btn-primary flex-fill">
+                                    <span class="btn-inner--icon"><i class="fas fa-globe"></i></span>
+                                    <span class="btn-inner--text">{% trans "Flight Time Calculator" %}</span>
+                                </a>
+                            </div>
+                            <!-- Debug button to test form submission -->
+                            <div class="mt-2">
+                                <button type="button" id="debugBtn" class="btn btn-warning btn-sm" style="width: 100%;">
+                                    🐛 Debug: Test Form Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Enhanced Flight Search Results Section - Integrated from results.html -->
+            {% if search_performed and response %}
+            <div class="flight-results-section mt-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Route Information Header -->
+                                <div class="col-md-12 mb-3">
+                                    <h3 class="flight-route-header text-white">
+                                        {{ origin }} &#x2708; {{ destination }} <br>
+                                        <span class="departure-date">{{ depart_date }}</span>
+                                        {% if return_date and trip_type == '2' %} 
+                                            <span class="text-info return-indicator">&#10594;&#10596;</span> 
+                                            <span class="return-date">{{ return_date }}</span>
+                                        {% endif %}
+                                    </h3>
+                                </div>
+                                
+                                <!-- Results Card with Detailed Table -->
+                                <div class="card mb-4 results-card">
+                                    <div class="card-header pb-2 scroll-right">
+                                        <h6 class="text-white mb-0">{% trans "Available Flights" %}</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            {% if response %}
+                                            <table class="table align-items-center mb-0 flights-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Departure" %}</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Flight Number" %}</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Arrival" %}</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Price" %}</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{% trans "Book" %}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for r, flight in response %}
+                                                        {% if r.0firstFlightDepartureDate %}
+                                                        <tr class="flight-row">
+                                                            <!-- Departure Information -->
+                                                            <td>
+                                                                <p class="text text-center font-weight-bold mb-0">
+                                                                    <img src="{{ r.0firstFlightAirlineLogo }}" alt="{{ r.0firstFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                                    {{ r.0firstFlightDepartureDate }} {{ r.0firstFlightDepartureAirport }}
+                                                                    <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.0firstFlightArrivalDuration|format_duration }} duration">&#10230;</a>
+                                                                    {{ r.0firstFlightArrivalAirport }} {{ r.0firstFlightArrivalDate }}
+                                                                </p>
+                                                                {% if r.0secondFlightDepartureAirport %}
+                                                                    <p class="text-xs text-center text-secondary mb-0">{% trans "Connection duration is" %} {{ r.0stop_time }}</p>
+                                                                    <p class="text-s text-center font-weight-bold mb-0">
+                                                                        <img src="{{ r.0secondFlightAirlineLogo }}" alt="{{ r.0secondFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                                        {{ r.0secondFlightDepartureDate }} {{ r.0secondFlightDepartureAirport }}
+                                                                        <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.0secondFlightArrivalDuration|format_duration }} duration">&#10230;</a>
+                                                                        {{ r.0secondFlightArrivalAirport }} {{ r.0secondFlightArrivalDate }}
+                                                                    </p>
+                                                                {% endif %}
+                                                            </td>
+                                                            
+                                                            <!-- Flight Number -->
+                                                            <td class="align-middle text-center text-sm">
+                                                                <span class="text-secondary text-s font-weight-bold">{{ r.flight_number }}</span>
+                                                            </td>
+                                                            
+                                                            <!-- Return Flight Information -->
+                                                            <td>
+                                                                {% if r.1firstFlightDepartureAirport %}
+                                                                    <p class="text-s text-center font-weight-bold mb-0">
+                                                                        <img src="{{ r.1firstFlightAirlineLogo }}" alt="{{ r.1firstFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                                        {{ r.1firstFlightDepartureDate }} {{ r.1firstFlightDepartureAirport }}
+                                                                        <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.1firstFlightArrivalDuration|format_duration }} duration">&#10230;</a>
+                                                                        {{ r.1firstFlightArrivalAirport }} {{ r.1firstFlightArrivalDate }}
+                                                                    </p>
+                                                                    {% if r.1secondFlightDepartureAirport %}
+                                                                    <p class="text-xs text-center text-secondary mb-0">{% trans "Connection duration is" %} {{ r.1stop_time }}</p>
+                                                                    <p class="text-s text-center font-weight-bold mb-0">
+                                                                        <img src="{{ r.1secondFlightAirlineLogo }}" alt="{{ r.1secondFlightAirline }}" class="avatar avatar-sm rounded-circle me-2"> 
+                                                                        {{ r.1secondFlightDepartureDate }} {{ r.1secondFlightDepartureAirport }}
+                                                                        <a href="#" data-toggle="tooltip" class="nounderline text-info" title="{{ r.1secondFlightArrivalDuration|format_duration }} duration">&#10230;</a>
+                                                                        {{ r.1secondFlightArrivalAirport }} {{ r.1secondFlightArrivalDate }}
+                                                                    </p>
+                                                                    {% endif %}
+                                                                {% else %}
+                                                                    <p class="text-center text-secondary">{% trans "One-way flight" %}</p>
+                                                                {% endif %}
+                                                            </td>
+                                                            
+                                                            <!-- Price -->
+                                                            <td>
+                                                                <div class="d-flex flex-column justify-content-center">
+                                                                    <h6 class="mb-0 text-center text-s price-display">{{ currency_code }} {{ r.price }}</h6>
+                                                                </div>
+                                                            </td>
+                                                            
+                                                            <!-- Book Button -->
+                                                            <td>
+                                                                <div class="d-flex justify-content-center">
+                                                                    <a href="{% url 'flights:book_flight' flight %}" class="btn btn-outline-primary book-btn">
+                                                                        {% trans "Book Flight" %}
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            {% else %}
+                                            <div class="no-flights-message">
+                                                <h4 class="login-heading mb-4 text-center">{% trans "No flights found for this itinerary" %}</h4>
+                                                <p class="text-center text-secondary">{% trans "Please try different dates or destinations." %}</p>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+														  </div>	
+														  </div>
+
+		</div>
+	</div>
+</div>
+
+<div class="untree_co-section">
+	<div class="container">
+		<div class="row mb-5 justify-content-center">
+			<div class="col-lg-6 text-center">
+				<h2 class="section-title text-center mb-3">Our Services</h2>
+				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+			</div>
+		</div>
+		<div class="row align-items-stretch">
+			<div class="col-lg-4 order-lg-1">
+				<div class="h-100"><div class="frame h-100"><div class="feature-img-bg h-100" style="background-image: url('{% static 'tour/images/hero-slider-1.jpg' %}');"></div></div></div>
+			</div>
+
+			<div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-1" >
+
+				<div class="feature-1 d-md-flex">
+					<div class="align-self-center">
+						<span class="flaticon-house display-4 text-primary"></span>
+						<h3>Beautiful Condo</h3>
+						<p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+					</div>
+				</div>
+
+				<div class="feature-1 ">
+					<div class="align-self-center">
+						<span class="flaticon-restaurant display-4 text-primary"></span>
+						<h3>Restaurants & Cafe</h3>
+						<p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-3" >
+
+				<div class="feature-1 d-md-flex">
+					<div class="align-self-center">
+						<span class="flaticon-mail display-4 text-primary"></span>
+						<h3>Easy to Connect</h3>
+						<p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+					</div>
+				</div>
+
+				<div class="feature-1 d-md-flex">
+					<div class="align-self-center">
+						<span class="flaticon-phone-call display-4 text-primary"></span>
+						<h3>24/7 Support</h3>
+						<p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="untree_co-section count-numbers py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3">
+				<div class="counter-wrap">
+					<div class="counter">
+						<span class="" data-number="9313">0</span>
+					</div>
+					<span class="caption">No. of Travels</span>
+				</div>
+			</div>
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3">
+				<div class="counter-wrap">
+					<div class="counter">
+						<span class="" data-number="8492">0</span>
+					</div>
+					<span class="caption">No. of Clients</span>
+				</div>
+			</div>
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3">
+				<div class="counter-wrap">
+					<div class="counter">
+						<span class="" data-number="100">0</span>
+					</div>
+					<span class="caption">No. of Employees</span>
+				</div>
+			</div>
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3">
+				<div class="counter-wrap">
+					<div class="counter">
+						<span class="" data-number="120">0</span>
+					</div>
+					<span class="caption">No. of Countries</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="untree_co-section">
+	<div class="container">
+		<div class="row text-center justify-content-center mb-5">
+			<div class="col-lg-7"><h2 class="section-title text-center">Popular Destination</h2></div>
+		</div>
+
+		<div class="owl-carousel owl-3-slider">
+
+			<div class="item">
+				<a class="media-thumb" href="{% static 'tour/images/hero-slider-1.jpg' %}" data-fancybox="gallery">
+					<div class="media-text">
+						<h3>Pragser Wildsee</h3>
+						<span class="location">Italy</span>
+					</div>
+					<img src="{% static 'tour/images/hero-slider-1.jpg' %}" alt="Image" class="img-fluid">
+				</a> 
+			</div>
+
+			<div class="item">
+				<a class="media-thumb" href="{% static 'tour/images/hero-slider-2.jpg' %}" data-fancybox="gallery">
+					<div class="media-text">
+						<h3>Oia</h3>
+						<span class="location">Greece</span>
+					</div>
+					<img src="{% static 'tour/images/hero-slider-2.jpg' %}" alt="Image" class="img-fluid">
+				</a> 
+			</div>
+
+			<div class="item">
+				<a class="media-thumb" href="{% static 'tour/images/hero-slider-3.jpg' %}" data-fancybox="gallery">
+					<div class="media-text">
+						<h3>Perhentian Islands</h3>
+						<span class="location">Malaysia</span>
+					</div>
+					<img src="{% static 'tour/images/hero-slider-3.jpg' %}" alt="Image" class="img-fluid">
+				</a> 
+			</div>
+
+
+			<div class="item">
+				<a class="media-thumb" href="{% static 'tour/images/hero-slider-4.jpg' %}" data-fancybox="gallery">
+					<div class="media-text">
+						<h3>Rialto Bridge</h3>
+						<span class="location">Italy</span>
+					</div>
+					<img src="{% static 'tour/images/hero-slider-4.jpg' %}" alt="Image" class="img-fluid">
+				</a> 
+			</div>
+
+			<div class="item">
+				<a class="media-thumb" href="{% static 'tour/images/hero-slider-5.jpg' %}" data-fancybox="gallery">
+					<div class="media-text">
+						<h3>San Francisco, United States</h3>
+						<span class="location">United States</span>
+					</div>
+					<img src="{% static 'tour/images/hero-slider-5.jpg' %}" alt="Image" class="img-fluid">
+				</a> 
+			</div>
+
+			<div class="item">
+				<a class="media-thumb" href="{% static 'tour/images/hero-slider-1.jpg' %}" data-fancybox="gallery">
+					<div class="media-text">
+						<h3>Lake Thun</h3>
+						<span class="location">Switzerland</span>
+					</div>
+					<img src="{% static 'tour/images/hero-slider-2.jpg' %}" alt="Image" class="img-fluid">
+				</a> 
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+
+<div class="untree_co-section testimonial-section mt-5">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-7 text-center">
+				<h2 class="section-title text-center mb-5">Testimonials</h2>
+
+				<div class="owl-single owl-carousel no-nav">
+					<div class="testimonial mx-auto">
+						<figure class="img-wrap">
+							<img src="{% static 'tour/images/person_2.jpg' %}" alt="Image" class="img-fluid">
+						</figure>
+						<h3 class="name">Adam Aderson</h3>
+						<blockquote>
+							<p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+						</blockquote>
+					</div>
+
+					<div class="testimonial mx-auto">
+						<figure class="img-wrap">
+							<img src="{% static 'tour/images/person_3.jpg' %}" alt="Image" class="img-fluid">
+						</figure>
+						<h3 class="name">Lukas Devlin</h3>
+						<blockquote>
+							<p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+						</blockquote>
+					</div>
+
+					<div class="testimonial mx-auto">
+						<figure class="img-wrap">
+							<img src="{% static 'tour/images/person_4.jpg' %}" alt="Image" class="img-fluid">
+						</figure>
+						<h3 class="name">Kayla Bryant</h3>
+						<blockquote>
+							<p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+						</blockquote>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="untree_co-section">
+	<div class="container">
+		<div class="row justify-content-center text-center mb-5">
+			<div class="col-lg-6">
+				<h2 class="section-title text-center mb-3">Special Offers &amp; Discounts</h2>
+				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+				<div class="media-1">
+				<div class="item">
+					<a class="media-thumb" href="{% static 'tour/images/hero-slider-5.jpg' %}" data-fancybox="gallery">
+						<div class="media-text">
+							<h3>San Francisco, United States</h3>
+							<span class="location">United States</span>
+						</div>
+						<img src="{% static 'tour/images/hero-slider-5.jpg' %}" alt="Image" class="img-fluid">
+					</a> 
+				</div>
+
+				<div class="item">
+					<a class="media-thumb" href="{% static 'tour/images/hero-slider-1.jpg' %}" data-fancybox="gallery">
+						<div class="media-text">
+							<h3>Lake Thun</h3>
+							<span class="location">Switzerland</span>
+						</div>
+						<img src="{% static 'tour/images/hero-slider-2.jpg' %}" alt="Image" class="img-fluid">
+					</a> 
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="untree_co-section testimonial-section mt-5">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-7 text-center">
+					<h2 class="section-title text-center mb-5">Testimonials</h2>
+
+					<div class="owl-single owl-carousel no-nav">
+						<div class="testimonial mx-auto">
+							<figure class="img-wrap">
+								<img src="{% static 'tour/images/person_2.jpg' %}" alt="Image" class="img-fluid">
+							</figure>
+							<h3 class="name">Adam Aderson</h3>
+							<blockquote>
+								<p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							</blockquote>
+						</div>
+
+						<div class="testimonial mx-auto">
+							<figure class="img-wrap">
+								<img src="{% static 'tour/images/person_3.jpg' %}" alt="Image" class="img-fluid">
+							</figure>
+							<h3 class="name">Lukas Devlin</h3>
+							<blockquote>
+								<p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							</blockquote>
+						</div>
+
+						<div class="testimonial mx-auto">
+							<figure class="img-wrap">
+								<img src="{% static 'tour/images/person_4.jpg' %}" alt="Image" class="img-fluid">
+							</figure>
+							<h3 class="name">Kayla Bryant</h3>
+							<blockquote>
+								<p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							</blockquote>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="untree_co-section">
+		<div class="container">
+			<div class="row justify-content-center text-center mb-5">
+				<div class="col-lg-6">
+					<h2 class="section-title text-center mb-3">Special Offers &amp; Discounts</h2>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a href="#" class="d-block mb-3"><img src="images/hero-slider-1.jpg" alt="Image" class="img-fluid"></a>
+						<span class="d-flex align-items-center loc mb-2">
+							<span class="icon-room mr-3"></span>
+							<span>Italy</span>
+						</span>
+						<div class="d-flex align-items-center">
+							<div>
+								<h3><a href="#">Rialto Mountains</a></h3>
+								<div class="price ml-auto">
+									<span>$520.00</span>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a href="#" class="d-block mb-3"><img src="images/hero-slider-2.jpg" alt="Image" class="img-fluid"></a>
+						<span class="d-flex align-items-center loc mb-2">
+							<span class="icon-room mr-3"></span>
+							<span>United States</span>
+						</span>
+						<div class="d-flex align-items-center">
+							<div>
+								<h3><a href="#">San Francisco</a></h3>
+								<div class="price ml-auto">
+									<span>$520.00</span>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a href="#" class="d-block mb-3"><img src="images/hero-slider-3.jpg" alt="Image" class="img-fluid"></a>
+						<span class="d-flex align-items-center loc mb-2">
+							<span class="icon-room mr-3"></span>
+							<span>Malaysia</span>
+						</span>
+						<div class="d-flex align-items-center">
+							<div>
+								<h3><a href="#">Perhentian Islands</a></h3>
+								<div class="price ml-auto">
+									<span>$750.00</span>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+					<div class="media-1">
+						<a href="#" class="d-block mb-3"><img src="images/hero-slider-4.jpg" alt="Image" class="img-fluid"></a>
+
+						<span class="d-flex align-items-center loc mb-2">
+							<span class="icon-room mr-3"></span>
+							<span>Switzerland</span>
+						</span>
+
+						<div class="d-flex align-items-center">
+							<div>
+								<h3><a href="#">Lake Thun</a></h3>
+								<div class="price ml-auto">
+									<span>$520.00</span>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="untree_co-section">
+		<div class="container">
+			<div class="row justify-content-between align-items-center">
+				
+				<div class="col-lg-6">
+					<figure class="img-play-video">
+						<a id="play-video" class="video-play-button" href="https://www.youtube.com/watch?v=mwtbEGNABWU" data-fancybox>
+							<span></span>
+						</a>
+						<img src="{% static 'tour/images/hero-slider-2.jpg' %}" alt="Image" class="img-fluid rounded-20">
+					</figure>
+				</div>
+
+				<div class="col-lg-5">
+					<h2 class="section-title text-left mb-4">Take a look at Tour Video</h2>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+
+					<p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+
+					<ul class="list-unstyled two-col clearfix">
+						<li>Outdoor recreation activities</li>
+						<li>Airlines</li>
+						<li>Car Rentals</li>
+						<li>Cruise Lines</li>
+						<li>Hotels</li>
+						<li>Railways</li>
+						<li>Travel Insurance</li>
+						<li>Package Tours</li>
+						<li>Insurance</li>
+						<li>Guide Books</li>
+					</ul>
+
+					<p><a href="#" class="btn btn-primary">Get Started</a></p>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	<div class="py-5 cta-section">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-12">
+					<h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>
+					<p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, fugit?</p>
+					<p class="mb-0"><a href="booking.html" class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
+				    </div>
+			</div>
+		</div>
+	</div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tour = new Shepherd.Tour({
+            useModalOverlay: true,
+            defaultStepOptions: {
+                cancelIcon: {
+                    enabled: true
+                },
+                classes: 'shepherd-theme-arrows',
+                scrollTo: { behavior: 'smooth', block: 'center' }
+            }
+        });
+
+        tour.addStep({
+            id: 'trip-type',
+            text: 'Select the type of trip: One-way or Round Trip.',
+            attachTo: {
+                element: '.trip-type',
+                on: 'bottom'
+            },
+            buttons: [
+                {
+                    text: 'Next',
+                    action: tour.next
+                }
+            ]
+        });
+
+        tour.addStep({
+            id: 'flight-from',
+            text: 'Enter the origin of your flight.',
+            attachTo: {
+                element: '#flight-from',
+                on: 'bottom'
+            },
+            buttons: [
+                {
+                    text: 'Next',
+                    action: tour.next
+                }
+            ]
+        });
+
+        tour.addStep({
+            id: 'flight-to',
+            text: 'Enter the destination of your flight.',
+            attachTo: {
+                element: '#flight-to',
+                on: 'bottom'
+            },
+            buttons: [
+                {
+                    text: 'Next',
+                    action: tour.next
+                }
+            ]
+        });
+
+        tour.addStep({
+            id: 'depart-date',
+            text: 'Select the departure date for your flight.',
+            attachTo: {
+                element: '#depart_date',
+                on: 'bottom'
+            },
+            buttons: [
+                {
+                    text: 'Next',
+                    action: tour.next
+                }
+            ]
+        });
+
+        tour.addStep({
+            id: 'return-date',
+            text: 'Select the return date for your flight (if Round Trip).',
+            attachTo: {
+                element: '#return_date',
+                on: 'bottom'
+            },
+            buttons: [
+                {
+                    text: 'Next',
+                    action: tour.next
+                }
+            ]
+        });
+
+        tour.addStep({
+            id: 'seat-class',
+            text: 'Choose the class for your flight: Economy, Business, or First.',
+            attachTo: {
+                element: '#SeatType',
+                on: 'bottom'
+            },
+            buttons: [
+                {
+                    text: 'Next',
+                    action: tour.next
+                }
+            ]
+        });
+
+        tour.addStep({
+            id: 'search-flight',
+            text: 'Click here to search for available flights.',
+            attachTo: {
+                element: '.btn-info',
+                on: 'bottom'
+            },
+            buttons: [
+                {
+                    text: 'Finish',
+                    action: tour.complete
+                }
+            ]
+        });
+
+        tour.start();
+    });
+    </script>
+
+<!-- Integrated Flight Search JavaScript -->
+<script>
+$(document).ready(function () {
+    console.log("Enhanced flight search with flag support initialized");
+    
+    // Initialize autocomplete for origin and destination fields
+    $("#inputOrigin, #inputDestination").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "{% url 'flights:origin_airport_search' %}",
+                dataType: "json",
+                data: {
+                    term: request.term
+                },
+                success: function (data) {
+                    response(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Autocomplete error:', error);
+                }
+            });
+        },
+        minLength: 1,
+        delay: 200,
+        select: function(event, ui) {
+            var selectedIATA = ui.item.value.split(',')[0];
+            $(this).val(selectedIATA);
+            
+            // Update currency code for origin selection
+            if (this.id === "inputOrigin") {
+                updateCurrencyCode(selectedIATA);
+            }
+            
+            return false; // Prevent default behavior
+        }
+    });
+
+    // Function to update currency code and flag
+    function updateCurrencyCode(iataCode) {
+        // Clear previous data
+        $("#currencyText").text("");
+        $("#countryFlag").hide();
+        $("#currencyCode").hide();
+        
+        $.ajax({
+            url: "{% url 'flights:get_currency_code' %}",
+            dataType: "json",
+            data: {
+                iata_code: iataCode
+            },
+            success: function(data) {
+                if (data.currency_code) {
+                    $("#currencyText").text("{% trans 'Currency:' %} " + data.currency_code);
+                    $("#currencyCode").show();
+                    
+                    if (data.country_code) {
+                        var flagUrl = "https://flagcdn.com/24x18/" + data.country_code.toLowerCase() + ".png";
+                        $("#countryFlag").attr("src", flagUrl).show();
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Currency code fetch error:', error);
+            }
+        });
+    }
+
+    // Enhanced trip type functionality
+    $('input[name="TripType"]').change(function() {
+        var tripType = $(this).val();
+        if (tripType === "1") { // One-way
+            $("#idReturndate").prop('disabled', true).val('');
+        } else { // Round trip
+            $("#idReturndate").prop('disabled', false);
+        }
+    });
+
+    // Date validation
+    function setMinDate() {
+        var today = new Date().toISOString().split('T')[0];
+        $("#idDeparturedate, #idReturndate").attr('min', today);
+    }
+    
+    setMinDate();
+    
+    // Return date should be after departure date
+    $("#idDeparturedate").change(function() {
+        var departureDate = $(this).val();
+        if (departureDate) {
+            $("#idReturndate").attr('min', departureDate);
+        }
+    });
+});
+
+// Enhanced Flight Search Tutorial with Shepherd.js
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("Initializing enhanced flight reservation tutorial...");
+
+    if (typeof Shepherd === 'undefined') {
+        console.error("Shepherd.js is not loaded.");
+        return;
+    }
+
+    const tour = new Shepherd.Tour({
+        useModalOverlay: true,
+        defaultStepOptions: {
+            cancelIcon: { enabled: true },
+            classes: 'shadow-md bg-purple-dark',
+            scrollTo: { behavior: 'smooth', block: 'center' },
+        },
+    });
+
+    // Step 1: Highlight "From" field
+    tour.addStep({
+        id: 'step-1',
+        text: `{% trans "Start by selecting your departure location. You can search by city, airport, or IATA code. The system will show currency information based on your selection." %}`,
+        attachTo: { element: '#inputOrigin', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 2: Highlight currency display
+    tour.addStep({
+        id: 'step-2',
+        text: `{% trans "When you select an origin airport, the system will automatically detect and display the local currency and country flag." %}`,
+        attachTo: { element: '#currencyCode', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 3: Highlight "To" field
+    tour.addStep({
+        id: 'step-3',
+        text: `{% trans "Select your destination airport. The system will suggest airports as you type." %}`,
+        attachTo: { element: '#inputDestination', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 4: Highlight departure date
+    tour.addStep({
+        id: 'step-4',
+        text: `{% trans "Choose your departure date. You can only select future dates." %}`,
+        attachTo: { element: '#idDeparturedate', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 5: Highlight return date
+    tour.addStep({
+        id: 'step-5',
+        text: `{% trans "For round trips, select your return date. This field is automatically disabled for one-way trips." %}`,
+        attachTo: { element: '#idReturndate', on: 'bottom' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Next" %}', 
+                action: tour.next,
+                classes: 'btn btn-primary'
+            },
+        ],
+    });
+
+    // Step 6: Highlight search button
+    tour.addStep({
+        id: 'step-6',
+        text: `{% trans "Click here to search for available flights with the Amadeus API integration." %}`,
+        attachTo: { element: '#searchFlightButton', on: 'top' },
+        buttons: [
+            { 
+                text: '{% trans "Back" %}', 
+                action: tour.back,
+                classes: 'btn btn-secondary'
+            },
+            { 
+                text: '{% trans "Finish" %}', 
+                action: tour.complete,
+                classes: 'btn btn-success'
+            },
+        ],
+    });
+
+    // Auto-start tutorial for first-time visitors
+    if (!localStorage.getItem('flightSearchTutorialCompleted')) {
+        setTimeout(() => {
+            tour.start();
+        }, 2000);
+    }
+
+    // Mark tutorial as completed when finished
+    tour.on('complete', function() {
+        localStorage.setItem('flightSearchTutorialCompleted', 'true');
+    });
+
+    // Add button to manually start tutorial
+    if (!$('#startTutorialBtn').length) {
+        $('.search-button-container').append(
+            '<button type="button" id="startTutorialBtn" class="btn btn-outline-light mt-2" style="width: 100%;">' +
+            '<i class="fas fa-question-circle"></i> {% trans "Tutorial" %}' +
+            '</button>'
+        );
+        
+        $('#startTutorialBtn').click(function() {
+            tour.start();
+        });
+    }
+});
+
+// Enhanced Results Table Functionality from results.html
+$(document).ready(function(){
+    // Initialize tooltips for flight duration information
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    // Add scroll animation to results header
+    $('.card-header').addClass('scroll-right');
+    
+    // Enhanced hover effects for flight rows
+    $('.flight-row').hover(
+        function() {
+            $(this).addClass('table-hover-effect');
+        },
+        function() {
+            $(this).removeClass('table-hover-effect');
+        }
+    );
+    
+    // Smooth scroll to results when search is performed
+    if ($('.flight-results-section').length) {
+        $('html, body').animate({
+            scrollTop: $('.flight-results-section').offset().top - 100
+        }, 1000);
+    }
+    
+    // Add loading state to search button and form validation
+    $('#flightSearchForm').submit(function(e) {
+        console.log('=== Form submission triggered ===');
+        
+        var $btn = $('#searchFlightButton');
+        var originalText = $btn.find('.btn-inner--text').text();
+        
+        // Basic form validation
+        var origin = $('#inputOrigin').val().trim();
+        var destination = $('#inputDestination').val().trim();
+        var departureDate = $('#idDeparturedate').val();
+        
+        console.log('Form data:', {
+            origin: origin,
+            destination: destination,
+            departureDate: departureDate
+        });
+        
+        if (!origin) {
+            alert('{% trans "Please enter a departure location" %}');
+            $('#inputOrigin').focus();
+            return false;
+        }
+        
+        if (!destination) {
+            alert('{% trans "Please enter a destination" %}');
+            $('#inputDestination').focus();
+            return false;
+        }
+        
+        if (!departureDate) {
+            alert('{% trans "Please select a departure date" %}');
+            $('#idDeparturedate').focus();
+            return false;
+        }
+        
+        console.log('Form validation passed, submitting...');
+        
+        // Add loading state
+        $btn.prop('disabled', true);
+        $btn.find('.btn-inner--text').text('{% trans "Searching..." %}');
+        $btn.find('.btn-inner--icon i').removeClass('fa-search').addClass('fa-spinner fa-spin');
+        
+        // Form will submit normally
+        return true;
+    });
+    
+    // Debug button handler
+    $('#debugBtn').click(function() {
+        console.log('=== DEBUG: Checking form data ===');
+        var formData = {
+            origin: $('#inputOrigin').val(),
+            destination: $('#inputDestination').val(),
+            departureDate: $('#idDeparturedate').val(),
+            returnDate: $('#idReturndate').val(),
+            tripType: $('input[name="TripType"]:checked').val(),
+            seatClass: $('#SeatType').val()
+        };
+        
+        console.log('Current form data:', formData);
+        alert('Check browser console for form data. Form action: ' + $('#flightSearchForm').attr('action'));
+    });
+});
+
+// Flight search validation function (for compatibility)
+function flight_search() {
+    // This function is called by the original tutorial
+    return true;
+}
+</script>
+
+{% endblock %}
+

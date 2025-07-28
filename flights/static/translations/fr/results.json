@@ -1,0 +1,13 @@
+
+{
+  "header.title": "Réservation de vol Amadeus",
+  "results.available_flights": "Vols disponibles",
+  "results.departure": "Départ",
+  "results.flight_number": "Numéro de vol",
+  "results.arrival": "Arrivée",
+  "results.price": "Prix",
+  "results.book": "Réserver",
+  "results.book_flight": "Réserver un vol",
+  "results.no_flights": "Aucun vol trouvé pour cet itinéraire",
+  "results.connection_duration": "La durée de la connexion est"
+}

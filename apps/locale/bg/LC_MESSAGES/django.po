@@ -118,11 +118,11 @@ msgstr "1. Въведение"
 
 #: app_templates/TermsofService.html:25
 msgid ""
-"Welcome to BeyondBoard, a service provided by Dent i-Delil Clinic. By using "
+"Welcome to BeyondBoard, a service provided by Dent i-Delil Turkiye  Medical Tourism . By using "
 "our app, you agree to comply with and be bound by the following Terms of "
 "Service. Please read them carefully."
 msgstr ""
-"Добре дошли в BeyondBoard, услуга, предоставяна от Dent i-Delil Clinic. "
+"Добре дошли в BeyondBoard, услуга, предоставяна от Dent i-Delil Turkiye  Medical Tourism . "
 "Използвайки нашето приложение, вие се съгласявате да спазвате и да бъдете "
 "обвързани със следните Условия за ползване. Моля, прочетете ги внимателно."
 
@@ -231,7 +231,7 @@ msgid ""
 "property laws."
 msgstr ""
 "Цялото съдържание и материали, налични в приложението, включително, но не "
-"само, текст, графики, лога и софтуер, са собственост на Dent i-Delil Clinic "
+"само, текст, графики, лога и софтуер, са собственост на Dent i-Delil Turkiye  Medical Tourism  "
 "или нейните лицензодатели и са защитени от приложимите закони за "
 "интелектуална собственост."
 
@@ -241,12 +241,12 @@ msgstr "7. Ограничаване на отговорността"
 
 #: app_templates/TermsofService.html:53
 msgid ""
-"To the fullest extent permitted by law, Dent i-Delil Clinic and its "
+"To the fullest extent permitted by law, Dent i-Delil Turkiye  Medical Tourism  and its "
 "affiliates will not be liable for any indirect, incidental, special, "
 "consequential, or punitive damages arising out of your use of the app or "
 "these Terms of Service."
 msgstr ""
-"В най-пълната степен, позволена от закона, Dent i-Delil Clinic и нейните "
+"В най-пълната степен, позволена от закона, Dent i-Delil Turkiye  Medical Tourism  и нейните "
 "филиали няма да носят отговорност за каквито и да било косвени, случайни, "
 "специални, последващи или наказателни щети, произтичащи от използването на "
 "приложението или настоящите Условия за ползване."
@@ -1425,12 +1425,12 @@ msgstr "Моля, потвърдете имейл адреса си"
 #: app_templates/includes/sidenav.html:7 app_templates/login.html:22
 #: app_templates/my_treatment_plans.html:18
 #: app_templates/my_treatment_plans_pdf.html:18
-msgid "Dent i-Delil Clinic"
+msgid "Dent i-Delil Turkiye  Medical Tourism "
 msgstr "Клиника Дент и-Делил"
 
 #: app_templates/account/login.html:28 app_templates/login.html:23
 msgid ""
-"Welcome to Dent i-Delil Clinic! providing comprehensive healthcare "
+"Welcome to Dent i-Delil Turkiye  Medical Tourism ! providing comprehensive healthcare "
 "solutions."
 msgstr ""
 "Добре дошли в клиника Дент и-Делил! предоставяне на цялостни здравни "
@@ -3112,8 +3112,8 @@ msgid "Email:"
 msgstr "Имейл:"
 
 #: app_templates/demo/book_flight.html:136
-msgid "support@Dent i-Delil Clinic.com"
-msgstr "support@Dent i-Delil Clinic.com"
+msgid "support@Dent i-Delil Turkiye  Medical Tourism .com"
+msgstr "support@Dent i-Delil Turkiye  Medical Tourism .com"
 
 #: app_templates/demo/book_flight.html:139
 msgid "Print"
@@ -3776,7 +3776,7 @@ msgid "Facilities"
 msgstr "Услуги"
 
 #: app_templates/includes/footer-fullscreen.html:34
-msgid "&copy; Dent i-Delil Clinic - Design by Lotfi Kanouni"
+msgid "&copy; Dent i-Delil Turkiye  Medical Tourism  - Design by Lotfi Kanouni"
 msgstr "&amp;копиране; Клиника Дент и-Делил - Дизайн Лотфи Кануни"
 
 #: app_templates/includes/language.html:29
@@ -4205,7 +4205,7 @@ msgstr "Премахване на екип"
 #: app_templates/l.html:217 app_templates/salesdash.html:217
 msgid ""
 "A group of dedicated professionals ensuring the best care for our patients "
-"at Dent i-Delil Clinic."
+"at Dent i-Delil Turkiye  Medical Tourism ."
 msgstr ""
 "Група от всеотдайни професионалисти, осигуряващи най-добрата грижа за нашите"
 " пациенти в клиника Дент и-Делил."
@@ -4453,7 +4453,7 @@ msgstr "Не са намерени планове за лечение."
 
 #: app_templates/login.html:93
 msgid ""
-"This is the welcome message for Dent i-Delil Clinic, providing comprehensive"
+"This is the welcome message for Dent i-Delil Turkiye  Medical Tourism , providing comprehensive"
 " healthcare solutions."
 msgstr ""
 "Това е приветственото послание за клиника Dent i-Delil, предоставяща "
@@ -5183,12 +5183,12 @@ msgstr "beyondboard : Политика за поверителност"
 
 #: app_templates/privacypolicy.html:25
 msgid ""
-"Welcome to BeyondBoard, a service provided by Dent i-Delil Clinic. We value "
+"Welcome to BeyondBoard, a service provided by Dent i-Delil Turkiye  Medical Tourism . We value "
 "your privacy and are committed to protecting your personal information. This"
 " Privacy Policy outlines how we collect, use, and safeguard your data when "
 "you use our app, including the social login feature."
 msgstr ""
-"Добре дошли в BeyondBoard, услуга, предоставяна от Dent i-Delil Clinic. Ние "
+"Добре дошли в BeyondBoard, услуга, предоставяна от Dent i-Delil Turkiye  Medical Tourism . Ние "
 "ценим вашата поверителност и се ангажираме да защитаваме вашата лична "
 "информация. Тази Политика за поверителност очертава как събираме, използваме"
 " и защитаваме Вашите данни, когато използвате нашето приложение, включително"

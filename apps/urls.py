@@ -3,8 +3,8 @@ from apps import views, TreatmentPlanview, mew, errors
 from django.conf.urls.static import static
 from django.conf import settings
 from .dataviz import comprehensive_dashboard
-
-
+from . import invoice_ninja_views  # Import Invoice Ninja views
+from flights import views as flight_views
 app_name = 'app'
 
 urlpatterns = [
@@ -77,6 +77,38 @@ urlpatterns = [
     path('set_language/', views.set_language, name='set_language'),
     path('dataviz/', comprehensive_dashboard, name='comprehensive_dashboard'),
 
+    
+    # =============================================================================
+    # INVOICE NINJA INTEGRATION API ENDPOINTS
+    # =============================================================================
+    
+    # Callback endpoint for Invoice Ninja client creation
+    path('api/invoice-ninja/client-created/', 
+         invoice_ninja_views.invoice_ninja_client_created_callback, 
+         name='invoice_ninja_client_created_callback'),
+    
+    # Bulk sync callback endpoint
+    path('api/invoice-ninja/bulk-sync/', 
+         invoice_ninja_views.invoice_ninja_bulk_sync_callback, 
+         name='invoice_ninja_bulk_sync_callback'),
+    
+    # Get sync status for a specific user
+    path('api/invoice-ninja/sync-status/<int:user_id>/', 
+         invoice_ninja_views.invoice_ninja_sync_status, 
+         name='invoice_ninja_sync_status'),
+    
+    # Get list of users pending synchronization
+    path('api/invoice-ninja/pending-users/', 
+         invoice_ninja_views.invoice_ninja_pending_users, 
+         name='invoice_ninja_pending_users'),
+    
+    # Manually retry synchronization for a specific user
+    path('api/invoice-ninja/retry-sync/<int:user_id>/', 
+         invoice_ninja_views.invoice_ninja_retry_sync, 
+         name='invoice_ninja_retry_sync'),
+    
+    # Temporary debug route to check user existence
+    path('debug/check-users/', views.debug_check_users, name='debug_check_users'),
 
 ]   
 

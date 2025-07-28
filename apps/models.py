@@ -173,6 +173,18 @@ class User(DirtyFieldsMixin, AbstractUser):
     referred_by = models.CharField(_("Referred By"), max_length=100, blank=True, null=True)  # Increased length for flexibility
     thread_id = models.CharField(_("Thread ID"), max_length=255, null=True, blank=True)
     beyondblog_profileid = models.CharField(_("Blog Profile ID"), max_length=100, null=True, blank=True)
+    
+    # Invoice Ninja Integration Fields
+    invoiceninja_client_id = models.CharField(_("Invoice Ninja Client ID"), max_length=50, null=True, blank=True, unique=True)
+    invoiceninja_sync_status = models.CharField(_("Invoice Ninja Sync Status"), max_length=20, 
+                                               choices=[
+                                                   ('pending', _('Pending')),
+                                                   ('synced', _('Synced')),
+                                                   ('failed', _('Failed')),
+                                                   ('retry', _('Retry Required'))
+                                               ], default='pending')
+    invoiceninja_sync_attempts = models.PositiveIntegerField(_("Sync Attempts"), default=0)
+    invoiceninja_last_sync_attempt = models.DateTimeField(_("Last Sync Attempt"), null=True, blank=True)
 
     # New fields for logging purposes
     is_online = models.BooleanField(_("Is Online"), default=False)

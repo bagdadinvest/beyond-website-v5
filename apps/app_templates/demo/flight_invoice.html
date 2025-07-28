@@ -1,0 +1,529 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load safe_filters %}
+{% load i18n %}
+
+{% block head %}
+    <title>{% trans "Flight Invoice" %} | Beyond Clinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- html2pdf.js for PDF download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            background: #f4f6fa;
+        }
+        
+        .invoice-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.13);
+            overflow: hidden;
+        }
+        
+        .invoice-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-bottom: 2px solid #e8eaf6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .invoice-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .invoice-logo i {
+            font-size: 48px;
+        }
+        
+        .invoice-logo img {
+            height: 54px;
+            max-width: 200px;
+        }
+        
+        .invoice-title {
+            text-align: right;
+            color: white;
+        }
+        
+        .invoice-title h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.8rem;
+        }
+        
+        .invoice-title .small {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        
+        .invoice-body {
+            padding: 40px;
+        }
+        
+        .invoice-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .invoice-error {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .invoice-meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .invoice-meta-block {
+            width: 30%;
+            min-width: 180px;
+            margin-bottom: 15px;
+        }
+        
+        .invoice-meta-block h6 {
+            color: #6c757d;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .flight-details-section {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .flight-details-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .flight-details-header h5 {
+            margin: 0;
+            color: #495057;
+            font-weight: 600;
+        }
+        
+        .table-invoice {
+            margin: 0;
+        }
+        
+        .table-invoice th {
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 15px 12px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        
+        .table-invoice td {
+            padding: 15px 12px;
+            vertical-align: middle;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .badge-status {
+            font-size: 12px;
+            border-radius: 15px;
+            padding: 6px 12px;
+            font-weight: 600;
+        }
+        
+        .total-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .total-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .total-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .invoice-footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .btn-group-invoice {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .btn-download {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            border: none;
+            padding: 15px 30px;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-print {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border: none;
+            padding: 15px 30px;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-print:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            color: white;
+        }
+        
+        .btn-home {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            border: none;
+            padding: 15px 30px;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+        
+        @media print {
+            .btn-download, .btn-print, .btn-home, .invoice-footer, .btn-group-invoice {
+                display: none !important;
+            }
+            .invoice-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+            }
+            body {
+                background: white !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .invoice-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .invoice-title {
+                text-align: center;
+            }
+            
+            .invoice-meta-row {
+                flex-direction: column;
+            }
+            
+            .invoice-meta-block {
+                width: 100%;
+            }
+            
+            .table-invoice {
+                font-size: 0.8rem;
+            }
+            
+            .btn-group-invoice {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <div class="invoice-logo">
+                {% if invoice.company_logo %}
+                    <img src="{% static invoice.company_logo %}" alt="{{ invoice.company_name|safe_get:'Beyond Clinic' }}">
+                {% else %}
+                    <i class="fas fa-plane"></i>
+                    <div>
+                        <h1>{% trans "Beyond Clinic" %}</h1>
+                        <p class="lead mb-0">{% trans "Flight Booking Services" %}</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="invoice-title">
+                <h3>{% trans "Flight Invoice" %}</h3>
+                {% if invoice %}
+                    <div class="small">{% trans "Invoice #:" %} <b>{{ invoice.invoice_number|safe_get:"N/A" }}</b></div>
+                    <div class="small">{{ invoice.date|safe_get:"N/A" }}</div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="invoice-body">
+            {% if success %}
+                <div class="invoice-success">
+                    <i class="fas fa-check-circle fa-2x mb-3"></i>
+                    <h4>{% trans "Booking Confirmed!" %}</h4>
+                    <p class="mb-0">{{ message }}</p>
+                </div>
+            {% elif error %}
+                <div class="invoice-error">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-3"></i>
+                    <h4>{% trans "Booking Error" %}</h4>
+                    <p class="mb-0">{{ message }}</p>
+                </div>
+            {% endif %}
+            
+            {% if invoice %}
+                <div class="invoice-meta-row">
+                    <div class="invoice-meta-block">
+                        <h6>{% trans "From:" %}</h6>
+                        <div>
+                            <strong>{{ invoice.company_name|safe_get:"Beyond Clinic" }}</strong><br>
+                            {{ invoice.company_email|safe_get:"support@beyondclinic.com" }}
+                        </div>
+                    </div>
+                    <div class="invoice-meta-block">
+                        <h6>{% trans "To:" %}</h6>
+                        <div>
+                            <strong>{{ invoice.customer_name|safe_get:"Guest User" }}</strong><br>
+                            {{ invoice.customer_email|safe_get:"not-provided@example.com" }}<br>
+                            {{ invoice.customer_phone|safe_get:"Phone not provided" }}
+                        </div>
+                    </div>
+                    <div class="invoice-meta-block">
+                        <h6>{% trans "Invoice Date:" %}</h6>
+                        <div>{{ invoice.date|safe_get:"N/A" }}</div>
+                    </div>
+                </div>
+                
+                <div class="flight-details-section">
+                    <div class="flight-details-header">
+                        <h5><i class="fas fa-plane-departure me-2"></i>{% trans "Flight Booking Details" %}</h5>
+                    </div>
+                    <table class="table table-bordered table-invoice mb-0">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Flight" %}</th>
+                                <th>{% trans "Route" %}</th>
+                                <th>{% trans "Departure" %}</th>
+                                <th>{% trans "Arrival" %}</th>
+                                <th>{% trans "Class" %}</th>
+                                <th>{% trans "Airline" %}</th>
+                                <th>{% trans "Confirmation" %}</th>
+                                <th>{% trans "Status" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ invoice.flight_details.flight_number|safe_get:"-" }}</td>
+                                <td>{{ invoice.flight_details.route|safe_get:"-" }}</td>
+                                <td>{{ invoice.flight_details.departure|safe_get:"-" }}</td>
+                                <td>{{ invoice.flight_details.arrival|safe_get:"-" }}</td>
+                                <td>{{ invoice.flight_details.class|safe_get:"-" }}</td>
+                                <td>{{ invoice.flight_details.airline|safe_get:"-" }}</td>
+                                <td>{{ invoice.confirmation_code|safe_get:"-" }}</td>
+                                <td>
+                                    <span class="badge bg-success badge-status">
+                                        {{ invoice.booking_status|safe_get:"Confirmed" }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="total-section">
+                    <h3><i class="fas fa-receipt me-2"></i>{% trans "Total Amount" %}</h3>
+                    <h2 class="mb-2">{{ invoice.flight_details.price|safe_get:"0.00" }} {{ invoice.flight_details.currency|safe_get:"USD" }}</h2>
+                    <span class="badge bg-light text-dark badge-status">{% trans "Payment Status: Confirmed" %}</span>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="invoice-footer">
+            <div class="travel-message mb-4 p-3" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border-radius: 15px; text-align: center;">
+                <h5 class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>{% trans "Enjoy Your Medical Journey in Turkey!" %}</h5>
+                <p class="mb-2">{% trans "Discover these four beautiful destinations during your visit:" %}</p>
+                <div class="row text-center">
+                    <div class="col-md-3 col-6 mb-2">
+                        <i class="fas fa-city me-1"></i><strong>{% trans "Istanbul" %}</strong><br>
+                        <small>{% trans "Historic & Modern" %}</small>
+                    </div>
+                    <div class="col-md-3 col-6 mb-2">
+                        <i class="fas fa-mountain me-1"></i><strong>{% trans "Cappadocia" %}</strong><br>
+                        <small>{% trans "Fairy Chimneys" %}</small>
+                    </div>
+                    <div class="col-md-3 col-6 mb-2">
+                        <i class="fas fa-water me-1"></i><strong>{% trans "Antalya" %}</strong><br>
+                        <small>{% trans "Mediterranean Coast" %}</small>
+                    </div>
+                    <div class="col-md-3 col-6 mb-2">
+                        <i class="fas fa-spa me-1"></i><strong>{% trans "Pamukkale" %}</strong><br>
+                        <small>{% trans "Thermal Springs" %}</small>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-muted mb-3">
+                {% trans "Thank you for choosing" %} {{ invoice.company_name|safe_get:"Beyond Clinic" }} {% trans "for your medical travel needs." %}<br>
+                {% trans "We hope you have a wonderful recovery and enjoy exploring Turkey's rich culture and healing traditions." %}<br>
+                {% trans "For support, contact us at" %} <strong>{{ invoice.company_email|safe_get:"support@beyondclinic.com" }}</strong>
+            </p>
+            
+            <div class="btn-group-invoice">
+                <button id="download-pdf" class="btn-download">
+                    <i class="fas fa-file-pdf me-2"></i>{% trans "Download PDF" %}
+                </button>
+                
+                <button class="btn-print" onclick="window.print()">
+                    <i class="fas fa-print me-2"></i>{% trans "Print Invoice" %}
+                </button>
+                
+                <a href="{% url 'app:demo' %}" class="btn-home">
+                    <i class="fas fa-home me-2"></i>{% trans "Book Another Flight" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    // Automatically scroll to top when invoice loads
+    window.scrollTo(0, 0);
+    
+    // PDF Download functionality
+    document.getElementById('download-pdf').onclick = function () {
+        // Hide buttons before generating PDF
+        const buttonsToHide = document.querySelectorAll('.btn-group-invoice, .invoice-footer .btn-group-invoice');
+        buttonsToHide.forEach(btn => btn.style.display = 'none');
+        
+        var element = document.getElementById('invoice-box') || document.querySelector('.invoice-container');
+        
+        html2pdf()
+            .set({
+                margin: 0.5,
+                filename: 'Flight-Invoice-{{ invoice.invoice_number|safe_get:"Invoice"|slugify }}.pdf',
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
+            })
+            .from(element)
+            .save()
+            .then(function() {
+                // Show buttons again after PDF generation
+                buttonsToHide.forEach(btn => btn.style.display = 'flex');
+            });
+    };
+    
+    // Add smooth animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const elements = document.querySelectorAll('.invoice-meta-row, .flight-details-section, .total-section');
+        elements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                element.style.transition = 'all 0.6s ease';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+        
+        // Add hover effects to table rows
+        const tableRows = document.querySelectorAll('.table-invoice tbody tr');
+        tableRows.forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#f8f9fa';
+                this.style.transform = 'scale(1.01)';
+                this.style.transition = 'all 0.2s ease';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '';
+                this.style.transform = 'scale(1)';
+            });
+        });
+    });
+    
+    // Enhanced print functionality
+    window.addEventListener('beforeprint', function() {
+        document.title = 'Flight Invoice #{{ invoice.invoice_number|safe_get:"Invoice" }}';
+    });
+</script>
+{% endblock %}
