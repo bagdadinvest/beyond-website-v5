@@ -19,6 +19,7 @@ from .models import (
 
 # Import Invoice Ninja integration utilities
 from .invoice_ninja_utils import process_user_for_invoice_ninja_sync
+from .invoice_ninja_email_service import should_trigger_invoice_ninja_modal
 
 User = get_user_model()
 
@@ -227,6 +228,48 @@ def sync_user_with_invoice_ninja(sender, instance, created, **kwargs):
                         action.send(instance, verb='re-synced with Invoice Ninja due to referral data update')
                 except Exception as e:
                     print(f"[ERROR] Error during Invoice Ninja re-sync for user {instance.id}: {e}")
+
+
+# TreatmentPlan signals for Invoice Ninja modal notifications
+@receiver(post_save, sender=TreatmentPlan)
+def handle_treatment_plan_created(sender, instance, created, **kwargs):
+    """
+    Handle treatment plan creation and sync completion.
+    Only log the activity - modal notification is handled in the view.
+    """
+    try:
+        # Only trigger for newly created treatment plans
+        if created:
+            patient = instance.patient
+            print(f"[DEBUG] Treatment plan {instance.id} created for patient {patient.email}")
+            
+            # Log the treatment plan creation
+            action.send(
+                instance.doctor, 
+                verb=_('created treatment plan'),
+                target=instance,
+                action_object=patient
+            )
+            
+            # Check if patient is properly synced with Invoice Ninja
+            if (hasattr(patient, 'invoiceninja_client_id') and 
+                patient.invoiceninja_client_id and 
+                patient.invoiceninja_sync_status == 'synced'):
+                
+                print(f"[DEBUG] Patient {patient.email} is synced with Invoice Ninja. Modal notification will be shown in the view.")
+                
+                # Log that the patient is ready for Invoice Ninja dashboard access
+                action.send(
+                    instance,
+                    verb=_('Invoice Ninja dashboard ready for patient'),
+                    target=patient
+                )
+                    
+            else:
+                print(f"[DEBUG] Patient {patient.email} not yet synced with Invoice Ninja. Modal will be shown after sync completion.")
+                
+    except Exception as e:
+        print(f"[ERROR] Error handling treatment plan creation for plan {instance.id}: {e}")
 
 
 # Pre-save signal to track field changes for existing users - TEMPORARILY DISABLED

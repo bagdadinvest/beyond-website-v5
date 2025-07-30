@@ -1,0 +1,210 @@
+{% load static i18n %}
+
+<!-- Invoice Ninja Dashboard Access Modal -->
+<div class="modal fade" id="invoice-ninja-modal" tabindex="-1" aria-labelledby="invoiceNinjaModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="invoiceNinjaModalLabel">
+                    <i class="fas fa-chart-line me-2"></i>
+                    {% trans "Your Treatment Plan Dashboard is Ready!" %}
+                </h5>
+            </div>
+            <div class="modal-body text-center py-4">
+                <div class="mb-4">
+                    <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                </div>
+                
+                <h4 class="text-primary mb-3">{% trans "Great News!" %}</h4>
+                
+                <p class="lead mb-4">
+                    {% trans "Your treatment plan has been created and your personal dashboard is now ready for access." %}
+                </p>
+                
+                <div class="alert alert-info mb-4">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>{% trans "Your Dashboard Features:" %}</strong>
+                    <ul class="list-unstyled mt-2 mb-0">
+                        <li><i class="fas fa-check text-success me-2"></i>{% trans "View detailed treatment plan" %}</li>
+                        <li><i class="fas fa-check text-success me-2"></i>{% trans "Review cost estimates" %}</li>
+                        <li><i class="fas fa-check text-success me-2"></i>{% trans "Track your progress" %}</li>
+                        <li><i class="fas fa-check text-success me-2"></i>{% trans "Download invoices" %}</li>
+                    </ul>
+                </div>
+                
+                <div class="alert alert-warning mb-4">
+                    <i class="fas fa-envelope me-2"></i>
+                    <strong>{% trans "Dashboard Access:" %}</strong><br>
+                    {% trans "You can access your dashboard using your existing account credentials." %}
+                    {% if user.email %}
+                        <br><small class="text-muted">{% trans "Account:" %} <span class="patient-email">{{ user.email }}</span></small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" id="open-email-app-btn" class="btn btn-primary btn-lg px-4">
+                    <i class="fas fa-external-link-alt me-2"></i>
+                    {% trans "Access My Dashboard" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal element
+    const modal = document.getElementById('invoiceNinjaDashboardModal');
+    const modalInstance = new bootstrap.Modal(modal);
+    
+    // Button elements
+    const openEmailAppBtn = document.getElementById('openEmailAppBtn');
+    const dismissModalBtn = document.getElementById('dismissModalBtn');
+    
+    // Open Email App Button Handler
+    openEmailAppBtn.addEventListener('click', function() {
+        // Try to open the default email app
+        try {
+            // For mobile devices, try the mailto protocol
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                window.location.href = 'mailto:';
+            } else {
+                // For desktop, try to open default email client
+                window.location.href = 'mailto:';
+            }
+            
+            // Close modal after attempting to open email app
+            setTimeout(() => {
+                modalInstance.hide();
+            }, 1000);
+            
+        } catch (error) {
+            console.warn('Could not open email app:', error);
+            
+            // Fallback: Show options to open web email clients
+            showEmailClientOptions();
+        }
+    });
+    
+    // Dismiss Modal Button Handler
+    dismissModalBtn.addEventListener('click', function() {
+        modalInstance.hide();
+    });
+    
+    // Function to show email client options
+    function showEmailClientOptions() {
+        const emailOptionsHtml = `
+            <div class="alert alert-warning mt-3" role="alert">
+                <h6>{% trans "Choose your email provider:" %}</h6>
+                <div class="d-grid gap-2">
+                    <a href="https://mail.google.com" target="_blank" class="btn btn-outline-primary btn-sm">
+                        <i class="fab fa-google me-2"></i>Gmail
+                    </a>
+                    <a href="https://outlook.live.com" target="_blank" class="btn btn-outline-primary btn-sm">
+                        <i class="fab fa-microsoft me-2"></i>Outlook
+                    </a>
+                    <a href="https://mail.yahoo.com" target="_blank" class="btn btn-outline-primary btn-sm">
+                        <i class="fab fa-yahoo me-2"></i>Yahoo Mail
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        // Insert the options into the modal
+        const modalBody = modal.querySelector('.modal-body');
+        modalBody.insertAdjacentHTML('beforeend', emailOptionsHtml);
+    }
+    
+    // Auto-hide modal after 30 seconds if user doesn't interact
+    let autoHideTimer = setTimeout(() => {
+        if (modal.classList.contains('show')) {
+            modalInstance.hide();
+        }
+    }, 30000);
+    
+    // Clear auto-hide timer if user interacts with modal
+    modal.addEventListener('click', () => {
+        clearTimeout(autoHideTimer);
+    });
+    
+    // Global function to show the modal (called from other scripts)
+    window.showInvoiceNinjaDashboardModal = function(userEmail) {
+        // Update user email in modal if provided
+        if (userEmail) {
+            const emailDisplay = document.getElementById('userEmailDisplay');
+            if (emailDisplay) {
+                emailDisplay.textContent = userEmail;
+            }
+        }
+        
+        // Show the modal
+        modalInstance.show();
+        
+        // Reset auto-hide timer
+        clearTimeout(autoHideTimer);
+        autoHideTimer = setTimeout(() => {
+            if (modal.classList.contains('show')) {
+                modalInstance.hide();
+            }
+        }, 30000);
+    };
+    
+    // Hide modal when backdrop is clicked (disabled by data-bs-backdrop="static")
+    // But we can still allow ESC key if needed
+    modal.addEventListener('hidden.bs.modal', function() {
+        // Clean up any additional content that was added
+        const additionalAlerts = modal.querySelectorAll('.alert-warning');
+        additionalAlerts.forEach(alert => {
+            if (alert.textContent.includes('Choose your email provider')) {
+                alert.remove();
+            }
+        });
+    });
+});
+
+// CSS for better styling
+const style = document.createElement('style');
+style.textContent = `
+    #invoiceNinjaDashboardModal .modal-content {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+    #invoiceNinjaDashboardModal .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    #invoiceNinjaDashboardModal .modal-body {
+        background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%);
+    }
+    
+    #invoiceNinjaDashboardModal .card {
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    #invoiceNinjaDashboardModal .card:hover {
+        transform: translateY(-2px);
+    }
+    
+    #invoiceNinjaDashboardModal .btn {
+        transition: all 0.3s ease;
+    }
+    
+    #invoiceNinjaDashboardModal .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 768px) {
+        #invoiceNinjaDashboardModal .modal-dialog {
+            margin: 10px;
+        }
+        
+        #invoiceNinjaDashboardModal .modal-content {
+            border-radius: 10px;
+        }
+    }
+`;
+document.head.appendChild(style);
+</script>
